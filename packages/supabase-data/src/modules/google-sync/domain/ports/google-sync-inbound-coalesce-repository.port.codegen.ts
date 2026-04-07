@@ -14,10 +14,7 @@ export interface GoogleSyncInboundCoalesceListResult {
 interface GoogleSyncInboundCoalesceRepository {
   list(params: GoogleSyncInboundCoalesceListParams): Promise<GoogleSyncInboundCoalesceListResult>
   insert(data: Partial<GoogleSyncInboundCoalesceDTO>): Promise<GoogleSyncInboundCoalesceDTO>
-  update(
-    id: string,
-    patch: Partial<GoogleSyncInboundCoalesceDTO>
-  ): Promise<GoogleSyncInboundCoalesceDTO>
+  update(id: string, patch: Partial<GoogleSyncInboundCoalesceDTO>): Promise<GoogleSyncInboundCoalesceDTO>
   delete(id: string): Promise<void>
 }
 

@@ -1,17 +1,17 @@
 /**
  * InsertClinicalSessionDetails Server Action
- *
+ * 
  * Handles insert operation for clinical_session_details.
- *
+ * 
  * ## Usage
- *
+ * 
  * Example:
  * ```typescript
  * import { insertClinicalSessionDetailsAction } from "@workspace/supabase-data/actions/clinical-sessions/clinical-session-details-insert.codegen"
- *
+ * 
  * const result = await insertClinicalSessionDetailsAction(input)
  * ```
- *
+ * 
  * @module @workspace/supabase-data/actions/clinical-sessions/clinical-session-details-insert
  * codegen:actions-hooks (generated) — do not hand-edit
  */
@@ -19,22 +19,22 @@
 
 import { z } from "zod"
 
-import { logServerEvent } from "@workspace/logging/server"
-import { createServerAuthClient } from "@workspace/supabase-auth/server/create-server-auth-client"
-import { sanitizeForAudit } from "@workspace/supabase-data/lib/audit/sanitize-phi"
 import { requireAuth } from "@workspace/supabase-data/lib/auth/require-auth"
+import { createServerAuthClient } from "@workspace/supabase-auth/server/create-server-auth-client"
 import { ClinicalSessionDetailsSupabaseRepository } from "@workspace/supabase-data/modules/clinical-sessions/infrastructure/repositories/clinical-session-details-supabase.repository.codegen"
+import { logServerEvent } from "@workspace/logging/server"
+import { sanitizeForAudit } from "@workspace/supabase-data/lib/audit/sanitize-phi"
 
 /**
  * Audit-safe fields for this table (HIPAA §164.312(b) compliant)
- *
+ * 
  * These fields are safe to log in error metadata without exposing PHI.
  */
 const AUDIT_SAFE_FIELDS = ["id", "createdAt", "updatedAt"] as const
 
 /**
  * Input schema for insertClinicalSessionDetailsAction
- *
+ * 
  * Uses Zod v4 syntax (top-level APIs, not z.string().email() etc.)
  */
 const ClinicalSessionDetailsInsertInputSchema = z.object({
@@ -50,9 +50,7 @@ const ClinicalSessionDetailsInsertInputSchema = z.object({
 /**
  * Input type for insertClinicalSessionDetailsAction
  */
-export type ClinicalSessionDetailsInsertInput = z.infer<
-  typeof ClinicalSessionDetailsInsertInputSchema
->
+export type ClinicalSessionDetailsInsertInput = z.infer<typeof ClinicalSessionDetailsInsertInputSchema>
 
 /**
  * Output type for insertClinicalSessionDetailsAction — unknown until the action is wired to real DTOs / port types.
@@ -61,7 +59,7 @@ export type ClinicalSessionDetailsInsertOutput = unknown
 
 /**
  * InsertClinicalSessionDetails Server Action
- *
+ * 
  * @param input - Action input
  */
 export async function insertClinicalSessionDetailsAction(
@@ -82,7 +80,7 @@ export async function insertClinicalSessionDetailsAction(
     // 3. Auth client — created after all guards pass
     const supabase = await createServerAuthClient()
     const repository = new ClinicalSessionDetailsSupabaseRepository(supabase)
-
+    
     // 4. Execute operation — pass resolved context explicitly
     // @type-escape: generated action stub — insert payload unknown until TODO input schema
     const result = await repository.insert(validated as never)

@@ -1,12 +1,12 @@
 /**
  * Unit tests for useAccountDeletionRequestsQuery
- *
+ * 
  * codegen:actions-hooks (generated) — do not hand-edit
  */
 import { describe, expect, it } from "vitest"
 
-import { accountManagementQueryKeys } from "@workspace/supabase-data/hooks/account-management/query-keys.codegen"
 import { useAccountDeletionRequestsQuery } from "@workspace/supabase-data/hooks/account-management/use-account-deletion-requests-query.hook.codegen"
+import { accountManagementQueryKeys } from "@workspace/supabase-data/hooks/account-management/query-keys.codegen"
 
 describe("useAccountDeletionRequestsQuery", () => {
   it("should export the generated hook", () => {

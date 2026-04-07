@@ -1,17 +1,17 @@
 /**
  * FindByIdAvailabilityExceptions Server Action
- *
+ * 
  * Handles findById operation for availability_exceptions.
- *
+ * 
  * ## Usage
- *
+ * 
  * Example:
  * ```typescript
  * import { findByIdAvailabilityExceptionsAction } from "@workspace/supabase-data/actions/calendar/availability-exceptions-findById.codegen"
- *
+ * 
  * const result = await findByIdAvailabilityExceptionsAction(input)
  * ```
- *
+ * 
  * @module @workspace/supabase-data/actions/calendar/availability-exceptions-findById
  * codegen:actions-hooks (generated) — do not hand-edit
  */
@@ -19,22 +19,22 @@
 
 import { z } from "zod"
 
-import { logServerEvent } from "@workspace/logging/server"
-import { createServerAuthClient } from "@workspace/supabase-auth/server/create-server-auth-client"
-import { sanitizeForAudit } from "@workspace/supabase-data/lib/audit/sanitize-phi"
 import { requireAuth } from "@workspace/supabase-data/lib/auth/require-auth"
+import { createServerAuthClient } from "@workspace/supabase-auth/server/create-server-auth-client"
 import { AvailabilityExceptionsSupabaseRepository } from "@workspace/supabase-data/modules/calendar/infrastructure/repositories/availability-exceptions-supabase.repository.codegen"
+import { logServerEvent } from "@workspace/logging/server"
+import { sanitizeForAudit } from "@workspace/supabase-data/lib/audit/sanitize-phi"
 
 /**
  * Audit-safe fields for this table (HIPAA §164.312(b) compliant)
- *
+ * 
  * These fields are safe to log in error metadata without exposing PHI.
  */
 const AUDIT_SAFE_FIELDS = ["id", "createdAt", "updatedAt"] as const
 
 /**
  * Input schema for findByIdAvailabilityExceptionsAction
- *
+ * 
  * Uses Zod v4 syntax (top-level APIs, not z.string().email() etc.)
  */
 const AvailabilityExceptionsFindByIdInputSchema = z.object({
@@ -50,9 +50,7 @@ const AvailabilityExceptionsFindByIdInputSchema = z.object({
 /**
  * Input type for findByIdAvailabilityExceptionsAction
  */
-export type AvailabilityExceptionsFindByIdInput = z.infer<
-  typeof AvailabilityExceptionsFindByIdInputSchema
->
+export type AvailabilityExceptionsFindByIdInput = z.infer<typeof AvailabilityExceptionsFindByIdInputSchema>
 
 /**
  * Output type for findByIdAvailabilityExceptionsAction — unknown until the action is wired to real DTOs / port types.
@@ -61,7 +59,7 @@ export type AvailabilityExceptionsFindByIdOutput = unknown
 
 /**
  * FindByIdAvailabilityExceptions Server Action
- *
+ * 
  * @param input - Action input
  */
 export async function findByIdAvailabilityExceptionsAction(
@@ -82,7 +80,7 @@ export async function findByIdAvailabilityExceptionsAction(
     // 3. Auth client — created after all guards pass
     const supabase = await createServerAuthClient()
     const repository = new AvailabilityExceptionsSupabaseRepository(supabase)
-
+    
     // 4. Execute operation — pass resolved context explicitly
     // @type-escape: generated action stub — id shape from validated after TODO input schema
     const result = await repository.findById((validated as unknown as { id: string }).id)

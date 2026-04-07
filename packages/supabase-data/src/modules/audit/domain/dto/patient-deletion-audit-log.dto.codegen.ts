@@ -10,7 +10,7 @@ const PatientDeletionAuditLogDTOSchema = z.object({
   deletedCount: looseCell,
   id: looseCell,
   notes: looseCell,
-  triggeredBy: looseCell,
+  triggeredBy: looseCell
 })
 
 type PatientDeletionAuditLogDTO = z.infer<typeof PatientDeletionAuditLogDTOSchema>

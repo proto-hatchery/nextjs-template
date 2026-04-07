@@ -1,10 +1,8 @@
 // codegen:backend — do not hand-edit; regenerate with `pnpm codegen:backend --write`.
 
-import {
-  SubscriptionPlansDTOSchema,
-  type SubscriptionPlansDTO,
-} from "@workspace/supabase-data/modules/catalog/domain/dto/subscription-plans.dto.codegen"
 import type { Database } from "@workspace/supabase-infra/types/database"
+
+import { SubscriptionPlansDTOSchema, type SubscriptionPlansDTO } from "@workspace/supabase-data/modules/catalog/domain/dto/subscription-plans.dto.codegen"
 
 type SubscriptionPlansRow = Database["public"]["Tables"]["subscription_plans"]["Row"]
 type SubscriptionPlansInsert = Database["public"]["Tables"]["subscription_plans"]["Insert"]

@@ -1,6 +1,6 @@
 /**
  * Unit tests for listPsychologistFinancialEntriesAction
- *
+ * 
  * codegen:actions-hooks (generated) — do not hand-edit
  */
 import { describe, expect, it, vi, beforeEach } from "vitest"
@@ -19,12 +19,9 @@ vi.mock("@workspace/supabase-data/lib/auth/rate-limit", () => ({
   checkActionRateLimit: vi.fn(),
 }))
 
-vi.mock(
-  "@workspace/supabase-data/modules/financial/infrastructure/repositories/psychologist-financial-entries-supabase.repository.codegen",
-  () => ({
-    PsychologistFinancialEntriesSupabaseRepository: vi.fn(),
-  })
-)
+vi.mock("@workspace/supabase-data/modules/financial/infrastructure/repositories/psychologist-financial-entries-supabase.repository.codegen", () => ({
+  PsychologistFinancialEntriesSupabaseRepository: vi.fn(),
+}))
 
 vi.mock("@workspace/logging/server", () => ({
   logServerEvent: vi.fn(),
@@ -42,9 +39,7 @@ describe("listPsychologistFinancialEntriesAction", () => {
       const { getClaims } = await import("@workspace/supabase-auth/session/get-claims")
       vi.mocked(getClaims).mockResolvedValue({ claims: null } as any)
 
-      await expect(listPsychologistFinancialEntriesAction({} as any)).rejects.toThrow(
-        "Unauthorized"
-      )
+      await expect(listPsychologistFinancialEntriesAction({} as any)).rejects.toThrow("Unauthorized")
     })
 
     it("should log security.audit on unauthorized access", async () => {
@@ -71,34 +66,31 @@ describe("listPsychologistFinancialEntriesAction", () => {
       vi.mocked(getClaims).mockResolvedValue({ claims: { sub: "test-user-id" } } as any)
       vi.mocked(checkActionRateLimit).mockResolvedValue(undefined)
 
-      await expect(
-        listPsychologistFinancialEntriesAction({ invalid: "data" } as any)
-      ).rejects.toThrow()
+      await expect(listPsychologistFinancialEntriesAction({ invalid: "data" } as any)).rejects.toThrow()
     })
+
   })
 
   describe("Logging", () => {
     it("should log on success", async () => {
       const { getClaims } = await import("@workspace/supabase-auth/session/get-claims")
       const { checkActionRateLimit } = await import("@workspace/supabase-data/lib/auth/rate-limit")
-      const { PsychologistFinancialEntriesSupabaseRepository } =
-        await import("@workspace/supabase-data/modules/financial/infrastructure/repositories/psychologist-financial-entries-supabase.repository.codegen")
+      const { PsychologistFinancialEntriesSupabaseRepository } = await import("@workspace/supabase-data/modules/financial/infrastructure/repositories/psychologist-financial-entries-supabase.repository.codegen")
       const { logServerEvent } = await import("@workspace/logging/server")
       vi.mocked(getClaims).mockResolvedValue({ claims: { sub: "test-user-id" } } as any)
       vi.mocked(checkActionRateLimit).mockResolvedValue(undefined)
 
-      const { createServerAuthClient } =
-        await import("@workspace/supabase-auth/server/create-server-auth-client")
+      const { createServerAuthClient } = await import("@workspace/supabase-auth/server/create-server-auth-client")
       vi.mocked(createServerAuthClient).mockResolvedValue({} as any)
       vi.mocked(PsychologistFinancialEntriesSupabaseRepository).mockImplementation(
         function MockRepository() {
           return {
-            findById: vi.fn(),
-            list: vi.fn().mockResolvedValue({ rows: [{ id: "test-id" }] }),
-            insert: vi.fn(),
-            update: vi.fn(),
-            delete: vi.fn(),
-          } as any
+        findById: vi.fn(),
+        list: vi.fn().mockResolvedValue({ rows: [{ id: "test-id" }] }),
+        insert: vi.fn(),
+        update: vi.fn(),
+        delete: vi.fn(),
+      } as any
         } as any
       )
 
@@ -116,14 +108,12 @@ describe("listPsychologistFinancialEntriesAction", () => {
     it("should log on error with sanitized metadata", async () => {
       const { getClaims } = await import("@workspace/supabase-auth/session/get-claims")
       const { checkActionRateLimit } = await import("@workspace/supabase-data/lib/auth/rate-limit")
-      const { PsychologistFinancialEntriesSupabaseRepository } =
-        await import("@workspace/supabase-data/modules/financial/infrastructure/repositories/psychologist-financial-entries-supabase.repository.codegen")
+      const { PsychologistFinancialEntriesSupabaseRepository } = await import("@workspace/supabase-data/modules/financial/infrastructure/repositories/psychologist-financial-entries-supabase.repository.codegen")
       const { logServerEvent } = await import("@workspace/logging/server")
       vi.mocked(getClaims).mockResolvedValue({ claims: { sub: "test-user-id" } } as any)
       vi.mocked(checkActionRateLimit).mockResolvedValue(undefined)
 
-      const { createServerAuthClient } =
-        await import("@workspace/supabase-auth/server/create-server-auth-client")
+      const { createServerAuthClient } = await import("@workspace/supabase-auth/server/create-server-auth-client")
       vi.mocked(createServerAuthClient).mockResolvedValue({} as any)
       vi.mocked(PsychologistFinancialEntriesSupabaseRepository).mockImplementation(
         function MockRepository() {

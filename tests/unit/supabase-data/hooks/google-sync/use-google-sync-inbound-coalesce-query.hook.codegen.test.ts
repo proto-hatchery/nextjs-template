@@ -1,12 +1,12 @@
 /**
  * Unit tests for useGoogleSyncInboundCoalesceQuery
- *
+ * 
  * codegen:actions-hooks (generated) — do not hand-edit
  */
 import { describe, expect, it } from "vitest"
 
-import { googleSyncQueryKeys } from "@workspace/supabase-data/hooks/google-sync/query-keys.codegen"
 import { useGoogleSyncInboundCoalesceQuery } from "@workspace/supabase-data/hooks/google-sync/use-google-sync-inbound-coalesce-query.hook.codegen"
+import { googleSyncQueryKeys } from "@workspace/supabase-data/hooks/google-sync/query-keys.codegen"
 
 describe("useGoogleSyncInboundCoalesceQuery", () => {
   it("should export the generated hook", () => {

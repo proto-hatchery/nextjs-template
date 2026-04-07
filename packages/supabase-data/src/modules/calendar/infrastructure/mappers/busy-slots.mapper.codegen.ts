@@ -1,10 +1,8 @@
 // codegen:backend — do not hand-edit; regenerate with `pnpm codegen:backend --write`.
 
-import {
-  BusySlotsDTOSchema,
-  type BusySlotsDTO,
-} from "@workspace/supabase-data/modules/calendar/domain/dto/busy-slots.dto.codegen"
 import type { Database } from "@workspace/supabase-infra/types/database"
+
+import { BusySlotsDTOSchema, type BusySlotsDTO } from "@workspace/supabase-data/modules/calendar/domain/dto/busy-slots.dto.codegen"
 
 type BusySlotsRow = Database["public"]["Tables"]["busy_slots"]["Row"]
 type BusySlotsInsert = Database["public"]["Tables"]["busy_slots"]["Insert"]

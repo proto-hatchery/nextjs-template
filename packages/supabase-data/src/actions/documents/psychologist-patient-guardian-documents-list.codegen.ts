@@ -1,17 +1,17 @@
 /**
  * ListPsychologistPatientGuardianDocuments Server Action
- *
+ * 
  * Handles list operation for psychologist_patient_guardian_documents.
- *
+ * 
  * ## Usage
- *
+ * 
  * Example:
  * ```typescript
  * import { listPsychologistPatientGuardianDocumentsAction } from "@workspace/supabase-data/actions/documents/psychologist-patient-guardian-documents-list.codegen"
- *
+ * 
  * const result = await listPsychologistPatientGuardianDocumentsAction(input)
  * ```
- *
+ * 
  * @module @workspace/supabase-data/actions/documents/psychologist-patient-guardian-documents-list
  * codegen:actions-hooks (generated) — do not hand-edit
  */
@@ -19,22 +19,22 @@
 
 import { z } from "zod"
 
-import { logServerEvent } from "@workspace/logging/server"
-import { createServerAuthClient } from "@workspace/supabase-auth/server/create-server-auth-client"
-import { sanitizeForAudit } from "@workspace/supabase-data/lib/audit/sanitize-phi"
 import { requireAuth } from "@workspace/supabase-data/lib/auth/require-auth"
+import { createServerAuthClient } from "@workspace/supabase-auth/server/create-server-auth-client"
 import { PsychologistPatientGuardianDocumentsSupabaseRepository } from "@workspace/supabase-data/modules/documents/infrastructure/repositories/psychologist-patient-guardian-documents-supabase.repository.codegen"
+import { logServerEvent } from "@workspace/logging/server"
+import { sanitizeForAudit } from "@workspace/supabase-data/lib/audit/sanitize-phi"
 
 /**
  * Audit-safe fields for this table (HIPAA §164.312(b) compliant)
- *
+ * 
  * These fields are safe to log in error metadata without exposing PHI.
  */
 const AUDIT_SAFE_FIELDS = ["id", "createdAt", "updatedAt"] as const
 
 /**
  * Input schema for listPsychologistPatientGuardianDocumentsAction
- *
+ * 
  * Uses Zod v4 syntax (top-level APIs, not z.string().email() etc.)
  */
 const PsychologistPatientGuardianDocumentsListInputSchema = z.object({
@@ -50,9 +50,7 @@ const PsychologistPatientGuardianDocumentsListInputSchema = z.object({
 /**
  * Input type for listPsychologistPatientGuardianDocumentsAction
  */
-export type PsychologistPatientGuardianDocumentsListInput = z.infer<
-  typeof PsychologistPatientGuardianDocumentsListInputSchema
->
+export type PsychologistPatientGuardianDocumentsListInput = z.infer<typeof PsychologistPatientGuardianDocumentsListInputSchema>
 
 /**
  * Output type for listPsychologistPatientGuardianDocumentsAction — unknown until the action is wired to real DTOs / port types.
@@ -61,7 +59,7 @@ export type PsychologistPatientGuardianDocumentsListOutput = unknown
 
 /**
  * ListPsychologistPatientGuardianDocuments Server Action
- *
+ * 
  * @param input - Action input
  */
 export async function listPsychologistPatientGuardianDocumentsAction(
@@ -82,7 +80,7 @@ export async function listPsychologistPatientGuardianDocumentsAction(
     // 3. Auth client — created after all guards pass
     const supabase = await createServerAuthClient()
     const repository = new PsychologistPatientGuardianDocumentsSupabaseRepository(supabase)
-
+    
     // 4. Execute operation — pass resolved context explicitly
     // @type-escape: generated action stub — list params unknown until semantic plan fills Zod input
     const result = await repository.list(validated as never)

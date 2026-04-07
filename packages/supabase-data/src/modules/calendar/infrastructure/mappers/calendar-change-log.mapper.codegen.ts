@@ -1,10 +1,8 @@
 // codegen:backend — do not hand-edit; regenerate with `pnpm codegen:backend --write`.
 
-import {
-  CalendarChangeLogDTOSchema,
-  type CalendarChangeLogDTO,
-} from "@workspace/supabase-data/modules/calendar/domain/dto/calendar-change-log.dto.codegen"
 import type { Database } from "@workspace/supabase-infra/types/database"
+
+import { CalendarChangeLogDTOSchema, type CalendarChangeLogDTO } from "@workspace/supabase-data/modules/calendar/domain/dto/calendar-change-log.dto.codegen"
 
 type CalendarChangeLogRow = Database["public"]["Tables"]["calendar_change_log"]["Row"]
 type CalendarChangeLogInsert = Database["public"]["Tables"]["calendar_change_log"]["Insert"]

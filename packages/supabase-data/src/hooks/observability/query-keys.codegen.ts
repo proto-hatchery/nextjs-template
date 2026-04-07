@@ -1,7 +1,7 @@
 /**
  * TanStack Query key factory for domain "observability".
  * Import keys from this module only — avoid string literals in hooks/components.
- *
+ * 
  * @module @workspace/supabase-data/hooks/observability/query-keys.codegen
  * codegen:actions-hooks (generated) — do not hand-edit
  */

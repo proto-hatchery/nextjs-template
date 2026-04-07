@@ -1,9 +1,9 @@
 /**
  * usePsychologistPatientServicesMutation — TanStack Query mutation wrapper for a Server Action.
- *
+ * 
  * TODO: Import the Server Action, narrow `_input`, and tune invalidation (prefer precise keys).
  * Do not add console.log — use structured logging in the action (logServerEvent).
- *
+ * 
  * @module @workspace/supabase-data/hooks/patients/use-psychologist-patient-services-mutation.hook
  * codegen:actions-hooks (generated) — do not hand-edit
  */
@@ -17,12 +17,7 @@ import { patientsQueryKeys } from "@workspace/supabase-data/hooks/patients/query
 // TODO: Narrow the input type based on your action's requirements
 type MutationInput = unknown
 
-export function usePsychologistPatientServicesMutation(): UseMutationResult<
-  unknown,
-  Error,
-  MutationInput,
-  unknown
-> {
+export function usePsychologistPatientServicesMutation(): UseMutationResult<unknown, Error, MutationInput, unknown> {
   const queryClient = useQueryClient()
   return useMutation({
     mutationFn: async (_input: MutationInput) => {
@@ -32,9 +27,7 @@ export function usePsychologistPatientServicesMutation(): UseMutationResult<
     },
     onSettled: async () => {
       // TODO: Invalidate precise query keys
-      await queryClient.invalidateQueries({
-        queryKey: patientsQueryKeys.psychologistPatientServices(),
-      })
+      await queryClient.invalidateQueries({ queryKey: patientsQueryKeys.psychologistPatientServices() })
     },
   })
 }

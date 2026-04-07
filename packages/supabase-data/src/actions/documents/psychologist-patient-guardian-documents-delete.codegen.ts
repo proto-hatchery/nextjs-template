@@ -1,17 +1,17 @@
 /**
  * DeletePsychologistPatientGuardianDocuments Server Action
- *
+ * 
  * Handles delete operation for psychologist_patient_guardian_documents.
- *
+ * 
  * ## Usage
- *
+ * 
  * Example:
  * ```typescript
  * import { deletePsychologistPatientGuardianDocumentsAction } from "@workspace/supabase-data/actions/documents/psychologist-patient-guardian-documents-delete.codegen"
- *
+ * 
  * const result = await deletePsychologistPatientGuardianDocumentsAction(input)
  * ```
- *
+ * 
  * @module @workspace/supabase-data/actions/documents/psychologist-patient-guardian-documents-delete
  * codegen:actions-hooks (generated) — do not hand-edit
  */
@@ -19,22 +19,22 @@
 
 import { z } from "zod"
 
-import { logServerEvent } from "@workspace/logging/server"
-import { createServerAuthClient } from "@workspace/supabase-auth/server/create-server-auth-client"
-import { sanitizeForAudit } from "@workspace/supabase-data/lib/audit/sanitize-phi"
 import { requireAuth } from "@workspace/supabase-data/lib/auth/require-auth"
+import { createServerAuthClient } from "@workspace/supabase-auth/server/create-server-auth-client"
 import { PsychologistPatientGuardianDocumentsSupabaseRepository } from "@workspace/supabase-data/modules/documents/infrastructure/repositories/psychologist-patient-guardian-documents-supabase.repository.codegen"
+import { logServerEvent } from "@workspace/logging/server"
+import { sanitizeForAudit } from "@workspace/supabase-data/lib/audit/sanitize-phi"
 
 /**
  * Audit-safe fields for this table (HIPAA §164.312(b) compliant)
- *
+ * 
  * These fields are safe to log in error metadata without exposing PHI.
  */
 const AUDIT_SAFE_FIELDS = ["id", "createdAt", "updatedAt"] as const
 
 /**
  * Input schema for deletePsychologistPatientGuardianDocumentsAction
- *
+ * 
  * Uses Zod v4 syntax (top-level APIs, not z.string().email() etc.)
  */
 const PsychologistPatientGuardianDocumentsDeleteInputSchema = z.object({
@@ -50,9 +50,7 @@ const PsychologistPatientGuardianDocumentsDeleteInputSchema = z.object({
 /**
  * Input type for deletePsychologistPatientGuardianDocumentsAction
  */
-export type PsychologistPatientGuardianDocumentsDeleteInput = z.infer<
-  typeof PsychologistPatientGuardianDocumentsDeleteInputSchema
->
+export type PsychologistPatientGuardianDocumentsDeleteInput = z.infer<typeof PsychologistPatientGuardianDocumentsDeleteInputSchema>
 
 /**
  * Output type for deletePsychologistPatientGuardianDocumentsAction — unknown until the action is wired to real DTOs / port types.
@@ -61,7 +59,7 @@ export type PsychologistPatientGuardianDocumentsDeleteOutput = unknown
 
 /**
  * DeletePsychologistPatientGuardianDocuments Server Action
- *
+ * 
  * @param input - Action input
  */
 export async function deletePsychologistPatientGuardianDocumentsAction(
@@ -82,7 +80,7 @@ export async function deletePsychologistPatientGuardianDocumentsAction(
     // 3. Auth client — created after all guards pass
     const supabase = await createServerAuthClient()
     const repository = new PsychologistPatientGuardianDocumentsSupabaseRepository(supabase)
-
+    
     // 4. Execute operation — pass resolved context explicitly
     // @type-escape: generated action stub — delete id unknown until TODO input schema
     await repository.delete((validated as unknown as { id: string }).id)

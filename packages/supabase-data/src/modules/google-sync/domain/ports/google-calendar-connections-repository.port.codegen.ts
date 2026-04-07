@@ -15,10 +15,7 @@ interface GoogleCalendarConnectionsRepository {
   findById(id: string): Promise<GoogleCalendarConnectionsDTO | null>
   list(params: GoogleCalendarConnectionsListParams): Promise<GoogleCalendarConnectionsListResult>
   insert(data: Partial<GoogleCalendarConnectionsDTO>): Promise<GoogleCalendarConnectionsDTO>
-  update(
-    id: string,
-    patch: Partial<GoogleCalendarConnectionsDTO>
-  ): Promise<GoogleCalendarConnectionsDTO>
+  update(id: string, patch: Partial<GoogleCalendarConnectionsDTO>): Promise<GoogleCalendarConnectionsDTO>
   delete(id: string): Promise<void>
 }
 

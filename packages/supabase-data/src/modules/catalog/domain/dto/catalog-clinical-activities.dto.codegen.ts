@@ -24,7 +24,7 @@ const CatalogClinicalActivitiesDTOSchema = z.object({
   riskLevel: looseCell,
   tags: looseCell,
   title: looseCell,
-  updatedAt: looseCell,
+  updatedAt: looseCell
 })
 
 type CatalogClinicalActivitiesDTO = z.infer<typeof CatalogClinicalActivitiesDTOSchema>

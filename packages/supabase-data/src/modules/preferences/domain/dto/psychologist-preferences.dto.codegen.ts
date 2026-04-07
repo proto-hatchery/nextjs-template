@@ -15,7 +15,7 @@ const PsychologistPreferencesDTOSchema = z.object({
   notificationsWhatsappReminders: looseCell,
   preferences: looseCell,
   updatedAt: looseCell,
-  userId: looseCell,
+  userId: looseCell
 })
 
 type PsychologistPreferencesDTO = z.infer<typeof PsychologistPreferencesDTOSchema>

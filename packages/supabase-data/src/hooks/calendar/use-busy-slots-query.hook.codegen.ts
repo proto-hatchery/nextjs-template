@@ -1,9 +1,9 @@
 /**
  * useBusySlotsQuery — TanStack Query wrapper for a Server Action.
- *
+ * 
  * TODO: Wire the Server Action import and replace the queryFn body.
  * Do not add console.log — observability lives in the action (logServerEvent).
- *
+ * 
  * @module @workspace/supabase-data/hooks/calendar/use-busy-slots-query.hook
  * codegen:actions-hooks (generated) — do not hand-edit
  */

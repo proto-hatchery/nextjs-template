@@ -19,7 +19,7 @@ const GeneratedDocumentsDTOSchema = z.object({
   templateId: looseCell,
   title: looseCell,
   updatedAt: looseCell,
-  updatedBy: looseCell,
+  updatedBy: looseCell
 })
 
 type GeneratedDocumentsDTO = z.infer<typeof GeneratedDocumentsDTOSchema>

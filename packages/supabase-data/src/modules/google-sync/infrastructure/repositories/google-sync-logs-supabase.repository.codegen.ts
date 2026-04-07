@@ -3,17 +3,10 @@
 import type { SupabaseClient } from "@supabase/supabase-js"
 
 import { SupabaseRepositoryError } from "@workspace/supabase-data/lib/supabase-repository-error"
+
+import type { GoogleSyncLogsRepository, GoogleSyncLogsListParams, GoogleSyncLogsListResult } from "@workspace/supabase-data/modules/google-sync/domain/ports/google-sync-logs-repository.port.codegen"
+import { fromGoogleSyncLogsRow, toGoogleSyncLogsInsert, toGoogleSyncLogsUpdate } from "@workspace/supabase-data/modules/google-sync/infrastructure/mappers/google-sync-logs.mapper.codegen"
 import type { GoogleSyncLogsDTO } from "@workspace/supabase-data/modules/google-sync/domain/dto/google-sync-logs.dto.codegen"
-import type {
-  GoogleSyncLogsRepository,
-  GoogleSyncLogsListParams,
-  GoogleSyncLogsListResult,
-} from "@workspace/supabase-data/modules/google-sync/domain/ports/google-sync-logs-repository.port.codegen"
-import {
-  fromGoogleSyncLogsRow,
-  toGoogleSyncLogsInsert,
-  toGoogleSyncLogsUpdate,
-} from "@workspace/supabase-data/modules/google-sync/infrastructure/mappers/google-sync-logs.mapper.codegen"
 
 class GoogleSyncLogsSupabaseRepository implements GoogleSyncLogsRepository {
   constructor(private readonly supabase: SupabaseClient) {}
@@ -21,9 +14,7 @@ class GoogleSyncLogsSupabaseRepository implements GoogleSyncLogsRepository {
   async findById(id: string): Promise<GoogleSyncLogsDTO | null> {
     const { data, error } = await this.supabase
       .from("google_sync_logs")
-      .select(
-        "calendar_event_id, completed_at, created_at, error_code, error_message, google_event_id, id, operation, psychologist_id, request_payload, response_payload, series_id, started_at, status, sync_direction"
-      )
+      .select("calendar_event_id, completed_at, created_at, error_code, error_message, google_event_id, id, operation, psychologist_id, request_payload, response_payload, series_id, started_at, status, sync_direction")
       .eq("id", id)
       .maybeSingle()
     if (error) {
@@ -37,12 +28,7 @@ class GoogleSyncLogsSupabaseRepository implements GoogleSyncLogsRepository {
     const limit = Math.min(params.limit ?? 20, 100)
     const offset = params.offset ?? 0
     const end = offset + limit - 1
-    const q = this.supabase
-      .from("google_sync_logs")
-      .select(
-        "calendar_event_id, completed_at, created_at, error_code, error_message, google_event_id, id, operation, psychologist_id, request_payload, response_payload, series_id, started_at, status, sync_direction"
-      )
-      .range(offset, end)
+    const q = this.supabase.from("google_sync_logs").select("calendar_event_id, completed_at, created_at, error_code, error_message, google_event_id, id, operation, psychologist_id, request_payload, response_payload, series_id, started_at, status, sync_direction").range(offset, end)
     const { data, error } = await q
     if (error) {
       throw new SupabaseRepositoryError("Failed to list google_sync_logs.", { cause: error })
@@ -56,9 +42,7 @@ class GoogleSyncLogsSupabaseRepository implements GoogleSyncLogsRepository {
     const { data: row, error } = await this.supabase
       .from("google_sync_logs")
       .insert(payload)
-      .select(
-        "calendar_event_id, completed_at, created_at, error_code, error_message, google_event_id, id, operation, psychologist_id, request_payload, response_payload, series_id, started_at, status, sync_direction"
-      )
+      .select("calendar_event_id, completed_at, created_at, error_code, error_message, google_event_id, id, operation, psychologist_id, request_payload, response_payload, series_id, started_at, status, sync_direction")
       .single()
     if (error) {
       throw new SupabaseRepositoryError("Failed to insert google_sync_logs.", { cause: error })
@@ -72,9 +56,7 @@ class GoogleSyncLogsSupabaseRepository implements GoogleSyncLogsRepository {
       .from("google_sync_logs")
       .update(payload)
       .eq("id", id)
-      .select(
-        "calendar_event_id, completed_at, created_at, error_code, error_message, google_event_id, id, operation, psychologist_id, request_payload, response_payload, series_id, started_at, status, sync_direction"
-      )
+      .select("calendar_event_id, completed_at, created_at, error_code, error_message, google_event_id, id, operation, psychologist_id, request_payload, response_payload, series_id, started_at, status, sync_direction")
       .single()
     if (error) {
       throw new SupabaseRepositoryError("Failed to update google_sync_logs.", { cause: error })
@@ -88,6 +70,7 @@ class GoogleSyncLogsSupabaseRepository implements GoogleSyncLogsRepository {
       throw new SupabaseRepositoryError("Failed to delete google_sync_logs.", { cause: error })
     }
   }
+
 }
 
 export { GoogleSyncLogsSupabaseRepository }

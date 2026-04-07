@@ -28,7 +28,7 @@ const PsychologistFinancialEntriesDTOSchema = z.object({
   updatedAt: looseCell,
   updatedBy: looseCell,
   weeklyPeriodEnd: looseCell,
-  weeklyPeriodStart: looseCell,
+  weeklyPeriodStart: looseCell
 })
 
 type PsychologistFinancialEntriesDTO = z.infer<typeof PsychologistFinancialEntriesDTOSchema>

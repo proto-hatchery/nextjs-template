@@ -20,7 +20,7 @@ const SubscriptionPlansDTOSchema = z.object({
   stripePriceId: looseCell,
   stripeProductId: looseCell,
   subscriptionPlanId: looseCell,
-  updatedAt: looseCell,
+  updatedAt: looseCell
 })
 
 type SubscriptionPlansDTO = z.infer<typeof SubscriptionPlansDTOSchema>

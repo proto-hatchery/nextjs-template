@@ -1,16 +1,12 @@
 // codegen:backend — do not hand-edit; regenerate with `pnpm codegen:backend --write`.
 
-import {
-  PsychologistPreferencesDTOSchema,
-  type PsychologistPreferencesDTO,
-} from "@workspace/supabase-data/modules/preferences/domain/dto/psychologist-preferences.dto.codegen"
 import type { Database } from "@workspace/supabase-infra/types/database"
 
+import { PsychologistPreferencesDTOSchema, type PsychologistPreferencesDTO } from "@workspace/supabase-data/modules/preferences/domain/dto/psychologist-preferences.dto.codegen"
+
 type PsychologistPreferencesRow = Database["public"]["Tables"]["psychologist_preferences"]["Row"]
-type PsychologistPreferencesInsert =
-  Database["public"]["Tables"]["psychologist_preferences"]["Insert"]
-type PsychologistPreferencesUpdate =
-  Database["public"]["Tables"]["psychologist_preferences"]["Update"]
+type PsychologistPreferencesInsert = Database["public"]["Tables"]["psychologist_preferences"]["Insert"]
+type PsychologistPreferencesUpdate = Database["public"]["Tables"]["psychologist_preferences"]["Update"]
 
 const PsychologistPreferencesFieldMappings = {
   createdAt: "created_at",
@@ -28,9 +24,7 @@ const PsychologistPreferencesFieldMappings = {
 
 type PsychologistPreferencesField = keyof typeof PsychologistPreferencesFieldMappings
 
-function fromPsychologistPreferencesRow(
-  row: PsychologistPreferencesRow
-): PsychologistPreferencesDTO {
+function fromPsychologistPreferencesRow(row: PsychologistPreferencesRow): PsychologistPreferencesDTO {
   const mapped = {
     createdAt: row.created_at,
     id: row.id,
@@ -47,15 +41,10 @@ function fromPsychologistPreferencesRow(
   return PsychologistPreferencesDTOSchema.parse(mapped)
 }
 
-function toPsychologistPreferencesInsert(
-  dto: Partial<PsychologistPreferencesDTO>
-): PsychologistPreferencesInsert {
+function toPsychologistPreferencesInsert(dto: Partial<PsychologistPreferencesDTO>): PsychologistPreferencesInsert {
   const out: Record<string, unknown> = {}
   for (const [camelKey, snakeKey] of Object.entries(PsychologistPreferencesFieldMappings) as Array<
-    [
-      PsychologistPreferencesField,
-      (typeof PsychologistPreferencesFieldMappings)[PsychologistPreferencesField],
-    ]
+    [PsychologistPreferencesField, (typeof PsychologistPreferencesFieldMappings)[PsychologistPreferencesField]]
   >) {
     const value = dto[camelKey]
     if (typeof value !== "undefined") {
@@ -66,14 +55,8 @@ function toPsychologistPreferencesInsert(
   return out as PsychologistPreferencesInsert
 }
 
-function toPsychologistPreferencesUpdate(
-  dto: Partial<PsychologistPreferencesDTO>
-): PsychologistPreferencesUpdate {
+function toPsychologistPreferencesUpdate(dto: Partial<PsychologistPreferencesDTO>): PsychologistPreferencesUpdate {
   return toPsychologistPreferencesInsert(dto) as PsychologistPreferencesUpdate
 }
 
-export {
-  fromPsychologistPreferencesRow,
-  toPsychologistPreferencesInsert,
-  toPsychologistPreferencesUpdate,
-}
+export { fromPsychologistPreferencesRow, toPsychologistPreferencesInsert, toPsychologistPreferencesUpdate }

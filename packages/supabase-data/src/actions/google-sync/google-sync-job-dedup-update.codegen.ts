@@ -1,17 +1,17 @@
 /**
  * UpdateGoogleSyncJobDedup Server Action
- *
+ * 
  * Handles update operation for google_sync_job_dedup.
- *
+ * 
  * ## Usage
- *
+ * 
  * Example:
  * ```typescript
  * import { updateGoogleSyncJobDedupAction } from "@workspace/supabase-data/actions/google-sync/google-sync-job-dedup-update.codegen"
- *
+ * 
  * const result = await updateGoogleSyncJobDedupAction(input)
  * ```
- *
+ * 
  * @module @workspace/supabase-data/actions/google-sync/google-sync-job-dedup-update
  * codegen:actions-hooks (generated) — do not hand-edit
  */
@@ -19,22 +19,22 @@
 
 import { z } from "zod"
 
-import { logServerEvent } from "@workspace/logging/server"
-import { createServerAuthClient } from "@workspace/supabase-auth/server/create-server-auth-client"
-import { sanitizeForAudit } from "@workspace/supabase-data/lib/audit/sanitize-phi"
 import { requireAuth } from "@workspace/supabase-data/lib/auth/require-auth"
+import { createServerAuthClient } from "@workspace/supabase-auth/server/create-server-auth-client"
 import { GoogleSyncJobDedupSupabaseRepository } from "@workspace/supabase-data/modules/google-sync/infrastructure/repositories/google-sync-job-dedup-supabase.repository.codegen"
+import { logServerEvent } from "@workspace/logging/server"
+import { sanitizeForAudit } from "@workspace/supabase-data/lib/audit/sanitize-phi"
 
 /**
  * Audit-safe fields for this table (HIPAA §164.312(b) compliant)
- *
+ * 
  * These fields are safe to log in error metadata without exposing PHI.
  */
 const AUDIT_SAFE_FIELDS = ["id", "createdAt", "updatedAt"] as const
 
 /**
  * Input schema for updateGoogleSyncJobDedupAction
- *
+ * 
  * Uses Zod v4 syntax (top-level APIs, not z.string().email() etc.)
  */
 const GoogleSyncJobDedupUpdateInputSchema = z.object({
@@ -59,7 +59,7 @@ export type GoogleSyncJobDedupUpdateOutput = unknown
 
 /**
  * UpdateGoogleSyncJobDedup Server Action
- *
+ * 
  * @param input - Action input
  */
 export async function updateGoogleSyncJobDedupAction(
@@ -80,7 +80,7 @@ export async function updateGoogleSyncJobDedupAction(
     // 3. Auth client — created after all guards pass
     const supabase = await createServerAuthClient()
     const repository = new GoogleSyncJobDedupSupabaseRepository(supabase)
-
+    
     // 4. Execute operation — pass resolved context explicitly
     // @type-escape: generated action stub — id shape from validated after TODO input schema
     const validatedId = (validated as unknown as { id: string }).id

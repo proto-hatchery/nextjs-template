@@ -1,9 +1,9 @@
 /**
  * useCalendarEventSeriesQuery — TanStack Query wrapper for a Server Action.
- *
+ * 
  * TODO: Wire the Server Action import and replace the queryFn body.
  * Do not add console.log — observability lives in the action (logServerEvent).
- *
+ * 
  * @module @workspace/supabase-data/hooks/calendar/use-calendar-event-series-query.hook
  * codegen:actions-hooks (generated) — do not hand-edit
  */
@@ -17,9 +17,7 @@ import { calendarQueryKeys } from "@workspace/supabase-data/hooks/calendar/query
 // TODO: Narrow the input type based on your action's requirements
 type QueryFilters = Record<string, unknown>
 
-export function useCalendarEventSeriesQuery(
-  filters?: QueryFilters
-): UseQueryResult<unknown, Error> {
+export function useCalendarEventSeriesQuery(filters?: QueryFilters): UseQueryResult<unknown, Error> {
   return useQuery({
     queryKey: calendarQueryKeys.calendarEventSeriesList(filters),
     queryFn: async () => {

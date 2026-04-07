@@ -20,14 +20,9 @@ const PsychologistPatientGuardianDocumentsDTOSchema = z.object({
   status: looseCell,
   title: looseCell,
   updatedAt: looseCell,
-  uploadedAt: looseCell,
+  uploadedAt: looseCell
 })
 
-type PsychologistPatientGuardianDocumentsDTO = z.infer<
-  typeof PsychologistPatientGuardianDocumentsDTOSchema
->
+type PsychologistPatientGuardianDocumentsDTO = z.infer<typeof PsychologistPatientGuardianDocumentsDTOSchema>
 
-export {
-  PsychologistPatientGuardianDocumentsDTOSchema,
-  type PsychologistPatientGuardianDocumentsDTO,
-}
+export { PsychologistPatientGuardianDocumentsDTOSchema, type PsychologistPatientGuardianDocumentsDTO }

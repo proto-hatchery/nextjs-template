@@ -1,10 +1,8 @@
 // codegen:backend — do not hand-edit; regenerate with `pnpm codegen:backend --write`.
 
-import {
-  CalendarEventSeriesDTOSchema,
-  type CalendarEventSeriesDTO,
-} from "@workspace/supabase-data/modules/calendar/domain/dto/calendar-event-series.dto.codegen"
 import type { Database } from "@workspace/supabase-infra/types/database"
+
+import { CalendarEventSeriesDTOSchema, type CalendarEventSeriesDTO } from "@workspace/supabase-data/modules/calendar/domain/dto/calendar-event-series.dto.codegen"
 
 type CalendarEventSeriesRow = Database["public"]["Tables"]["calendar_event_series"]["Row"]
 type CalendarEventSeriesInsert = Database["public"]["Tables"]["calendar_event_series"]["Insert"]
@@ -61,9 +59,7 @@ function fromCalendarEventSeriesRow(row: CalendarEventSeriesRow): CalendarEventS
   return CalendarEventSeriesDTOSchema.parse(mapped)
 }
 
-function toCalendarEventSeriesInsert(
-  dto: Partial<CalendarEventSeriesDTO>
-): CalendarEventSeriesInsert {
+function toCalendarEventSeriesInsert(dto: Partial<CalendarEventSeriesDTO>): CalendarEventSeriesInsert {
   const out: Record<string, unknown> = {}
   for (const [camelKey, snakeKey] of Object.entries(CalendarEventSeriesFieldMappings) as Array<
     [CalendarEventSeriesField, (typeof CalendarEventSeriesFieldMappings)[CalendarEventSeriesField]]
@@ -77,9 +73,7 @@ function toCalendarEventSeriesInsert(
   return out as CalendarEventSeriesInsert
 }
 
-function toCalendarEventSeriesUpdate(
-  dto: Partial<CalendarEventSeriesDTO>
-): CalendarEventSeriesUpdate {
+function toCalendarEventSeriesUpdate(dto: Partial<CalendarEventSeriesDTO>): CalendarEventSeriesUpdate {
   return toCalendarEventSeriesInsert(dto) as CalendarEventSeriesUpdate
 }
 

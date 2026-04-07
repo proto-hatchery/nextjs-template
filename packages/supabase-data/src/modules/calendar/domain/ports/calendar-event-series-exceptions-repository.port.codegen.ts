@@ -13,14 +13,9 @@ export interface CalendarEventSeriesExceptionsListResult {
 
 interface CalendarEventSeriesExceptionsRepository {
   findById(id: string): Promise<CalendarEventSeriesExceptionsDTO | null>
-  list(
-    params: CalendarEventSeriesExceptionsListParams
-  ): Promise<CalendarEventSeriesExceptionsListResult>
+  list(params: CalendarEventSeriesExceptionsListParams): Promise<CalendarEventSeriesExceptionsListResult>
   insert(data: Partial<CalendarEventSeriesExceptionsDTO>): Promise<CalendarEventSeriesExceptionsDTO>
-  update(
-    id: string,
-    patch: Partial<CalendarEventSeriesExceptionsDTO>
-  ): Promise<CalendarEventSeriesExceptionsDTO>
+  update(id: string, patch: Partial<CalendarEventSeriesExceptionsDTO>): Promise<CalendarEventSeriesExceptionsDTO>
   delete(id: string): Promise<void>
 }
 

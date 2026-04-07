@@ -12,14 +12,9 @@ export interface PsychologistOnboardingStateListResult {
 }
 
 interface PsychologistOnboardingStateRepository {
-  list(
-    params: PsychologistOnboardingStateListParams
-  ): Promise<PsychologistOnboardingStateListResult>
+  list(params: PsychologistOnboardingStateListParams): Promise<PsychologistOnboardingStateListResult>
   insert(data: Partial<PsychologistOnboardingStateDTO>): Promise<PsychologistOnboardingStateDTO>
-  update(
-    id: string,
-    patch: Partial<PsychologistOnboardingStateDTO>
-  ): Promise<PsychologistOnboardingStateDTO>
+  update(id: string, patch: Partial<PsychologistOnboardingStateDTO>): Promise<PsychologistOnboardingStateDTO>
   delete(id: string): Promise<void>
 }
 

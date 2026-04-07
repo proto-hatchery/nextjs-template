@@ -1,16 +1,12 @@
 // codegen:backend — do not hand-edit; regenerate with `pnpm codegen:backend --write`.
 
-import {
-  CatalogDocumentTemplatesDTOSchema,
-  type CatalogDocumentTemplatesDTO,
-} from "@workspace/supabase-data/modules/catalog/domain/dto/catalog-document-templates.dto.codegen"
 import type { Database } from "@workspace/supabase-infra/types/database"
 
+import { CatalogDocumentTemplatesDTOSchema, type CatalogDocumentTemplatesDTO } from "@workspace/supabase-data/modules/catalog/domain/dto/catalog-document-templates.dto.codegen"
+
 type CatalogDocumentTemplatesRow = Database["public"]["Tables"]["catalog_document_templates"]["Row"]
-type CatalogDocumentTemplatesInsert =
-  Database["public"]["Tables"]["catalog_document_templates"]["Insert"]
-type CatalogDocumentTemplatesUpdate =
-  Database["public"]["Tables"]["catalog_document_templates"]["Update"]
+type CatalogDocumentTemplatesInsert = Database["public"]["Tables"]["catalog_document_templates"]["Insert"]
+type CatalogDocumentTemplatesUpdate = Database["public"]["Tables"]["catalog_document_templates"]["Update"]
 
 const CatalogDocumentTemplatesFieldMappings = {
   createdAt: "created_at",
@@ -27,9 +23,7 @@ const CatalogDocumentTemplatesFieldMappings = {
 
 type CatalogDocumentTemplatesField = keyof typeof CatalogDocumentTemplatesFieldMappings
 
-function fromCatalogDocumentTemplatesRow(
-  row: CatalogDocumentTemplatesRow
-): CatalogDocumentTemplatesDTO {
+function fromCatalogDocumentTemplatesRow(row: CatalogDocumentTemplatesRow): CatalogDocumentTemplatesDTO {
   const mapped = {
     createdAt: row.created_at,
     createdBy: row.created_by,
@@ -45,15 +39,10 @@ function fromCatalogDocumentTemplatesRow(
   return CatalogDocumentTemplatesDTOSchema.parse(mapped)
 }
 
-function toCatalogDocumentTemplatesInsert(
-  dto: Partial<CatalogDocumentTemplatesDTO>
-): CatalogDocumentTemplatesInsert {
+function toCatalogDocumentTemplatesInsert(dto: Partial<CatalogDocumentTemplatesDTO>): CatalogDocumentTemplatesInsert {
   const out: Record<string, unknown> = {}
   for (const [camelKey, snakeKey] of Object.entries(CatalogDocumentTemplatesFieldMappings) as Array<
-    [
-      CatalogDocumentTemplatesField,
-      (typeof CatalogDocumentTemplatesFieldMappings)[CatalogDocumentTemplatesField],
-    ]
+    [CatalogDocumentTemplatesField, (typeof CatalogDocumentTemplatesFieldMappings)[CatalogDocumentTemplatesField]]
   >) {
     const value = dto[camelKey]
     if (typeof value !== "undefined") {
@@ -64,14 +53,8 @@ function toCatalogDocumentTemplatesInsert(
   return out as CatalogDocumentTemplatesInsert
 }
 
-function toCatalogDocumentTemplatesUpdate(
-  dto: Partial<CatalogDocumentTemplatesDTO>
-): CatalogDocumentTemplatesUpdate {
+function toCatalogDocumentTemplatesUpdate(dto: Partial<CatalogDocumentTemplatesDTO>): CatalogDocumentTemplatesUpdate {
   return toCatalogDocumentTemplatesInsert(dto) as CatalogDocumentTemplatesUpdate
 }
 
-export {
-  fromCatalogDocumentTemplatesRow,
-  toCatalogDocumentTemplatesInsert,
-  toCatalogDocumentTemplatesUpdate,
-}
+export { fromCatalogDocumentTemplatesRow, toCatalogDocumentTemplatesInsert, toCatalogDocumentTemplatesUpdate }

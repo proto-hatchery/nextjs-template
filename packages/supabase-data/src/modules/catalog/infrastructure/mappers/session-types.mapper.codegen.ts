@@ -1,10 +1,8 @@
 // codegen:backend — do not hand-edit; regenerate with `pnpm codegen:backend --write`.
 
-import {
-  SessionTypesDTOSchema,
-  type SessionTypesDTO,
-} from "@workspace/supabase-data/modules/catalog/domain/dto/session-types.dto.codegen"
 import type { Database } from "@workspace/supabase-infra/types/database"
+
+import { SessionTypesDTOSchema, type SessionTypesDTO } from "@workspace/supabase-data/modules/catalog/domain/dto/session-types.dto.codegen"
 
 type SessionTypesRow = Database["public"]["Tables"]["session_types"]["Row"]
 type SessionTypesInsert = Database["public"]["Tables"]["session_types"]["Insert"]

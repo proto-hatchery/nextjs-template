@@ -1,10 +1,8 @@
 // codegen:backend — do not hand-edit; regenerate with `pnpm codegen:backend --write`.
 
-import {
-  AuditLogsDTOSchema,
-  type AuditLogsDTO,
-} from "@workspace/supabase-data/modules/audit/domain/dto/audit-logs.dto.codegen"
 import type { Database } from "@workspace/supabase-infra/types/database"
+
+import { AuditLogsDTOSchema, type AuditLogsDTO } from "@workspace/supabase-data/modules/audit/domain/dto/audit-logs.dto.codegen"
 
 type AuditLogsRow = Database["public"]["Tables"]["audit_logs"]["Row"]
 type AuditLogsInsert = Database["public"]["Tables"]["audit_logs"]["Insert"]

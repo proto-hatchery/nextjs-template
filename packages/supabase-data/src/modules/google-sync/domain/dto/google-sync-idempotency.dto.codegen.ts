@@ -16,7 +16,7 @@ const GoogleSyncIdempotencyDTOSchema = z.object({
   requestData: looseCell,
   responseData: looseCell,
   status: looseCell,
-  updatedAt: looseCell,
+  updatedAt: looseCell
 })
 
 type GoogleSyncIdempotencyDTO = z.infer<typeof GoogleSyncIdempotencyDTOSchema>

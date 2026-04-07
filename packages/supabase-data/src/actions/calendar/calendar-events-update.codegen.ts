@@ -1,17 +1,17 @@
 /**
  * UpdateCalendarEvents Server Action
- *
+ * 
  * Handles update operation for calendar_events.
- *
+ * 
  * ## Usage
- *
+ * 
  * Example:
  * ```typescript
  * import { updateCalendarEventsAction } from "@workspace/supabase-data/actions/calendar/calendar-events-update.codegen"
- *
+ * 
  * const result = await updateCalendarEventsAction(input)
  * ```
- *
+ * 
  * @module @workspace/supabase-data/actions/calendar/calendar-events-update
  * codegen:actions-hooks (generated) — do not hand-edit
  */
@@ -19,22 +19,22 @@
 
 import { z } from "zod"
 
-import { logServerEvent } from "@workspace/logging/server"
-import { createServerAuthClient } from "@workspace/supabase-auth/server/create-server-auth-client"
-import { sanitizeForAudit } from "@workspace/supabase-data/lib/audit/sanitize-phi"
 import { requireAuth } from "@workspace/supabase-data/lib/auth/require-auth"
+import { createServerAuthClient } from "@workspace/supabase-auth/server/create-server-auth-client"
 import { CalendarEventsSupabaseRepository } from "@workspace/supabase-data/modules/calendar/infrastructure/repositories/calendar-events-supabase.repository.codegen"
+import { logServerEvent } from "@workspace/logging/server"
+import { sanitizeForAudit } from "@workspace/supabase-data/lib/audit/sanitize-phi"
 
 /**
  * Audit-safe fields for this table (HIPAA §164.312(b) compliant)
- *
+ * 
  * These fields are safe to log in error metadata without exposing PHI.
  */
 const AUDIT_SAFE_FIELDS = ["id", "createdAt", "updatedAt"] as const
 
 /**
  * Input schema for updateCalendarEventsAction
- *
+ * 
  * Uses Zod v4 syntax (top-level APIs, not z.string().email() etc.)
  */
 const CalendarEventsUpdateInputSchema = z.object({
@@ -59,7 +59,7 @@ export type CalendarEventsUpdateOutput = unknown
 
 /**
  * UpdateCalendarEvents Server Action
- *
+ * 
  * @param input - Action input
  */
 export async function updateCalendarEventsAction(
@@ -80,7 +80,7 @@ export async function updateCalendarEventsAction(
     // 3. Auth client — created after all guards pass
     const supabase = await createServerAuthClient()
     const repository = new CalendarEventsSupabaseRepository(supabase)
-
+    
     // 4. Execute operation — pass resolved context explicitly
     // @type-escape: generated action stub — id shape from validated after TODO input schema
     const validatedId = (validated as unknown as { id: string }).id

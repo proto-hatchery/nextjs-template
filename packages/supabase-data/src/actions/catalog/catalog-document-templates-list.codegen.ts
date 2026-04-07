@@ -1,17 +1,17 @@
 /**
  * ListCatalogDocumentTemplates Server Action
- *
+ * 
  * Handles list operation for catalog_document_templates.
- *
+ * 
  * ## Usage
- *
+ * 
  * Example:
  * ```typescript
  * import { listCatalogDocumentTemplatesAction } from "@workspace/supabase-data/actions/catalog/catalog-document-templates-list.codegen"
- *
+ * 
  * const result = await listCatalogDocumentTemplatesAction(input)
  * ```
- *
+ * 
  * @module @workspace/supabase-data/actions/catalog/catalog-document-templates-list
  * codegen:actions-hooks (generated) — do not hand-edit
  */
@@ -19,22 +19,22 @@
 
 import { z } from "zod"
 
-import { logServerEvent } from "@workspace/logging/server"
-import { createServerAuthClient } from "@workspace/supabase-auth/server/create-server-auth-client"
-import { sanitizeForAudit } from "@workspace/supabase-data/lib/audit/sanitize-phi"
 import { requireAuth } from "@workspace/supabase-data/lib/auth/require-auth"
+import { createServerAuthClient } from "@workspace/supabase-auth/server/create-server-auth-client"
 import { CatalogDocumentTemplatesSupabaseRepository } from "@workspace/supabase-data/modules/catalog/infrastructure/repositories/catalog-document-templates-supabase.repository.codegen"
+import { logServerEvent } from "@workspace/logging/server"
+import { sanitizeForAudit } from "@workspace/supabase-data/lib/audit/sanitize-phi"
 
 /**
  * Audit-safe fields for this table (HIPAA §164.312(b) compliant)
- *
+ * 
  * These fields are safe to log in error metadata without exposing PHI.
  */
 const AUDIT_SAFE_FIELDS = ["id", "createdAt", "updatedAt"] as const
 
 /**
  * Input schema for listCatalogDocumentTemplatesAction
- *
+ * 
  * Uses Zod v4 syntax (top-level APIs, not z.string().email() etc.)
  */
 const CatalogDocumentTemplatesListInputSchema = z.object({
@@ -50,9 +50,7 @@ const CatalogDocumentTemplatesListInputSchema = z.object({
 /**
  * Input type for listCatalogDocumentTemplatesAction
  */
-export type CatalogDocumentTemplatesListInput = z.infer<
-  typeof CatalogDocumentTemplatesListInputSchema
->
+export type CatalogDocumentTemplatesListInput = z.infer<typeof CatalogDocumentTemplatesListInputSchema>
 
 /**
  * Output type for listCatalogDocumentTemplatesAction — unknown until the action is wired to real DTOs / port types.
@@ -61,7 +59,7 @@ export type CatalogDocumentTemplatesListOutput = unknown
 
 /**
  * ListCatalogDocumentTemplates Server Action
- *
+ * 
  * @param input - Action input
  */
 export async function listCatalogDocumentTemplatesAction(
@@ -82,7 +80,7 @@ export async function listCatalogDocumentTemplatesAction(
     // 3. Auth client — created after all guards pass
     const supabase = await createServerAuthClient()
     const repository = new CatalogDocumentTemplatesSupabaseRepository(supabase)
-
+    
     // 4. Execute operation — pass resolved context explicitly
     // @type-escape: generated action stub — list params unknown until semantic plan fills Zod input
     const result = await repository.list(validated as never)

@@ -13,7 +13,7 @@ const PsychologistQuickNotesDTOSchema = z.object({
   priority: looseCell,
   psychologistId: looseCell,
   title: looseCell,
-  updatedAt: looseCell,
+  updatedAt: looseCell
 })
 
 type PsychologistQuickNotesDTO = z.infer<typeof PsychologistQuickNotesDTOSchema>

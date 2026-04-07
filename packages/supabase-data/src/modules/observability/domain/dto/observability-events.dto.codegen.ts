@@ -31,7 +31,7 @@ const ObservabilityEventsDTOSchema = z.object({
   severity: looseCell,
   timestamp: looseCell,
   traceId: looseCell,
-  userAgent: looseCell,
+  userAgent: looseCell
 })
 
 type ObservabilityEventsDTO = z.infer<typeof ObservabilityEventsDTOSchema>

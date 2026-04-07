@@ -1,17 +1,17 @@
 /**
  * InsertPsychologistPatientCharges Server Action
- *
+ * 
  * Handles insert operation for psychologist_patient_charges.
- *
+ * 
  * ## Usage
- *
+ * 
  * Example:
  * ```typescript
  * import { insertPsychologistPatientChargesAction } from "@workspace/supabase-data/actions/financial/psychologist-patient-charges-insert.codegen"
- *
+ * 
  * const result = await insertPsychologistPatientChargesAction(input)
  * ```
- *
+ * 
  * @module @workspace/supabase-data/actions/financial/psychologist-patient-charges-insert
  * codegen:actions-hooks (generated) — do not hand-edit
  */
@@ -19,22 +19,22 @@
 
 import { z } from "zod"
 
-import { logServerEvent } from "@workspace/logging/server"
-import { createServerAuthClient } from "@workspace/supabase-auth/server/create-server-auth-client"
-import { sanitizeForAudit } from "@workspace/supabase-data/lib/audit/sanitize-phi"
 import { requireAuth } from "@workspace/supabase-data/lib/auth/require-auth"
+import { createServerAuthClient } from "@workspace/supabase-auth/server/create-server-auth-client"
 import { PsychologistPatientChargesSupabaseRepository } from "@workspace/supabase-data/modules/financial/infrastructure/repositories/psychologist-patient-charges-supabase.repository.codegen"
+import { logServerEvent } from "@workspace/logging/server"
+import { sanitizeForAudit } from "@workspace/supabase-data/lib/audit/sanitize-phi"
 
 /**
  * Audit-safe fields for this table (HIPAA §164.312(b) compliant)
- *
+ * 
  * These fields are safe to log in error metadata without exposing PHI.
  */
 const AUDIT_SAFE_FIELDS = ["id", "createdAt", "updatedAt"] as const
 
 /**
  * Input schema for insertPsychologistPatientChargesAction
- *
+ * 
  * Uses Zod v4 syntax (top-level APIs, not z.string().email() etc.)
  */
 const PsychologistPatientChargesInsertInputSchema = z.object({
@@ -50,9 +50,7 @@ const PsychologistPatientChargesInsertInputSchema = z.object({
 /**
  * Input type for insertPsychologistPatientChargesAction
  */
-export type PsychologistPatientChargesInsertInput = z.infer<
-  typeof PsychologistPatientChargesInsertInputSchema
->
+export type PsychologistPatientChargesInsertInput = z.infer<typeof PsychologistPatientChargesInsertInputSchema>
 
 /**
  * Output type for insertPsychologistPatientChargesAction — unknown until the action is wired to real DTOs / port types.
@@ -61,7 +59,7 @@ export type PsychologistPatientChargesInsertOutput = unknown
 
 /**
  * InsertPsychologistPatientCharges Server Action
- *
+ * 
  * @param input - Action input
  */
 export async function insertPsychologistPatientChargesAction(
@@ -82,7 +80,7 @@ export async function insertPsychologistPatientChargesAction(
     // 3. Auth client — created after all guards pass
     const supabase = await createServerAuthClient()
     const repository = new PsychologistPatientChargesSupabaseRepository(supabase)
-
+    
     // 4. Execute operation — pass resolved context explicitly
     // @type-escape: generated action stub — insert payload unknown until TODO input schema
     const result = await repository.insert(validated as never)

@@ -1,12 +1,12 @@
 /**
  * Unit tests for useGeneratedDocumentsQuery
- *
+ * 
  * codegen:actions-hooks (generated) — do not hand-edit
  */
 import { describe, expect, it } from "vitest"
 
-import { documentsQueryKeys } from "@workspace/supabase-data/hooks/documents/query-keys.codegen"
 import { useGeneratedDocumentsQuery } from "@workspace/supabase-data/hooks/documents/use-generated-documents-query.hook.codegen"
+import { documentsQueryKeys } from "@workspace/supabase-data/hooks/documents/query-keys.codegen"
 
 describe("useGeneratedDocumentsQuery", () => {
   it("should export the generated hook", () => {

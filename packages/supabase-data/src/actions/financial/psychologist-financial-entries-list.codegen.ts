@@ -1,17 +1,17 @@
 /**
  * ListPsychologistFinancialEntries Server Action
- *
+ * 
  * Handles list operation for psychologist_financial_entries.
- *
+ * 
  * ## Usage
- *
+ * 
  * Example:
  * ```typescript
  * import { listPsychologistFinancialEntriesAction } from "@workspace/supabase-data/actions/financial/psychologist-financial-entries-list.codegen"
- *
+ * 
  * const result = await listPsychologistFinancialEntriesAction(input)
  * ```
- *
+ * 
  * @module @workspace/supabase-data/actions/financial/psychologist-financial-entries-list
  * codegen:actions-hooks (generated) — do not hand-edit
  */
@@ -19,22 +19,22 @@
 
 import { z } from "zod"
 
-import { logServerEvent } from "@workspace/logging/server"
-import { createServerAuthClient } from "@workspace/supabase-auth/server/create-server-auth-client"
-import { sanitizeForAudit } from "@workspace/supabase-data/lib/audit/sanitize-phi"
 import { requireAuth } from "@workspace/supabase-data/lib/auth/require-auth"
+import { createServerAuthClient } from "@workspace/supabase-auth/server/create-server-auth-client"
 import { PsychologistFinancialEntriesSupabaseRepository } from "@workspace/supabase-data/modules/financial/infrastructure/repositories/psychologist-financial-entries-supabase.repository.codegen"
+import { logServerEvent } from "@workspace/logging/server"
+import { sanitizeForAudit } from "@workspace/supabase-data/lib/audit/sanitize-phi"
 
 /**
  * Audit-safe fields for this table (HIPAA §164.312(b) compliant)
- *
+ * 
  * These fields are safe to log in error metadata without exposing PHI.
  */
 const AUDIT_SAFE_FIELDS = ["id", "createdAt", "updatedAt"] as const
 
 /**
  * Input schema for listPsychologistFinancialEntriesAction
- *
+ * 
  * Uses Zod v4 syntax (top-level APIs, not z.string().email() etc.)
  */
 const PsychologistFinancialEntriesListInputSchema = z.object({
@@ -50,9 +50,7 @@ const PsychologistFinancialEntriesListInputSchema = z.object({
 /**
  * Input type for listPsychologistFinancialEntriesAction
  */
-export type PsychologistFinancialEntriesListInput = z.infer<
-  typeof PsychologistFinancialEntriesListInputSchema
->
+export type PsychologistFinancialEntriesListInput = z.infer<typeof PsychologistFinancialEntriesListInputSchema>
 
 /**
  * Output type for listPsychologistFinancialEntriesAction — unknown until the action is wired to real DTOs / port types.
@@ -61,7 +59,7 @@ export type PsychologistFinancialEntriesListOutput = unknown
 
 /**
  * ListPsychologistFinancialEntries Server Action
- *
+ * 
  * @param input - Action input
  */
 export async function listPsychologistFinancialEntriesAction(
@@ -82,7 +80,7 @@ export async function listPsychologistFinancialEntriesAction(
     // 3. Auth client — created after all guards pass
     const supabase = await createServerAuthClient()
     const repository = new PsychologistFinancialEntriesSupabaseRepository(supabase)
-
+    
     // 4. Execute operation — pass resolved context explicitly
     // @type-escape: generated action stub — list params unknown until semantic plan fills Zod input
     const result = await repository.list(validated as never)

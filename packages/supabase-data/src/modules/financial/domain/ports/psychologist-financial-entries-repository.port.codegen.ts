@@ -13,14 +13,9 @@ export interface PsychologistFinancialEntriesListResult {
 
 interface PsychologistFinancialEntriesRepository {
   findById(id: string): Promise<PsychologistFinancialEntriesDTO | null>
-  list(
-    params: PsychologistFinancialEntriesListParams
-  ): Promise<PsychologistFinancialEntriesListResult>
+  list(params: PsychologistFinancialEntriesListParams): Promise<PsychologistFinancialEntriesListResult>
   insert(data: Partial<PsychologistFinancialEntriesDTO>): Promise<PsychologistFinancialEntriesDTO>
-  update(
-    id: string,
-    patch: Partial<PsychologistFinancialEntriesDTO>
-  ): Promise<PsychologistFinancialEntriesDTO>
+  update(id: string, patch: Partial<PsychologistFinancialEntriesDTO>): Promise<PsychologistFinancialEntriesDTO>
   delete(id: string): Promise<void>
 }
 

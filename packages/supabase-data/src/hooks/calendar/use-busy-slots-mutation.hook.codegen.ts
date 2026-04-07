@@ -1,9 +1,9 @@
 /**
  * useBusySlotsMutation — TanStack Query mutation wrapper for a Server Action.
- *
+ * 
  * TODO: Import the Server Action, narrow `_input`, and tune invalidation (prefer precise keys).
  * Do not add console.log — use structured logging in the action (logServerEvent).
- *
+ * 
  * @module @workspace/supabase-data/hooks/calendar/use-busy-slots-mutation.hook
  * codegen:actions-hooks (generated) — do not hand-edit
  */

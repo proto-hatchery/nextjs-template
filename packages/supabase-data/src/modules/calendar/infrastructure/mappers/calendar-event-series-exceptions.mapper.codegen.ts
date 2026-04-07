@@ -1,17 +1,12 @@
 // codegen:backend — do not hand-edit; regenerate with `pnpm codegen:backend --write`.
 
-import {
-  CalendarEventSeriesExceptionsDTOSchema,
-  type CalendarEventSeriesExceptionsDTO,
-} from "@workspace/supabase-data/modules/calendar/domain/dto/calendar-event-series-exceptions.dto.codegen"
 import type { Database } from "@workspace/supabase-infra/types/database"
 
-type CalendarEventSeriesExceptionsRow =
-  Database["public"]["Tables"]["calendar_event_series_exceptions"]["Row"]
-type CalendarEventSeriesExceptionsInsert =
-  Database["public"]["Tables"]["calendar_event_series_exceptions"]["Insert"]
-type CalendarEventSeriesExceptionsUpdate =
-  Database["public"]["Tables"]["calendar_event_series_exceptions"]["Update"]
+import { CalendarEventSeriesExceptionsDTOSchema, type CalendarEventSeriesExceptionsDTO } from "@workspace/supabase-data/modules/calendar/domain/dto/calendar-event-series-exceptions.dto.codegen"
+
+type CalendarEventSeriesExceptionsRow = Database["public"]["Tables"]["calendar_event_series_exceptions"]["Row"]
+type CalendarEventSeriesExceptionsInsert = Database["public"]["Tables"]["calendar_event_series_exceptions"]["Insert"]
+type CalendarEventSeriesExceptionsUpdate = Database["public"]["Tables"]["calendar_event_series_exceptions"]["Update"]
 
 const CalendarEventSeriesExceptionsFieldMappings = {
   createdAt: "created_at",
@@ -27,9 +22,7 @@ const CalendarEventSeriesExceptionsFieldMappings = {
 
 type CalendarEventSeriesExceptionsField = keyof typeof CalendarEventSeriesExceptionsFieldMappings
 
-function fromCalendarEventSeriesExceptionsRow(
-  row: CalendarEventSeriesExceptionsRow
-): CalendarEventSeriesExceptionsDTO {
+function fromCalendarEventSeriesExceptionsRow(row: CalendarEventSeriesExceptionsRow): CalendarEventSeriesExceptionsDTO {
   const mapped = {
     createdAt: row.created_at,
     exceptionType: row.exception_type,
@@ -44,17 +37,10 @@ function fromCalendarEventSeriesExceptionsRow(
   return CalendarEventSeriesExceptionsDTOSchema.parse(mapped)
 }
 
-function toCalendarEventSeriesExceptionsInsert(
-  dto: Partial<CalendarEventSeriesExceptionsDTO>
-): CalendarEventSeriesExceptionsInsert {
+function toCalendarEventSeriesExceptionsInsert(dto: Partial<CalendarEventSeriesExceptionsDTO>): CalendarEventSeriesExceptionsInsert {
   const out: Record<string, unknown> = {}
-  for (const [camelKey, snakeKey] of Object.entries(
-    CalendarEventSeriesExceptionsFieldMappings
-  ) as Array<
-    [
-      CalendarEventSeriesExceptionsField,
-      (typeof CalendarEventSeriesExceptionsFieldMappings)[CalendarEventSeriesExceptionsField],
-    ]
+  for (const [camelKey, snakeKey] of Object.entries(CalendarEventSeriesExceptionsFieldMappings) as Array<
+    [CalendarEventSeriesExceptionsField, (typeof CalendarEventSeriesExceptionsFieldMappings)[CalendarEventSeriesExceptionsField]]
   >) {
     const value = dto[camelKey]
     if (typeof value !== "undefined") {
@@ -65,14 +51,8 @@ function toCalendarEventSeriesExceptionsInsert(
   return out as CalendarEventSeriesExceptionsInsert
 }
 
-function toCalendarEventSeriesExceptionsUpdate(
-  dto: Partial<CalendarEventSeriesExceptionsDTO>
-): CalendarEventSeriesExceptionsUpdate {
+function toCalendarEventSeriesExceptionsUpdate(dto: Partial<CalendarEventSeriesExceptionsDTO>): CalendarEventSeriesExceptionsUpdate {
   return toCalendarEventSeriesExceptionsInsert(dto) as CalendarEventSeriesExceptionsUpdate
 }
 
-export {
-  fromCalendarEventSeriesExceptionsRow,
-  toCalendarEventSeriesExceptionsInsert,
-  toCalendarEventSeriesExceptionsUpdate,
-}
+export { fromCalendarEventSeriesExceptionsRow, toCalendarEventSeriesExceptionsInsert, toCalendarEventSeriesExceptionsUpdate }

@@ -1,17 +1,17 @@
 /**
  * ListGeneratedDocuments Server Action
- *
+ * 
  * Handles list operation for generated_documents.
- *
+ * 
  * ## Usage
- *
+ * 
  * Example:
  * ```typescript
  * import { listGeneratedDocumentsAction } from "@workspace/supabase-data/actions/documents/generated-documents-list.codegen"
- *
+ * 
  * const result = await listGeneratedDocumentsAction(input)
  * ```
- *
+ * 
  * @module @workspace/supabase-data/actions/documents/generated-documents-list
  * codegen:actions-hooks (generated) — do not hand-edit
  */
@@ -19,22 +19,22 @@
 
 import { z } from "zod"
 
-import { logServerEvent } from "@workspace/logging/server"
-import { createServerAuthClient } from "@workspace/supabase-auth/server/create-server-auth-client"
-import { sanitizeForAudit } from "@workspace/supabase-data/lib/audit/sanitize-phi"
 import { requireAuth } from "@workspace/supabase-data/lib/auth/require-auth"
+import { createServerAuthClient } from "@workspace/supabase-auth/server/create-server-auth-client"
 import { GeneratedDocumentsSupabaseRepository } from "@workspace/supabase-data/modules/documents/infrastructure/repositories/generated-documents-supabase.repository.codegen"
+import { logServerEvent } from "@workspace/logging/server"
+import { sanitizeForAudit } from "@workspace/supabase-data/lib/audit/sanitize-phi"
 
 /**
  * Audit-safe fields for this table (HIPAA §164.312(b) compliant)
- *
+ * 
  * These fields are safe to log in error metadata without exposing PHI.
  */
 const AUDIT_SAFE_FIELDS = ["id", "createdAt", "updatedAt"] as const
 
 /**
  * Input schema for listGeneratedDocumentsAction
- *
+ * 
  * Uses Zod v4 syntax (top-level APIs, not z.string().email() etc.)
  */
 const GeneratedDocumentsListInputSchema = z.object({
@@ -59,7 +59,7 @@ export type GeneratedDocumentsListOutput = unknown
 
 /**
  * ListGeneratedDocuments Server Action
- *
+ * 
  * @param input - Action input
  */
 export async function listGeneratedDocumentsAction(
@@ -80,7 +80,7 @@ export async function listGeneratedDocumentsAction(
     // 3. Auth client — created after all guards pass
     const supabase = await createServerAuthClient()
     const repository = new GeneratedDocumentsSupabaseRepository(supabase)
-
+    
     // 4. Execute operation — pass resolved context explicitly
     // @type-escape: generated action stub — list params unknown until semantic plan fills Zod input
     const result = await repository.list(validated as never)

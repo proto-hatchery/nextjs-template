@@ -1,10 +1,8 @@
 // codegen:backend — do not hand-edit; regenerate with `pnpm codegen:backend --write`.
 
-import {
-  CalendarHolidaysDTOSchema,
-  type CalendarHolidaysDTO,
-} from "@workspace/supabase-data/modules/calendar/domain/dto/calendar-holidays.dto.codegen"
 import type { Database } from "@workspace/supabase-infra/types/database"
+
+import { CalendarHolidaysDTOSchema, type CalendarHolidaysDTO } from "@workspace/supabase-data/modules/calendar/domain/dto/calendar-holidays.dto.codegen"
 
 type CalendarHolidaysRow = Database["public"]["Tables"]["calendar_holidays"]["Row"]
 type CalendarHolidaysInsert = Database["public"]["Tables"]["calendar_holidays"]["Insert"]

@@ -1,10 +1,8 @@
 // codegen:backend — do not hand-edit; regenerate with `pnpm codegen:backend --write`.
 
-import {
-  GoogleSyncIdempotencyDTOSchema,
-  type GoogleSyncIdempotencyDTO,
-} from "@workspace/supabase-data/modules/google-sync/domain/dto/google-sync-idempotency.dto.codegen"
 import type { Database } from "@workspace/supabase-infra/types/database"
+
+import { GoogleSyncIdempotencyDTOSchema, type GoogleSyncIdempotencyDTO } from "@workspace/supabase-data/modules/google-sync/domain/dto/google-sync-idempotency.dto.codegen"
 
 type GoogleSyncIdempotencyRow = Database["public"]["Tables"]["google_sync_idempotency"]["Row"]
 type GoogleSyncIdempotencyInsert = Database["public"]["Tables"]["google_sync_idempotency"]["Insert"]
@@ -45,15 +43,10 @@ function fromGoogleSyncIdempotencyRow(row: GoogleSyncIdempotencyRow): GoogleSync
   return GoogleSyncIdempotencyDTOSchema.parse(mapped)
 }
 
-function toGoogleSyncIdempotencyInsert(
-  dto: Partial<GoogleSyncIdempotencyDTO>
-): GoogleSyncIdempotencyInsert {
+function toGoogleSyncIdempotencyInsert(dto: Partial<GoogleSyncIdempotencyDTO>): GoogleSyncIdempotencyInsert {
   const out: Record<string, unknown> = {}
   for (const [camelKey, snakeKey] of Object.entries(GoogleSyncIdempotencyFieldMappings) as Array<
-    [
-      GoogleSyncIdempotencyField,
-      (typeof GoogleSyncIdempotencyFieldMappings)[GoogleSyncIdempotencyField],
-    ]
+    [GoogleSyncIdempotencyField, (typeof GoogleSyncIdempotencyFieldMappings)[GoogleSyncIdempotencyField]]
   >) {
     const value = dto[camelKey]
     if (typeof value !== "undefined") {
@@ -64,14 +57,8 @@ function toGoogleSyncIdempotencyInsert(
   return out as GoogleSyncIdempotencyInsert
 }
 
-function toGoogleSyncIdempotencyUpdate(
-  dto: Partial<GoogleSyncIdempotencyDTO>
-): GoogleSyncIdempotencyUpdate {
+function toGoogleSyncIdempotencyUpdate(dto: Partial<GoogleSyncIdempotencyDTO>): GoogleSyncIdempotencyUpdate {
   return toGoogleSyncIdempotencyInsert(dto) as GoogleSyncIdempotencyUpdate
 }
 
-export {
-  fromGoogleSyncIdempotencyRow,
-  toGoogleSyncIdempotencyInsert,
-  toGoogleSyncIdempotencyUpdate,
-}
+export { fromGoogleSyncIdempotencyRow, toGoogleSyncIdempotencyInsert, toGoogleSyncIdempotencyUpdate }

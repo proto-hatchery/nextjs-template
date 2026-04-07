@@ -22,7 +22,7 @@ const ClinicalSessionDetailsDTOSchema = z.object({
   reminderSentAt: looseCell,
   sessionNumber: looseCell,
   sessionTypeId: looseCell,
-  updatedAt: looseCell,
+  updatedAt: looseCell
 })
 
 type ClinicalSessionDetailsDTO = z.infer<typeof ClinicalSessionDetailsDTOSchema>

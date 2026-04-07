@@ -3,17 +3,10 @@
 import type { SupabaseClient } from "@supabase/supabase-js"
 
 import { SupabaseRepositoryError } from "@workspace/supabase-data/lib/supabase-repository-error"
+
+import type { PsychologistAssistantsRepository, PsychologistAssistantsListParams, PsychologistAssistantsListResult } from "@workspace/supabase-data/modules/assistants/domain/ports/psychologist-assistants-repository.port.codegen"
+import { fromPsychologistAssistantsRow, toPsychologistAssistantsInsert, toPsychologistAssistantsUpdate } from "@workspace/supabase-data/modules/assistants/infrastructure/mappers/psychologist-assistants.mapper.codegen"
 import type { PsychologistAssistantsDTO } from "@workspace/supabase-data/modules/assistants/domain/dto/psychologist-assistants.dto.codegen"
-import type {
-  PsychologistAssistantsRepository,
-  PsychologistAssistantsListParams,
-  PsychologistAssistantsListResult,
-} from "@workspace/supabase-data/modules/assistants/domain/ports/psychologist-assistants-repository.port.codegen"
-import {
-  fromPsychologistAssistantsRow,
-  toPsychologistAssistantsInsert,
-  toPsychologistAssistantsUpdate,
-} from "@workspace/supabase-data/modules/assistants/infrastructure/mappers/psychologist-assistants.mapper.codegen"
 
 class PsychologistAssistantsSupabaseRepository implements PsychologistAssistantsRepository {
   constructor(private readonly supabase: SupabaseClient) {}
@@ -22,10 +15,7 @@ class PsychologistAssistantsSupabaseRepository implements PsychologistAssistants
     const limit = Math.min(params.limit ?? 20, 100)
     const offset = params.offset ?? 0
     const end = offset + limit - 1
-    const q = this.supabase
-      .from("psychologist_assistants")
-      .select("assistant_id, created_at, metadata, psychologist_id, revoked_at")
-      .range(offset, end)
+    const q = this.supabase.from("psychologist_assistants").select("assistant_id, created_at, metadata, psychologist_id, revoked_at").range(offset, end)
     const { data, error } = await q
     if (error) {
       throw new SupabaseRepositoryError("Failed to list psychologist_assistants.", { cause: error })
@@ -42,17 +32,12 @@ class PsychologistAssistantsSupabaseRepository implements PsychologistAssistants
       .select("assistant_id, created_at, metadata, psychologist_id, revoked_at")
       .single()
     if (error) {
-      throw new SupabaseRepositoryError("Failed to insert psychologist_assistants.", {
-        cause: error,
-      })
+      throw new SupabaseRepositoryError("Failed to insert psychologist_assistants.", { cause: error })
     }
     return fromPsychologistAssistantsRow(row)
   }
 
-  async update(
-    id: string,
-    patch: Partial<PsychologistAssistantsDTO>
-  ): Promise<PsychologistAssistantsDTO> {
+  async update(id: string, patch: Partial<PsychologistAssistantsDTO>): Promise<PsychologistAssistantsDTO> {
     const payload = toPsychologistAssistantsUpdate(patch)
     const { data: row, error } = await this.supabase
       .from("psychologist_assistants")
@@ -61,9 +46,7 @@ class PsychologistAssistantsSupabaseRepository implements PsychologistAssistants
       .select("assistant_id, created_at, metadata, psychologist_id, revoked_at")
       .single()
     if (error) {
-      throw new SupabaseRepositoryError("Failed to update psychologist_assistants.", {
-        cause: error,
-      })
+      throw new SupabaseRepositoryError("Failed to update psychologist_assistants.", { cause: error })
     }
     return fromPsychologistAssistantsRow(row)
   }
@@ -71,11 +54,10 @@ class PsychologistAssistantsSupabaseRepository implements PsychologistAssistants
   async delete(id: string): Promise<void> {
     const { error } = await this.supabase.from("psychologist_assistants").delete().eq("id", id)
     if (error) {
-      throw new SupabaseRepositoryError("Failed to delete psychologist_assistants.", {
-        cause: error,
-      })
+      throw new SupabaseRepositoryError("Failed to delete psychologist_assistants.", { cause: error })
     }
   }
+
 }
 
 export { PsychologistAssistantsSupabaseRepository }

@@ -1,16 +1,12 @@
 // codegen:backend — do not hand-edit; regenerate with `pnpm codegen:backend --write`.
 
-import {
-  PatientDeletionAuditLogDTOSchema,
-  type PatientDeletionAuditLogDTO,
-} from "@workspace/supabase-data/modules/audit/domain/dto/patient-deletion-audit-log.dto.codegen"
 import type { Database } from "@workspace/supabase-infra/types/database"
 
+import { PatientDeletionAuditLogDTOSchema, type PatientDeletionAuditLogDTO } from "@workspace/supabase-data/modules/audit/domain/dto/patient-deletion-audit-log.dto.codegen"
+
 type PatientDeletionAuditLogRow = Database["public"]["Tables"]["patient_deletion_audit_log"]["Row"]
-type PatientDeletionAuditLogInsert =
-  Database["public"]["Tables"]["patient_deletion_audit_log"]["Insert"]
-type PatientDeletionAuditLogUpdate =
-  Database["public"]["Tables"]["patient_deletion_audit_log"]["Update"]
+type PatientDeletionAuditLogInsert = Database["public"]["Tables"]["patient_deletion_audit_log"]["Insert"]
+type PatientDeletionAuditLogUpdate = Database["public"]["Tables"]["patient_deletion_audit_log"]["Update"]
 
 const PatientDeletionAuditLogFieldMappings = {
   cleanupTimestamp: "cleanup_timestamp",
@@ -23,9 +19,7 @@ const PatientDeletionAuditLogFieldMappings = {
 
 type PatientDeletionAuditLogField = keyof typeof PatientDeletionAuditLogFieldMappings
 
-function fromPatientDeletionAuditLogRow(
-  row: PatientDeletionAuditLogRow
-): PatientDeletionAuditLogDTO {
+function fromPatientDeletionAuditLogRow(row: PatientDeletionAuditLogRow): PatientDeletionAuditLogDTO {
   const mapped = {
     cleanupTimestamp: row.cleanup_timestamp,
     createdAt: row.created_at,
@@ -37,15 +31,10 @@ function fromPatientDeletionAuditLogRow(
   return PatientDeletionAuditLogDTOSchema.parse(mapped)
 }
 
-function toPatientDeletionAuditLogInsert(
-  dto: Partial<PatientDeletionAuditLogDTO>
-): PatientDeletionAuditLogInsert {
+function toPatientDeletionAuditLogInsert(dto: Partial<PatientDeletionAuditLogDTO>): PatientDeletionAuditLogInsert {
   const out: Record<string, unknown> = {}
   for (const [camelKey, snakeKey] of Object.entries(PatientDeletionAuditLogFieldMappings) as Array<
-    [
-      PatientDeletionAuditLogField,
-      (typeof PatientDeletionAuditLogFieldMappings)[PatientDeletionAuditLogField],
-    ]
+    [PatientDeletionAuditLogField, (typeof PatientDeletionAuditLogFieldMappings)[PatientDeletionAuditLogField]]
   >) {
     const value = dto[camelKey]
     if (typeof value !== "undefined") {
@@ -56,14 +45,8 @@ function toPatientDeletionAuditLogInsert(
   return out as PatientDeletionAuditLogInsert
 }
 
-function toPatientDeletionAuditLogUpdate(
-  dto: Partial<PatientDeletionAuditLogDTO>
-): PatientDeletionAuditLogUpdate {
+function toPatientDeletionAuditLogUpdate(dto: Partial<PatientDeletionAuditLogDTO>): PatientDeletionAuditLogUpdate {
   return toPatientDeletionAuditLogInsert(dto) as PatientDeletionAuditLogUpdate
 }
 
-export {
-  fromPatientDeletionAuditLogRow,
-  toPatientDeletionAuditLogInsert,
-  toPatientDeletionAuditLogUpdate,
-}
+export { fromPatientDeletionAuditLogRow, toPatientDeletionAuditLogInsert, toPatientDeletionAuditLogUpdate }

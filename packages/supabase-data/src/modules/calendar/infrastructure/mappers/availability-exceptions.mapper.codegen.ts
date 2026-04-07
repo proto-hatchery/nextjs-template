@@ -1,16 +1,12 @@
 // codegen:backend — do not hand-edit; regenerate with `pnpm codegen:backend --write`.
 
-import {
-  AvailabilityExceptionsDTOSchema,
-  type AvailabilityExceptionsDTO,
-} from "@workspace/supabase-data/modules/calendar/domain/dto/availability-exceptions.dto.codegen"
 import type { Database } from "@workspace/supabase-infra/types/database"
 
+import { AvailabilityExceptionsDTOSchema, type AvailabilityExceptionsDTO } from "@workspace/supabase-data/modules/calendar/domain/dto/availability-exceptions.dto.codegen"
+
 type AvailabilityExceptionsRow = Database["public"]["Tables"]["availability_exceptions"]["Row"]
-type AvailabilityExceptionsInsert =
-  Database["public"]["Tables"]["availability_exceptions"]["Insert"]
-type AvailabilityExceptionsUpdate =
-  Database["public"]["Tables"]["availability_exceptions"]["Update"]
+type AvailabilityExceptionsInsert = Database["public"]["Tables"]["availability_exceptions"]["Insert"]
+type AvailabilityExceptionsUpdate = Database["public"]["Tables"]["availability_exceptions"]["Update"]
 
 const AvailabilityExceptionsFieldMappings = {
   createdAt: "created_at",
@@ -41,15 +37,10 @@ function fromAvailabilityExceptionsRow(row: AvailabilityExceptionsRow): Availabi
   return AvailabilityExceptionsDTOSchema.parse(mapped)
 }
 
-function toAvailabilityExceptionsInsert(
-  dto: Partial<AvailabilityExceptionsDTO>
-): AvailabilityExceptionsInsert {
+function toAvailabilityExceptionsInsert(dto: Partial<AvailabilityExceptionsDTO>): AvailabilityExceptionsInsert {
   const out: Record<string, unknown> = {}
   for (const [camelKey, snakeKey] of Object.entries(AvailabilityExceptionsFieldMappings) as Array<
-    [
-      AvailabilityExceptionsField,
-      (typeof AvailabilityExceptionsFieldMappings)[AvailabilityExceptionsField],
-    ]
+    [AvailabilityExceptionsField, (typeof AvailabilityExceptionsFieldMappings)[AvailabilityExceptionsField]]
   >) {
     const value = dto[camelKey]
     if (typeof value !== "undefined") {
@@ -60,14 +51,8 @@ function toAvailabilityExceptionsInsert(
   return out as AvailabilityExceptionsInsert
 }
 
-function toAvailabilityExceptionsUpdate(
-  dto: Partial<AvailabilityExceptionsDTO>
-): AvailabilityExceptionsUpdate {
+function toAvailabilityExceptionsUpdate(dto: Partial<AvailabilityExceptionsDTO>): AvailabilityExceptionsUpdate {
   return toAvailabilityExceptionsInsert(dto) as AvailabilityExceptionsUpdate
 }
 
-export {
-  fromAvailabilityExceptionsRow,
-  toAvailabilityExceptionsInsert,
-  toAvailabilityExceptionsUpdate,
-}
+export { fromAvailabilityExceptionsRow, toAvailabilityExceptionsInsert, toAvailabilityExceptionsUpdate }

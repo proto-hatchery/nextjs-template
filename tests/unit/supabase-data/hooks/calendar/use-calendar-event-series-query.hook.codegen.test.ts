@@ -1,12 +1,12 @@
 /**
  * Unit tests for useCalendarEventSeriesQuery
- *
+ * 
  * codegen:actions-hooks (generated) — do not hand-edit
  */
 import { describe, expect, it } from "vitest"
 
-import { calendarQueryKeys } from "@workspace/supabase-data/hooks/calendar/query-keys.codegen"
 import { useCalendarEventSeriesQuery } from "@workspace/supabase-data/hooks/calendar/use-calendar-event-series-query.hook.codegen"
+import { calendarQueryKeys } from "@workspace/supabase-data/hooks/calendar/query-keys.codegen"
 
 describe("useCalendarEventSeriesQuery", () => {
   it("should export the generated hook", () => {

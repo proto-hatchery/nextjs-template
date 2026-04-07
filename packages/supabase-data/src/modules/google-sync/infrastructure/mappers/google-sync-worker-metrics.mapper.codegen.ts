@@ -1,16 +1,12 @@
 // codegen:backend — do not hand-edit; regenerate with `pnpm codegen:backend --write`.
 
-import {
-  GoogleSyncWorkerMetricsDTOSchema,
-  type GoogleSyncWorkerMetricsDTO,
-} from "@workspace/supabase-data/modules/google-sync/domain/dto/google-sync-worker-metrics.dto.codegen"
 import type { Database } from "@workspace/supabase-infra/types/database"
 
+import { GoogleSyncWorkerMetricsDTOSchema, type GoogleSyncWorkerMetricsDTO } from "@workspace/supabase-data/modules/google-sync/domain/dto/google-sync-worker-metrics.dto.codegen"
+
 type GoogleSyncWorkerMetricsRow = Database["public"]["Tables"]["google_sync_worker_metrics"]["Row"]
-type GoogleSyncWorkerMetricsInsert =
-  Database["public"]["Tables"]["google_sync_worker_metrics"]["Insert"]
-type GoogleSyncWorkerMetricsUpdate =
-  Database["public"]["Tables"]["google_sync_worker_metrics"]["Update"]
+type GoogleSyncWorkerMetricsInsert = Database["public"]["Tables"]["google_sync_worker_metrics"]["Insert"]
+type GoogleSyncWorkerMetricsUpdate = Database["public"]["Tables"]["google_sync_worker_metrics"]["Update"]
 
 const GoogleSyncWorkerMetricsFieldMappings = {
   backlogAfter: "backlog_after",
@@ -29,9 +25,7 @@ const GoogleSyncWorkerMetricsFieldMappings = {
 
 type GoogleSyncWorkerMetricsField = keyof typeof GoogleSyncWorkerMetricsFieldMappings
 
-function fromGoogleSyncWorkerMetricsRow(
-  row: GoogleSyncWorkerMetricsRow
-): GoogleSyncWorkerMetricsDTO {
+function fromGoogleSyncWorkerMetricsRow(row: GoogleSyncWorkerMetricsRow): GoogleSyncWorkerMetricsDTO {
   const mapped = {
     backlogAfter: row.backlog_after,
     batchSize: row.batch_size,
@@ -49,15 +43,10 @@ function fromGoogleSyncWorkerMetricsRow(
   return GoogleSyncWorkerMetricsDTOSchema.parse(mapped)
 }
 
-function toGoogleSyncWorkerMetricsInsert(
-  dto: Partial<GoogleSyncWorkerMetricsDTO>
-): GoogleSyncWorkerMetricsInsert {
+function toGoogleSyncWorkerMetricsInsert(dto: Partial<GoogleSyncWorkerMetricsDTO>): GoogleSyncWorkerMetricsInsert {
   const out: Record<string, unknown> = {}
   for (const [camelKey, snakeKey] of Object.entries(GoogleSyncWorkerMetricsFieldMappings) as Array<
-    [
-      GoogleSyncWorkerMetricsField,
-      (typeof GoogleSyncWorkerMetricsFieldMappings)[GoogleSyncWorkerMetricsField],
-    ]
+    [GoogleSyncWorkerMetricsField, (typeof GoogleSyncWorkerMetricsFieldMappings)[GoogleSyncWorkerMetricsField]]
   >) {
     const value = dto[camelKey]
     if (typeof value !== "undefined") {
@@ -68,14 +57,8 @@ function toGoogleSyncWorkerMetricsInsert(
   return out as GoogleSyncWorkerMetricsInsert
 }
 
-function toGoogleSyncWorkerMetricsUpdate(
-  dto: Partial<GoogleSyncWorkerMetricsDTO>
-): GoogleSyncWorkerMetricsUpdate {
+function toGoogleSyncWorkerMetricsUpdate(dto: Partial<GoogleSyncWorkerMetricsDTO>): GoogleSyncWorkerMetricsUpdate {
   return toGoogleSyncWorkerMetricsInsert(dto) as GoogleSyncWorkerMetricsUpdate
 }
 
-export {
-  fromGoogleSyncWorkerMetricsRow,
-  toGoogleSyncWorkerMetricsInsert,
-  toGoogleSyncWorkerMetricsUpdate,
-}
+export { fromGoogleSyncWorkerMetricsRow, toGoogleSyncWorkerMetricsInsert, toGoogleSyncWorkerMetricsUpdate }

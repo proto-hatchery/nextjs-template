@@ -1,17 +1,17 @@
 /**
  * UpdatePsychologistPatientMedicalItems Server Action
- *
+ * 
  * Handles update operation for psychologist_patient_medical_items.
- *
+ * 
  * ## Usage
- *
+ * 
  * Example:
  * ```typescript
  * import { updatePsychologistPatientMedicalItemsAction } from "@workspace/supabase-data/actions/patients/psychologist-patient-medical-items-update.codegen"
- *
+ * 
  * const result = await updatePsychologistPatientMedicalItemsAction(input)
  * ```
- *
+ * 
  * @module @workspace/supabase-data/actions/patients/psychologist-patient-medical-items-update
  * codegen:actions-hooks (generated) — do not hand-edit
  */
@@ -19,22 +19,22 @@
 
 import { z } from "zod"
 
-import { logServerEvent } from "@workspace/logging/server"
-import { createServerAuthClient } from "@workspace/supabase-auth/server/create-server-auth-client"
-import { sanitizeForAudit } from "@workspace/supabase-data/lib/audit/sanitize-phi"
 import { requireAuth } from "@workspace/supabase-data/lib/auth/require-auth"
+import { createServerAuthClient } from "@workspace/supabase-auth/server/create-server-auth-client"
 import { PsychologistPatientMedicalItemsSupabaseRepository } from "@workspace/supabase-data/modules/patients/infrastructure/repositories/psychologist-patient-medical-items-supabase.repository.codegen"
+import { logServerEvent } from "@workspace/logging/server"
+import { sanitizeForAudit } from "@workspace/supabase-data/lib/audit/sanitize-phi"
 
 /**
  * Audit-safe fields for this table (HIPAA §164.312(b) compliant)
- *
+ * 
  * These fields are safe to log in error metadata without exposing PHI.
  */
 const AUDIT_SAFE_FIELDS = ["id", "createdAt", "updatedAt"] as const
 
 /**
  * Input schema for updatePsychologistPatientMedicalItemsAction
- *
+ * 
  * Uses Zod v4 syntax (top-level APIs, not z.string().email() etc.)
  */
 const PsychologistPatientMedicalItemsUpdateInputSchema = z.object({
@@ -50,9 +50,7 @@ const PsychologistPatientMedicalItemsUpdateInputSchema = z.object({
 /**
  * Input type for updatePsychologistPatientMedicalItemsAction
  */
-export type PsychologistPatientMedicalItemsUpdateInput = z.infer<
-  typeof PsychologistPatientMedicalItemsUpdateInputSchema
->
+export type PsychologistPatientMedicalItemsUpdateInput = z.infer<typeof PsychologistPatientMedicalItemsUpdateInputSchema>
 
 /**
  * Output type for updatePsychologistPatientMedicalItemsAction — unknown until the action is wired to real DTOs / port types.
@@ -61,7 +59,7 @@ export type PsychologistPatientMedicalItemsUpdateOutput = unknown
 
 /**
  * UpdatePsychologistPatientMedicalItems Server Action
- *
+ * 
  * @param input - Action input
  */
 export async function updatePsychologistPatientMedicalItemsAction(
@@ -82,7 +80,7 @@ export async function updatePsychologistPatientMedicalItemsAction(
     // 3. Auth client — created after all guards pass
     const supabase = await createServerAuthClient()
     const repository = new PsychologistPatientMedicalItemsSupabaseRepository(supabase)
-
+    
     // 4. Execute operation — pass resolved context explicitly
     // @type-escape: generated action stub — id shape from validated after TODO input schema
     const validatedId = (validated as unknown as { id: string }).id

@@ -34,7 +34,7 @@ const CalendarEventsDTOSchema = z.object({
   syncOrigin: looseCell,
   timezone: looseCell,
   title: looseCell,
-  updatedAt: looseCell,
+  updatedAt: looseCell
 })
 
 type CalendarEventsDTO = z.infer<typeof CalendarEventsDTOSchema>

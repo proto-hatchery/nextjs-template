@@ -1,6 +1,6 @@
 /**
  * Unit tests for deleteCalendarEventSeriesExceptionsAction
- *
+ * 
  * codegen:actions-hooks (generated) — do not hand-edit
  */
 import { describe, expect, it, vi, beforeEach } from "vitest"
@@ -19,12 +19,9 @@ vi.mock("@workspace/supabase-data/lib/auth/rate-limit", () => ({
   checkActionRateLimit: vi.fn(),
 }))
 
-vi.mock(
-  "@workspace/supabase-data/modules/calendar/infrastructure/repositories/calendar-event-series-exceptions-supabase.repository.codegen",
-  () => ({
-    CalendarEventSeriesExceptionsSupabaseRepository: vi.fn(),
-  })
-)
+vi.mock("@workspace/supabase-data/modules/calendar/infrastructure/repositories/calendar-event-series-exceptions-supabase.repository.codegen", () => ({
+  CalendarEventSeriesExceptionsSupabaseRepository: vi.fn(),
+}))
 
 vi.mock("@workspace/logging/server", () => ({
   logServerEvent: vi.fn(),
@@ -42,9 +39,7 @@ describe("deleteCalendarEventSeriesExceptionsAction", () => {
       const { getClaims } = await import("@workspace/supabase-auth/session/get-claims")
       vi.mocked(getClaims).mockResolvedValue({ claims: null } as any)
 
-      await expect(deleteCalendarEventSeriesExceptionsAction({} as any)).rejects.toThrow(
-        "Unauthorized"
-      )
+      await expect(deleteCalendarEventSeriesExceptionsAction({} as any)).rejects.toThrow("Unauthorized")
     })
 
     it("should log security.audit on unauthorized access", async () => {
@@ -71,31 +66,27 @@ describe("deleteCalendarEventSeriesExceptionsAction", () => {
       vi.mocked(getClaims).mockResolvedValue({ claims: { sub: "test-user-id" } } as any)
       vi.mocked(checkActionRateLimit).mockResolvedValue(undefined)
 
-      await expect(
-        deleteCalendarEventSeriesExceptionsAction({ invalid: "data" } as any)
-      ).rejects.toThrow()
+      await expect(deleteCalendarEventSeriesExceptionsAction({ invalid: "data" } as any)).rejects.toThrow()
     })
 
     it("should accept valid input for delete operation", async () => {
       const { getClaims } = await import("@workspace/supabase-auth/session/get-claims")
       const { checkActionRateLimit } = await import("@workspace/supabase-data/lib/auth/rate-limit")
-      const { CalendarEventSeriesExceptionsSupabaseRepository } =
-        await import("@workspace/supabase-data/modules/calendar/infrastructure/repositories/calendar-event-series-exceptions-supabase.repository.codegen")
+      const { CalendarEventSeriesExceptionsSupabaseRepository } = await import("@workspace/supabase-data/modules/calendar/infrastructure/repositories/calendar-event-series-exceptions-supabase.repository.codegen")
       vi.mocked(getClaims).mockResolvedValue({ claims: { sub: "test-user-id" } } as any)
       vi.mocked(checkActionRateLimit).mockResolvedValue(undefined)
 
-      const { createServerAuthClient } =
-        await import("@workspace/supabase-auth/server/create-server-auth-client")
+      const { createServerAuthClient } = await import("@workspace/supabase-auth/server/create-server-auth-client")
       vi.mocked(createServerAuthClient).mockResolvedValue({} as any)
       vi.mocked(CalendarEventSeriesExceptionsSupabaseRepository).mockImplementation(
         function MockRepository() {
           return {
-            findById: vi.fn(),
-            list: vi.fn(),
-            insert: vi.fn(),
-            update: vi.fn(),
-            delete: vi.fn().mockResolvedValue(undefined),
-          } as any
+        findById: vi.fn(),
+        list: vi.fn(),
+        insert: vi.fn(),
+        update: vi.fn(),
+        delete: vi.fn().mockResolvedValue(undefined),
+      } as any
         } as any
       )
 
@@ -104,30 +95,29 @@ describe("deleteCalendarEventSeriesExceptionsAction", () => {
 
       await expect(deleteCalendarEventSeriesExceptionsAction(validInput)).resolves.not.toThrow()
     })
+
   })
 
   describe("Logging", () => {
     it("should log on success", async () => {
       const { getClaims } = await import("@workspace/supabase-auth/session/get-claims")
       const { checkActionRateLimit } = await import("@workspace/supabase-data/lib/auth/rate-limit")
-      const { CalendarEventSeriesExceptionsSupabaseRepository } =
-        await import("@workspace/supabase-data/modules/calendar/infrastructure/repositories/calendar-event-series-exceptions-supabase.repository.codegen")
+      const { CalendarEventSeriesExceptionsSupabaseRepository } = await import("@workspace/supabase-data/modules/calendar/infrastructure/repositories/calendar-event-series-exceptions-supabase.repository.codegen")
       const { logServerEvent } = await import("@workspace/logging/server")
       vi.mocked(getClaims).mockResolvedValue({ claims: { sub: "test-user-id" } } as any)
       vi.mocked(checkActionRateLimit).mockResolvedValue(undefined)
 
-      const { createServerAuthClient } =
-        await import("@workspace/supabase-auth/server/create-server-auth-client")
+      const { createServerAuthClient } = await import("@workspace/supabase-auth/server/create-server-auth-client")
       vi.mocked(createServerAuthClient).mockResolvedValue({} as any)
       vi.mocked(CalendarEventSeriesExceptionsSupabaseRepository).mockImplementation(
         function MockRepository() {
           return {
-            findById: vi.fn(),
-            list: vi.fn(),
-            insert: vi.fn(),
-            update: vi.fn(),
-            delete: vi.fn().mockResolvedValue(undefined),
-          } as any
+        findById: vi.fn(),
+        list: vi.fn(),
+        insert: vi.fn(),
+        update: vi.fn(),
+        delete: vi.fn().mockResolvedValue(undefined),
+      } as any
         } as any
       )
 
@@ -145,14 +135,12 @@ describe("deleteCalendarEventSeriesExceptionsAction", () => {
     it("should log on error with sanitized metadata", async () => {
       const { getClaims } = await import("@workspace/supabase-auth/session/get-claims")
       const { checkActionRateLimit } = await import("@workspace/supabase-data/lib/auth/rate-limit")
-      const { CalendarEventSeriesExceptionsSupabaseRepository } =
-        await import("@workspace/supabase-data/modules/calendar/infrastructure/repositories/calendar-event-series-exceptions-supabase.repository.codegen")
+      const { CalendarEventSeriesExceptionsSupabaseRepository } = await import("@workspace/supabase-data/modules/calendar/infrastructure/repositories/calendar-event-series-exceptions-supabase.repository.codegen")
       const { logServerEvent } = await import("@workspace/logging/server")
       vi.mocked(getClaims).mockResolvedValue({ claims: { sub: "test-user-id" } } as any)
       vi.mocked(checkActionRateLimit).mockResolvedValue(undefined)
 
-      const { createServerAuthClient } =
-        await import("@workspace/supabase-auth/server/create-server-auth-client")
+      const { createServerAuthClient } = await import("@workspace/supabase-auth/server/create-server-auth-client")
       vi.mocked(createServerAuthClient).mockResolvedValue({} as any)
       vi.mocked(CalendarEventSeriesExceptionsSupabaseRepository).mockImplementation(
         function MockRepository() {

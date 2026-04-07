@@ -1,17 +1,17 @@
 /**
  * InsertGoogleSyncLogs Server Action
- *
+ * 
  * Handles insert operation for google_sync_logs.
- *
+ * 
  * ## Usage
- *
+ * 
  * Example:
  * ```typescript
  * import { insertGoogleSyncLogsAction } from "@workspace/supabase-data/actions/google-sync/google-sync-logs-insert.codegen"
- *
+ * 
  * const result = await insertGoogleSyncLogsAction(input)
  * ```
- *
+ * 
  * @module @workspace/supabase-data/actions/google-sync/google-sync-logs-insert
  * codegen:actions-hooks (generated) — do not hand-edit
  */
@@ -19,22 +19,22 @@
 
 import { z } from "zod"
 
-import { logServerEvent } from "@workspace/logging/server"
-import { createServerAuthClient } from "@workspace/supabase-auth/server/create-server-auth-client"
-import { sanitizeForAudit } from "@workspace/supabase-data/lib/audit/sanitize-phi"
 import { requireAuth } from "@workspace/supabase-data/lib/auth/require-auth"
+import { createServerAuthClient } from "@workspace/supabase-auth/server/create-server-auth-client"
 import { GoogleSyncLogsSupabaseRepository } from "@workspace/supabase-data/modules/google-sync/infrastructure/repositories/google-sync-logs-supabase.repository.codegen"
+import { logServerEvent } from "@workspace/logging/server"
+import { sanitizeForAudit } from "@workspace/supabase-data/lib/audit/sanitize-phi"
 
 /**
  * Audit-safe fields for this table (HIPAA §164.312(b) compliant)
- *
+ * 
  * These fields are safe to log in error metadata without exposing PHI.
  */
 const AUDIT_SAFE_FIELDS = ["id", "createdAt", "updatedAt"] as const
 
 /**
  * Input schema for insertGoogleSyncLogsAction
- *
+ * 
  * Uses Zod v4 syntax (top-level APIs, not z.string().email() etc.)
  */
 const GoogleSyncLogsInsertInputSchema = z.object({
@@ -59,7 +59,7 @@ export type GoogleSyncLogsInsertOutput = unknown
 
 /**
  * InsertGoogleSyncLogs Server Action
- *
+ * 
  * @param input - Action input
  */
 export async function insertGoogleSyncLogsAction(
@@ -80,7 +80,7 @@ export async function insertGoogleSyncLogsAction(
     // 3. Auth client — created after all guards pass
     const supabase = await createServerAuthClient()
     const repository = new GoogleSyncLogsSupabaseRepository(supabase)
-
+    
     // 4. Execute operation — pass resolved context explicitly
     // @type-escape: generated action stub — insert payload unknown until TODO input schema
     const result = await repository.insert(validated as never)

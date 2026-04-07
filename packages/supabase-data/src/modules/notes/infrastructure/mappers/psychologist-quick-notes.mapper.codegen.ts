@@ -1,16 +1,12 @@
 // codegen:backend — do not hand-edit; regenerate with `pnpm codegen:backend --write`.
 
-import {
-  PsychologistQuickNotesDTOSchema,
-  type PsychologistQuickNotesDTO,
-} from "@workspace/supabase-data/modules/notes/domain/dto/psychologist-quick-notes.dto.codegen"
 import type { Database } from "@workspace/supabase-infra/types/database"
 
+import { PsychologistQuickNotesDTOSchema, type PsychologistQuickNotesDTO } from "@workspace/supabase-data/modules/notes/domain/dto/psychologist-quick-notes.dto.codegen"
+
 type PsychologistQuickNotesRow = Database["public"]["Tables"]["psychologist_quick_notes"]["Row"]
-type PsychologistQuickNotesInsert =
-  Database["public"]["Tables"]["psychologist_quick_notes"]["Insert"]
-type PsychologistQuickNotesUpdate =
-  Database["public"]["Tables"]["psychologist_quick_notes"]["Update"]
+type PsychologistQuickNotesInsert = Database["public"]["Tables"]["psychologist_quick_notes"]["Insert"]
+type PsychologistQuickNotesUpdate = Database["public"]["Tables"]["psychologist_quick_notes"]["Update"]
 
 const PsychologistQuickNotesFieldMappings = {
   completedAt: "completed_at",
@@ -41,15 +37,10 @@ function fromPsychologistQuickNotesRow(row: PsychologistQuickNotesRow): Psycholo
   return PsychologistQuickNotesDTOSchema.parse(mapped)
 }
 
-function toPsychologistQuickNotesInsert(
-  dto: Partial<PsychologistQuickNotesDTO>
-): PsychologistQuickNotesInsert {
+function toPsychologistQuickNotesInsert(dto: Partial<PsychologistQuickNotesDTO>): PsychologistQuickNotesInsert {
   const out: Record<string, unknown> = {}
   for (const [camelKey, snakeKey] of Object.entries(PsychologistQuickNotesFieldMappings) as Array<
-    [
-      PsychologistQuickNotesField,
-      (typeof PsychologistQuickNotesFieldMappings)[PsychologistQuickNotesField],
-    ]
+    [PsychologistQuickNotesField, (typeof PsychologistQuickNotesFieldMappings)[PsychologistQuickNotesField]]
   >) {
     const value = dto[camelKey]
     if (typeof value !== "undefined") {
@@ -60,14 +51,8 @@ function toPsychologistQuickNotesInsert(
   return out as PsychologistQuickNotesInsert
 }
 
-function toPsychologistQuickNotesUpdate(
-  dto: Partial<PsychologistQuickNotesDTO>
-): PsychologistQuickNotesUpdate {
+function toPsychologistQuickNotesUpdate(dto: Partial<PsychologistQuickNotesDTO>): PsychologistQuickNotesUpdate {
   return toPsychologistQuickNotesInsert(dto) as PsychologistQuickNotesUpdate
 }
 
-export {
-  fromPsychologistQuickNotesRow,
-  toPsychologistQuickNotesInsert,
-  toPsychologistQuickNotesUpdate,
-}
+export { fromPsychologistQuickNotesRow, toPsychologistQuickNotesInsert, toPsychologistQuickNotesUpdate }

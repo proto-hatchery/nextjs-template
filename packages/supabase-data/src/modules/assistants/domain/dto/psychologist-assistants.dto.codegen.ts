@@ -9,7 +9,7 @@ const PsychologistAssistantsDTOSchema = z.object({
   createdAt: looseCell,
   metadata: looseCell,
   psychologistId: looseCell,
-  revokedAt: looseCell,
+  revokedAt: looseCell
 })
 
 type PsychologistAssistantsDTO = z.infer<typeof PsychologistAssistantsDTOSchema>

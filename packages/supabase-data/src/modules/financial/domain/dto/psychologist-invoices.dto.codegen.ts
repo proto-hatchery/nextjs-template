@@ -17,7 +17,7 @@ const PsychologistInvoicesDTOSchema = z.object({
   status: looseCell,
   stripeInvoiceId: looseCell,
   stripeSubscriptionId: looseCell,
-  updatedAt: looseCell,
+  updatedAt: looseCell
 })
 
 type PsychologistInvoicesDTO = z.infer<typeof PsychologistInvoicesDTOSchema>

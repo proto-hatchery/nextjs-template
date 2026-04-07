@@ -1,9 +1,9 @@
 /**
  * usePsychologistPreferencesAuditLogQuery — TanStack Query wrapper for a Server Action.
- *
+ * 
  * TODO: Wire the Server Action import and replace the queryFn body.
  * Do not add console.log — observability lives in the action (logServerEvent).
- *
+ * 
  * @module @workspace/supabase-data/hooks/audit/use-psychologist-preferences-audit-log-query.hook
  * codegen:actions-hooks (generated) — do not hand-edit
  */
@@ -17,9 +17,7 @@ import { auditQueryKeys } from "@workspace/supabase-data/hooks/audit/query-keys.
 // TODO: Narrow the input type based on your action's requirements
 type QueryFilters = Record<string, unknown>
 
-export function usePsychologistPreferencesAuditLogQuery(
-  filters?: QueryFilters
-): UseQueryResult<unknown, Error> {
+export function usePsychologistPreferencesAuditLogQuery(filters?: QueryFilters): UseQueryResult<unknown, Error> {
   return useQuery({
     queryKey: auditQueryKeys.psychologistPreferencesAuditLogList(filters),
     queryFn: async () => {

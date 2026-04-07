@@ -19,7 +19,7 @@ const AccountDeletionRequestsDTOSchema = z.object({
   requestedBy: looseCell,
   retentionUntil: looseCell,
   status: looseCell,
-  userId: looseCell,
+  userId: looseCell
 })
 
 type AccountDeletionRequestsDTO = z.infer<typeof AccountDeletionRequestsDTOSchema>

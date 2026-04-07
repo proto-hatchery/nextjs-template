@@ -1,17 +1,17 @@
 /**
  * FindByIdCalendarEventSeries Server Action
- *
+ * 
  * Handles findById operation for calendar_event_series.
- *
+ * 
  * ## Usage
- *
+ * 
  * Example:
  * ```typescript
  * import { findByIdCalendarEventSeriesAction } from "@workspace/supabase-data/actions/calendar/calendar-event-series-findById.codegen"
- *
+ * 
  * const result = await findByIdCalendarEventSeriesAction(input)
  * ```
- *
+ * 
  * @module @workspace/supabase-data/actions/calendar/calendar-event-series-findById
  * codegen:actions-hooks (generated) — do not hand-edit
  */
@@ -19,22 +19,22 @@
 
 import { z } from "zod"
 
-import { logServerEvent } from "@workspace/logging/server"
-import { createServerAuthClient } from "@workspace/supabase-auth/server/create-server-auth-client"
-import { sanitizeForAudit } from "@workspace/supabase-data/lib/audit/sanitize-phi"
 import { requireAuth } from "@workspace/supabase-data/lib/auth/require-auth"
+import { createServerAuthClient } from "@workspace/supabase-auth/server/create-server-auth-client"
 import { CalendarEventSeriesSupabaseRepository } from "@workspace/supabase-data/modules/calendar/infrastructure/repositories/calendar-event-series-supabase.repository.codegen"
+import { logServerEvent } from "@workspace/logging/server"
+import { sanitizeForAudit } from "@workspace/supabase-data/lib/audit/sanitize-phi"
 
 /**
  * Audit-safe fields for this table (HIPAA §164.312(b) compliant)
- *
+ * 
  * These fields are safe to log in error metadata without exposing PHI.
  */
 const AUDIT_SAFE_FIELDS = ["id", "createdAt", "updatedAt"] as const
 
 /**
  * Input schema for findByIdCalendarEventSeriesAction
- *
+ * 
  * Uses Zod v4 syntax (top-level APIs, not z.string().email() etc.)
  */
 const CalendarEventSeriesFindByIdInputSchema = z.object({
@@ -50,9 +50,7 @@ const CalendarEventSeriesFindByIdInputSchema = z.object({
 /**
  * Input type for findByIdCalendarEventSeriesAction
  */
-export type CalendarEventSeriesFindByIdInput = z.infer<
-  typeof CalendarEventSeriesFindByIdInputSchema
->
+export type CalendarEventSeriesFindByIdInput = z.infer<typeof CalendarEventSeriesFindByIdInputSchema>
 
 /**
  * Output type for findByIdCalendarEventSeriesAction — unknown until the action is wired to real DTOs / port types.
@@ -61,7 +59,7 @@ export type CalendarEventSeriesFindByIdOutput = unknown
 
 /**
  * FindByIdCalendarEventSeries Server Action
- *
+ * 
  * @param input - Action input
  */
 export async function findByIdCalendarEventSeriesAction(
@@ -82,7 +80,7 @@ export async function findByIdCalendarEventSeriesAction(
     // 3. Auth client — created after all guards pass
     const supabase = await createServerAuthClient()
     const repository = new CalendarEventSeriesSupabaseRepository(supabase)
-
+    
     // 4. Execute operation — pass resolved context explicitly
     // @type-escape: generated action stub — id shape from validated after TODO input schema
     const result = await repository.findById((validated as unknown as { id: string }).id)

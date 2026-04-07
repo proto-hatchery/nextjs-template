@@ -1,6 +1,6 @@
 /**
  * Unit tests for findByIdEncryptionAuditLogAction
- *
+ * 
  * codegen:actions-hooks (generated) — do not hand-edit
  */
 import { describe, expect, it, vi, beforeEach } from "vitest"
@@ -19,12 +19,9 @@ vi.mock("@workspace/supabase-data/lib/auth/rate-limit", () => ({
   checkActionRateLimit: vi.fn(),
 }))
 
-vi.mock(
-  "@workspace/supabase-data/modules/audit/infrastructure/repositories/encryption-audit-log-supabase.repository.codegen",
-  () => ({
-    EncryptionAuditLogSupabaseRepository: vi.fn(),
-  })
-)
+vi.mock("@workspace/supabase-data/modules/audit/infrastructure/repositories/encryption-audit-log-supabase.repository.codegen", () => ({
+  EncryptionAuditLogSupabaseRepository: vi.fn(),
+}))
 
 vi.mock("@workspace/logging/server", () => ({
   logServerEvent: vi.fn(),
@@ -71,30 +68,31 @@ describe("findByIdEncryptionAuditLogAction", () => {
 
       await expect(findByIdEncryptionAuditLogAction({ invalid: "data" } as any)).rejects.toThrow()
     })
+
   })
 
   describe("Logging", () => {
     it("should log on success", async () => {
       const { getClaims } = await import("@workspace/supabase-auth/session/get-claims")
       const { checkActionRateLimit } = await import("@workspace/supabase-data/lib/auth/rate-limit")
-      const { EncryptionAuditLogSupabaseRepository } =
-        await import("@workspace/supabase-data/modules/audit/infrastructure/repositories/encryption-audit-log-supabase.repository.codegen")
+      const { EncryptionAuditLogSupabaseRepository } = await import("@workspace/supabase-data/modules/audit/infrastructure/repositories/encryption-audit-log-supabase.repository.codegen")
       const { logServerEvent } = await import("@workspace/logging/server")
       vi.mocked(getClaims).mockResolvedValue({ claims: { sub: "test-user-id" } } as any)
       vi.mocked(checkActionRateLimit).mockResolvedValue(undefined)
 
-      const { createServerAuthClient } =
-        await import("@workspace/supabase-auth/server/create-server-auth-client")
+      const { createServerAuthClient } = await import("@workspace/supabase-auth/server/create-server-auth-client")
       vi.mocked(createServerAuthClient).mockResolvedValue({} as any)
-      vi.mocked(EncryptionAuditLogSupabaseRepository).mockImplementation(function MockRepository() {
-        return {
-          findById: vi.fn().mockResolvedValue({ id: "test-id" }),
-          list: vi.fn(),
-          insert: vi.fn(),
-          update: vi.fn(),
-          delete: vi.fn(),
+      vi.mocked(EncryptionAuditLogSupabaseRepository).mockImplementation(
+        function MockRepository() {
+          return {
+        findById: vi.fn().mockResolvedValue({ id: "test-id" }),
+        list: vi.fn(),
+        insert: vi.fn(),
+        update: vi.fn(),
+        delete: vi.fn(),
+      } as any
         } as any
-      } as any)
+      )
 
       await findByIdEncryptionAuditLogAction({} as any).catch(swallowExpectedError)
 
@@ -110,24 +108,24 @@ describe("findByIdEncryptionAuditLogAction", () => {
     it("should log on error with sanitized metadata", async () => {
       const { getClaims } = await import("@workspace/supabase-auth/session/get-claims")
       const { checkActionRateLimit } = await import("@workspace/supabase-data/lib/auth/rate-limit")
-      const { EncryptionAuditLogSupabaseRepository } =
-        await import("@workspace/supabase-data/modules/audit/infrastructure/repositories/encryption-audit-log-supabase.repository.codegen")
+      const { EncryptionAuditLogSupabaseRepository } = await import("@workspace/supabase-data/modules/audit/infrastructure/repositories/encryption-audit-log-supabase.repository.codegen")
       const { logServerEvent } = await import("@workspace/logging/server")
       vi.mocked(getClaims).mockResolvedValue({ claims: { sub: "test-user-id" } } as any)
       vi.mocked(checkActionRateLimit).mockResolvedValue(undefined)
 
-      const { createServerAuthClient } =
-        await import("@workspace/supabase-auth/server/create-server-auth-client")
+      const { createServerAuthClient } = await import("@workspace/supabase-auth/server/create-server-auth-client")
       vi.mocked(createServerAuthClient).mockResolvedValue({} as any)
-      vi.mocked(EncryptionAuditLogSupabaseRepository).mockImplementation(function MockRepository() {
-        return {
-          findById: vi.fn().mockRejectedValue(new Error("Test error")),
-          list: vi.fn().mockRejectedValue(new Error("Test error")),
-          insert: vi.fn().mockRejectedValue(new Error("Test error")),
-          update: vi.fn().mockRejectedValue(new Error("Test error")),
-          delete: vi.fn().mockRejectedValue(new Error("Test error")),
+      vi.mocked(EncryptionAuditLogSupabaseRepository).mockImplementation(
+        function MockRepository() {
+          return {
+            findById: vi.fn().mockRejectedValue(new Error("Test error")),
+            list: vi.fn().mockRejectedValue(new Error("Test error")),
+            insert: vi.fn().mockRejectedValue(new Error("Test error")),
+            update: vi.fn().mockRejectedValue(new Error("Test error")),
+            delete: vi.fn().mockRejectedValue(new Error("Test error")),
+          } as any
         } as any
-      } as any)
+      )
 
       await findByIdEncryptionAuditLogAction({} as any).catch(swallowExpectedError)
 

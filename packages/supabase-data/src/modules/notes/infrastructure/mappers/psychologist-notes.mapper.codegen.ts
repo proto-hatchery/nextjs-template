@@ -1,10 +1,8 @@
 // codegen:backend — do not hand-edit; regenerate with `pnpm codegen:backend --write`.
 
-import {
-  PsychologistNotesDTOSchema,
-  type PsychologistNotesDTO,
-} from "@workspace/supabase-data/modules/notes/domain/dto/psychologist-notes.dto.codegen"
 import type { Database } from "@workspace/supabase-infra/types/database"
+
+import { PsychologistNotesDTOSchema, type PsychologistNotesDTO } from "@workspace/supabase-data/modules/notes/domain/dto/psychologist-notes.dto.codegen"
 
 type PsychologistNotesRow = Database["public"]["Tables"]["psychologist_notes"]["Row"]
 type PsychologistNotesInsert = Database["public"]["Tables"]["psychologist_notes"]["Insert"]

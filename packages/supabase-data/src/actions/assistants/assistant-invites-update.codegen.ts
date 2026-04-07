@@ -1,17 +1,17 @@
 /**
  * UpdateAssistantInvites Server Action
- *
+ * 
  * Handles update operation for assistant_invites.
- *
+ * 
  * ## Usage
- *
+ * 
  * Example:
  * ```typescript
  * import { updateAssistantInvitesAction } from "@workspace/supabase-data/actions/assistants/assistant-invites-update.codegen"
- *
+ * 
  * const result = await updateAssistantInvitesAction(input)
  * ```
- *
+ * 
  * @module @workspace/supabase-data/actions/assistants/assistant-invites-update
  * codegen:actions-hooks (generated) — do not hand-edit
  */
@@ -19,22 +19,22 @@
 
 import { z } from "zod"
 
-import { logServerEvent } from "@workspace/logging/server"
-import { createServerAuthClient } from "@workspace/supabase-auth/server/create-server-auth-client"
-import { sanitizeForAudit } from "@workspace/supabase-data/lib/audit/sanitize-phi"
 import { requireAuth } from "@workspace/supabase-data/lib/auth/require-auth"
+import { createServerAuthClient } from "@workspace/supabase-auth/server/create-server-auth-client"
 import { AssistantInvitesSupabaseRepository } from "@workspace/supabase-data/modules/assistants/infrastructure/repositories/assistant-invites-supabase.repository.codegen"
+import { logServerEvent } from "@workspace/logging/server"
+import { sanitizeForAudit } from "@workspace/supabase-data/lib/audit/sanitize-phi"
 
 /**
  * Audit-safe fields for this table (HIPAA §164.312(b) compliant)
- *
+ * 
  * These fields are safe to log in error metadata without exposing PHI.
  */
 const AUDIT_SAFE_FIELDS = ["id", "createdAt", "updatedAt"] as const
 
 /**
  * Input schema for updateAssistantInvitesAction
- *
+ * 
  * Uses Zod v4 syntax (top-level APIs, not z.string().email() etc.)
  */
 const AssistantInvitesUpdateInputSchema = z.object({
@@ -59,7 +59,7 @@ export type AssistantInvitesUpdateOutput = unknown
 
 /**
  * UpdateAssistantInvites Server Action
- *
+ * 
  * @param input - Action input
  */
 export async function updateAssistantInvitesAction(
@@ -80,7 +80,7 @@ export async function updateAssistantInvitesAction(
     // 3. Auth client — created after all guards pass
     const supabase = await createServerAuthClient()
     const repository = new AssistantInvitesSupabaseRepository(supabase)
-
+    
     // 4. Execute operation — pass resolved context explicitly
     // @type-escape: generated action stub — id shape from validated after TODO input schema
     const validatedId = (validated as unknown as { id: string }).id

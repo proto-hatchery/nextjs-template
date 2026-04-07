@@ -13,7 +13,7 @@ const CalendarEventSeriesExceptionsDTOSchema = z.object({
   newStartDatetime: looseCell,
   originalDate: looseCell,
   reason: looseCell,
-  seriesId: looseCell,
+  seriesId: looseCell
 })
 
 type CalendarEventSeriesExceptionsDTO = z.infer<typeof CalendarEventSeriesExceptionsDTOSchema>

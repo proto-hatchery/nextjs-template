@@ -15,7 +15,7 @@ const CalendarHolidaysDTOSchema = z.object({
   state: looseCell,
   type: looseCell,
   updatedAt: looseCell,
-  year: looseCell,
+  year: looseCell
 })
 
 type CalendarHolidaysDTO = z.infer<typeof CalendarHolidaysDTOSchema>

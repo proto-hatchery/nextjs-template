@@ -16,7 +16,7 @@ const GoogleSyncWorkerMetricsDTOSchema = z.object({
   requeued: looseCell,
   skipped: looseCell,
   successful: looseCell,
-  workerId: looseCell,
+  workerId: looseCell
 })
 
 type GoogleSyncWorkerMetricsDTO = z.infer<typeof GoogleSyncWorkerMetricsDTOSchema>

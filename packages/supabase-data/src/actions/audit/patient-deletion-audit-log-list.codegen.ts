@@ -1,17 +1,17 @@
 /**
  * ListPatientDeletionAuditLog Server Action
- *
+ * 
  * Handles list operation for patient_deletion_audit_log.
- *
+ * 
  * ## Usage
- *
+ * 
  * Example:
  * ```typescript
  * import { listPatientDeletionAuditLogAction } from "@workspace/supabase-data/actions/audit/patient-deletion-audit-log-list.codegen"
- *
+ * 
  * const result = await listPatientDeletionAuditLogAction(input)
  * ```
- *
+ * 
  * @module @workspace/supabase-data/actions/audit/patient-deletion-audit-log-list
  * codegen:actions-hooks (generated) — do not hand-edit
  */
@@ -19,22 +19,22 @@
 
 import { z } from "zod"
 
-import { logServerEvent } from "@workspace/logging/server"
-import { createServerAuthClient } from "@workspace/supabase-auth/server/create-server-auth-client"
-import { sanitizeForAudit } from "@workspace/supabase-data/lib/audit/sanitize-phi"
 import { requireAuth } from "@workspace/supabase-data/lib/auth/require-auth"
+import { createServerAuthClient } from "@workspace/supabase-auth/server/create-server-auth-client"
 import { PatientDeletionAuditLogSupabaseRepository } from "@workspace/supabase-data/modules/audit/infrastructure/repositories/patient-deletion-audit-log-supabase.repository.codegen"
+import { logServerEvent } from "@workspace/logging/server"
+import { sanitizeForAudit } from "@workspace/supabase-data/lib/audit/sanitize-phi"
 
 /**
  * Audit-safe fields for this table (HIPAA §164.312(b) compliant)
- *
+ * 
  * These fields are safe to log in error metadata without exposing PHI.
  */
 const AUDIT_SAFE_FIELDS = ["id", "createdAt", "updatedAt"] as const
 
 /**
  * Input schema for listPatientDeletionAuditLogAction
- *
+ * 
  * Uses Zod v4 syntax (top-level APIs, not z.string().email() etc.)
  */
 const PatientDeletionAuditLogListInputSchema = z.object({
@@ -50,9 +50,7 @@ const PatientDeletionAuditLogListInputSchema = z.object({
 /**
  * Input type for listPatientDeletionAuditLogAction
  */
-export type PatientDeletionAuditLogListInput = z.infer<
-  typeof PatientDeletionAuditLogListInputSchema
->
+export type PatientDeletionAuditLogListInput = z.infer<typeof PatientDeletionAuditLogListInputSchema>
 
 /**
  * Output type for listPatientDeletionAuditLogAction — unknown until the action is wired to real DTOs / port types.
@@ -61,7 +59,7 @@ export type PatientDeletionAuditLogListOutput = unknown
 
 /**
  * ListPatientDeletionAuditLog Server Action
- *
+ * 
  * @param input - Action input
  */
 export async function listPatientDeletionAuditLogAction(
@@ -82,7 +80,7 @@ export async function listPatientDeletionAuditLogAction(
     // 3. Auth client — created after all guards pass
     const supabase = await createServerAuthClient()
     const repository = new PatientDeletionAuditLogSupabaseRepository(supabase)
-
+    
     // 4. Execute operation — pass resolved context explicitly
     // @type-escape: generated action stub — list params unknown until semantic plan fills Zod input
     const result = await repository.list(validated as never)

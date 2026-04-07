@@ -19,7 +19,7 @@ const GoogleSyncLogsDTOSchema = z.object({
   seriesId: looseCell,
   startedAt: looseCell,
   status: looseCell,
-  syncDirection: looseCell,
+  syncDirection: looseCell
 })
 
 type GoogleSyncLogsDTO = z.infer<typeof GoogleSyncLogsDTOSchema>

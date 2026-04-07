@@ -1,10 +1,8 @@
 // codegen:backend — do not hand-edit; regenerate with `pnpm codegen:backend --write`.
 
-import {
-  PsychologistInvoicesDTOSchema,
-  type PsychologistInvoicesDTO,
-} from "@workspace/supabase-data/modules/financial/domain/dto/psychologist-invoices.dto.codegen"
 import type { Database } from "@workspace/supabase-infra/types/database"
+
+import { PsychologistInvoicesDTOSchema, type PsychologistInvoicesDTO } from "@workspace/supabase-data/modules/financial/domain/dto/psychologist-invoices.dto.codegen"
 
 type PsychologistInvoicesRow = Database["public"]["Tables"]["psychologist_invoices"]["Row"]
 type PsychologistInvoicesInsert = Database["public"]["Tables"]["psychologist_invoices"]["Insert"]
@@ -47,15 +45,10 @@ function fromPsychologistInvoicesRow(row: PsychologistInvoicesRow): Psychologist
   return PsychologistInvoicesDTOSchema.parse(mapped)
 }
 
-function toPsychologistInvoicesInsert(
-  dto: Partial<PsychologistInvoicesDTO>
-): PsychologistInvoicesInsert {
+function toPsychologistInvoicesInsert(dto: Partial<PsychologistInvoicesDTO>): PsychologistInvoicesInsert {
   const out: Record<string, unknown> = {}
   for (const [camelKey, snakeKey] of Object.entries(PsychologistInvoicesFieldMappings) as Array<
-    [
-      PsychologistInvoicesField,
-      (typeof PsychologistInvoicesFieldMappings)[PsychologistInvoicesField],
-    ]
+    [PsychologistInvoicesField, (typeof PsychologistInvoicesFieldMappings)[PsychologistInvoicesField]]
   >) {
     const value = dto[camelKey]
     if (typeof value !== "undefined") {
@@ -66,9 +59,7 @@ function toPsychologistInvoicesInsert(
   return out as PsychologistInvoicesInsert
 }
 
-function toPsychologistInvoicesUpdate(
-  dto: Partial<PsychologistInvoicesDTO>
-): PsychologistInvoicesUpdate {
+function toPsychologistInvoicesUpdate(dto: Partial<PsychologistInvoicesDTO>): PsychologistInvoicesUpdate {
   return toPsychologistInvoicesInsert(dto) as PsychologistInvoicesUpdate
 }
 

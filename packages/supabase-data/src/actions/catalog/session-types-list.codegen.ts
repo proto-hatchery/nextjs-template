@@ -1,17 +1,17 @@
 /**
  * ListSessionTypes Server Action
- *
+ * 
  * Handles list operation for session_types.
- *
+ * 
  * ## Usage
- *
+ * 
  * Example:
  * ```typescript
  * import { listSessionTypesAction } from "@workspace/supabase-data/actions/catalog/session-types-list.codegen"
- *
+ * 
  * const result = await listSessionTypesAction(input)
  * ```
- *
+ * 
  * @module @workspace/supabase-data/actions/catalog/session-types-list
  * codegen:actions-hooks (generated) — do not hand-edit
  */
@@ -19,22 +19,22 @@
 
 import { z } from "zod"
 
-import { logServerEvent } from "@workspace/logging/server"
-import { createServerAuthClient } from "@workspace/supabase-auth/server/create-server-auth-client"
-import { sanitizeForAudit } from "@workspace/supabase-data/lib/audit/sanitize-phi"
 import { requireAuth } from "@workspace/supabase-data/lib/auth/require-auth"
+import { createServerAuthClient } from "@workspace/supabase-auth/server/create-server-auth-client"
 import { SessionTypesSupabaseRepository } from "@workspace/supabase-data/modules/catalog/infrastructure/repositories/session-types-supabase.repository.codegen"
+import { logServerEvent } from "@workspace/logging/server"
+import { sanitizeForAudit } from "@workspace/supabase-data/lib/audit/sanitize-phi"
 
 /**
  * Audit-safe fields for this table (HIPAA §164.312(b) compliant)
- *
+ * 
  * These fields are safe to log in error metadata without exposing PHI.
  */
 const AUDIT_SAFE_FIELDS = ["id", "createdAt", "updatedAt"] as const
 
 /**
  * Input schema for listSessionTypesAction
- *
+ * 
  * Uses Zod v4 syntax (top-level APIs, not z.string().email() etc.)
  */
 const SessionTypesListInputSchema = z.object({
@@ -59,7 +59,7 @@ export type SessionTypesListOutput = unknown
 
 /**
  * ListSessionTypes Server Action
- *
+ * 
  * @param input - Action input
  */
 export async function listSessionTypesAction(
@@ -80,7 +80,7 @@ export async function listSessionTypesAction(
     // 3. Auth client — created after all guards pass
     const supabase = await createServerAuthClient()
     const repository = new SessionTypesSupabaseRepository(supabase)
-
+    
     // 4. Execute operation — pass resolved context explicitly
     // @type-escape: generated action stub — list params unknown until semantic plan fills Zod input
     const result = await repository.list(validated as never)

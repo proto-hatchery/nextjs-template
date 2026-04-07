@@ -46,7 +46,7 @@ const GoogleCalendarConnectionsDTOSchema = z.object({
   watchChannelToken: looseCell,
   watchExpiration: looseCell,
   watchExpiresAt: looseCell,
-  watchResourceId: looseCell,
+  watchResourceId: looseCell
 })
 
 type GoogleCalendarConnectionsDTO = z.infer<typeof GoogleCalendarConnectionsDTOSchema>

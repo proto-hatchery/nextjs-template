@@ -3,13 +3,10 @@
 import type { SupabaseClient } from "@supabase/supabase-js"
 
 import { SupabaseRepositoryError } from "@workspace/supabase-data/lib/supabase-repository-error"
-import type { ReferenceValuesDTO } from "@workspace/supabase-data/modules/catalog/domain/dto/reference-values.dto.codegen"
-import type {
-  ReferenceValuesRepository,
-  ReferenceValuesListParams,
-  ReferenceValuesListResult,
-} from "@workspace/supabase-data/modules/catalog/domain/ports/reference-values-repository.port.codegen"
+
+import type { ReferenceValuesRepository, ReferenceValuesListParams, ReferenceValuesListResult } from "@workspace/supabase-data/modules/catalog/domain/ports/reference-values-repository.port.codegen"
 import { fromReferenceValuesRow } from "@workspace/supabase-data/modules/catalog/infrastructure/mappers/reference-values.mapper.codegen"
+import type { ReferenceValuesDTO } from "@workspace/supabase-data/modules/catalog/domain/dto/reference-values.dto.codegen"
 
 class ReferenceValuesSupabaseRepository implements ReferenceValuesRepository {
   constructor(private readonly supabase: SupabaseClient) {}
@@ -31,10 +28,7 @@ class ReferenceValuesSupabaseRepository implements ReferenceValuesRepository {
     const limit = Math.min(params.limit ?? 20, 100)
     const offset = params.offset ?? 0
     const end = offset + limit - 1
-    const q = this.supabase
-      .from("reference_values")
-      .select("category, created_at, id, is_active, label_pt, metadata, updated_at, value")
-      .range(offset, end)
+    const q = this.supabase.from("reference_values").select("category, created_at, id, is_active, label_pt, metadata, updated_at, value").range(offset, end)
     const { data, error } = await q
     if (error) {
       throw new SupabaseRepositoryError("Failed to list reference_values.", { cause: error })
@@ -42,6 +36,7 @@ class ReferenceValuesSupabaseRepository implements ReferenceValuesRepository {
     const rows = (data ?? []).map((row) => fromReferenceValuesRow(row))
     return { rows }
   }
+
 }
 
 export { ReferenceValuesSupabaseRepository }

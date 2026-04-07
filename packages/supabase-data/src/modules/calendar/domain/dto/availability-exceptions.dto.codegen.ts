@@ -13,7 +13,7 @@ const AvailabilityExceptionsDTOSchema = z.object({
   psychologistId: looseCell,
   reason: looseCell,
   startTime: looseCell,
-  updatedAt: looseCell,
+  updatedAt: looseCell
 })
 
 type AvailabilityExceptionsDTO = z.infer<typeof AvailabilityExceptionsDTOSchema>

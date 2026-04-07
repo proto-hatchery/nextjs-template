@@ -1,17 +1,12 @@
 // codegen:backend — do not hand-edit; regenerate with `pnpm codegen:backend --write`.
 
-import {
-  PsychologistPatientActivitiesDTOSchema,
-  type PsychologistPatientActivitiesDTO,
-} from "@workspace/supabase-data/modules/patients/domain/dto/psychologist-patient-activities.dto.codegen"
 import type { Database } from "@workspace/supabase-infra/types/database"
 
-type PsychologistPatientActivitiesRow =
-  Database["public"]["Tables"]["psychologist_patient_activities"]["Row"]
-type PsychologistPatientActivitiesInsert =
-  Database["public"]["Tables"]["psychologist_patient_activities"]["Insert"]
-type PsychologistPatientActivitiesUpdate =
-  Database["public"]["Tables"]["psychologist_patient_activities"]["Update"]
+import { PsychologistPatientActivitiesDTOSchema, type PsychologistPatientActivitiesDTO } from "@workspace/supabase-data/modules/patients/domain/dto/psychologist-patient-activities.dto.codegen"
+
+type PsychologistPatientActivitiesRow = Database["public"]["Tables"]["psychologist_patient_activities"]["Row"]
+type PsychologistPatientActivitiesInsert = Database["public"]["Tables"]["psychologist_patient_activities"]["Insert"]
+type PsychologistPatientActivitiesUpdate = Database["public"]["Tables"]["psychologist_patient_activities"]["Update"]
 
 const PsychologistPatientActivitiesFieldMappings = {
   activityId: "activity_id",
@@ -38,9 +33,7 @@ const PsychologistPatientActivitiesFieldMappings = {
 
 type PsychologistPatientActivitiesField = keyof typeof PsychologistPatientActivitiesFieldMappings
 
-function fromPsychologistPatientActivitiesRow(
-  row: PsychologistPatientActivitiesRow
-): PsychologistPatientActivitiesDTO {
+function fromPsychologistPatientActivitiesRow(row: PsychologistPatientActivitiesRow): PsychologistPatientActivitiesDTO {
   const mapped = {
     activityId: row.activity_id,
     assignedAt: row.assigned_at,
@@ -66,17 +59,10 @@ function fromPsychologistPatientActivitiesRow(
   return PsychologistPatientActivitiesDTOSchema.parse(mapped)
 }
 
-function toPsychologistPatientActivitiesInsert(
-  dto: Partial<PsychologistPatientActivitiesDTO>
-): PsychologistPatientActivitiesInsert {
+function toPsychologistPatientActivitiesInsert(dto: Partial<PsychologistPatientActivitiesDTO>): PsychologistPatientActivitiesInsert {
   const out: Record<string, unknown> = {}
-  for (const [camelKey, snakeKey] of Object.entries(
-    PsychologistPatientActivitiesFieldMappings
-  ) as Array<
-    [
-      PsychologistPatientActivitiesField,
-      (typeof PsychologistPatientActivitiesFieldMappings)[PsychologistPatientActivitiesField],
-    ]
+  for (const [camelKey, snakeKey] of Object.entries(PsychologistPatientActivitiesFieldMappings) as Array<
+    [PsychologistPatientActivitiesField, (typeof PsychologistPatientActivitiesFieldMappings)[PsychologistPatientActivitiesField]]
   >) {
     const value = dto[camelKey]
     if (typeof value !== "undefined") {
@@ -87,14 +73,8 @@ function toPsychologistPatientActivitiesInsert(
   return out as PsychologistPatientActivitiesInsert
 }
 
-function toPsychologistPatientActivitiesUpdate(
-  dto: Partial<PsychologistPatientActivitiesDTO>
-): PsychologistPatientActivitiesUpdate {
+function toPsychologistPatientActivitiesUpdate(dto: Partial<PsychologistPatientActivitiesDTO>): PsychologistPatientActivitiesUpdate {
   return toPsychologistPatientActivitiesInsert(dto) as PsychologistPatientActivitiesUpdate
 }
 
-export {
-  fromPsychologistPatientActivitiesRow,
-  toPsychologistPatientActivitiesInsert,
-  toPsychologistPatientActivitiesUpdate,
-}
+export { fromPsychologistPatientActivitiesRow, toPsychologistPatientActivitiesInsert, toPsychologistPatientActivitiesUpdate }

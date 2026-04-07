@@ -1,6 +1,6 @@
 /**
  * Unit tests for updateGeneratedDocumentsAction
- *
+ * 
  * codegen:actions-hooks (generated) — do not hand-edit
  */
 import { describe, expect, it, vi, beforeEach } from "vitest"
@@ -19,12 +19,9 @@ vi.mock("@workspace/supabase-data/lib/auth/rate-limit", () => ({
   checkActionRateLimit: vi.fn(),
 }))
 
-vi.mock(
-  "@workspace/supabase-data/modules/documents/infrastructure/repositories/generated-documents-supabase.repository.codegen",
-  () => ({
-    GeneratedDocumentsSupabaseRepository: vi.fn(),
-  })
-)
+vi.mock("@workspace/supabase-data/modules/documents/infrastructure/repositories/generated-documents-supabase.repository.codegen", () => ({
+  GeneratedDocumentsSupabaseRepository: vi.fn(),
+}))
 
 vi.mock("@workspace/logging/server", () => ({
   logServerEvent: vi.fn(),
@@ -75,53 +72,54 @@ describe("updateGeneratedDocumentsAction", () => {
     it("should accept valid input for update operation", async () => {
       const { getClaims } = await import("@workspace/supabase-auth/session/get-claims")
       const { checkActionRateLimit } = await import("@workspace/supabase-data/lib/auth/rate-limit")
-      const { GeneratedDocumentsSupabaseRepository } =
-        await import("@workspace/supabase-data/modules/documents/infrastructure/repositories/generated-documents-supabase.repository.codegen")
+      const { GeneratedDocumentsSupabaseRepository } = await import("@workspace/supabase-data/modules/documents/infrastructure/repositories/generated-documents-supabase.repository.codegen")
       vi.mocked(getClaims).mockResolvedValue({ claims: { sub: "test-user-id" } } as any)
       vi.mocked(checkActionRateLimit).mockResolvedValue(undefined)
 
-      const { createServerAuthClient } =
-        await import("@workspace/supabase-auth/server/create-server-auth-client")
+      const { createServerAuthClient } = await import("@workspace/supabase-auth/server/create-server-auth-client")
       vi.mocked(createServerAuthClient).mockResolvedValue({} as any)
-      vi.mocked(GeneratedDocumentsSupabaseRepository).mockImplementation(function MockRepository() {
-        return {
-          findById: vi.fn(),
-          list: vi.fn(),
-          insert: vi.fn(),
-          update: vi.fn().mockResolvedValue({ id: "test-id" }),
-          delete: vi.fn(),
+      vi.mocked(GeneratedDocumentsSupabaseRepository).mockImplementation(
+        function MockRepository() {
+          return {
+        findById: vi.fn(),
+        list: vi.fn(),
+        insert: vi.fn(),
+        update: vi.fn().mockResolvedValue({ id: "test-id" }),
+        delete: vi.fn(),
+      } as any
         } as any
-      } as any)
+      )
 
       // TODO: Replace with actual valid input for generated_documents
       const validInput = {} as any
 
       await expect(updateGeneratedDocumentsAction(validInput)).resolves.not.toThrow()
     })
+
   })
 
   describe("Logging", () => {
     it("should log on success", async () => {
       const { getClaims } = await import("@workspace/supabase-auth/session/get-claims")
       const { checkActionRateLimit } = await import("@workspace/supabase-data/lib/auth/rate-limit")
-      const { GeneratedDocumentsSupabaseRepository } =
-        await import("@workspace/supabase-data/modules/documents/infrastructure/repositories/generated-documents-supabase.repository.codegen")
+      const { GeneratedDocumentsSupabaseRepository } = await import("@workspace/supabase-data/modules/documents/infrastructure/repositories/generated-documents-supabase.repository.codegen")
       const { logServerEvent } = await import("@workspace/logging/server")
       vi.mocked(getClaims).mockResolvedValue({ claims: { sub: "test-user-id" } } as any)
       vi.mocked(checkActionRateLimit).mockResolvedValue(undefined)
 
-      const { createServerAuthClient } =
-        await import("@workspace/supabase-auth/server/create-server-auth-client")
+      const { createServerAuthClient } = await import("@workspace/supabase-auth/server/create-server-auth-client")
       vi.mocked(createServerAuthClient).mockResolvedValue({} as any)
-      vi.mocked(GeneratedDocumentsSupabaseRepository).mockImplementation(function MockRepository() {
-        return {
-          findById: vi.fn(),
-          list: vi.fn(),
-          insert: vi.fn(),
-          update: vi.fn().mockResolvedValue({ id: "test-id" }),
-          delete: vi.fn(),
+      vi.mocked(GeneratedDocumentsSupabaseRepository).mockImplementation(
+        function MockRepository() {
+          return {
+        findById: vi.fn(),
+        list: vi.fn(),
+        insert: vi.fn(),
+        update: vi.fn().mockResolvedValue({ id: "test-id" }),
+        delete: vi.fn(),
+      } as any
         } as any
-      } as any)
+      )
 
       await updateGeneratedDocumentsAction({} as any).catch(swallowExpectedError)
 
@@ -137,24 +135,24 @@ describe("updateGeneratedDocumentsAction", () => {
     it("should log on error with sanitized metadata", async () => {
       const { getClaims } = await import("@workspace/supabase-auth/session/get-claims")
       const { checkActionRateLimit } = await import("@workspace/supabase-data/lib/auth/rate-limit")
-      const { GeneratedDocumentsSupabaseRepository } =
-        await import("@workspace/supabase-data/modules/documents/infrastructure/repositories/generated-documents-supabase.repository.codegen")
+      const { GeneratedDocumentsSupabaseRepository } = await import("@workspace/supabase-data/modules/documents/infrastructure/repositories/generated-documents-supabase.repository.codegen")
       const { logServerEvent } = await import("@workspace/logging/server")
       vi.mocked(getClaims).mockResolvedValue({ claims: { sub: "test-user-id" } } as any)
       vi.mocked(checkActionRateLimit).mockResolvedValue(undefined)
 
-      const { createServerAuthClient } =
-        await import("@workspace/supabase-auth/server/create-server-auth-client")
+      const { createServerAuthClient } = await import("@workspace/supabase-auth/server/create-server-auth-client")
       vi.mocked(createServerAuthClient).mockResolvedValue({} as any)
-      vi.mocked(GeneratedDocumentsSupabaseRepository).mockImplementation(function MockRepository() {
-        return {
-          findById: vi.fn().mockRejectedValue(new Error("Test error")),
-          list: vi.fn().mockRejectedValue(new Error("Test error")),
-          insert: vi.fn().mockRejectedValue(new Error("Test error")),
-          update: vi.fn().mockRejectedValue(new Error("Test error")),
-          delete: vi.fn().mockRejectedValue(new Error("Test error")),
+      vi.mocked(GeneratedDocumentsSupabaseRepository).mockImplementation(
+        function MockRepository() {
+          return {
+            findById: vi.fn().mockRejectedValue(new Error("Test error")),
+            list: vi.fn().mockRejectedValue(new Error("Test error")),
+            insert: vi.fn().mockRejectedValue(new Error("Test error")),
+            update: vi.fn().mockRejectedValue(new Error("Test error")),
+            delete: vi.fn().mockRejectedValue(new Error("Test error")),
+          } as any
         } as any
-      } as any)
+      )
 
       await updateGeneratedDocumentsAction({} as any).catch(swallowExpectedError)
 

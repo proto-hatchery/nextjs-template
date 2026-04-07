@@ -1,16 +1,12 @@
 // codegen:backend — do not hand-edit; regenerate with `pnpm codegen:backend --write`.
 
-import {
-  ClinicalSessionDetailsDTOSchema,
-  type ClinicalSessionDetailsDTO,
-} from "@workspace/supabase-data/modules/clinical-sessions/domain/dto/clinical-session-details.dto.codegen"
 import type { Database } from "@workspace/supabase-infra/types/database"
 
+import { ClinicalSessionDetailsDTOSchema, type ClinicalSessionDetailsDTO } from "@workspace/supabase-data/modules/clinical-sessions/domain/dto/clinical-session-details.dto.codegen"
+
 type ClinicalSessionDetailsRow = Database["public"]["Tables"]["clinical_session_details"]["Row"]
-type ClinicalSessionDetailsInsert =
-  Database["public"]["Tables"]["clinical_session_details"]["Insert"]
-type ClinicalSessionDetailsUpdate =
-  Database["public"]["Tables"]["clinical_session_details"]["Update"]
+type ClinicalSessionDetailsInsert = Database["public"]["Tables"]["clinical_session_details"]["Insert"]
+type ClinicalSessionDetailsUpdate = Database["public"]["Tables"]["clinical_session_details"]["Update"]
 
 const ClinicalSessionDetailsFieldMappings = {
   attendanceConfirmed: "attendance_confirmed",
@@ -59,15 +55,10 @@ function fromClinicalSessionDetailsRow(row: ClinicalSessionDetailsRow): Clinical
   return ClinicalSessionDetailsDTOSchema.parse(mapped)
 }
 
-function toClinicalSessionDetailsInsert(
-  dto: Partial<ClinicalSessionDetailsDTO>
-): ClinicalSessionDetailsInsert {
+function toClinicalSessionDetailsInsert(dto: Partial<ClinicalSessionDetailsDTO>): ClinicalSessionDetailsInsert {
   const out: Record<string, unknown> = {}
   for (const [camelKey, snakeKey] of Object.entries(ClinicalSessionDetailsFieldMappings) as Array<
-    [
-      ClinicalSessionDetailsField,
-      (typeof ClinicalSessionDetailsFieldMappings)[ClinicalSessionDetailsField],
-    ]
+    [ClinicalSessionDetailsField, (typeof ClinicalSessionDetailsFieldMappings)[ClinicalSessionDetailsField]]
   >) {
     const value = dto[camelKey]
     if (typeof value !== "undefined") {
@@ -78,14 +69,8 @@ function toClinicalSessionDetailsInsert(
   return out as ClinicalSessionDetailsInsert
 }
 
-function toClinicalSessionDetailsUpdate(
-  dto: Partial<ClinicalSessionDetailsDTO>
-): ClinicalSessionDetailsUpdate {
+function toClinicalSessionDetailsUpdate(dto: Partial<ClinicalSessionDetailsDTO>): ClinicalSessionDetailsUpdate {
   return toClinicalSessionDetailsInsert(dto) as ClinicalSessionDetailsUpdate
 }
 
-export {
-  fromClinicalSessionDetailsRow,
-  toClinicalSessionDetailsInsert,
-  toClinicalSessionDetailsUpdate,
-}
+export { fromClinicalSessionDetailsRow, toClinicalSessionDetailsInsert, toClinicalSessionDetailsUpdate }

@@ -15,10 +15,7 @@ interface AccountDeletionRequestsRepository {
   findById(id: string): Promise<AccountDeletionRequestsDTO | null>
   list(params: AccountDeletionRequestsListParams): Promise<AccountDeletionRequestsListResult>
   insert(data: Partial<AccountDeletionRequestsDTO>): Promise<AccountDeletionRequestsDTO>
-  update(
-    id: string,
-    patch: Partial<AccountDeletionRequestsDTO>
-  ): Promise<AccountDeletionRequestsDTO>
+  update(id: string, patch: Partial<AccountDeletionRequestsDTO>): Promise<AccountDeletionRequestsDTO>
   delete(id: string): Promise<void>
 }
 

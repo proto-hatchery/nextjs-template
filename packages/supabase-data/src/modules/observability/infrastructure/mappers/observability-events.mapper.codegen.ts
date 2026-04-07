@@ -1,10 +1,8 @@
 // codegen:backend — do not hand-edit; regenerate with `pnpm codegen:backend --write`.
 
-import {
-  ObservabilityEventsDTOSchema,
-  type ObservabilityEventsDTO,
-} from "@workspace/supabase-data/modules/observability/domain/dto/observability-events.dto.codegen"
 import type { Database } from "@workspace/supabase-infra/types/database"
+
+import { ObservabilityEventsDTOSchema, type ObservabilityEventsDTO } from "@workspace/supabase-data/modules/observability/domain/dto/observability-events.dto.codegen"
 
 type ObservabilityEventsRow = Database["public"]["Tables"]["observability_events"]["Row"]
 type ObservabilityEventsInsert = Database["public"]["Tables"]["observability_events"]["Insert"]
@@ -75,9 +73,7 @@ function fromObservabilityEventsRow(row: ObservabilityEventsRow): ObservabilityE
   return ObservabilityEventsDTOSchema.parse(mapped)
 }
 
-function toObservabilityEventsInsert(
-  dto: Partial<ObservabilityEventsDTO>
-): ObservabilityEventsInsert {
+function toObservabilityEventsInsert(dto: Partial<ObservabilityEventsDTO>): ObservabilityEventsInsert {
   const out: Record<string, unknown> = {}
   for (const [camelKey, snakeKey] of Object.entries(ObservabilityEventsFieldMappings) as Array<
     [ObservabilityEventsField, (typeof ObservabilityEventsFieldMappings)[ObservabilityEventsField]]
@@ -91,9 +87,7 @@ function toObservabilityEventsInsert(
   return out as ObservabilityEventsInsert
 }
 
-function toObservabilityEventsUpdate(
-  dto: Partial<ObservabilityEventsDTO>
-): ObservabilityEventsUpdate {
+function toObservabilityEventsUpdate(dto: Partial<ObservabilityEventsDTO>): ObservabilityEventsUpdate {
   return toObservabilityEventsInsert(dto) as ObservabilityEventsUpdate
 }
 

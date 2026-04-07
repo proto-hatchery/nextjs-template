@@ -1,6 +1,6 @@
 /**
  * Unit tests for findByIdPsychologistPatientGuardianDocumentsAction
- *
+ * 
  * codegen:actions-hooks (generated) — do not hand-edit
  */
 import { describe, expect, it, vi, beforeEach } from "vitest"
@@ -19,12 +19,9 @@ vi.mock("@workspace/supabase-data/lib/auth/rate-limit", () => ({
   checkActionRateLimit: vi.fn(),
 }))
 
-vi.mock(
-  "@workspace/supabase-data/modules/documents/infrastructure/repositories/psychologist-patient-guardian-documents-supabase.repository.codegen",
-  () => ({
-    PsychologistPatientGuardianDocumentsSupabaseRepository: vi.fn(),
-  })
-)
+vi.mock("@workspace/supabase-data/modules/documents/infrastructure/repositories/psychologist-patient-guardian-documents-supabase.repository.codegen", () => ({
+  PsychologistPatientGuardianDocumentsSupabaseRepository: vi.fn(),
+}))
 
 vi.mock("@workspace/logging/server", () => ({
   logServerEvent: vi.fn(),
@@ -42,9 +39,7 @@ describe("findByIdPsychologistPatientGuardianDocumentsAction", () => {
       const { getClaims } = await import("@workspace/supabase-auth/session/get-claims")
       vi.mocked(getClaims).mockResolvedValue({ claims: null } as any)
 
-      await expect(findByIdPsychologistPatientGuardianDocumentsAction({} as any)).rejects.toThrow(
-        "Unauthorized"
-      )
+      await expect(findByIdPsychologistPatientGuardianDocumentsAction({} as any)).rejects.toThrow("Unauthorized")
     })
 
     it("should log security.audit on unauthorized access", async () => {
@@ -52,9 +47,7 @@ describe("findByIdPsychologistPatientGuardianDocumentsAction", () => {
       const { logServerEvent } = await import("@workspace/logging/server")
       vi.mocked(getClaims).mockResolvedValue({ claims: null } as any)
 
-      await findByIdPsychologistPatientGuardianDocumentsAction({} as any).catch(
-        swallowExpectedError
-      )
+      await findByIdPsychologistPatientGuardianDocumentsAction({} as any).catch(swallowExpectedError)
 
       expect(logServerEvent).toHaveBeenCalledWith(
         expect.objectContaining({
@@ -73,40 +66,35 @@ describe("findByIdPsychologistPatientGuardianDocumentsAction", () => {
       vi.mocked(getClaims).mockResolvedValue({ claims: { sub: "test-user-id" } } as any)
       vi.mocked(checkActionRateLimit).mockResolvedValue(undefined)
 
-      await expect(
-        findByIdPsychologistPatientGuardianDocumentsAction({ invalid: "data" } as any)
-      ).rejects.toThrow()
+      await expect(findByIdPsychologistPatientGuardianDocumentsAction({ invalid: "data" } as any)).rejects.toThrow()
     })
+
   })
 
   describe("Logging", () => {
     it("should log on success", async () => {
       const { getClaims } = await import("@workspace/supabase-auth/session/get-claims")
       const { checkActionRateLimit } = await import("@workspace/supabase-data/lib/auth/rate-limit")
-      const { PsychologistPatientGuardianDocumentsSupabaseRepository } =
-        await import("@workspace/supabase-data/modules/documents/infrastructure/repositories/psychologist-patient-guardian-documents-supabase.repository.codegen")
+      const { PsychologistPatientGuardianDocumentsSupabaseRepository } = await import("@workspace/supabase-data/modules/documents/infrastructure/repositories/psychologist-patient-guardian-documents-supabase.repository.codegen")
       const { logServerEvent } = await import("@workspace/logging/server")
       vi.mocked(getClaims).mockResolvedValue({ claims: { sub: "test-user-id" } } as any)
       vi.mocked(checkActionRateLimit).mockResolvedValue(undefined)
 
-      const { createServerAuthClient } =
-        await import("@workspace/supabase-auth/server/create-server-auth-client")
+      const { createServerAuthClient } = await import("@workspace/supabase-auth/server/create-server-auth-client")
       vi.mocked(createServerAuthClient).mockResolvedValue({} as any)
       vi.mocked(PsychologistPatientGuardianDocumentsSupabaseRepository).mockImplementation(
         function MockRepository() {
           return {
-            findById: vi.fn().mockResolvedValue({ id: "test-id" }),
-            list: vi.fn(),
-            insert: vi.fn(),
-            update: vi.fn(),
-            delete: vi.fn(),
-          } as any
+        findById: vi.fn().mockResolvedValue({ id: "test-id" }),
+        list: vi.fn(),
+        insert: vi.fn(),
+        update: vi.fn(),
+        delete: vi.fn(),
+      } as any
         } as any
       )
 
-      await findByIdPsychologistPatientGuardianDocumentsAction({} as any).catch(
-        swallowExpectedError
-      )
+      await findByIdPsychologistPatientGuardianDocumentsAction({} as any).catch(swallowExpectedError)
 
       expect(logServerEvent).toHaveBeenCalledWith(
         expect.objectContaining({
@@ -120,14 +108,12 @@ describe("findByIdPsychologistPatientGuardianDocumentsAction", () => {
     it("should log on error with sanitized metadata", async () => {
       const { getClaims } = await import("@workspace/supabase-auth/session/get-claims")
       const { checkActionRateLimit } = await import("@workspace/supabase-data/lib/auth/rate-limit")
-      const { PsychologistPatientGuardianDocumentsSupabaseRepository } =
-        await import("@workspace/supabase-data/modules/documents/infrastructure/repositories/psychologist-patient-guardian-documents-supabase.repository.codegen")
+      const { PsychologistPatientGuardianDocumentsSupabaseRepository } = await import("@workspace/supabase-data/modules/documents/infrastructure/repositories/psychologist-patient-guardian-documents-supabase.repository.codegen")
       const { logServerEvent } = await import("@workspace/logging/server")
       vi.mocked(getClaims).mockResolvedValue({ claims: { sub: "test-user-id" } } as any)
       vi.mocked(checkActionRateLimit).mockResolvedValue(undefined)
 
-      const { createServerAuthClient } =
-        await import("@workspace/supabase-auth/server/create-server-auth-client")
+      const { createServerAuthClient } = await import("@workspace/supabase-auth/server/create-server-auth-client")
       vi.mocked(createServerAuthClient).mockResolvedValue({} as any)
       vi.mocked(PsychologistPatientGuardianDocumentsSupabaseRepository).mockImplementation(
         function MockRepository() {
@@ -141,9 +127,7 @@ describe("findByIdPsychologistPatientGuardianDocumentsAction", () => {
         } as any
       )
 
-      await findByIdPsychologistPatientGuardianDocumentsAction({} as any).catch(
-        swallowExpectedError
-      )
+      await findByIdPsychologistPatientGuardianDocumentsAction({} as any).catch(swallowExpectedError)
 
       expect(logServerEvent).toHaveBeenCalledWith(
         expect.objectContaining({

@@ -1,17 +1,17 @@
 /**
  * FindByIdPsychologistPatientCharges Server Action
- *
+ * 
  * Handles findById operation for psychologist_patient_charges.
- *
+ * 
  * ## Usage
- *
+ * 
  * Example:
  * ```typescript
  * import { findByIdPsychologistPatientChargesAction } from "@workspace/supabase-data/actions/financial/psychologist-patient-charges-findById.codegen"
- *
+ * 
  * const result = await findByIdPsychologistPatientChargesAction(input)
  * ```
- *
+ * 
  * @module @workspace/supabase-data/actions/financial/psychologist-patient-charges-findById
  * codegen:actions-hooks (generated) — do not hand-edit
  */
@@ -19,22 +19,22 @@
 
 import { z } from "zod"
 
-import { logServerEvent } from "@workspace/logging/server"
-import { createServerAuthClient } from "@workspace/supabase-auth/server/create-server-auth-client"
-import { sanitizeForAudit } from "@workspace/supabase-data/lib/audit/sanitize-phi"
 import { requireAuth } from "@workspace/supabase-data/lib/auth/require-auth"
+import { createServerAuthClient } from "@workspace/supabase-auth/server/create-server-auth-client"
 import { PsychologistPatientChargesSupabaseRepository } from "@workspace/supabase-data/modules/financial/infrastructure/repositories/psychologist-patient-charges-supabase.repository.codegen"
+import { logServerEvent } from "@workspace/logging/server"
+import { sanitizeForAudit } from "@workspace/supabase-data/lib/audit/sanitize-phi"
 
 /**
  * Audit-safe fields for this table (HIPAA §164.312(b) compliant)
- *
+ * 
  * These fields are safe to log in error metadata without exposing PHI.
  */
 const AUDIT_SAFE_FIELDS = ["id", "createdAt", "updatedAt"] as const
 
 /**
  * Input schema for findByIdPsychologistPatientChargesAction
- *
+ * 
  * Uses Zod v4 syntax (top-level APIs, not z.string().email() etc.)
  */
 const PsychologistPatientChargesFindByIdInputSchema = z.object({
@@ -50,9 +50,7 @@ const PsychologistPatientChargesFindByIdInputSchema = z.object({
 /**
  * Input type for findByIdPsychologistPatientChargesAction
  */
-export type PsychologistPatientChargesFindByIdInput = z.infer<
-  typeof PsychologistPatientChargesFindByIdInputSchema
->
+export type PsychologistPatientChargesFindByIdInput = z.infer<typeof PsychologistPatientChargesFindByIdInputSchema>
 
 /**
  * Output type for findByIdPsychologistPatientChargesAction — unknown until the action is wired to real DTOs / port types.
@@ -61,7 +59,7 @@ export type PsychologistPatientChargesFindByIdOutput = unknown
 
 /**
  * FindByIdPsychologistPatientCharges Server Action
- *
+ * 
  * @param input - Action input
  */
 export async function findByIdPsychologistPatientChargesAction(
@@ -82,7 +80,7 @@ export async function findByIdPsychologistPatientChargesAction(
     // 3. Auth client — created after all guards pass
     const supabase = await createServerAuthClient()
     const repository = new PsychologistPatientChargesSupabaseRepository(supabase)
-
+    
     // 4. Execute operation — pass resolved context explicitly
     // @type-escape: generated action stub — id shape from validated after TODO input schema
     const result = await repository.findById((validated as unknown as { id: string }).id)

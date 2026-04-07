@@ -1,17 +1,12 @@
 // codegen:backend — do not hand-edit; regenerate with `pnpm codegen:backend --write`.
 
-import {
-  PsychologistOnboardingStateDTOSchema,
-  type PsychologistOnboardingStateDTO,
-} from "@workspace/supabase-data/modules/onboarding/domain/dto/psychologist-onboarding-state.dto.codegen"
 import type { Database } from "@workspace/supabase-infra/types/database"
 
-type PsychologistOnboardingStateRow =
-  Database["public"]["Tables"]["psychologist_onboarding_state"]["Row"]
-type PsychologistOnboardingStateInsert =
-  Database["public"]["Tables"]["psychologist_onboarding_state"]["Insert"]
-type PsychologistOnboardingStateUpdate =
-  Database["public"]["Tables"]["psychologist_onboarding_state"]["Update"]
+import { PsychologistOnboardingStateDTOSchema, type PsychologistOnboardingStateDTO } from "@workspace/supabase-data/modules/onboarding/domain/dto/psychologist-onboarding-state.dto.codegen"
+
+type PsychologistOnboardingStateRow = Database["public"]["Tables"]["psychologist_onboarding_state"]["Row"]
+type PsychologistOnboardingStateInsert = Database["public"]["Tables"]["psychologist_onboarding_state"]["Insert"]
+type PsychologistOnboardingStateUpdate = Database["public"]["Tables"]["psychologist_onboarding_state"]["Update"]
 
 const PsychologistOnboardingStateFieldMappings = {
   abandonedAt: "abandoned_at",
@@ -34,9 +29,7 @@ const PsychologistOnboardingStateFieldMappings = {
 
 type PsychologistOnboardingStateField = keyof typeof PsychologistOnboardingStateFieldMappings
 
-function fromPsychologistOnboardingStateRow(
-  row: PsychologistOnboardingStateRow
-): PsychologistOnboardingStateDTO {
+function fromPsychologistOnboardingStateRow(row: PsychologistOnboardingStateRow): PsychologistOnboardingStateDTO {
   const mapped = {
     abandonedAt: row.abandoned_at,
     completionPercentage: row.completion_percentage,
@@ -58,17 +51,10 @@ function fromPsychologistOnboardingStateRow(
   return PsychologistOnboardingStateDTOSchema.parse(mapped)
 }
 
-function toPsychologistOnboardingStateInsert(
-  dto: Partial<PsychologistOnboardingStateDTO>
-): PsychologistOnboardingStateInsert {
+function toPsychologistOnboardingStateInsert(dto: Partial<PsychologistOnboardingStateDTO>): PsychologistOnboardingStateInsert {
   const out: Record<string, unknown> = {}
-  for (const [camelKey, snakeKey] of Object.entries(
-    PsychologistOnboardingStateFieldMappings
-  ) as Array<
-    [
-      PsychologistOnboardingStateField,
-      (typeof PsychologistOnboardingStateFieldMappings)[PsychologistOnboardingStateField],
-    ]
+  for (const [camelKey, snakeKey] of Object.entries(PsychologistOnboardingStateFieldMappings) as Array<
+    [PsychologistOnboardingStateField, (typeof PsychologistOnboardingStateFieldMappings)[PsychologistOnboardingStateField]]
   >) {
     const value = dto[camelKey]
     if (typeof value !== "undefined") {
@@ -79,14 +65,8 @@ function toPsychologistOnboardingStateInsert(
   return out as PsychologistOnboardingStateInsert
 }
 
-function toPsychologistOnboardingStateUpdate(
-  dto: Partial<PsychologistOnboardingStateDTO>
-): PsychologistOnboardingStateUpdate {
+function toPsychologistOnboardingStateUpdate(dto: Partial<PsychologistOnboardingStateDTO>): PsychologistOnboardingStateUpdate {
   return toPsychologistOnboardingStateInsert(dto) as PsychologistOnboardingStateUpdate
 }
 
-export {
-  fromPsychologistOnboardingStateRow,
-  toPsychologistOnboardingStateInsert,
-  toPsychologistOnboardingStateUpdate,
-}
+export { fromPsychologistOnboardingStateRow, toPsychologistOnboardingStateInsert, toPsychologistOnboardingStateUpdate }

@@ -1,12 +1,12 @@
 /**
  * Unit tests for usePsychologistPatientServicesQuery
- *
+ * 
  * codegen:actions-hooks (generated) — do not hand-edit
  */
 import { describe, expect, it } from "vitest"
 
-import { patientsQueryKeys } from "@workspace/supabase-data/hooks/patients/query-keys.codegen"
 import { usePsychologistPatientServicesQuery } from "@workspace/supabase-data/hooks/patients/use-psychologist-patient-services-query.hook.codegen"
+import { patientsQueryKeys } from "@workspace/supabase-data/hooks/patients/query-keys.codegen"
 
 describe("usePsychologistPatientServicesQuery", () => {
   it("should export the generated hook", () => {

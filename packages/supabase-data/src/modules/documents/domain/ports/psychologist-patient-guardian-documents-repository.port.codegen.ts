@@ -13,16 +13,9 @@ export interface PsychologistPatientGuardianDocumentsListResult {
 
 interface PsychologistPatientGuardianDocumentsRepository {
   findById(id: string): Promise<PsychologistPatientGuardianDocumentsDTO | null>
-  list(
-    params: PsychologistPatientGuardianDocumentsListParams
-  ): Promise<PsychologistPatientGuardianDocumentsListResult>
-  insert(
-    data: Partial<PsychologistPatientGuardianDocumentsDTO>
-  ): Promise<PsychologistPatientGuardianDocumentsDTO>
-  update(
-    id: string,
-    patch: Partial<PsychologistPatientGuardianDocumentsDTO>
-  ): Promise<PsychologistPatientGuardianDocumentsDTO>
+  list(params: PsychologistPatientGuardianDocumentsListParams): Promise<PsychologistPatientGuardianDocumentsListResult>
+  insert(data: Partial<PsychologistPatientGuardianDocumentsDTO>): Promise<PsychologistPatientGuardianDocumentsDTO>
+  update(id: string, patch: Partial<PsychologistPatientGuardianDocumentsDTO>): Promise<PsychologistPatientGuardianDocumentsDTO>
   delete(id: string): Promise<void>
 }
 

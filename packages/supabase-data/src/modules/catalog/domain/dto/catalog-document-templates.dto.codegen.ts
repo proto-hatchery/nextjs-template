@@ -14,7 +14,7 @@ const CatalogDocumentTemplatesDTOSchema = z.object({
   title: looseCell,
   updatedAt: looseCell,
   updatedBy: looseCell,
-  usageCount: looseCell,
+  usageCount: looseCell
 })
 
 type CatalogDocumentTemplatesDTO = z.infer<typeof CatalogDocumentTemplatesDTOSchema>

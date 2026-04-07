@@ -1,16 +1,12 @@
 // codegen:backend — do not hand-edit; regenerate with `pnpm codegen:backend --write`.
 
-import {
-  PsychologistAssistantsDTOSchema,
-  type PsychologistAssistantsDTO,
-} from "@workspace/supabase-data/modules/assistants/domain/dto/psychologist-assistants.dto.codegen"
 import type { Database } from "@workspace/supabase-infra/types/database"
 
+import { PsychologistAssistantsDTOSchema, type PsychologistAssistantsDTO } from "@workspace/supabase-data/modules/assistants/domain/dto/psychologist-assistants.dto.codegen"
+
 type PsychologistAssistantsRow = Database["public"]["Tables"]["psychologist_assistants"]["Row"]
-type PsychologistAssistantsInsert =
-  Database["public"]["Tables"]["psychologist_assistants"]["Insert"]
-type PsychologistAssistantsUpdate =
-  Database["public"]["Tables"]["psychologist_assistants"]["Update"]
+type PsychologistAssistantsInsert = Database["public"]["Tables"]["psychologist_assistants"]["Insert"]
+type PsychologistAssistantsUpdate = Database["public"]["Tables"]["psychologist_assistants"]["Update"]
 
 const PsychologistAssistantsFieldMappings = {
   assistantId: "assistant_id",
@@ -33,15 +29,10 @@ function fromPsychologistAssistantsRow(row: PsychologistAssistantsRow): Psycholo
   return PsychologistAssistantsDTOSchema.parse(mapped)
 }
 
-function toPsychologistAssistantsInsert(
-  dto: Partial<PsychologistAssistantsDTO>
-): PsychologistAssistantsInsert {
+function toPsychologistAssistantsInsert(dto: Partial<PsychologistAssistantsDTO>): PsychologistAssistantsInsert {
   const out: Record<string, unknown> = {}
   for (const [camelKey, snakeKey] of Object.entries(PsychologistAssistantsFieldMappings) as Array<
-    [
-      PsychologistAssistantsField,
-      (typeof PsychologistAssistantsFieldMappings)[PsychologistAssistantsField],
-    ]
+    [PsychologistAssistantsField, (typeof PsychologistAssistantsFieldMappings)[PsychologistAssistantsField]]
   >) {
     const value = dto[camelKey]
     if (typeof value !== "undefined") {
@@ -52,14 +43,8 @@ function toPsychologistAssistantsInsert(
   return out as PsychologistAssistantsInsert
 }
 
-function toPsychologistAssistantsUpdate(
-  dto: Partial<PsychologistAssistantsDTO>
-): PsychologistAssistantsUpdate {
+function toPsychologistAssistantsUpdate(dto: Partial<PsychologistAssistantsDTO>): PsychologistAssistantsUpdate {
   return toPsychologistAssistantsInsert(dto) as PsychologistAssistantsUpdate
 }
 
-export {
-  fromPsychologistAssistantsRow,
-  toPsychologistAssistantsInsert,
-  toPsychologistAssistantsUpdate,
-}
+export { fromPsychologistAssistantsRow, toPsychologistAssistantsInsert, toPsychologistAssistantsUpdate }

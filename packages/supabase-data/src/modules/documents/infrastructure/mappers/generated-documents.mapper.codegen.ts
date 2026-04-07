@@ -1,10 +1,8 @@
 // codegen:backend — do not hand-edit; regenerate with `pnpm codegen:backend --write`.
 
-import {
-  GeneratedDocumentsDTOSchema,
-  type GeneratedDocumentsDTO,
-} from "@workspace/supabase-data/modules/documents/domain/dto/generated-documents.dto.codegen"
 import type { Database } from "@workspace/supabase-infra/types/database"
+
+import { GeneratedDocumentsDTOSchema, type GeneratedDocumentsDTO } from "@workspace/supabase-data/modules/documents/domain/dto/generated-documents.dto.codegen"
 
 type GeneratedDocumentsRow = Database["public"]["Tables"]["generated_documents"]["Row"]
 type GeneratedDocumentsInsert = Database["public"]["Tables"]["generated_documents"]["Insert"]

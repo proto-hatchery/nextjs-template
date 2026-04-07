@@ -11,7 +11,7 @@ const CalendarChangeLogDTOSchema = z.object({
   modificationHash: looseCell,
   processedAt: looseCell,
   psychologistId: looseCell,
-  syncDirection: looseCell,
+  syncDirection: looseCell
 })
 
 type CalendarChangeLogDTO = z.infer<typeof CalendarChangeLogDTOSchema>

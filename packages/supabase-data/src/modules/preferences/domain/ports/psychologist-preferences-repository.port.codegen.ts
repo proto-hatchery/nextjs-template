@@ -15,10 +15,7 @@ interface PsychologistPreferencesRepository {
   findById(id: string): Promise<PsychologistPreferencesDTO | null>
   list(params: PsychologistPreferencesListParams): Promise<PsychologistPreferencesListResult>
   insert(data: Partial<PsychologistPreferencesDTO>): Promise<PsychologistPreferencesDTO>
-  update(
-    id: string,
-    patch: Partial<PsychologistPreferencesDTO>
-  ): Promise<PsychologistPreferencesDTO>
+  update(id: string, patch: Partial<PsychologistPreferencesDTO>): Promise<PsychologistPreferencesDTO>
   delete(id: string): Promise<void>
 }
 

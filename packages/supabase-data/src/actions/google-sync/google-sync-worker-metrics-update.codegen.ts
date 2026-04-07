@@ -1,17 +1,17 @@
 /**
  * UpdateGoogleSyncWorkerMetrics Server Action
- *
+ * 
  * Handles update operation for google_sync_worker_metrics.
- *
+ * 
  * ## Usage
- *
+ * 
  * Example:
  * ```typescript
  * import { updateGoogleSyncWorkerMetricsAction } from "@workspace/supabase-data/actions/google-sync/google-sync-worker-metrics-update.codegen"
- *
+ * 
  * const result = await updateGoogleSyncWorkerMetricsAction(input)
  * ```
- *
+ * 
  * @module @workspace/supabase-data/actions/google-sync/google-sync-worker-metrics-update
  * codegen:actions-hooks (generated) — do not hand-edit
  */
@@ -19,22 +19,22 @@
 
 import { z } from "zod"
 
-import { logServerEvent } from "@workspace/logging/server"
-import { createServerAuthClient } from "@workspace/supabase-auth/server/create-server-auth-client"
-import { sanitizeForAudit } from "@workspace/supabase-data/lib/audit/sanitize-phi"
 import { requireAuth } from "@workspace/supabase-data/lib/auth/require-auth"
+import { createServerAuthClient } from "@workspace/supabase-auth/server/create-server-auth-client"
 import { GoogleSyncWorkerMetricsSupabaseRepository } from "@workspace/supabase-data/modules/google-sync/infrastructure/repositories/google-sync-worker-metrics-supabase.repository.codegen"
+import { logServerEvent } from "@workspace/logging/server"
+import { sanitizeForAudit } from "@workspace/supabase-data/lib/audit/sanitize-phi"
 
 /**
  * Audit-safe fields for this table (HIPAA §164.312(b) compliant)
- *
+ * 
  * These fields are safe to log in error metadata without exposing PHI.
  */
 const AUDIT_SAFE_FIELDS = ["id", "createdAt", "updatedAt"] as const
 
 /**
  * Input schema for updateGoogleSyncWorkerMetricsAction
- *
+ * 
  * Uses Zod v4 syntax (top-level APIs, not z.string().email() etc.)
  */
 const GoogleSyncWorkerMetricsUpdateInputSchema = z.object({
@@ -50,9 +50,7 @@ const GoogleSyncWorkerMetricsUpdateInputSchema = z.object({
 /**
  * Input type for updateGoogleSyncWorkerMetricsAction
  */
-export type GoogleSyncWorkerMetricsUpdateInput = z.infer<
-  typeof GoogleSyncWorkerMetricsUpdateInputSchema
->
+export type GoogleSyncWorkerMetricsUpdateInput = z.infer<typeof GoogleSyncWorkerMetricsUpdateInputSchema>
 
 /**
  * Output type for updateGoogleSyncWorkerMetricsAction — unknown until the action is wired to real DTOs / port types.
@@ -61,7 +59,7 @@ export type GoogleSyncWorkerMetricsUpdateOutput = unknown
 
 /**
  * UpdateGoogleSyncWorkerMetrics Server Action
- *
+ * 
  * @param input - Action input
  */
 export async function updateGoogleSyncWorkerMetricsAction(
@@ -82,7 +80,7 @@ export async function updateGoogleSyncWorkerMetricsAction(
     // 3. Auth client — created after all guards pass
     const supabase = await createServerAuthClient()
     const repository = new GoogleSyncWorkerMetricsSupabaseRepository(supabase)
-
+    
     // 4. Execute operation — pass resolved context explicitly
     // @type-escape: generated action stub — id shape from validated after TODO input schema
     const validatedId = (validated as unknown as { id: string }).id

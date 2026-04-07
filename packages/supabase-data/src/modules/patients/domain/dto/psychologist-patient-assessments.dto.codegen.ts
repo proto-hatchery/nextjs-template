@@ -27,7 +27,7 @@ const PsychologistPatientAssessmentsDTOSchema = z.object({
   testName: looseCell,
   testType: looseCell,
   updatedAt: looseCell,
-  updatedBy: looseCell,
+  updatedBy: looseCell
 })
 
 type PsychologistPatientAssessmentsDTO = z.infer<typeof PsychologistPatientAssessmentsDTOSchema>

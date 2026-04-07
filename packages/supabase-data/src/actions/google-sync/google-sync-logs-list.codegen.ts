@@ -1,17 +1,17 @@
 /**
  * ListGoogleSyncLogs Server Action
- *
+ * 
  * Handles list operation for google_sync_logs.
- *
+ * 
  * ## Usage
- *
+ * 
  * Example:
  * ```typescript
  * import { listGoogleSyncLogsAction } from "@workspace/supabase-data/actions/google-sync/google-sync-logs-list.codegen"
- *
+ * 
  * const result = await listGoogleSyncLogsAction(input)
  * ```
- *
+ * 
  * @module @workspace/supabase-data/actions/google-sync/google-sync-logs-list
  * codegen:actions-hooks (generated) — do not hand-edit
  */
@@ -19,22 +19,22 @@
 
 import { z } from "zod"
 
-import { logServerEvent } from "@workspace/logging/server"
-import { createServerAuthClient } from "@workspace/supabase-auth/server/create-server-auth-client"
-import { sanitizeForAudit } from "@workspace/supabase-data/lib/audit/sanitize-phi"
 import { requireAuth } from "@workspace/supabase-data/lib/auth/require-auth"
+import { createServerAuthClient } from "@workspace/supabase-auth/server/create-server-auth-client"
 import { GoogleSyncLogsSupabaseRepository } from "@workspace/supabase-data/modules/google-sync/infrastructure/repositories/google-sync-logs-supabase.repository.codegen"
+import { logServerEvent } from "@workspace/logging/server"
+import { sanitizeForAudit } from "@workspace/supabase-data/lib/audit/sanitize-phi"
 
 /**
  * Audit-safe fields for this table (HIPAA §164.312(b) compliant)
- *
+ * 
  * These fields are safe to log in error metadata without exposing PHI.
  */
 const AUDIT_SAFE_FIELDS = ["id", "createdAt", "updatedAt"] as const
 
 /**
  * Input schema for listGoogleSyncLogsAction
- *
+ * 
  * Uses Zod v4 syntax (top-level APIs, not z.string().email() etc.)
  */
 const GoogleSyncLogsListInputSchema = z.object({
@@ -59,7 +59,7 @@ export type GoogleSyncLogsListOutput = unknown
 
 /**
  * ListGoogleSyncLogs Server Action
- *
+ * 
  * @param input - Action input
  */
 export async function listGoogleSyncLogsAction(
@@ -80,7 +80,7 @@ export async function listGoogleSyncLogsAction(
     // 3. Auth client — created after all guards pass
     const supabase = await createServerAuthClient()
     const repository = new GoogleSyncLogsSupabaseRepository(supabase)
-
+    
     // 4. Execute operation — pass resolved context explicitly
     // @type-escape: generated action stub — list params unknown until semantic plan fills Zod input
     const result = await repository.list(validated as never)

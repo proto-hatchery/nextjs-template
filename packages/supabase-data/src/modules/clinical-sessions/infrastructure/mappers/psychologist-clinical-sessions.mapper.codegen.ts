@@ -1,17 +1,12 @@
 // codegen:backend — do not hand-edit; regenerate with `pnpm codegen:backend --write`.
 
-import {
-  PsychologistClinicalSessionsDTOSchema,
-  type PsychologistClinicalSessionsDTO,
-} from "@workspace/supabase-data/modules/clinical-sessions/domain/dto/psychologist-clinical-sessions.dto.codegen"
 import type { Database } from "@workspace/supabase-infra/types/database"
 
-type PsychologistClinicalSessionsRow =
-  Database["public"]["Tables"]["psychologist_clinical_sessions"]["Row"]
-type PsychologistClinicalSessionsInsert =
-  Database["public"]["Tables"]["psychologist_clinical_sessions"]["Insert"]
-type PsychologistClinicalSessionsUpdate =
-  Database["public"]["Tables"]["psychologist_clinical_sessions"]["Update"]
+import { PsychologistClinicalSessionsDTOSchema, type PsychologistClinicalSessionsDTO } from "@workspace/supabase-data/modules/clinical-sessions/domain/dto/psychologist-clinical-sessions.dto.codegen"
+
+type PsychologistClinicalSessionsRow = Database["public"]["Tables"]["psychologist_clinical_sessions"]["Row"]
+type PsychologistClinicalSessionsInsert = Database["public"]["Tables"]["psychologist_clinical_sessions"]["Insert"]
+type PsychologistClinicalSessionsUpdate = Database["public"]["Tables"]["psychologist_clinical_sessions"]["Update"]
 
 const PsychologistClinicalSessionsFieldMappings = {
   attendanceConfirmed: "attendance_confirmed",
@@ -48,9 +43,7 @@ const PsychologistClinicalSessionsFieldMappings = {
 
 type PsychologistClinicalSessionsField = keyof typeof PsychologistClinicalSessionsFieldMappings
 
-function fromPsychologistClinicalSessionsRow(
-  row: PsychologistClinicalSessionsRow
-): PsychologistClinicalSessionsDTO {
+function fromPsychologistClinicalSessionsRow(row: PsychologistClinicalSessionsRow): PsychologistClinicalSessionsDTO {
   const mapped = {
     attendanceConfirmed: row.attendance_confirmed,
     automationMetadata: row.automation_metadata,
@@ -86,17 +79,10 @@ function fromPsychologistClinicalSessionsRow(
   return PsychologistClinicalSessionsDTOSchema.parse(mapped)
 }
 
-function toPsychologistClinicalSessionsInsert(
-  dto: Partial<PsychologistClinicalSessionsDTO>
-): PsychologistClinicalSessionsInsert {
+function toPsychologistClinicalSessionsInsert(dto: Partial<PsychologistClinicalSessionsDTO>): PsychologistClinicalSessionsInsert {
   const out: Record<string, unknown> = {}
-  for (const [camelKey, snakeKey] of Object.entries(
-    PsychologistClinicalSessionsFieldMappings
-  ) as Array<
-    [
-      PsychologistClinicalSessionsField,
-      (typeof PsychologistClinicalSessionsFieldMappings)[PsychologistClinicalSessionsField],
-    ]
+  for (const [camelKey, snakeKey] of Object.entries(PsychologistClinicalSessionsFieldMappings) as Array<
+    [PsychologistClinicalSessionsField, (typeof PsychologistClinicalSessionsFieldMappings)[PsychologistClinicalSessionsField]]
   >) {
     const value = dto[camelKey]
     if (typeof value !== "undefined") {
@@ -107,14 +93,8 @@ function toPsychologistClinicalSessionsInsert(
   return out as PsychologistClinicalSessionsInsert
 }
 
-function toPsychologistClinicalSessionsUpdate(
-  dto: Partial<PsychologistClinicalSessionsDTO>
-): PsychologistClinicalSessionsUpdate {
+function toPsychologistClinicalSessionsUpdate(dto: Partial<PsychologistClinicalSessionsDTO>): PsychologistClinicalSessionsUpdate {
   return toPsychologistClinicalSessionsInsert(dto) as PsychologistClinicalSessionsUpdate
 }
 
-export {
-  fromPsychologistClinicalSessionsRow,
-  toPsychologistClinicalSessionsInsert,
-  toPsychologistClinicalSessionsUpdate,
-}
+export { fromPsychologistClinicalSessionsRow, toPsychologistClinicalSessionsInsert, toPsychologistClinicalSessionsUpdate }

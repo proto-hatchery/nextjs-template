@@ -1,17 +1,12 @@
 // codegen:backend — do not hand-edit; regenerate with `pnpm codegen:backend --write`.
 
-import {
-  PsychologistPatientServicesDTOSchema,
-  type PsychologistPatientServicesDTO,
-} from "@workspace/supabase-data/modules/patients/domain/dto/psychologist-patient-services.dto.codegen"
 import type { Database } from "@workspace/supabase-infra/types/database"
 
-type PsychologistPatientServicesRow =
-  Database["public"]["Tables"]["psychologist_patient_services"]["Row"]
-type PsychologistPatientServicesInsert =
-  Database["public"]["Tables"]["psychologist_patient_services"]["Insert"]
-type PsychologistPatientServicesUpdate =
-  Database["public"]["Tables"]["psychologist_patient_services"]["Update"]
+import { PsychologistPatientServicesDTOSchema, type PsychologistPatientServicesDTO } from "@workspace/supabase-data/modules/patients/domain/dto/psychologist-patient-services.dto.codegen"
+
+type PsychologistPatientServicesRow = Database["public"]["Tables"]["psychologist_patient_services"]["Row"]
+type PsychologistPatientServicesInsert = Database["public"]["Tables"]["psychologist_patient_services"]["Insert"]
+type PsychologistPatientServicesUpdate = Database["public"]["Tables"]["psychologist_patient_services"]["Update"]
 
 const PsychologistPatientServicesFieldMappings = {
   createdAt: "created_at",
@@ -25,9 +20,7 @@ const PsychologistPatientServicesFieldMappings = {
 
 type PsychologistPatientServicesField = keyof typeof PsychologistPatientServicesFieldMappings
 
-function fromPsychologistPatientServicesRow(
-  row: PsychologistPatientServicesRow
-): PsychologistPatientServicesDTO {
+function fromPsychologistPatientServicesRow(row: PsychologistPatientServicesRow): PsychologistPatientServicesDTO {
   const mapped = {
     createdAt: row.created_at,
     id: row.id,
@@ -40,17 +33,10 @@ function fromPsychologistPatientServicesRow(
   return PsychologistPatientServicesDTOSchema.parse(mapped)
 }
 
-function toPsychologistPatientServicesInsert(
-  dto: Partial<PsychologistPatientServicesDTO>
-): PsychologistPatientServicesInsert {
+function toPsychologistPatientServicesInsert(dto: Partial<PsychologistPatientServicesDTO>): PsychologistPatientServicesInsert {
   const out: Record<string, unknown> = {}
-  for (const [camelKey, snakeKey] of Object.entries(
-    PsychologistPatientServicesFieldMappings
-  ) as Array<
-    [
-      PsychologistPatientServicesField,
-      (typeof PsychologistPatientServicesFieldMappings)[PsychologistPatientServicesField],
-    ]
+  for (const [camelKey, snakeKey] of Object.entries(PsychologistPatientServicesFieldMappings) as Array<
+    [PsychologistPatientServicesField, (typeof PsychologistPatientServicesFieldMappings)[PsychologistPatientServicesField]]
   >) {
     const value = dto[camelKey]
     if (typeof value !== "undefined") {
@@ -61,14 +47,8 @@ function toPsychologistPatientServicesInsert(
   return out as PsychologistPatientServicesInsert
 }
 
-function toPsychologistPatientServicesUpdate(
-  dto: Partial<PsychologistPatientServicesDTO>
-): PsychologistPatientServicesUpdate {
+function toPsychologistPatientServicesUpdate(dto: Partial<PsychologistPatientServicesDTO>): PsychologistPatientServicesUpdate {
   return toPsychologistPatientServicesInsert(dto) as PsychologistPatientServicesUpdate
 }
 
-export {
-  fromPsychologistPatientServicesRow,
-  toPsychologistPatientServicesInsert,
-  toPsychologistPatientServicesUpdate,
-}
+export { fromPsychologistPatientServicesRow, toPsychologistPatientServicesInsert, toPsychologistPatientServicesUpdate }

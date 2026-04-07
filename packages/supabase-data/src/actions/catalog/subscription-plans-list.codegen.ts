@@ -1,17 +1,17 @@
 /**
  * ListSubscriptionPlans Server Action
- *
+ * 
  * Handles list operation for subscription_plans.
- *
+ * 
  * ## Usage
- *
+ * 
  * Example:
  * ```typescript
  * import { listSubscriptionPlansAction } from "@workspace/supabase-data/actions/catalog/subscription-plans-list.codegen"
- *
+ * 
  * const result = await listSubscriptionPlansAction(input)
  * ```
- *
+ * 
  * @module @workspace/supabase-data/actions/catalog/subscription-plans-list
  * codegen:actions-hooks (generated) — do not hand-edit
  */
@@ -19,22 +19,22 @@
 
 import { z } from "zod"
 
-import { logServerEvent } from "@workspace/logging/server"
-import { createServerAuthClient } from "@workspace/supabase-auth/server/create-server-auth-client"
-import { sanitizeForAudit } from "@workspace/supabase-data/lib/audit/sanitize-phi"
 import { requireAuth } from "@workspace/supabase-data/lib/auth/require-auth"
+import { createServerAuthClient } from "@workspace/supabase-auth/server/create-server-auth-client"
 import { SubscriptionPlansSupabaseRepository } from "@workspace/supabase-data/modules/catalog/infrastructure/repositories/subscription-plans-supabase.repository.codegen"
+import { logServerEvent } from "@workspace/logging/server"
+import { sanitizeForAudit } from "@workspace/supabase-data/lib/audit/sanitize-phi"
 
 /**
  * Audit-safe fields for this table (HIPAA §164.312(b) compliant)
- *
+ * 
  * These fields are safe to log in error metadata without exposing PHI.
  */
 const AUDIT_SAFE_FIELDS = ["id", "createdAt", "updatedAt"] as const
 
 /**
  * Input schema for listSubscriptionPlansAction
- *
+ * 
  * Uses Zod v4 syntax (top-level APIs, not z.string().email() etc.)
  */
 const SubscriptionPlansListInputSchema = z.object({
@@ -59,7 +59,7 @@ export type SubscriptionPlansListOutput = unknown
 
 /**
  * ListSubscriptionPlans Server Action
- *
+ * 
  * @param input - Action input
  */
 export async function listSubscriptionPlansAction(
@@ -80,7 +80,7 @@ export async function listSubscriptionPlansAction(
     // 3. Auth client — created after all guards pass
     const supabase = await createServerAuthClient()
     const repository = new SubscriptionPlansSupabaseRepository(supabase)
-
+    
     // 4. Execute operation — pass resolved context explicitly
     // @type-escape: generated action stub — list params unknown until semantic plan fills Zod input
     const result = await repository.list(validated as never)

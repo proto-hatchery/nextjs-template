@@ -1,17 +1,17 @@
 /**
  * FindByIdCalendarEvents Server Action
- *
+ * 
  * Handles findById operation for calendar_events.
- *
+ * 
  * ## Usage
- *
+ * 
  * Example:
  * ```typescript
  * import { findByIdCalendarEventsAction } from "@workspace/supabase-data/actions/calendar/calendar-events-findById.codegen"
- *
+ * 
  * const result = await findByIdCalendarEventsAction(input)
  * ```
- *
+ * 
  * @module @workspace/supabase-data/actions/calendar/calendar-events-findById
  * codegen:actions-hooks (generated) — do not hand-edit
  */
@@ -19,22 +19,22 @@
 
 import { z } from "zod"
 
-import { logServerEvent } from "@workspace/logging/server"
-import { createServerAuthClient } from "@workspace/supabase-auth/server/create-server-auth-client"
-import { sanitizeForAudit } from "@workspace/supabase-data/lib/audit/sanitize-phi"
 import { requireAuth } from "@workspace/supabase-data/lib/auth/require-auth"
+import { createServerAuthClient } from "@workspace/supabase-auth/server/create-server-auth-client"
 import { CalendarEventsSupabaseRepository } from "@workspace/supabase-data/modules/calendar/infrastructure/repositories/calendar-events-supabase.repository.codegen"
+import { logServerEvent } from "@workspace/logging/server"
+import { sanitizeForAudit } from "@workspace/supabase-data/lib/audit/sanitize-phi"
 
 /**
  * Audit-safe fields for this table (HIPAA §164.312(b) compliant)
- *
+ * 
  * These fields are safe to log in error metadata without exposing PHI.
  */
 const AUDIT_SAFE_FIELDS = ["id", "createdAt", "updatedAt"] as const
 
 /**
  * Input schema for findByIdCalendarEventsAction
- *
+ * 
  * Uses Zod v4 syntax (top-level APIs, not z.string().email() etc.)
  */
 const CalendarEventsFindByIdInputSchema = z.object({
@@ -59,7 +59,7 @@ export type CalendarEventsFindByIdOutput = unknown
 
 /**
  * FindByIdCalendarEvents Server Action
- *
+ * 
  * @param input - Action input
  */
 export async function findByIdCalendarEventsAction(
@@ -80,7 +80,7 @@ export async function findByIdCalendarEventsAction(
     // 3. Auth client — created after all guards pass
     const supabase = await createServerAuthClient()
     const repository = new CalendarEventsSupabaseRepository(supabase)
-
+    
     // 4. Execute operation — pass resolved context explicitly
     // @type-escape: generated action stub — id shape from validated after TODO input schema
     const result = await repository.findById((validated as unknown as { id: string }).id)

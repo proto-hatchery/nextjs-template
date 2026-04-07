@@ -1,17 +1,17 @@
 /**
  * InsertPsychologistQuickNotes Server Action
- *
+ * 
  * Handles insert operation for psychologist_quick_notes.
- *
+ * 
  * ## Usage
- *
+ * 
  * Example:
  * ```typescript
  * import { insertPsychologistQuickNotesAction } from "@workspace/supabase-data/actions/notes/psychologist-quick-notes-insert.codegen"
- *
+ * 
  * const result = await insertPsychologistQuickNotesAction(input)
  * ```
- *
+ * 
  * @module @workspace/supabase-data/actions/notes/psychologist-quick-notes-insert
  * codegen:actions-hooks (generated) — do not hand-edit
  */
@@ -19,22 +19,22 @@
 
 import { z } from "zod"
 
-import { logServerEvent } from "@workspace/logging/server"
-import { createServerAuthClient } from "@workspace/supabase-auth/server/create-server-auth-client"
-import { sanitizeForAudit } from "@workspace/supabase-data/lib/audit/sanitize-phi"
 import { requireAuth } from "@workspace/supabase-data/lib/auth/require-auth"
+import { createServerAuthClient } from "@workspace/supabase-auth/server/create-server-auth-client"
 import { PsychologistQuickNotesSupabaseRepository } from "@workspace/supabase-data/modules/notes/infrastructure/repositories/psychologist-quick-notes-supabase.repository.codegen"
+import { logServerEvent } from "@workspace/logging/server"
+import { sanitizeForAudit } from "@workspace/supabase-data/lib/audit/sanitize-phi"
 
 /**
  * Audit-safe fields for this table (HIPAA §164.312(b) compliant)
- *
+ * 
  * These fields are safe to log in error metadata without exposing PHI.
  */
 const AUDIT_SAFE_FIELDS = ["id", "createdAt", "updatedAt"] as const
 
 /**
  * Input schema for insertPsychologistQuickNotesAction
- *
+ * 
  * Uses Zod v4 syntax (top-level APIs, not z.string().email() etc.)
  */
 const PsychologistQuickNotesInsertInputSchema = z.object({
@@ -50,9 +50,7 @@ const PsychologistQuickNotesInsertInputSchema = z.object({
 /**
  * Input type for insertPsychologistQuickNotesAction
  */
-export type PsychologistQuickNotesInsertInput = z.infer<
-  typeof PsychologistQuickNotesInsertInputSchema
->
+export type PsychologistQuickNotesInsertInput = z.infer<typeof PsychologistQuickNotesInsertInputSchema>
 
 /**
  * Output type for insertPsychologistQuickNotesAction — unknown until the action is wired to real DTOs / port types.
@@ -61,7 +59,7 @@ export type PsychologistQuickNotesInsertOutput = unknown
 
 /**
  * InsertPsychologistQuickNotes Server Action
- *
+ * 
  * @param input - Action input
  */
 export async function insertPsychologistQuickNotesAction(
@@ -82,7 +80,7 @@ export async function insertPsychologistQuickNotesAction(
     // 3. Auth client — created after all guards pass
     const supabase = await createServerAuthClient()
     const repository = new PsychologistQuickNotesSupabaseRepository(supabase)
-
+    
     // 4. Execute operation — pass resolved context explicitly
     // @type-escape: generated action stub — insert payload unknown until TODO input schema
     const result = await repository.insert(validated as never)

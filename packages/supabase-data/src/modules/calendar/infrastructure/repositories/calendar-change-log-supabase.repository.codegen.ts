@@ -3,17 +3,10 @@
 import type { SupabaseClient } from "@supabase/supabase-js"
 
 import { SupabaseRepositoryError } from "@workspace/supabase-data/lib/supabase-repository-error"
+
+import type { CalendarChangeLogRepository, CalendarChangeLogListParams, CalendarChangeLogListResult } from "@workspace/supabase-data/modules/calendar/domain/ports/calendar-change-log-repository.port.codegen"
+import { fromCalendarChangeLogRow, toCalendarChangeLogInsert, toCalendarChangeLogUpdate } from "@workspace/supabase-data/modules/calendar/infrastructure/mappers/calendar-change-log.mapper.codegen"
 import type { CalendarChangeLogDTO } from "@workspace/supabase-data/modules/calendar/domain/dto/calendar-change-log.dto.codegen"
-import type {
-  CalendarChangeLogRepository,
-  CalendarChangeLogListParams,
-  CalendarChangeLogListResult,
-} from "@workspace/supabase-data/modules/calendar/domain/ports/calendar-change-log-repository.port.codegen"
-import {
-  fromCalendarChangeLogRow,
-  toCalendarChangeLogInsert,
-  toCalendarChangeLogUpdate,
-} from "@workspace/supabase-data/modules/calendar/infrastructure/mappers/calendar-change-log.mapper.codegen"
 
 class CalendarChangeLogSupabaseRepository implements CalendarChangeLogRepository {
   constructor(private readonly supabase: SupabaseClient) {}
@@ -21,9 +14,7 @@ class CalendarChangeLogSupabaseRepository implements CalendarChangeLogRepository
   async findById(id: string): Promise<CalendarChangeLogDTO | null> {
     const { data, error } = await this.supabase
       .from("calendar_change_log")
-      .select(
-        "created_at, google_event_id, id, modification_hash, processed_at, psychologist_id, sync_direction"
-      )
+      .select("created_at, google_event_id, id, modification_hash, processed_at, psychologist_id, sync_direction")
       .eq("id", id)
       .maybeSingle()
     if (error) {
@@ -37,12 +28,7 @@ class CalendarChangeLogSupabaseRepository implements CalendarChangeLogRepository
     const limit = Math.min(params.limit ?? 20, 100)
     const offset = params.offset ?? 0
     const end = offset + limit - 1
-    const q = this.supabase
-      .from("calendar_change_log")
-      .select(
-        "created_at, google_event_id, id, modification_hash, processed_at, psychologist_id, sync_direction"
-      )
-      .range(offset, end)
+    const q = this.supabase.from("calendar_change_log").select("created_at, google_event_id, id, modification_hash, processed_at, psychologist_id, sync_direction").range(offset, end)
     const { data, error } = await q
     if (error) {
       throw new SupabaseRepositoryError("Failed to list calendar_change_log.", { cause: error })
@@ -56,9 +42,7 @@ class CalendarChangeLogSupabaseRepository implements CalendarChangeLogRepository
     const { data: row, error } = await this.supabase
       .from("calendar_change_log")
       .insert(payload)
-      .select(
-        "created_at, google_event_id, id, modification_hash, processed_at, psychologist_id, sync_direction"
-      )
+      .select("created_at, google_event_id, id, modification_hash, processed_at, psychologist_id, sync_direction")
       .single()
     if (error) {
       throw new SupabaseRepositoryError("Failed to insert calendar_change_log.", { cause: error })
@@ -72,9 +56,7 @@ class CalendarChangeLogSupabaseRepository implements CalendarChangeLogRepository
       .from("calendar_change_log")
       .update(payload)
       .eq("id", id)
-      .select(
-        "created_at, google_event_id, id, modification_hash, processed_at, psychologist_id, sync_direction"
-      )
+      .select("created_at, google_event_id, id, modification_hash, processed_at, psychologist_id, sync_direction")
       .single()
     if (error) {
       throw new SupabaseRepositoryError("Failed to update calendar_change_log.", { cause: error })
@@ -88,6 +70,7 @@ class CalendarChangeLogSupabaseRepository implements CalendarChangeLogRepository
       throw new SupabaseRepositoryError("Failed to delete calendar_change_log.", { cause: error })
     }
   }
+
 }
 
 export { CalendarChangeLogSupabaseRepository }

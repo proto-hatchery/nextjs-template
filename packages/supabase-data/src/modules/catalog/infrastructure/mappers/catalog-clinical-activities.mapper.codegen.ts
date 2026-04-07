@@ -1,17 +1,12 @@
 // codegen:backend — do not hand-edit; regenerate with `pnpm codegen:backend --write`.
 
-import {
-  CatalogClinicalActivitiesDTOSchema,
-  type CatalogClinicalActivitiesDTO,
-} from "@workspace/supabase-data/modules/catalog/domain/dto/catalog-clinical-activities.dto.codegen"
 import type { Database } from "@workspace/supabase-infra/types/database"
 
-type CatalogClinicalActivitiesRow =
-  Database["public"]["Tables"]["catalog_clinical_activities"]["Row"]
-type CatalogClinicalActivitiesInsert =
-  Database["public"]["Tables"]["catalog_clinical_activities"]["Insert"]
-type CatalogClinicalActivitiesUpdate =
-  Database["public"]["Tables"]["catalog_clinical_activities"]["Update"]
+import { CatalogClinicalActivitiesDTOSchema, type CatalogClinicalActivitiesDTO } from "@workspace/supabase-data/modules/catalog/domain/dto/catalog-clinical-activities.dto.codegen"
+
+type CatalogClinicalActivitiesRow = Database["public"]["Tables"]["catalog_clinical_activities"]["Row"]
+type CatalogClinicalActivitiesInsert = Database["public"]["Tables"]["catalog_clinical_activities"]["Insert"]
+type CatalogClinicalActivitiesUpdate = Database["public"]["Tables"]["catalog_clinical_activities"]["Update"]
 
 const CatalogClinicalActivitiesFieldMappings = {
   active: "active",
@@ -38,9 +33,7 @@ const CatalogClinicalActivitiesFieldMappings = {
 
 type CatalogClinicalActivitiesField = keyof typeof CatalogClinicalActivitiesFieldMappings
 
-function fromCatalogClinicalActivitiesRow(
-  row: CatalogClinicalActivitiesRow
-): CatalogClinicalActivitiesDTO {
+function fromCatalogClinicalActivitiesRow(row: CatalogClinicalActivitiesRow): CatalogClinicalActivitiesDTO {
   const mapped = {
     active: row.active,
     activityKind: row.activity_kind,
@@ -66,17 +59,10 @@ function fromCatalogClinicalActivitiesRow(
   return CatalogClinicalActivitiesDTOSchema.parse(mapped)
 }
 
-function toCatalogClinicalActivitiesInsert(
-  dto: Partial<CatalogClinicalActivitiesDTO>
-): CatalogClinicalActivitiesInsert {
+function toCatalogClinicalActivitiesInsert(dto: Partial<CatalogClinicalActivitiesDTO>): CatalogClinicalActivitiesInsert {
   const out: Record<string, unknown> = {}
-  for (const [camelKey, snakeKey] of Object.entries(
-    CatalogClinicalActivitiesFieldMappings
-  ) as Array<
-    [
-      CatalogClinicalActivitiesField,
-      (typeof CatalogClinicalActivitiesFieldMappings)[CatalogClinicalActivitiesField],
-    ]
+  for (const [camelKey, snakeKey] of Object.entries(CatalogClinicalActivitiesFieldMappings) as Array<
+    [CatalogClinicalActivitiesField, (typeof CatalogClinicalActivitiesFieldMappings)[CatalogClinicalActivitiesField]]
   >) {
     const value = dto[camelKey]
     if (typeof value !== "undefined") {
@@ -87,14 +73,8 @@ function toCatalogClinicalActivitiesInsert(
   return out as CatalogClinicalActivitiesInsert
 }
 
-function toCatalogClinicalActivitiesUpdate(
-  dto: Partial<CatalogClinicalActivitiesDTO>
-): CatalogClinicalActivitiesUpdate {
+function toCatalogClinicalActivitiesUpdate(dto: Partial<CatalogClinicalActivitiesDTO>): CatalogClinicalActivitiesUpdate {
   return toCatalogClinicalActivitiesInsert(dto) as CatalogClinicalActivitiesUpdate
 }
 
-export {
-  fromCatalogClinicalActivitiesRow,
-  toCatalogClinicalActivitiesInsert,
-  toCatalogClinicalActivitiesUpdate,
-}
+export { fromCatalogClinicalActivitiesRow, toCatalogClinicalActivitiesInsert, toCatalogClinicalActivitiesUpdate }

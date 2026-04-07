@@ -1,17 +1,17 @@
 /**
  * DeleteCalendarChangeLog Server Action
- *
+ * 
  * Handles delete operation for calendar_change_log.
- *
+ * 
  * ## Usage
- *
+ * 
  * Example:
  * ```typescript
  * import { deleteCalendarChangeLogAction } from "@workspace/supabase-data/actions/calendar/calendar-change-log-delete.codegen"
- *
+ * 
  * const result = await deleteCalendarChangeLogAction(input)
  * ```
- *
+ * 
  * @module @workspace/supabase-data/actions/calendar/calendar-change-log-delete
  * codegen:actions-hooks (generated) — do not hand-edit
  */
@@ -19,22 +19,22 @@
 
 import { z } from "zod"
 
-import { logServerEvent } from "@workspace/logging/server"
-import { createServerAuthClient } from "@workspace/supabase-auth/server/create-server-auth-client"
-import { sanitizeForAudit } from "@workspace/supabase-data/lib/audit/sanitize-phi"
 import { requireAuth } from "@workspace/supabase-data/lib/auth/require-auth"
+import { createServerAuthClient } from "@workspace/supabase-auth/server/create-server-auth-client"
 import { CalendarChangeLogSupabaseRepository } from "@workspace/supabase-data/modules/calendar/infrastructure/repositories/calendar-change-log-supabase.repository.codegen"
+import { logServerEvent } from "@workspace/logging/server"
+import { sanitizeForAudit } from "@workspace/supabase-data/lib/audit/sanitize-phi"
 
 /**
  * Audit-safe fields for this table (HIPAA §164.312(b) compliant)
- *
+ * 
  * These fields are safe to log in error metadata without exposing PHI.
  */
 const AUDIT_SAFE_FIELDS = ["id", "createdAt", "updatedAt"] as const
 
 /**
  * Input schema for deleteCalendarChangeLogAction
- *
+ * 
  * Uses Zod v4 syntax (top-level APIs, not z.string().email() etc.)
  */
 const CalendarChangeLogDeleteInputSchema = z.object({
@@ -59,7 +59,7 @@ export type CalendarChangeLogDeleteOutput = unknown
 
 /**
  * DeleteCalendarChangeLog Server Action
- *
+ * 
  * @param input - Action input
  */
 export async function deleteCalendarChangeLogAction(
@@ -80,7 +80,7 @@ export async function deleteCalendarChangeLogAction(
     // 3. Auth client — created after all guards pass
     const supabase = await createServerAuthClient()
     const repository = new CalendarChangeLogSupabaseRepository(supabase)
-
+    
     // 4. Execute operation — pass resolved context explicitly
     // @type-escape: generated action stub — delete id unknown until TODO input schema
     await repository.delete((validated as unknown as { id: string }).id)

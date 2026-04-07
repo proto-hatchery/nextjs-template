@@ -12,7 +12,7 @@ const EncryptionAuditLogDTOSchema = z.object({
   errorMessage: looseCell,
   id: looseCell,
   operation: looseCell,
-  success: looseCell,
+  success: looseCell
 })
 
 type EncryptionAuditLogDTO = z.infer<typeof EncryptionAuditLogDTOSchema>

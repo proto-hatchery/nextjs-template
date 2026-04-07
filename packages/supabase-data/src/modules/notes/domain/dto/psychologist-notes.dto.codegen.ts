@@ -19,7 +19,7 @@ const PsychologistNotesDTOSchema = z.object({
   sessionId: looseCell,
   tags: looseCell,
   title: looseCell,
-  updatedAt: looseCell,
+  updatedAt: looseCell
 })
 
 type PsychologistNotesDTO = z.infer<typeof PsychologistNotesDTOSchema>

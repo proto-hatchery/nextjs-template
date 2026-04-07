@@ -13,9 +13,7 @@ export interface PsychologistPreferencesAuditLogListResult {
 
 interface PsychologistPreferencesAuditLogRepository {
   findById(id: string): Promise<PsychologistPreferencesAuditLogDTO | null>
-  list(
-    params: PsychologistPreferencesAuditLogListParams
-  ): Promise<PsychologistPreferencesAuditLogListResult>
+  list(params: PsychologistPreferencesAuditLogListParams): Promise<PsychologistPreferencesAuditLogListResult>
 }
 
 export { type PsychologistPreferencesAuditLogRepository }

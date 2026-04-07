@@ -12,7 +12,7 @@ const ReferenceValuesDTOSchema = z.object({
   labelPt: looseCell,
   metadata: looseCell,
   updatedAt: looseCell,
-  value: looseCell,
+  value: looseCell
 })
 
 type ReferenceValuesDTO = z.infer<typeof ReferenceValuesDTOSchema>

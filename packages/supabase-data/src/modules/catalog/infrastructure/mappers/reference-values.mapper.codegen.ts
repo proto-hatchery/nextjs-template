@@ -1,10 +1,8 @@
 // codegen:backend — do not hand-edit; regenerate with `pnpm codegen:backend --write`.
 
-import {
-  ReferenceValuesDTOSchema,
-  type ReferenceValuesDTO,
-} from "@workspace/supabase-data/modules/catalog/domain/dto/reference-values.dto.codegen"
 import type { Database } from "@workspace/supabase-infra/types/database"
+
+import { ReferenceValuesDTOSchema, type ReferenceValuesDTO } from "@workspace/supabase-data/modules/catalog/domain/dto/reference-values.dto.codegen"
 
 type ReferenceValuesRow = Database["public"]["Tables"]["reference_values"]["Row"]
 type ReferenceValuesInsert = Database["public"]["Tables"]["reference_values"]["Insert"]

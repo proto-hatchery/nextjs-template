@@ -1,10 +1,8 @@
 // codegen:backend — do not hand-edit; regenerate with `pnpm codegen:backend --write`.
 
-import {
-  GoogleSyncJobDedupDTOSchema,
-  type GoogleSyncJobDedupDTO,
-} from "@workspace/supabase-data/modules/google-sync/domain/dto/google-sync-job-dedup.dto.codegen"
 import type { Database } from "@workspace/supabase-infra/types/database"
+
+import { GoogleSyncJobDedupDTOSchema, type GoogleSyncJobDedupDTO } from "@workspace/supabase-data/modules/google-sync/domain/dto/google-sync-job-dedup.dto.codegen"
 
 type GoogleSyncJobDedupRow = Database["public"]["Tables"]["google_sync_job_dedup"]["Row"]
 type GoogleSyncJobDedupInsert = Database["public"]["Tables"]["google_sync_job_dedup"]["Insert"]

@@ -1,17 +1,17 @@
 /**
  * UpdatePsychologistOnboardingState Server Action
- *
+ * 
  * Handles update operation for psychologist_onboarding_state.
- *
+ * 
  * ## Usage
- *
+ * 
  * Example:
  * ```typescript
  * import { updatePsychologistOnboardingStateAction } from "@workspace/supabase-data/actions/onboarding/psychologist-onboarding-state-update.codegen"
- *
+ * 
  * const result = await updatePsychologistOnboardingStateAction(input)
  * ```
- *
+ * 
  * @module @workspace/supabase-data/actions/onboarding/psychologist-onboarding-state-update
  * codegen:actions-hooks (generated) — do not hand-edit
  */
@@ -19,22 +19,22 @@
 
 import { z } from "zod"
 
-import { logServerEvent } from "@workspace/logging/server"
-import { createServerAuthClient } from "@workspace/supabase-auth/server/create-server-auth-client"
-import { sanitizeForAudit } from "@workspace/supabase-data/lib/audit/sanitize-phi"
 import { requireAuth } from "@workspace/supabase-data/lib/auth/require-auth"
+import { createServerAuthClient } from "@workspace/supabase-auth/server/create-server-auth-client"
 import { PsychologistOnboardingStateSupabaseRepository } from "@workspace/supabase-data/modules/onboarding/infrastructure/repositories/psychologist-onboarding-state-supabase.repository.codegen"
+import { logServerEvent } from "@workspace/logging/server"
+import { sanitizeForAudit } from "@workspace/supabase-data/lib/audit/sanitize-phi"
 
 /**
  * Audit-safe fields for this table (HIPAA §164.312(b) compliant)
- *
+ * 
  * These fields are safe to log in error metadata without exposing PHI.
  */
 const AUDIT_SAFE_FIELDS = ["id", "createdAt", "updatedAt"] as const
 
 /**
  * Input schema for updatePsychologistOnboardingStateAction
- *
+ * 
  * Uses Zod v4 syntax (top-level APIs, not z.string().email() etc.)
  */
 const PsychologistOnboardingStateUpdateInputSchema = z.object({
@@ -50,9 +50,7 @@ const PsychologistOnboardingStateUpdateInputSchema = z.object({
 /**
  * Input type for updatePsychologistOnboardingStateAction
  */
-export type PsychologistOnboardingStateUpdateInput = z.infer<
-  typeof PsychologistOnboardingStateUpdateInputSchema
->
+export type PsychologistOnboardingStateUpdateInput = z.infer<typeof PsychologistOnboardingStateUpdateInputSchema>
 
 /**
  * Output type for updatePsychologistOnboardingStateAction — unknown until the action is wired to real DTOs / port types.
@@ -61,7 +59,7 @@ export type PsychologistOnboardingStateUpdateOutput = unknown
 
 /**
  * UpdatePsychologistOnboardingState Server Action
- *
+ * 
  * @param input - Action input
  */
 export async function updatePsychologistOnboardingStateAction(
@@ -82,7 +80,7 @@ export async function updatePsychologistOnboardingStateAction(
     // 3. Auth client — created after all guards pass
     const supabase = await createServerAuthClient()
     const repository = new PsychologistOnboardingStateSupabaseRepository(supabase)
-
+    
     // 4. Execute operation — pass resolved context explicitly
     // @type-escape: generated action stub — id shape from validated after TODO input schema
     const validatedId = (validated as unknown as { id: string }).id

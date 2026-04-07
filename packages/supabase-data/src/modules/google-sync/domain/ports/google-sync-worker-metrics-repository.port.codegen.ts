@@ -15,10 +15,7 @@ interface GoogleSyncWorkerMetricsRepository {
   findById(id: string): Promise<GoogleSyncWorkerMetricsDTO | null>
   list(params: GoogleSyncWorkerMetricsListParams): Promise<GoogleSyncWorkerMetricsListResult>
   insert(data: Partial<GoogleSyncWorkerMetricsDTO>): Promise<GoogleSyncWorkerMetricsDTO>
-  update(
-    id: string,
-    patch: Partial<GoogleSyncWorkerMetricsDTO>
-  ): Promise<GoogleSyncWorkerMetricsDTO>
+  update(id: string, patch: Partial<GoogleSyncWorkerMetricsDTO>): Promise<GoogleSyncWorkerMetricsDTO>
   delete(id: string): Promise<void>
 }
 

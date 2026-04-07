@@ -1,17 +1,17 @@
 /**
  * InsertGoogleSyncInboundCoalesce Server Action
- *
+ * 
  * Handles insert operation for google_sync_inbound_coalesce.
- *
+ * 
  * ## Usage
- *
+ * 
  * Example:
  * ```typescript
  * import { insertGoogleSyncInboundCoalesceAction } from "@workspace/supabase-data/actions/google-sync/google-sync-inbound-coalesce-insert.codegen"
- *
+ * 
  * const result = await insertGoogleSyncInboundCoalesceAction(input)
  * ```
- *
+ * 
  * @module @workspace/supabase-data/actions/google-sync/google-sync-inbound-coalesce-insert
  * codegen:actions-hooks (generated) — do not hand-edit
  */
@@ -19,22 +19,22 @@
 
 import { z } from "zod"
 
-import { logServerEvent } from "@workspace/logging/server"
-import { createServerAuthClient } from "@workspace/supabase-auth/server/create-server-auth-client"
-import { sanitizeForAudit } from "@workspace/supabase-data/lib/audit/sanitize-phi"
 import { requireAuth } from "@workspace/supabase-data/lib/auth/require-auth"
+import { createServerAuthClient } from "@workspace/supabase-auth/server/create-server-auth-client"
 import { GoogleSyncInboundCoalesceSupabaseRepository } from "@workspace/supabase-data/modules/google-sync/infrastructure/repositories/google-sync-inbound-coalesce-supabase.repository.codegen"
+import { logServerEvent } from "@workspace/logging/server"
+import { sanitizeForAudit } from "@workspace/supabase-data/lib/audit/sanitize-phi"
 
 /**
  * Audit-safe fields for this table (HIPAA §164.312(b) compliant)
- *
+ * 
  * These fields are safe to log in error metadata without exposing PHI.
  */
 const AUDIT_SAFE_FIELDS = ["id", "createdAt", "updatedAt"] as const
 
 /**
  * Input schema for insertGoogleSyncInboundCoalesceAction
- *
+ * 
  * Uses Zod v4 syntax (top-level APIs, not z.string().email() etc.)
  */
 const GoogleSyncInboundCoalesceInsertInputSchema = z.object({
@@ -50,9 +50,7 @@ const GoogleSyncInboundCoalesceInsertInputSchema = z.object({
 /**
  * Input type for insertGoogleSyncInboundCoalesceAction
  */
-export type GoogleSyncInboundCoalesceInsertInput = z.infer<
-  typeof GoogleSyncInboundCoalesceInsertInputSchema
->
+export type GoogleSyncInboundCoalesceInsertInput = z.infer<typeof GoogleSyncInboundCoalesceInsertInputSchema>
 
 /**
  * Output type for insertGoogleSyncInboundCoalesceAction — unknown until the action is wired to real DTOs / port types.
@@ -61,7 +59,7 @@ export type GoogleSyncInboundCoalesceInsertOutput = unknown
 
 /**
  * InsertGoogleSyncInboundCoalesce Server Action
- *
+ * 
  * @param input - Action input
  */
 export async function insertGoogleSyncInboundCoalesceAction(
@@ -82,7 +80,7 @@ export async function insertGoogleSyncInboundCoalesceAction(
     // 3. Auth client — created after all guards pass
     const supabase = await createServerAuthClient()
     const repository = new GoogleSyncInboundCoalesceSupabaseRepository(supabase)
-
+    
     // 4. Execute operation — pass resolved context explicitly
     // @type-escape: generated action stub — insert payload unknown until TODO input schema
     const result = await repository.insert(validated as never)

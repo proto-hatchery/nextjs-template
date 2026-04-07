@@ -3,17 +3,10 @@
 import type { SupabaseClient } from "@supabase/supabase-js"
 
 import { SupabaseRepositoryError } from "@workspace/supabase-data/lib/supabase-repository-error"
+
+import type { GoogleSyncJobDedupRepository, GoogleSyncJobDedupListParams, GoogleSyncJobDedupListResult } from "@workspace/supabase-data/modules/google-sync/domain/ports/google-sync-job-dedup-repository.port.codegen"
+import { fromGoogleSyncJobDedupRow, toGoogleSyncJobDedupInsert, toGoogleSyncJobDedupUpdate } from "@workspace/supabase-data/modules/google-sync/infrastructure/mappers/google-sync-job-dedup.mapper.codegen"
 import type { GoogleSyncJobDedupDTO } from "@workspace/supabase-data/modules/google-sync/domain/dto/google-sync-job-dedup.dto.codegen"
-import type {
-  GoogleSyncJobDedupRepository,
-  GoogleSyncJobDedupListParams,
-  GoogleSyncJobDedupListResult,
-} from "@workspace/supabase-data/modules/google-sync/domain/ports/google-sync-job-dedup-repository.port.codegen"
-import {
-  fromGoogleSyncJobDedupRow,
-  toGoogleSyncJobDedupInsert,
-  toGoogleSyncJobDedupUpdate,
-} from "@workspace/supabase-data/modules/google-sync/infrastructure/mappers/google-sync-job-dedup.mapper.codegen"
 
 class GoogleSyncJobDedupSupabaseRepository implements GoogleSyncJobDedupRepository {
   constructor(private readonly supabase: SupabaseClient) {}
@@ -22,10 +15,7 @@ class GoogleSyncJobDedupSupabaseRepository implements GoogleSyncJobDedupReposito
     const limit = Math.min(params.limit ?? 20, 100)
     const offset = params.offset ?? 0
     const end = offset + limit - 1
-    const q = this.supabase
-      .from("google_sync_job_dedup")
-      .select("idempotency_key, outcome, processed_at")
-      .range(offset, end)
+    const q = this.supabase.from("google_sync_job_dedup").select("idempotency_key, outcome, processed_at").range(offset, end)
     const { data, error } = await q
     if (error) {
       throw new SupabaseRepositoryError("Failed to list google_sync_job_dedup.", { cause: error })
@@ -67,6 +57,7 @@ class GoogleSyncJobDedupSupabaseRepository implements GoogleSyncJobDedupReposito
       throw new SupabaseRepositoryError("Failed to delete google_sync_job_dedup.", { cause: error })
     }
   }
+
 }
 
 export { GoogleSyncJobDedupSupabaseRepository }

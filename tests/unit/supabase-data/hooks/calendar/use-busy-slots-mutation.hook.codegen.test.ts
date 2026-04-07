@@ -1,12 +1,12 @@
 /**
  * Unit tests for useBusySlotsMutation
- *
+ * 
  * codegen:actions-hooks (generated) — do not hand-edit
  */
 import { describe, expect, it } from "vitest"
 
-import { calendarQueryKeys } from "@workspace/supabase-data/hooks/calendar/query-keys.codegen"
 import { useBusySlotsMutation } from "@workspace/supabase-data/hooks/calendar/use-busy-slots-mutation.hook.codegen"
+import { calendarQueryKeys } from "@workspace/supabase-data/hooks/calendar/query-keys.codegen"
 
 describe("useBusySlotsMutation", () => {
   it("should export the generated hook", () => {

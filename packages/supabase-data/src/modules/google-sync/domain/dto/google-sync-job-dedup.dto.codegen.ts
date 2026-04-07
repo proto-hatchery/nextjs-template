@@ -7,7 +7,7 @@ const looseCell = z.union([z.string(), z.number(), z.boolean(), z.null()])
 const GoogleSyncJobDedupDTOSchema = z.object({
   idempotencyKey: looseCell,
   outcome: looseCell,
-  processedAt: looseCell,
+  processedAt: looseCell
 })
 
 type GoogleSyncJobDedupDTO = z.infer<typeof GoogleSyncJobDedupDTOSchema>

@@ -1,17 +1,12 @@
 // codegen:backend — do not hand-edit; regenerate with `pnpm codegen:backend --write`.
 
-import {
-  PsychologistPatientGuardianDocumentsDTOSchema,
-  type PsychologistPatientGuardianDocumentsDTO,
-} from "@workspace/supabase-data/modules/documents/domain/dto/psychologist-patient-guardian-documents.dto.codegen"
 import type { Database } from "@workspace/supabase-infra/types/database"
 
-type PsychologistPatientGuardianDocumentsRow =
-  Database["public"]["Tables"]["psychologist_patient_guardian_documents"]["Row"]
-type PsychologistPatientGuardianDocumentsInsert =
-  Database["public"]["Tables"]["psychologist_patient_guardian_documents"]["Insert"]
-type PsychologistPatientGuardianDocumentsUpdate =
-  Database["public"]["Tables"]["psychologist_patient_guardian_documents"]["Update"]
+import { PsychologistPatientGuardianDocumentsDTOSchema, type PsychologistPatientGuardianDocumentsDTO } from "@workspace/supabase-data/modules/documents/domain/dto/psychologist-patient-guardian-documents.dto.codegen"
+
+type PsychologistPatientGuardianDocumentsRow = Database["public"]["Tables"]["psychologist_patient_guardian_documents"]["Row"]
+type PsychologistPatientGuardianDocumentsInsert = Database["public"]["Tables"]["psychologist_patient_guardian_documents"]["Insert"]
+type PsychologistPatientGuardianDocumentsUpdate = Database["public"]["Tables"]["psychologist_patient_guardian_documents"]["Update"]
 
 const PsychologistPatientGuardianDocumentsFieldMappings = {
   createdAt: "created_at",
@@ -32,12 +27,9 @@ const PsychologistPatientGuardianDocumentsFieldMappings = {
   uploadedAt: "uploaded_at",
 } as const
 
-type PsychologistPatientGuardianDocumentsField =
-  keyof typeof PsychologistPatientGuardianDocumentsFieldMappings
+type PsychologistPatientGuardianDocumentsField = keyof typeof PsychologistPatientGuardianDocumentsFieldMappings
 
-function fromPsychologistPatientGuardianDocumentsRow(
-  row: PsychologistPatientGuardianDocumentsRow
-): PsychologistPatientGuardianDocumentsDTO {
+function fromPsychologistPatientGuardianDocumentsRow(row: PsychologistPatientGuardianDocumentsRow): PsychologistPatientGuardianDocumentsDTO {
   const mapped = {
     createdAt: row.created_at,
     description: row.description,
@@ -59,17 +51,10 @@ function fromPsychologistPatientGuardianDocumentsRow(
   return PsychologistPatientGuardianDocumentsDTOSchema.parse(mapped)
 }
 
-function toPsychologistPatientGuardianDocumentsInsert(
-  dto: Partial<PsychologistPatientGuardianDocumentsDTO>
-): PsychologistPatientGuardianDocumentsInsert {
+function toPsychologistPatientGuardianDocumentsInsert(dto: Partial<PsychologistPatientGuardianDocumentsDTO>): PsychologistPatientGuardianDocumentsInsert {
   const out: Record<string, unknown> = {}
-  for (const [camelKey, snakeKey] of Object.entries(
-    PsychologistPatientGuardianDocumentsFieldMappings
-  ) as Array<
-    [
-      PsychologistPatientGuardianDocumentsField,
-      (typeof PsychologistPatientGuardianDocumentsFieldMappings)[PsychologistPatientGuardianDocumentsField],
-    ]
+  for (const [camelKey, snakeKey] of Object.entries(PsychologistPatientGuardianDocumentsFieldMappings) as Array<
+    [PsychologistPatientGuardianDocumentsField, (typeof PsychologistPatientGuardianDocumentsFieldMappings)[PsychologistPatientGuardianDocumentsField]]
   >) {
     const value = dto[camelKey]
     if (typeof value !== "undefined") {
@@ -80,16 +65,8 @@ function toPsychologistPatientGuardianDocumentsInsert(
   return out as PsychologistPatientGuardianDocumentsInsert
 }
 
-function toPsychologistPatientGuardianDocumentsUpdate(
-  dto: Partial<PsychologistPatientGuardianDocumentsDTO>
-): PsychologistPatientGuardianDocumentsUpdate {
-  return toPsychologistPatientGuardianDocumentsInsert(
-    dto
-  ) as PsychologistPatientGuardianDocumentsUpdate
+function toPsychologistPatientGuardianDocumentsUpdate(dto: Partial<PsychologistPatientGuardianDocumentsDTO>): PsychologistPatientGuardianDocumentsUpdate {
+  return toPsychologistPatientGuardianDocumentsInsert(dto) as PsychologistPatientGuardianDocumentsUpdate
 }
 
-export {
-  fromPsychologistPatientGuardianDocumentsRow,
-  toPsychologistPatientGuardianDocumentsInsert,
-  toPsychologistPatientGuardianDocumentsUpdate,
-}
+export { fromPsychologistPatientGuardianDocumentsRow, toPsychologistPatientGuardianDocumentsInsert, toPsychologistPatientGuardianDocumentsUpdate }

@@ -8,7 +8,7 @@ const GoogleSyncInboundCoalesceDTOSchema = z.object({
   connectionId: looseCell,
   createdAt: looseCell,
   lastEnqueuedAt: looseCell,
-  msgId: looseCell,
+  msgId: looseCell
 })
 
 type GoogleSyncInboundCoalesceDTO = z.infer<typeof GoogleSyncInboundCoalesceDTOSchema>

@@ -3,17 +3,10 @@
 import type { SupabaseClient } from "@supabase/supabase-js"
 
 import { SupabaseRepositoryError } from "@workspace/supabase-data/lib/supabase-repository-error"
+
+import type { AssistantInvitesRepository, AssistantInvitesListParams, AssistantInvitesListResult } from "@workspace/supabase-data/modules/assistants/domain/ports/assistant-invites-repository.port.codegen"
+import { fromAssistantInvitesRow, toAssistantInvitesInsert, toAssistantInvitesUpdate } from "@workspace/supabase-data/modules/assistants/infrastructure/mappers/assistant-invites.mapper.codegen"
 import type { AssistantInvitesDTO } from "@workspace/supabase-data/modules/assistants/domain/dto/assistant-invites.dto.codegen"
-import type {
-  AssistantInvitesRepository,
-  AssistantInvitesListParams,
-  AssistantInvitesListResult,
-} from "@workspace/supabase-data/modules/assistants/domain/ports/assistant-invites-repository.port.codegen"
-import {
-  fromAssistantInvitesRow,
-  toAssistantInvitesInsert,
-  toAssistantInvitesUpdate,
-} from "@workspace/supabase-data/modules/assistants/infrastructure/mappers/assistant-invites.mapper.codegen"
 
 class AssistantInvitesSupabaseRepository implements AssistantInvitesRepository {
   constructor(private readonly supabase: SupabaseClient) {}
@@ -21,9 +14,7 @@ class AssistantInvitesSupabaseRepository implements AssistantInvitesRepository {
   async findById(id: string): Promise<AssistantInvitesDTO | null> {
     const { data, error } = await this.supabase
       .from("assistant_invites")
-      .select(
-        "accepted_at, created_at, expires_at, id, invited_email, invited_phone, metadata, psychologist_id, revoked_at, updated_at"
-      )
+      .select("accepted_at, created_at, expires_at, id, invited_email, invited_phone, metadata, psychologist_id, revoked_at, updated_at")
       .eq("id", id)
       .maybeSingle()
     if (error) {
@@ -37,12 +28,7 @@ class AssistantInvitesSupabaseRepository implements AssistantInvitesRepository {
     const limit = Math.min(params.limit ?? 20, 100)
     const offset = params.offset ?? 0
     const end = offset + limit - 1
-    const q = this.supabase
-      .from("assistant_invites")
-      .select(
-        "accepted_at, created_at, expires_at, id, invited_email, invited_phone, metadata, psychologist_id, revoked_at, updated_at"
-      )
-      .range(offset, end)
+    const q = this.supabase.from("assistant_invites").select("accepted_at, created_at, expires_at, id, invited_email, invited_phone, metadata, psychologist_id, revoked_at, updated_at").range(offset, end)
     const { data, error } = await q
     if (error) {
       throw new SupabaseRepositoryError("Failed to list assistant_invites.", { cause: error })
@@ -56,9 +42,7 @@ class AssistantInvitesSupabaseRepository implements AssistantInvitesRepository {
     const { data: row, error } = await this.supabase
       .from("assistant_invites")
       .insert(payload)
-      .select(
-        "accepted_at, created_at, expires_at, id, invited_email, invited_phone, metadata, psychologist_id, revoked_at, updated_at"
-      )
+      .select("accepted_at, created_at, expires_at, id, invited_email, invited_phone, metadata, psychologist_id, revoked_at, updated_at")
       .single()
     if (error) {
       throw new SupabaseRepositoryError("Failed to insert assistant_invites.", { cause: error })
@@ -72,9 +56,7 @@ class AssistantInvitesSupabaseRepository implements AssistantInvitesRepository {
       .from("assistant_invites")
       .update(payload)
       .eq("id", id)
-      .select(
-        "accepted_at, created_at, expires_at, id, invited_email, invited_phone, metadata, psychologist_id, revoked_at, updated_at"
-      )
+      .select("accepted_at, created_at, expires_at, id, invited_email, invited_phone, metadata, psychologist_id, revoked_at, updated_at")
       .single()
     if (error) {
       throw new SupabaseRepositoryError("Failed to update assistant_invites.", { cause: error })
@@ -88,6 +70,7 @@ class AssistantInvitesSupabaseRepository implements AssistantInvitesRepository {
       throw new SupabaseRepositoryError("Failed to delete assistant_invites.", { cause: error })
     }
   }
+
 }
 
 export { AssistantInvitesSupabaseRepository }

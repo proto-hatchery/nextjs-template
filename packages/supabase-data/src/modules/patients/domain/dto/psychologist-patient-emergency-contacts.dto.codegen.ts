@@ -16,14 +16,9 @@ const PsychologistPatientEmergencyContactsDTOSchema = z.object({
   psychologistPatientId: looseCell,
   relationship: looseCell,
   updatedAt: looseCell,
-  updatedBy: looseCell,
+  updatedBy: looseCell
 })
 
-type PsychologistPatientEmergencyContactsDTO = z.infer<
-  typeof PsychologistPatientEmergencyContactsDTOSchema
->
+type PsychologistPatientEmergencyContactsDTO = z.infer<typeof PsychologistPatientEmergencyContactsDTOSchema>
 
-export {
-  PsychologistPatientEmergencyContactsDTOSchema,
-  type PsychologistPatientEmergencyContactsDTO,
-}
+export { PsychologistPatientEmergencyContactsDTOSchema, type PsychologistPatientEmergencyContactsDTO }

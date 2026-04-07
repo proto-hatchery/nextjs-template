@@ -10,7 +10,7 @@ const SessionTypesDTOSchema = z.object({
   defaultDurationMinutes: looseCell,
   id: looseCell,
   name: looseCell,
-  updatedAt: looseCell,
+  updatedAt: looseCell
 })
 
 type SessionTypesDTO = z.infer<typeof SessionTypesDTOSchema>

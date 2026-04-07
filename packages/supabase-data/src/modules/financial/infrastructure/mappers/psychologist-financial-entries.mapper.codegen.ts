@@ -1,17 +1,12 @@
 // codegen:backend — do not hand-edit; regenerate with `pnpm codegen:backend --write`.
 
-import {
-  PsychologistFinancialEntriesDTOSchema,
-  type PsychologistFinancialEntriesDTO,
-} from "@workspace/supabase-data/modules/financial/domain/dto/psychologist-financial-entries.dto.codegen"
 import type { Database } from "@workspace/supabase-infra/types/database"
 
-type PsychologistFinancialEntriesRow =
-  Database["public"]["Tables"]["psychologist_financial_entries"]["Row"]
-type PsychologistFinancialEntriesInsert =
-  Database["public"]["Tables"]["psychologist_financial_entries"]["Insert"]
-type PsychologistFinancialEntriesUpdate =
-  Database["public"]["Tables"]["psychologist_financial_entries"]["Update"]
+import { PsychologistFinancialEntriesDTOSchema, type PsychologistFinancialEntriesDTO } from "@workspace/supabase-data/modules/financial/domain/dto/psychologist-financial-entries.dto.codegen"
+
+type PsychologistFinancialEntriesRow = Database["public"]["Tables"]["psychologist_financial_entries"]["Row"]
+type PsychologistFinancialEntriesInsert = Database["public"]["Tables"]["psychologist_financial_entries"]["Insert"]
+type PsychologistFinancialEntriesUpdate = Database["public"]["Tables"]["psychologist_financial_entries"]["Update"]
 
 const PsychologistFinancialEntriesFieldMappings = {
   amount: "amount",
@@ -42,9 +37,7 @@ const PsychologistFinancialEntriesFieldMappings = {
 
 type PsychologistFinancialEntriesField = keyof typeof PsychologistFinancialEntriesFieldMappings
 
-function fromPsychologistFinancialEntriesRow(
-  row: PsychologistFinancialEntriesRow
-): PsychologistFinancialEntriesDTO {
+function fromPsychologistFinancialEntriesRow(row: PsychologistFinancialEntriesRow): PsychologistFinancialEntriesDTO {
   const mapped = {
     amount: row.amount,
     attachmentUrl: row.attachment_url,
@@ -74,17 +67,10 @@ function fromPsychologistFinancialEntriesRow(
   return PsychologistFinancialEntriesDTOSchema.parse(mapped)
 }
 
-function toPsychologistFinancialEntriesInsert(
-  dto: Partial<PsychologistFinancialEntriesDTO>
-): PsychologistFinancialEntriesInsert {
+function toPsychologistFinancialEntriesInsert(dto: Partial<PsychologistFinancialEntriesDTO>): PsychologistFinancialEntriesInsert {
   const out: Record<string, unknown> = {}
-  for (const [camelKey, snakeKey] of Object.entries(
-    PsychologistFinancialEntriesFieldMappings
-  ) as Array<
-    [
-      PsychologistFinancialEntriesField,
-      (typeof PsychologistFinancialEntriesFieldMappings)[PsychologistFinancialEntriesField],
-    ]
+  for (const [camelKey, snakeKey] of Object.entries(PsychologistFinancialEntriesFieldMappings) as Array<
+    [PsychologistFinancialEntriesField, (typeof PsychologistFinancialEntriesFieldMappings)[PsychologistFinancialEntriesField]]
   >) {
     const value = dto[camelKey]
     if (typeof value !== "undefined") {
@@ -95,14 +81,8 @@ function toPsychologistFinancialEntriesInsert(
   return out as PsychologistFinancialEntriesInsert
 }
 
-function toPsychologistFinancialEntriesUpdate(
-  dto: Partial<PsychologistFinancialEntriesDTO>
-): PsychologistFinancialEntriesUpdate {
+function toPsychologistFinancialEntriesUpdate(dto: Partial<PsychologistFinancialEntriesDTO>): PsychologistFinancialEntriesUpdate {
   return toPsychologistFinancialEntriesInsert(dto) as PsychologistFinancialEntriesUpdate
 }
 
-export {
-  fromPsychologistFinancialEntriesRow,
-  toPsychologistFinancialEntriesInsert,
-  toPsychologistFinancialEntriesUpdate,
-}
+export { fromPsychologistFinancialEntriesRow, toPsychologistFinancialEntriesInsert, toPsychologistFinancialEntriesUpdate }

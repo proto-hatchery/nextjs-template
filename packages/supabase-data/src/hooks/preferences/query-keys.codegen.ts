@@ -1,7 +1,7 @@
 /**
  * TanStack Query key factory for domain "preferences".
  * Import keys from this module only — avoid string literals in hooks/components.
- *
+ * 
  * @module @workspace/supabase-data/hooks/preferences/query-keys.codegen
  * codegen:actions-hooks (generated) — do not hand-edit
  */

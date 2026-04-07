@@ -1,6 +1,6 @@
 /**
  * Unit tests for deleteGoogleSyncInboundCoalesceAction
- *
+ * 
  * codegen:actions-hooks (generated) — do not hand-edit
  */
 import { describe, expect, it, vi, beforeEach } from "vitest"
@@ -19,12 +19,9 @@ vi.mock("@workspace/supabase-data/lib/auth/rate-limit", () => ({
   checkActionRateLimit: vi.fn(),
 }))
 
-vi.mock(
-  "@workspace/supabase-data/modules/google-sync/infrastructure/repositories/google-sync-inbound-coalesce-supabase.repository.codegen",
-  () => ({
-    GoogleSyncInboundCoalesceSupabaseRepository: vi.fn(),
-  })
-)
+vi.mock("@workspace/supabase-data/modules/google-sync/infrastructure/repositories/google-sync-inbound-coalesce-supabase.repository.codegen", () => ({
+  GoogleSyncInboundCoalesceSupabaseRepository: vi.fn(),
+}))
 
 vi.mock("@workspace/logging/server", () => ({
   logServerEvent: vi.fn(),
@@ -69,31 +66,27 @@ describe("deleteGoogleSyncInboundCoalesceAction", () => {
       vi.mocked(getClaims).mockResolvedValue({ claims: { sub: "test-user-id" } } as any)
       vi.mocked(checkActionRateLimit).mockResolvedValue(undefined)
 
-      await expect(
-        deleteGoogleSyncInboundCoalesceAction({ invalid: "data" } as any)
-      ).rejects.toThrow()
+      await expect(deleteGoogleSyncInboundCoalesceAction({ invalid: "data" } as any)).rejects.toThrow()
     })
 
     it("should accept valid input for delete operation", async () => {
       const { getClaims } = await import("@workspace/supabase-auth/session/get-claims")
       const { checkActionRateLimit } = await import("@workspace/supabase-data/lib/auth/rate-limit")
-      const { GoogleSyncInboundCoalesceSupabaseRepository } =
-        await import("@workspace/supabase-data/modules/google-sync/infrastructure/repositories/google-sync-inbound-coalesce-supabase.repository.codegen")
+      const { GoogleSyncInboundCoalesceSupabaseRepository } = await import("@workspace/supabase-data/modules/google-sync/infrastructure/repositories/google-sync-inbound-coalesce-supabase.repository.codegen")
       vi.mocked(getClaims).mockResolvedValue({ claims: { sub: "test-user-id" } } as any)
       vi.mocked(checkActionRateLimit).mockResolvedValue(undefined)
 
-      const { createServerAuthClient } =
-        await import("@workspace/supabase-auth/server/create-server-auth-client")
+      const { createServerAuthClient } = await import("@workspace/supabase-auth/server/create-server-auth-client")
       vi.mocked(createServerAuthClient).mockResolvedValue({} as any)
       vi.mocked(GoogleSyncInboundCoalesceSupabaseRepository).mockImplementation(
         function MockRepository() {
           return {
-            findById: vi.fn(),
-            list: vi.fn(),
-            insert: vi.fn(),
-            update: vi.fn(),
-            delete: vi.fn().mockResolvedValue(undefined),
-          } as any
+        findById: vi.fn(),
+        list: vi.fn(),
+        insert: vi.fn(),
+        update: vi.fn(),
+        delete: vi.fn().mockResolvedValue(undefined),
+      } as any
         } as any
       )
 
@@ -102,30 +95,29 @@ describe("deleteGoogleSyncInboundCoalesceAction", () => {
 
       await expect(deleteGoogleSyncInboundCoalesceAction(validInput)).resolves.not.toThrow()
     })
+
   })
 
   describe("Logging", () => {
     it("should log on success", async () => {
       const { getClaims } = await import("@workspace/supabase-auth/session/get-claims")
       const { checkActionRateLimit } = await import("@workspace/supabase-data/lib/auth/rate-limit")
-      const { GoogleSyncInboundCoalesceSupabaseRepository } =
-        await import("@workspace/supabase-data/modules/google-sync/infrastructure/repositories/google-sync-inbound-coalesce-supabase.repository.codegen")
+      const { GoogleSyncInboundCoalesceSupabaseRepository } = await import("@workspace/supabase-data/modules/google-sync/infrastructure/repositories/google-sync-inbound-coalesce-supabase.repository.codegen")
       const { logServerEvent } = await import("@workspace/logging/server")
       vi.mocked(getClaims).mockResolvedValue({ claims: { sub: "test-user-id" } } as any)
       vi.mocked(checkActionRateLimit).mockResolvedValue(undefined)
 
-      const { createServerAuthClient } =
-        await import("@workspace/supabase-auth/server/create-server-auth-client")
+      const { createServerAuthClient } = await import("@workspace/supabase-auth/server/create-server-auth-client")
       vi.mocked(createServerAuthClient).mockResolvedValue({} as any)
       vi.mocked(GoogleSyncInboundCoalesceSupabaseRepository).mockImplementation(
         function MockRepository() {
           return {
-            findById: vi.fn(),
-            list: vi.fn(),
-            insert: vi.fn(),
-            update: vi.fn(),
-            delete: vi.fn().mockResolvedValue(undefined),
-          } as any
+        findById: vi.fn(),
+        list: vi.fn(),
+        insert: vi.fn(),
+        update: vi.fn(),
+        delete: vi.fn().mockResolvedValue(undefined),
+      } as any
         } as any
       )
 
@@ -143,14 +135,12 @@ describe("deleteGoogleSyncInboundCoalesceAction", () => {
     it("should log on error with sanitized metadata", async () => {
       const { getClaims } = await import("@workspace/supabase-auth/session/get-claims")
       const { checkActionRateLimit } = await import("@workspace/supabase-data/lib/auth/rate-limit")
-      const { GoogleSyncInboundCoalesceSupabaseRepository } =
-        await import("@workspace/supabase-data/modules/google-sync/infrastructure/repositories/google-sync-inbound-coalesce-supabase.repository.codegen")
+      const { GoogleSyncInboundCoalesceSupabaseRepository } = await import("@workspace/supabase-data/modules/google-sync/infrastructure/repositories/google-sync-inbound-coalesce-supabase.repository.codegen")
       const { logServerEvent } = await import("@workspace/logging/server")
       vi.mocked(getClaims).mockResolvedValue({ claims: { sub: "test-user-id" } } as any)
       vi.mocked(checkActionRateLimit).mockResolvedValue(undefined)
 
-      const { createServerAuthClient } =
-        await import("@workspace/supabase-auth/server/create-server-auth-client")
+      const { createServerAuthClient } = await import("@workspace/supabase-auth/server/create-server-auth-client")
       vi.mocked(createServerAuthClient).mockResolvedValue({} as any)
       vi.mocked(GoogleSyncInboundCoalesceSupabaseRepository).mockImplementation(
         function MockRepository() {

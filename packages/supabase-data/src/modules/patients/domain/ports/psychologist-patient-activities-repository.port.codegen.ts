@@ -13,14 +13,9 @@ export interface PsychologistPatientActivitiesListResult {
 
 interface PsychologistPatientActivitiesRepository {
   findById(id: string): Promise<PsychologistPatientActivitiesDTO | null>
-  list(
-    params: PsychologistPatientActivitiesListParams
-  ): Promise<PsychologistPatientActivitiesListResult>
+  list(params: PsychologistPatientActivitiesListParams): Promise<PsychologistPatientActivitiesListResult>
   insert(data: Partial<PsychologistPatientActivitiesDTO>): Promise<PsychologistPatientActivitiesDTO>
-  update(
-    id: string,
-    patch: Partial<PsychologistPatientActivitiesDTO>
-  ): Promise<PsychologistPatientActivitiesDTO>
+  update(id: string, patch: Partial<PsychologistPatientActivitiesDTO>): Promise<PsychologistPatientActivitiesDTO>
   delete(id: string): Promise<void>
 }
 

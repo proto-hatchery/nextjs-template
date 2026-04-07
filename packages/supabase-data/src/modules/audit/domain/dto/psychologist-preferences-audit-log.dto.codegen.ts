@@ -10,7 +10,7 @@ const PsychologistPreferencesAuditLogDTOSchema = z.object({
   id: looseCell,
   newValues: looseCell,
   oldValues: looseCell,
-  userId: looseCell,
+  userId: looseCell
 })
 
 type PsychologistPreferencesAuditLogDTO = z.infer<typeof PsychologistPreferencesAuditLogDTOSchema>

@@ -1,9 +1,9 @@
 /**
  * useGoogleSyncInboundCoalesceMutation — TanStack Query mutation wrapper for a Server Action.
- *
+ * 
  * TODO: Import the Server Action, narrow `_input`, and tune invalidation (prefer precise keys).
  * Do not add console.log — use structured logging in the action (logServerEvent).
- *
+ * 
  * @module @workspace/supabase-data/hooks/google-sync/use-google-sync-inbound-coalesce-mutation.hook
  * codegen:actions-hooks (generated) — do not hand-edit
  */
@@ -17,12 +17,7 @@ import { googleSyncQueryKeys } from "@workspace/supabase-data/hooks/google-sync/
 // TODO: Narrow the input type based on your action's requirements
 type MutationInput = unknown
 
-export function useGoogleSyncInboundCoalesceMutation(): UseMutationResult<
-  unknown,
-  Error,
-  MutationInput,
-  unknown
-> {
+export function useGoogleSyncInboundCoalesceMutation(): UseMutationResult<unknown, Error, MutationInput, unknown> {
   const queryClient = useQueryClient()
   return useMutation({
     mutationFn: async (_input: MutationInput) => {
@@ -32,9 +27,7 @@ export function useGoogleSyncInboundCoalesceMutation(): UseMutationResult<
     },
     onSettled: async () => {
       // TODO: Invalidate precise query keys
-      await queryClient.invalidateQueries({
-        queryKey: googleSyncQueryKeys.googleSyncInboundCoalesce(),
-      })
+      await queryClient.invalidateQueries({ queryKey: googleSyncQueryKeys.googleSyncInboundCoalesce() })
     },
   })
 }

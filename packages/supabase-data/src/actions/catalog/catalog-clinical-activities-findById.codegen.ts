@@ -1,17 +1,17 @@
 /**
  * FindByIdCatalogClinicalActivities Server Action
- *
+ * 
  * Handles findById operation for catalog_clinical_activities.
- *
+ * 
  * ## Usage
- *
+ * 
  * Example:
  * ```typescript
  * import { findByIdCatalogClinicalActivitiesAction } from "@workspace/supabase-data/actions/catalog/catalog-clinical-activities-findById.codegen"
- *
+ * 
  * const result = await findByIdCatalogClinicalActivitiesAction(input)
  * ```
- *
+ * 
  * @module @workspace/supabase-data/actions/catalog/catalog-clinical-activities-findById
  * codegen:actions-hooks (generated) — do not hand-edit
  */
@@ -19,22 +19,22 @@
 
 import { z } from "zod"
 
-import { logServerEvent } from "@workspace/logging/server"
-import { createServerAuthClient } from "@workspace/supabase-auth/server/create-server-auth-client"
-import { sanitizeForAudit } from "@workspace/supabase-data/lib/audit/sanitize-phi"
 import { requireAuth } from "@workspace/supabase-data/lib/auth/require-auth"
+import { createServerAuthClient } from "@workspace/supabase-auth/server/create-server-auth-client"
 import { CatalogClinicalActivitiesSupabaseRepository } from "@workspace/supabase-data/modules/catalog/infrastructure/repositories/catalog-clinical-activities-supabase.repository.codegen"
+import { logServerEvent } from "@workspace/logging/server"
+import { sanitizeForAudit } from "@workspace/supabase-data/lib/audit/sanitize-phi"
 
 /**
  * Audit-safe fields for this table (HIPAA §164.312(b) compliant)
- *
+ * 
  * These fields are safe to log in error metadata without exposing PHI.
  */
 const AUDIT_SAFE_FIELDS = ["id", "createdAt", "updatedAt"] as const
 
 /**
  * Input schema for findByIdCatalogClinicalActivitiesAction
- *
+ * 
  * Uses Zod v4 syntax (top-level APIs, not z.string().email() etc.)
  */
 const CatalogClinicalActivitiesFindByIdInputSchema = z.object({
@@ -50,9 +50,7 @@ const CatalogClinicalActivitiesFindByIdInputSchema = z.object({
 /**
  * Input type for findByIdCatalogClinicalActivitiesAction
  */
-export type CatalogClinicalActivitiesFindByIdInput = z.infer<
-  typeof CatalogClinicalActivitiesFindByIdInputSchema
->
+export type CatalogClinicalActivitiesFindByIdInput = z.infer<typeof CatalogClinicalActivitiesFindByIdInputSchema>
 
 /**
  * Output type for findByIdCatalogClinicalActivitiesAction — unknown until the action is wired to real DTOs / port types.
@@ -61,7 +59,7 @@ export type CatalogClinicalActivitiesFindByIdOutput = unknown
 
 /**
  * FindByIdCatalogClinicalActivities Server Action
- *
+ * 
  * @param input - Action input
  */
 export async function findByIdCatalogClinicalActivitiesAction(
@@ -82,7 +80,7 @@ export async function findByIdCatalogClinicalActivitiesAction(
     // 3. Auth client — created after all guards pass
     const supabase = await createServerAuthClient()
     const repository = new CatalogClinicalActivitiesSupabaseRepository(supabase)
-
+    
     // 4. Execute operation — pass resolved context explicitly
     // @type-escape: generated action stub — id shape from validated after TODO input schema
     const result = await repository.findById((validated as unknown as { id: string }).id)

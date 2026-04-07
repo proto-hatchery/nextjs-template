@@ -1,17 +1,17 @@
 /**
  * ListAuditLogs Server Action
- *
+ * 
  * Handles list operation for audit_logs.
- *
+ * 
  * ## Usage
- *
+ * 
  * Example:
  * ```typescript
  * import { listAuditLogsAction } from "@workspace/supabase-data/actions/audit/audit-logs-list.codegen"
- *
+ * 
  * const result = await listAuditLogsAction(input)
  * ```
- *
+ * 
  * @module @workspace/supabase-data/actions/audit/audit-logs-list
  * codegen:actions-hooks (generated) — do not hand-edit
  */
@@ -19,22 +19,22 @@
 
 import { z } from "zod"
 
-import { logServerEvent } from "@workspace/logging/server"
-import { createServerAuthClient } from "@workspace/supabase-auth/server/create-server-auth-client"
-import { sanitizeForAudit } from "@workspace/supabase-data/lib/audit/sanitize-phi"
 import { requireAuth } from "@workspace/supabase-data/lib/auth/require-auth"
+import { createServerAuthClient } from "@workspace/supabase-auth/server/create-server-auth-client"
 import { AuditLogsSupabaseRepository } from "@workspace/supabase-data/modules/audit/infrastructure/repositories/audit-logs-supabase.repository.codegen"
+import { logServerEvent } from "@workspace/logging/server"
+import { sanitizeForAudit } from "@workspace/supabase-data/lib/audit/sanitize-phi"
 
 /**
  * Audit-safe fields for this table (HIPAA §164.312(b) compliant)
- *
+ * 
  * These fields are safe to log in error metadata without exposing PHI.
  */
 const AUDIT_SAFE_FIELDS = ["id", "createdAt", "updatedAt"] as const
 
 /**
  * Input schema for listAuditLogsAction
- *
+ * 
  * Uses Zod v4 syntax (top-level APIs, not z.string().email() etc.)
  */
 const AuditLogsListInputSchema = z.object({
@@ -59,10 +59,12 @@ export type AuditLogsListOutput = unknown
 
 /**
  * ListAuditLogs Server Action
- *
+ * 
  * @param input - Action input
  */
-export async function listAuditLogsAction(input: AuditLogsListInput): Promise<AuditLogsListOutput> {
+export async function listAuditLogsAction(
+  input: AuditLogsListInput
+): Promise<AuditLogsListOutput> {
   const startedAt = Date.now()
   let actorIdForLog = "unknown"
 
@@ -78,7 +80,7 @@ export async function listAuditLogsAction(input: AuditLogsListInput): Promise<Au
     // 3. Auth client — created after all guards pass
     const supabase = await createServerAuthClient()
     const repository = new AuditLogsSupabaseRepository(supabase)
-
+    
     // 4. Execute operation — pass resolved context explicitly
     // @type-escape: generated action stub — list params unknown until semantic plan fills Zod input
     const result = await repository.list(validated as never)

@@ -1,10 +1,8 @@
 // codegen:backend — do not hand-edit; regenerate with `pnpm codegen:backend --write`.
 
-import {
-  PsychologistServicesDTOSchema,
-  type PsychologistServicesDTO,
-} from "@workspace/supabase-data/modules/preferences/domain/dto/psychologist-services.dto.codegen"
 import type { Database } from "@workspace/supabase-infra/types/database"
+
+import { PsychologistServicesDTOSchema, type PsychologistServicesDTO } from "@workspace/supabase-data/modules/preferences/domain/dto/psychologist-services.dto.codegen"
 
 type PsychologistServicesRow = Database["public"]["Tables"]["psychologist_services"]["Row"]
 type PsychologistServicesInsert = Database["public"]["Tables"]["psychologist_services"]["Insert"]
@@ -47,15 +45,10 @@ function fromPsychologistServicesRow(row: PsychologistServicesRow): Psychologist
   return PsychologistServicesDTOSchema.parse(mapped)
 }
 
-function toPsychologistServicesInsert(
-  dto: Partial<PsychologistServicesDTO>
-): PsychologistServicesInsert {
+function toPsychologistServicesInsert(dto: Partial<PsychologistServicesDTO>): PsychologistServicesInsert {
   const out: Record<string, unknown> = {}
   for (const [camelKey, snakeKey] of Object.entries(PsychologistServicesFieldMappings) as Array<
-    [
-      PsychologistServicesField,
-      (typeof PsychologistServicesFieldMappings)[PsychologistServicesField],
-    ]
+    [PsychologistServicesField, (typeof PsychologistServicesFieldMappings)[PsychologistServicesField]]
   >) {
     const value = dto[camelKey]
     if (typeof value !== "undefined") {
@@ -66,9 +59,7 @@ function toPsychologistServicesInsert(
   return out as PsychologistServicesInsert
 }
 
-function toPsychologistServicesUpdate(
-  dto: Partial<PsychologistServicesDTO>
-): PsychologistServicesUpdate {
+function toPsychologistServicesUpdate(dto: Partial<PsychologistServicesDTO>): PsychologistServicesUpdate {
   return toPsychologistServicesInsert(dto) as PsychologistServicesUpdate
 }
 

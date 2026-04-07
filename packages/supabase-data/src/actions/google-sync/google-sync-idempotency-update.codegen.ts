@@ -1,17 +1,17 @@
 /**
  * UpdateGoogleSyncIdempotency Server Action
- *
+ * 
  * Handles update operation for google_sync_idempotency.
- *
+ * 
  * ## Usage
- *
+ * 
  * Example:
  * ```typescript
  * import { updateGoogleSyncIdempotencyAction } from "@workspace/supabase-data/actions/google-sync/google-sync-idempotency-update.codegen"
- *
+ * 
  * const result = await updateGoogleSyncIdempotencyAction(input)
  * ```
- *
+ * 
  * @module @workspace/supabase-data/actions/google-sync/google-sync-idempotency-update
  * codegen:actions-hooks (generated) — do not hand-edit
  */
@@ -19,22 +19,22 @@
 
 import { z } from "zod"
 
-import { logServerEvent } from "@workspace/logging/server"
-import { createServerAuthClient } from "@workspace/supabase-auth/server/create-server-auth-client"
-import { sanitizeForAudit } from "@workspace/supabase-data/lib/audit/sanitize-phi"
 import { requireAuth } from "@workspace/supabase-data/lib/auth/require-auth"
+import { createServerAuthClient } from "@workspace/supabase-auth/server/create-server-auth-client"
 import { GoogleSyncIdempotencySupabaseRepository } from "@workspace/supabase-data/modules/google-sync/infrastructure/repositories/google-sync-idempotency-supabase.repository.codegen"
+import { logServerEvent } from "@workspace/logging/server"
+import { sanitizeForAudit } from "@workspace/supabase-data/lib/audit/sanitize-phi"
 
 /**
  * Audit-safe fields for this table (HIPAA §164.312(b) compliant)
- *
+ * 
  * These fields are safe to log in error metadata without exposing PHI.
  */
 const AUDIT_SAFE_FIELDS = ["id", "createdAt", "updatedAt"] as const
 
 /**
  * Input schema for updateGoogleSyncIdempotencyAction
- *
+ * 
  * Uses Zod v4 syntax (top-level APIs, not z.string().email() etc.)
  */
 const GoogleSyncIdempotencyUpdateInputSchema = z.object({
@@ -50,9 +50,7 @@ const GoogleSyncIdempotencyUpdateInputSchema = z.object({
 /**
  * Input type for updateGoogleSyncIdempotencyAction
  */
-export type GoogleSyncIdempotencyUpdateInput = z.infer<
-  typeof GoogleSyncIdempotencyUpdateInputSchema
->
+export type GoogleSyncIdempotencyUpdateInput = z.infer<typeof GoogleSyncIdempotencyUpdateInputSchema>
 
 /**
  * Output type for updateGoogleSyncIdempotencyAction — unknown until the action is wired to real DTOs / port types.
@@ -61,7 +59,7 @@ export type GoogleSyncIdempotencyUpdateOutput = unknown
 
 /**
  * UpdateGoogleSyncIdempotency Server Action
- *
+ * 
  * @param input - Action input
  */
 export async function updateGoogleSyncIdempotencyAction(
@@ -82,7 +80,7 @@ export async function updateGoogleSyncIdempotencyAction(
     // 3. Auth client — created after all guards pass
     const supabase = await createServerAuthClient()
     const repository = new GoogleSyncIdempotencySupabaseRepository(supabase)
-
+    
     // 4. Execute operation — pass resolved context explicitly
     // @type-escape: generated action stub — id shape from validated after TODO input schema
     const validatedId = (validated as unknown as { id: string }).id

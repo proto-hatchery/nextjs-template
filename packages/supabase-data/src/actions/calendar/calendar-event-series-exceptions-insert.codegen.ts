@@ -1,17 +1,17 @@
 /**
  * InsertCalendarEventSeriesExceptions Server Action
- *
+ * 
  * Handles insert operation for calendar_event_series_exceptions.
- *
+ * 
  * ## Usage
- *
+ * 
  * Example:
  * ```typescript
  * import { insertCalendarEventSeriesExceptionsAction } from "@workspace/supabase-data/actions/calendar/calendar-event-series-exceptions-insert.codegen"
- *
+ * 
  * const result = await insertCalendarEventSeriesExceptionsAction(input)
  * ```
- *
+ * 
  * @module @workspace/supabase-data/actions/calendar/calendar-event-series-exceptions-insert
  * codegen:actions-hooks (generated) — do not hand-edit
  */
@@ -19,22 +19,22 @@
 
 import { z } from "zod"
 
-import { logServerEvent } from "@workspace/logging/server"
-import { createServerAuthClient } from "@workspace/supabase-auth/server/create-server-auth-client"
-import { sanitizeForAudit } from "@workspace/supabase-data/lib/audit/sanitize-phi"
 import { requireAuth } from "@workspace/supabase-data/lib/auth/require-auth"
+import { createServerAuthClient } from "@workspace/supabase-auth/server/create-server-auth-client"
 import { CalendarEventSeriesExceptionsSupabaseRepository } from "@workspace/supabase-data/modules/calendar/infrastructure/repositories/calendar-event-series-exceptions-supabase.repository.codegen"
+import { logServerEvent } from "@workspace/logging/server"
+import { sanitizeForAudit } from "@workspace/supabase-data/lib/audit/sanitize-phi"
 
 /**
  * Audit-safe fields for this table (HIPAA §164.312(b) compliant)
- *
+ * 
  * These fields are safe to log in error metadata without exposing PHI.
  */
 const AUDIT_SAFE_FIELDS = ["id", "createdAt", "updatedAt"] as const
 
 /**
  * Input schema for insertCalendarEventSeriesExceptionsAction
- *
+ * 
  * Uses Zod v4 syntax (top-level APIs, not z.string().email() etc.)
  */
 const CalendarEventSeriesExceptionsInsertInputSchema = z.object({
@@ -50,9 +50,7 @@ const CalendarEventSeriesExceptionsInsertInputSchema = z.object({
 /**
  * Input type for insertCalendarEventSeriesExceptionsAction
  */
-export type CalendarEventSeriesExceptionsInsertInput = z.infer<
-  typeof CalendarEventSeriesExceptionsInsertInputSchema
->
+export type CalendarEventSeriesExceptionsInsertInput = z.infer<typeof CalendarEventSeriesExceptionsInsertInputSchema>
 
 /**
  * Output type for insertCalendarEventSeriesExceptionsAction — unknown until the action is wired to real DTOs / port types.
@@ -61,7 +59,7 @@ export type CalendarEventSeriesExceptionsInsertOutput = unknown
 
 /**
  * InsertCalendarEventSeriesExceptions Server Action
- *
+ * 
  * @param input - Action input
  */
 export async function insertCalendarEventSeriesExceptionsAction(
@@ -82,7 +80,7 @@ export async function insertCalendarEventSeriesExceptionsAction(
     // 3. Auth client — created after all guards pass
     const supabase = await createServerAuthClient()
     const repository = new CalendarEventSeriesExceptionsSupabaseRepository(supabase)
-
+    
     // 4. Execute operation — pass resolved context explicitly
     // @type-escape: generated action stub — insert payload unknown until TODO input schema
     const result = await repository.insert(validated as never)

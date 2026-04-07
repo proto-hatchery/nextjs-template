@@ -1,16 +1,12 @@
 // codegen:backend — do not hand-edit; regenerate with `pnpm codegen:backend --write`.
 
-import {
-  AccountDeletionRequestsDTOSchema,
-  type AccountDeletionRequestsDTO,
-} from "@workspace/supabase-data/modules/account-management/domain/dto/account-deletion-requests.dto.codegen"
 import type { Database } from "@workspace/supabase-infra/types/database"
 
+import { AccountDeletionRequestsDTOSchema, type AccountDeletionRequestsDTO } from "@workspace/supabase-data/modules/account-management/domain/dto/account-deletion-requests.dto.codegen"
+
 type AccountDeletionRequestsRow = Database["public"]["Tables"]["account_deletion_requests"]["Row"]
-type AccountDeletionRequestsInsert =
-  Database["public"]["Tables"]["account_deletion_requests"]["Insert"]
-type AccountDeletionRequestsUpdate =
-  Database["public"]["Tables"]["account_deletion_requests"]["Update"]
+type AccountDeletionRequestsInsert = Database["public"]["Tables"]["account_deletion_requests"]["Insert"]
+type AccountDeletionRequestsUpdate = Database["public"]["Tables"]["account_deletion_requests"]["Update"]
 
 const AccountDeletionRequestsFieldMappings = {
   approvedAt: "approved_at",
@@ -32,9 +28,7 @@ const AccountDeletionRequestsFieldMappings = {
 
 type AccountDeletionRequestsField = keyof typeof AccountDeletionRequestsFieldMappings
 
-function fromAccountDeletionRequestsRow(
-  row: AccountDeletionRequestsRow
-): AccountDeletionRequestsDTO {
+function fromAccountDeletionRequestsRow(row: AccountDeletionRequestsRow): AccountDeletionRequestsDTO {
   const mapped = {
     approvedAt: row.approved_at,
     cancelledAt: row.cancelled_at,
@@ -55,15 +49,10 @@ function fromAccountDeletionRequestsRow(
   return AccountDeletionRequestsDTOSchema.parse(mapped)
 }
 
-function toAccountDeletionRequestsInsert(
-  dto: Partial<AccountDeletionRequestsDTO>
-): AccountDeletionRequestsInsert {
+function toAccountDeletionRequestsInsert(dto: Partial<AccountDeletionRequestsDTO>): AccountDeletionRequestsInsert {
   const out: Record<string, unknown> = {}
   for (const [camelKey, snakeKey] of Object.entries(AccountDeletionRequestsFieldMappings) as Array<
-    [
-      AccountDeletionRequestsField,
-      (typeof AccountDeletionRequestsFieldMappings)[AccountDeletionRequestsField],
-    ]
+    [AccountDeletionRequestsField, (typeof AccountDeletionRequestsFieldMappings)[AccountDeletionRequestsField]]
   >) {
     const value = dto[camelKey]
     if (typeof value !== "undefined") {
@@ -74,14 +63,8 @@ function toAccountDeletionRequestsInsert(
   return out as AccountDeletionRequestsInsert
 }
 
-function toAccountDeletionRequestsUpdate(
-  dto: Partial<AccountDeletionRequestsDTO>
-): AccountDeletionRequestsUpdate {
+function toAccountDeletionRequestsUpdate(dto: Partial<AccountDeletionRequestsDTO>): AccountDeletionRequestsUpdate {
   return toAccountDeletionRequestsInsert(dto) as AccountDeletionRequestsUpdate
 }
 
-export {
-  fromAccountDeletionRequestsRow,
-  toAccountDeletionRequestsInsert,
-  toAccountDeletionRequestsUpdate,
-}
+export { fromAccountDeletionRequestsRow, toAccountDeletionRequestsInsert, toAccountDeletionRequestsUpdate }

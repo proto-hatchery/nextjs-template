@@ -1,12 +1,12 @@
 /**
  * Unit tests for useClinicalSessionDetailsQuery
- *
+ * 
  * codegen:actions-hooks (generated) — do not hand-edit
  */
 import { describe, expect, it } from "vitest"
 
-import { clinicalSessionsQueryKeys } from "@workspace/supabase-data/hooks/clinical-sessions/query-keys.codegen"
 import { useClinicalSessionDetailsQuery } from "@workspace/supabase-data/hooks/clinical-sessions/use-clinical-session-details-query.hook.codegen"
+import { clinicalSessionsQueryKeys } from "@workspace/supabase-data/hooks/clinical-sessions/query-keys.codegen"
 
 describe("useClinicalSessionDetailsQuery", () => {
   it("should export the generated hook", () => {

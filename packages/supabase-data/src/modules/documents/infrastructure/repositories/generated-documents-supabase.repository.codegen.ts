@@ -3,17 +3,10 @@
 import type { SupabaseClient } from "@supabase/supabase-js"
 
 import { SupabaseRepositoryError } from "@workspace/supabase-data/lib/supabase-repository-error"
+
+import type { GeneratedDocumentsRepository, GeneratedDocumentsListParams, GeneratedDocumentsListResult } from "@workspace/supabase-data/modules/documents/domain/ports/generated-documents-repository.port.codegen"
+import { fromGeneratedDocumentsRow, toGeneratedDocumentsInsert, toGeneratedDocumentsUpdate } from "@workspace/supabase-data/modules/documents/infrastructure/mappers/generated-documents.mapper.codegen"
 import type { GeneratedDocumentsDTO } from "@workspace/supabase-data/modules/documents/domain/dto/generated-documents.dto.codegen"
-import type {
-  GeneratedDocumentsRepository,
-  GeneratedDocumentsListParams,
-  GeneratedDocumentsListResult,
-} from "@workspace/supabase-data/modules/documents/domain/ports/generated-documents-repository.port.codegen"
-import {
-  fromGeneratedDocumentsRow,
-  toGeneratedDocumentsInsert,
-  toGeneratedDocumentsUpdate,
-} from "@workspace/supabase-data/modules/documents/infrastructure/mappers/generated-documents.mapper.codegen"
 
 class GeneratedDocumentsSupabaseRepository implements GeneratedDocumentsRepository {
   constructor(private readonly supabase: SupabaseClient) {}
@@ -21,9 +14,7 @@ class GeneratedDocumentsSupabaseRepository implements GeneratedDocumentsReposito
   async findById(id: string): Promise<GeneratedDocumentsDTO | null> {
     const { data, error } = await this.supabase
       .from("generated_documents")
-      .select(
-        "content, created_at, created_by, document_type, encoded_content, id, is_archived, patient_id, psychologist_client_id, psychologist_id, tags, template_id, title, updated_at, updated_by"
-      )
+      .select("content, created_at, created_by, document_type, encoded_content, id, is_archived, patient_id, psychologist_client_id, psychologist_id, tags, template_id, title, updated_at, updated_by")
       .eq("id", id)
       .maybeSingle()
     if (error) {
@@ -37,12 +28,7 @@ class GeneratedDocumentsSupabaseRepository implements GeneratedDocumentsReposito
     const limit = Math.min(params.limit ?? 20, 100)
     const offset = params.offset ?? 0
     const end = offset + limit - 1
-    const q = this.supabase
-      .from("generated_documents")
-      .select(
-        "content, created_at, created_by, document_type, encoded_content, id, is_archived, patient_id, psychologist_client_id, psychologist_id, tags, template_id, title, updated_at, updated_by"
-      )
-      .range(offset, end)
+    const q = this.supabase.from("generated_documents").select("content, created_at, created_by, document_type, encoded_content, id, is_archived, patient_id, psychologist_client_id, psychologist_id, tags, template_id, title, updated_at, updated_by").range(offset, end)
     const { data, error } = await q
     if (error) {
       throw new SupabaseRepositoryError("Failed to list generated_documents.", { cause: error })
@@ -56,9 +42,7 @@ class GeneratedDocumentsSupabaseRepository implements GeneratedDocumentsReposito
     const { data: row, error } = await this.supabase
       .from("generated_documents")
       .insert(payload)
-      .select(
-        "content, created_at, created_by, document_type, encoded_content, id, is_archived, patient_id, psychologist_client_id, psychologist_id, tags, template_id, title, updated_at, updated_by"
-      )
+      .select("content, created_at, created_by, document_type, encoded_content, id, is_archived, patient_id, psychologist_client_id, psychologist_id, tags, template_id, title, updated_at, updated_by")
       .single()
     if (error) {
       throw new SupabaseRepositoryError("Failed to insert generated_documents.", { cause: error })
@@ -72,9 +56,7 @@ class GeneratedDocumentsSupabaseRepository implements GeneratedDocumentsReposito
       .from("generated_documents")
       .update(payload)
       .eq("id", id)
-      .select(
-        "content, created_at, created_by, document_type, encoded_content, id, is_archived, patient_id, psychologist_client_id, psychologist_id, tags, template_id, title, updated_at, updated_by"
-      )
+      .select("content, created_at, created_by, document_type, encoded_content, id, is_archived, patient_id, psychologist_client_id, psychologist_id, tags, template_id, title, updated_at, updated_by")
       .single()
     if (error) {
       throw new SupabaseRepositoryError("Failed to update generated_documents.", { cause: error })
@@ -88,6 +70,7 @@ class GeneratedDocumentsSupabaseRepository implements GeneratedDocumentsReposito
       throw new SupabaseRepositoryError("Failed to delete generated_documents.", { cause: error })
     }
   }
+
 }
 
 export { GeneratedDocumentsSupabaseRepository }

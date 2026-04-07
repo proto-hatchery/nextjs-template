@@ -1,10 +1,8 @@
 // codegen:backend — do not hand-edit; regenerate with `pnpm codegen:backend --write`.
 
-import {
-  GoogleSyncLogsDTOSchema,
-  type GoogleSyncLogsDTO,
-} from "@workspace/supabase-data/modules/google-sync/domain/dto/google-sync-logs.dto.codegen"
 import type { Database } from "@workspace/supabase-infra/types/database"
+
+import { GoogleSyncLogsDTOSchema, type GoogleSyncLogsDTO } from "@workspace/supabase-data/modules/google-sync/domain/dto/google-sync-logs.dto.codegen"
 
 type GoogleSyncLogsRow = Database["public"]["Tables"]["google_sync_logs"]["Row"]
 type GoogleSyncLogsInsert = Database["public"]["Tables"]["google_sync_logs"]["Insert"]

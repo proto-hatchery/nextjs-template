@@ -15,7 +15,7 @@ const AuditLogsDTOSchema = z.object({
   tableName: looseCell,
   userAgent: looseCell,
   userId: looseCell,
-  userType: looseCell,
+  userType: looseCell
 })
 
 type AuditLogsDTO = z.infer<typeof AuditLogsDTOSchema>

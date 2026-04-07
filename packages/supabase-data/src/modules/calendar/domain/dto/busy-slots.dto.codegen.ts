@@ -13,7 +13,7 @@ const BusySlotsDTOSchema = z.object({
   slotRange: looseCell,
   sourceId: looseCell,
   sourceType: looseCell,
-  title: looseCell,
+  title: looseCell
 })
 
 type BusySlotsDTO = z.infer<typeof BusySlotsDTOSchema>

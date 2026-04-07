@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-04-07T17:06:42.212Z",
+  "generatedAt": "2026-04-07T17:17:32.349Z",
   "actions": [
     {
       "domainId": "catalog",
@@ -24,7 +24,10 @@
       },
       "repositoryCall": {
         "method": "findById",
-        "arguments": ["validated.id", ""],
+        "arguments": [
+          "validated.id",
+          ""
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -32,8 +35,12 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "notes": []
     },
@@ -59,7 +66,9 @@
       },
       "repositoryCall": {
         "method": "list",
-        "arguments": ["{}"],
+        "arguments": [
+          "{}"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -67,8 +76,12 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "notes": []
     },
@@ -94,7 +107,10 @@
       },
       "repositoryCall": {
         "method": "findById",
-        "arguments": ["validated.id", ""],
+        "arguments": [
+          "validated.id",
+          ""
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -102,8 +118,12 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "notes": []
     },
@@ -129,7 +149,9 @@
       },
       "repositoryCall": {
         "method": "list",
-        "arguments": ["{}"],
+        "arguments": [
+          "{}"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -137,8 +159,12 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "notes": []
     },
@@ -164,7 +190,10 @@
       },
       "repositoryCall": {
         "method": "findById",
-        "arguments": ["validated.id", ""],
+        "arguments": [
+          "validated.id",
+          ""
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -172,8 +201,12 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "notes": []
     },
@@ -199,7 +232,9 @@
       },
       "repositoryCall": {
         "method": "list",
-        "arguments": ["{}"],
+        "arguments": [
+          "{}"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -207,8 +242,12 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "notes": []
     },
@@ -234,7 +273,10 @@
       },
       "repositoryCall": {
         "method": "findById",
-        "arguments": ["validated.id", ""],
+        "arguments": [
+          "validated.id",
+          ""
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -242,8 +284,12 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "notes": []
     },
@@ -269,7 +315,9 @@
       },
       "repositoryCall": {
         "method": "list",
-        "arguments": ["{}"],
+        "arguments": [
+          "{}"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -277,8 +325,12 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "notes": []
     },
@@ -304,7 +356,10 @@
       },
       "repositoryCall": {
         "method": "findById",
-        "arguments": ["validated.id", ""],
+        "arguments": [
+          "validated.id",
+          ""
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -312,8 +367,12 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "notes": []
     },
@@ -339,7 +398,9 @@
       },
       "repositoryCall": {
         "method": "list",
-        "arguments": ["{}"],
+        "arguments": [
+          "{}"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -347,8 +408,12 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "notes": []
     },
@@ -374,7 +439,10 @@
       },
       "repositoryCall": {
         "method": "findById",
-        "arguments": ["validated.id", ""],
+        "arguments": [
+          "validated.id",
+          ""
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -382,8 +450,12 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "notes": []
     },
@@ -409,7 +481,9 @@
       },
       "repositoryCall": {
         "method": "list",
-        "arguments": ["{}"],
+        "arguments": [
+          "{}"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -417,8 +491,12 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "notes": []
     },
@@ -444,7 +522,9 @@
       },
       "repositoryCall": {
         "method": "insert",
-        "arguments": ["validated"],
+        "arguments": [
+          "validated"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -452,11 +532,17 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"assistants\",\"assistant-invites\"]"],
+        "invalidateKeys": [
+          "[\"assistants\",\"assistant-invites\"]"
+        ],
         "optimisticUpdate": false
       },
       "notes": []
@@ -483,7 +569,10 @@
       },
       "repositoryCall": {
         "method": "update",
-        "arguments": ["validated.id", "validated.data"],
+        "arguments": [
+          "validated.id",
+          "validated.data"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -491,11 +580,17 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"assistants\",\"assistant-invites\"]"],
+        "invalidateKeys": [
+          "[\"assistants\",\"assistant-invites\"]"
+        ],
         "optimisticUpdate": false
       },
       "notes": []
@@ -522,7 +617,10 @@
       },
       "repositoryCall": {
         "method": "delete",
-        "arguments": ["validated.id", ""],
+        "arguments": [
+          "validated.id",
+          ""
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -530,11 +628,17 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"assistants\",\"assistant-invites\"]"],
+        "invalidateKeys": [
+          "[\"assistants\",\"assistant-invites\"]"
+        ],
         "optimisticUpdate": false
       },
       "notes": []
@@ -561,7 +665,9 @@
       },
       "repositoryCall": {
         "method": "list",
-        "arguments": ["{}"],
+        "arguments": [
+          "{}"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -569,8 +675,12 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "notes": []
     },
@@ -596,7 +706,9 @@
       },
       "repositoryCall": {
         "method": "insert",
-        "arguments": ["validated"],
+        "arguments": [
+          "validated"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -604,11 +716,17 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"assistants\",\"psychologist-assistants\"]"],
+        "invalidateKeys": [
+          "[\"assistants\",\"psychologist-assistants\"]"
+        ],
         "optimisticUpdate": false
       },
       "notes": []
@@ -635,7 +753,10 @@
       },
       "repositoryCall": {
         "method": "update",
-        "arguments": ["validated.id", "validated.data"],
+        "arguments": [
+          "validated.id",
+          "validated.data"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -643,11 +764,17 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"assistants\",\"psychologist-assistants\"]"],
+        "invalidateKeys": [
+          "[\"assistants\",\"psychologist-assistants\"]"
+        ],
         "optimisticUpdate": false
       },
       "notes": []
@@ -674,7 +801,10 @@
       },
       "repositoryCall": {
         "method": "delete",
-        "arguments": ["validated.id", ""],
+        "arguments": [
+          "validated.id",
+          ""
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -682,11 +812,17 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"assistants\",\"psychologist-assistants\"]"],
+        "invalidateKeys": [
+          "[\"assistants\",\"psychologist-assistants\"]"
+        ],
         "optimisticUpdate": false
       },
       "notes": []
@@ -713,7 +849,10 @@
       },
       "repositoryCall": {
         "method": "findById",
-        "arguments": ["validated.id", ""],
+        "arguments": [
+          "validated.id",
+          ""
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -721,8 +860,12 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "notes": []
     },
@@ -748,7 +891,9 @@
       },
       "repositoryCall": {
         "method": "list",
-        "arguments": ["{}"],
+        "arguments": [
+          "{}"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -756,8 +901,12 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "notes": []
     },
@@ -783,7 +932,10 @@
       },
       "repositoryCall": {
         "method": "findById",
-        "arguments": ["validated.id", ""],
+        "arguments": [
+          "validated.id",
+          ""
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -791,8 +943,12 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "notes": []
     },
@@ -818,7 +974,9 @@
       },
       "repositoryCall": {
         "method": "list",
-        "arguments": ["{}"],
+        "arguments": [
+          "{}"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -826,8 +984,12 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "notes": []
     },
@@ -853,7 +1015,10 @@
       },
       "repositoryCall": {
         "method": "findById",
-        "arguments": ["validated.id", ""],
+        "arguments": [
+          "validated.id",
+          ""
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -861,8 +1026,12 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "notes": []
     },
@@ -888,7 +1057,9 @@
       },
       "repositoryCall": {
         "method": "list",
-        "arguments": ["{}"],
+        "arguments": [
+          "{}"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -896,8 +1067,12 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "notes": []
     },
@@ -923,7 +1098,10 @@
       },
       "repositoryCall": {
         "method": "findById",
-        "arguments": ["validated.id", ""],
+        "arguments": [
+          "validated.id",
+          ""
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -931,8 +1109,12 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "notes": []
     },
@@ -958,7 +1140,9 @@
       },
       "repositoryCall": {
         "method": "list",
-        "arguments": ["{}"],
+        "arguments": [
+          "{}"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -966,8 +1150,12 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "notes": []
     },
@@ -993,7 +1181,10 @@
       },
       "repositoryCall": {
         "method": "findById",
-        "arguments": ["validated.id", ""],
+        "arguments": [
+          "validated.id",
+          ""
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -1001,8 +1192,12 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "notes": []
     },
@@ -1028,7 +1223,9 @@
       },
       "repositoryCall": {
         "method": "list",
-        "arguments": ["{}"],
+        "arguments": [
+          "{}"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -1036,8 +1233,12 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "notes": []
     },
@@ -1063,7 +1264,9 @@
       },
       "repositoryCall": {
         "method": "insert",
-        "arguments": ["validated"],
+        "arguments": [
+          "validated"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -1071,11 +1274,17 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"calendar\",\"availability-exceptions\"]"],
+        "invalidateKeys": [
+          "[\"calendar\",\"availability-exceptions\"]"
+        ],
         "optimisticUpdate": false
       },
       "notes": []
@@ -1102,7 +1311,10 @@
       },
       "repositoryCall": {
         "method": "update",
-        "arguments": ["validated.id", "validated.data"],
+        "arguments": [
+          "validated.id",
+          "validated.data"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -1110,11 +1322,17 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"calendar\",\"availability-exceptions\"]"],
+        "invalidateKeys": [
+          "[\"calendar\",\"availability-exceptions\"]"
+        ],
         "optimisticUpdate": false
       },
       "notes": []
@@ -1141,7 +1359,10 @@
       },
       "repositoryCall": {
         "method": "delete",
-        "arguments": ["validated.id", ""],
+        "arguments": [
+          "validated.id",
+          ""
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -1149,11 +1370,17 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"calendar\",\"availability-exceptions\"]"],
+        "invalidateKeys": [
+          "[\"calendar\",\"availability-exceptions\"]"
+        ],
         "optimisticUpdate": false
       },
       "notes": []
@@ -1180,7 +1407,10 @@
       },
       "repositoryCall": {
         "method": "findById",
-        "arguments": ["validated.id", ""],
+        "arguments": [
+          "validated.id",
+          ""
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -1188,8 +1418,12 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "notes": []
     },
@@ -1215,7 +1449,9 @@
       },
       "repositoryCall": {
         "method": "list",
-        "arguments": ["{}"],
+        "arguments": [
+          "{}"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -1223,8 +1459,12 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "notes": []
     },
@@ -1250,7 +1490,9 @@
       },
       "repositoryCall": {
         "method": "insert",
-        "arguments": ["validated"],
+        "arguments": [
+          "validated"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -1258,11 +1500,17 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"calendar\",\"busy-slots\"]"],
+        "invalidateKeys": [
+          "[\"calendar\",\"busy-slots\"]"
+        ],
         "optimisticUpdate": false
       },
       "notes": []
@@ -1289,7 +1537,10 @@
       },
       "repositoryCall": {
         "method": "update",
-        "arguments": ["validated.id", "validated.data"],
+        "arguments": [
+          "validated.id",
+          "validated.data"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -1297,11 +1548,17 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"calendar\",\"busy-slots\"]"],
+        "invalidateKeys": [
+          "[\"calendar\",\"busy-slots\"]"
+        ],
         "optimisticUpdate": false
       },
       "notes": []
@@ -1328,7 +1585,10 @@
       },
       "repositoryCall": {
         "method": "delete",
-        "arguments": ["validated.id", ""],
+        "arguments": [
+          "validated.id",
+          ""
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -1336,11 +1596,17 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"calendar\",\"busy-slots\"]"],
+        "invalidateKeys": [
+          "[\"calendar\",\"busy-slots\"]"
+        ],
         "optimisticUpdate": false
       },
       "notes": []
@@ -1367,7 +1633,10 @@
       },
       "repositoryCall": {
         "method": "findById",
-        "arguments": ["validated.id", ""],
+        "arguments": [
+          "validated.id",
+          ""
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -1375,8 +1644,12 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "notes": []
     },
@@ -1402,7 +1675,9 @@
       },
       "repositoryCall": {
         "method": "list",
-        "arguments": ["{}"],
+        "arguments": [
+          "{}"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -1410,8 +1685,12 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "notes": []
     },
@@ -1437,7 +1716,9 @@
       },
       "repositoryCall": {
         "method": "insert",
-        "arguments": ["validated"],
+        "arguments": [
+          "validated"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -1445,11 +1726,17 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"calendar\",\"calendar-change-log\"]"],
+        "invalidateKeys": [
+          "[\"calendar\",\"calendar-change-log\"]"
+        ],
         "optimisticUpdate": false
       },
       "notes": []
@@ -1476,7 +1763,10 @@
       },
       "repositoryCall": {
         "method": "update",
-        "arguments": ["validated.id", "validated.data"],
+        "arguments": [
+          "validated.id",
+          "validated.data"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -1484,11 +1774,17 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"calendar\",\"calendar-change-log\"]"],
+        "invalidateKeys": [
+          "[\"calendar\",\"calendar-change-log\"]"
+        ],
         "optimisticUpdate": false
       },
       "notes": []
@@ -1515,7 +1811,10 @@
       },
       "repositoryCall": {
         "method": "delete",
-        "arguments": ["validated.id", ""],
+        "arguments": [
+          "validated.id",
+          ""
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -1523,11 +1822,17 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"calendar\",\"calendar-change-log\"]"],
+        "invalidateKeys": [
+          "[\"calendar\",\"calendar-change-log\"]"
+        ],
         "optimisticUpdate": false
       },
       "notes": []
@@ -1554,7 +1859,10 @@
       },
       "repositoryCall": {
         "method": "findById",
-        "arguments": ["validated.id", ""],
+        "arguments": [
+          "validated.id",
+          ""
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -1562,8 +1870,12 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "notes": []
     },
@@ -1589,7 +1901,9 @@
       },
       "repositoryCall": {
         "method": "list",
-        "arguments": ["{}"],
+        "arguments": [
+          "{}"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -1597,8 +1911,12 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "notes": []
     },
@@ -1624,7 +1942,9 @@
       },
       "repositoryCall": {
         "method": "insert",
-        "arguments": ["validated"],
+        "arguments": [
+          "validated"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -1632,11 +1952,17 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"calendar\",\"calendar-event-series\"]"],
+        "invalidateKeys": [
+          "[\"calendar\",\"calendar-event-series\"]"
+        ],
         "optimisticUpdate": false
       },
       "notes": []
@@ -1663,7 +1989,10 @@
       },
       "repositoryCall": {
         "method": "update",
-        "arguments": ["validated.id", "validated.data"],
+        "arguments": [
+          "validated.id",
+          "validated.data"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -1671,11 +2000,17 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"calendar\",\"calendar-event-series\"]"],
+        "invalidateKeys": [
+          "[\"calendar\",\"calendar-event-series\"]"
+        ],
         "optimisticUpdate": false
       },
       "notes": []
@@ -1702,7 +2037,10 @@
       },
       "repositoryCall": {
         "method": "delete",
-        "arguments": ["validated.id", ""],
+        "arguments": [
+          "validated.id",
+          ""
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -1710,11 +2048,17 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"calendar\",\"calendar-event-series\"]"],
+        "invalidateKeys": [
+          "[\"calendar\",\"calendar-event-series\"]"
+        ],
         "optimisticUpdate": false
       },
       "notes": []
@@ -1741,7 +2085,10 @@
       },
       "repositoryCall": {
         "method": "findById",
-        "arguments": ["validated.id", ""],
+        "arguments": [
+          "validated.id",
+          ""
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -1749,8 +2096,12 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "notes": []
     },
@@ -1776,7 +2127,9 @@
       },
       "repositoryCall": {
         "method": "list",
-        "arguments": ["{}"],
+        "arguments": [
+          "{}"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -1784,8 +2137,12 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "notes": []
     },
@@ -1811,7 +2168,9 @@
       },
       "repositoryCall": {
         "method": "insert",
-        "arguments": ["validated"],
+        "arguments": [
+          "validated"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -1819,11 +2178,17 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"calendar\",\"calendar-event-series-exceptions\"]"],
+        "invalidateKeys": [
+          "[\"calendar\",\"calendar-event-series-exceptions\"]"
+        ],
         "optimisticUpdate": false
       },
       "notes": []
@@ -1850,7 +2215,10 @@
       },
       "repositoryCall": {
         "method": "update",
-        "arguments": ["validated.id", "validated.data"],
+        "arguments": [
+          "validated.id",
+          "validated.data"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -1858,11 +2226,17 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"calendar\",\"calendar-event-series-exceptions\"]"],
+        "invalidateKeys": [
+          "[\"calendar\",\"calendar-event-series-exceptions\"]"
+        ],
         "optimisticUpdate": false
       },
       "notes": []
@@ -1889,7 +2263,10 @@
       },
       "repositoryCall": {
         "method": "delete",
-        "arguments": ["validated.id", ""],
+        "arguments": [
+          "validated.id",
+          ""
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -1897,11 +2274,17 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"calendar\",\"calendar-event-series-exceptions\"]"],
+        "invalidateKeys": [
+          "[\"calendar\",\"calendar-event-series-exceptions\"]"
+        ],
         "optimisticUpdate": false
       },
       "notes": []
@@ -1928,7 +2311,10 @@
       },
       "repositoryCall": {
         "method": "findById",
-        "arguments": ["validated.id", ""],
+        "arguments": [
+          "validated.id",
+          ""
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -1936,8 +2322,12 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "notes": []
     },
@@ -1963,7 +2353,9 @@
       },
       "repositoryCall": {
         "method": "list",
-        "arguments": ["{}"],
+        "arguments": [
+          "{}"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -1971,8 +2363,12 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "notes": []
     },
@@ -1998,7 +2394,9 @@
       },
       "repositoryCall": {
         "method": "insert",
-        "arguments": ["validated"],
+        "arguments": [
+          "validated"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -2006,11 +2404,17 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"calendar\",\"calendar-events\"]"],
+        "invalidateKeys": [
+          "[\"calendar\",\"calendar-events\"]"
+        ],
         "optimisticUpdate": false
       },
       "notes": []
@@ -2037,7 +2441,10 @@
       },
       "repositoryCall": {
         "method": "update",
-        "arguments": ["validated.id", "validated.data"],
+        "arguments": [
+          "validated.id",
+          "validated.data"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -2045,11 +2452,17 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"calendar\",\"calendar-events\"]"],
+        "invalidateKeys": [
+          "[\"calendar\",\"calendar-events\"]"
+        ],
         "optimisticUpdate": false
       },
       "notes": []
@@ -2076,7 +2489,10 @@
       },
       "repositoryCall": {
         "method": "delete",
-        "arguments": ["validated.id", ""],
+        "arguments": [
+          "validated.id",
+          ""
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -2084,11 +2500,17 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"calendar\",\"calendar-events\"]"],
+        "invalidateKeys": [
+          "[\"calendar\",\"calendar-events\"]"
+        ],
         "optimisticUpdate": false
       },
       "notes": []
@@ -2115,7 +2537,10 @@
       },
       "repositoryCall": {
         "method": "findById",
-        "arguments": ["validated.id", ""],
+        "arguments": [
+          "validated.id",
+          ""
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -2123,8 +2548,12 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "notes": []
     },
@@ -2150,7 +2579,9 @@
       },
       "repositoryCall": {
         "method": "list",
-        "arguments": ["{}"],
+        "arguments": [
+          "{}"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -2158,8 +2589,12 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "notes": []
     },
@@ -2185,7 +2620,9 @@
       },
       "repositoryCall": {
         "method": "insert",
-        "arguments": ["validated"],
+        "arguments": [
+          "validated"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -2193,11 +2630,17 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"calendar\",\"calendar-holidays\"]"],
+        "invalidateKeys": [
+          "[\"calendar\",\"calendar-holidays\"]"
+        ],
         "optimisticUpdate": false
       },
       "notes": []
@@ -2224,7 +2667,10 @@
       },
       "repositoryCall": {
         "method": "update",
-        "arguments": ["validated.id", "validated.data"],
+        "arguments": [
+          "validated.id",
+          "validated.data"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -2232,11 +2678,17 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"calendar\",\"calendar-holidays\"]"],
+        "invalidateKeys": [
+          "[\"calendar\",\"calendar-holidays\"]"
+        ],
         "optimisticUpdate": false
       },
       "notes": []
@@ -2263,7 +2715,10 @@
       },
       "repositoryCall": {
         "method": "delete",
-        "arguments": ["validated.id", ""],
+        "arguments": [
+          "validated.id",
+          ""
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -2271,11 +2726,17 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"calendar\",\"calendar-holidays\"]"],
+        "invalidateKeys": [
+          "[\"calendar\",\"calendar-holidays\"]"
+        ],
         "optimisticUpdate": false
       },
       "notes": []
@@ -2302,7 +2763,10 @@
       },
       "repositoryCall": {
         "method": "findById",
-        "arguments": ["validated.id", ""],
+        "arguments": [
+          "validated.id",
+          ""
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -2310,8 +2774,12 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "notes": []
     },
@@ -2337,7 +2805,9 @@
       },
       "repositoryCall": {
         "method": "list",
-        "arguments": ["{}"],
+        "arguments": [
+          "{}"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -2345,8 +2815,12 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "notes": []
     },
@@ -2372,7 +2846,9 @@
       },
       "repositoryCall": {
         "method": "insert",
-        "arguments": ["validated"],
+        "arguments": [
+          "validated"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -2380,11 +2856,17 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"clinical-sessions\",\"clinical-session-details\"]"],
+        "invalidateKeys": [
+          "[\"clinical-sessions\",\"clinical-session-details\"]"
+        ],
         "optimisticUpdate": false
       },
       "notes": []
@@ -2411,7 +2893,10 @@
       },
       "repositoryCall": {
         "method": "update",
-        "arguments": ["validated.id", "validated.data"],
+        "arguments": [
+          "validated.id",
+          "validated.data"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -2419,11 +2904,17 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"clinical-sessions\",\"clinical-session-details\"]"],
+        "invalidateKeys": [
+          "[\"clinical-sessions\",\"clinical-session-details\"]"
+        ],
         "optimisticUpdate": false
       },
       "notes": []
@@ -2450,7 +2941,10 @@
       },
       "repositoryCall": {
         "method": "delete",
-        "arguments": ["validated.id", ""],
+        "arguments": [
+          "validated.id",
+          ""
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -2458,11 +2952,17 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"clinical-sessions\",\"clinical-session-details\"]"],
+        "invalidateKeys": [
+          "[\"clinical-sessions\",\"clinical-session-details\"]"
+        ],
         "optimisticUpdate": false
       },
       "notes": []
@@ -2489,7 +2989,10 @@
       },
       "repositoryCall": {
         "method": "findById",
-        "arguments": ["validated.id", ""],
+        "arguments": [
+          "validated.id",
+          ""
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -2497,8 +3000,12 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "notes": []
     },
@@ -2524,7 +3031,9 @@
       },
       "repositoryCall": {
         "method": "list",
-        "arguments": ["{}"],
+        "arguments": [
+          "{}"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -2532,8 +3041,12 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "notes": []
     },
@@ -2559,7 +3072,9 @@
       },
       "repositoryCall": {
         "method": "insert",
-        "arguments": ["validated"],
+        "arguments": [
+          "validated"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -2567,11 +3082,17 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"clinical-sessions\",\"psychologist-clinical-sessions\"]"],
+        "invalidateKeys": [
+          "[\"clinical-sessions\",\"psychologist-clinical-sessions\"]"
+        ],
         "optimisticUpdate": false
       },
       "notes": []
@@ -2598,7 +3119,10 @@
       },
       "repositoryCall": {
         "method": "update",
-        "arguments": ["validated.id", "validated.data"],
+        "arguments": [
+          "validated.id",
+          "validated.data"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -2606,11 +3130,17 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"clinical-sessions\",\"psychologist-clinical-sessions\"]"],
+        "invalidateKeys": [
+          "[\"clinical-sessions\",\"psychologist-clinical-sessions\"]"
+        ],
         "optimisticUpdate": false
       },
       "notes": []
@@ -2637,7 +3167,10 @@
       },
       "repositoryCall": {
         "method": "delete",
-        "arguments": ["validated.id", ""],
+        "arguments": [
+          "validated.id",
+          ""
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -2645,11 +3178,17 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"clinical-sessions\",\"psychologist-clinical-sessions\"]"],
+        "invalidateKeys": [
+          "[\"clinical-sessions\",\"psychologist-clinical-sessions\"]"
+        ],
         "optimisticUpdate": false
       },
       "notes": []
@@ -2676,7 +3215,10 @@
       },
       "repositoryCall": {
         "method": "findById",
-        "arguments": ["validated.id", ""],
+        "arguments": [
+          "validated.id",
+          ""
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -2684,8 +3226,12 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "notes": []
     },
@@ -2711,7 +3257,9 @@
       },
       "repositoryCall": {
         "method": "list",
-        "arguments": ["{}"],
+        "arguments": [
+          "{}"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -2719,8 +3267,12 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "notes": []
     },
@@ -2746,7 +3298,9 @@
       },
       "repositoryCall": {
         "method": "insert",
-        "arguments": ["validated"],
+        "arguments": [
+          "validated"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -2754,11 +3308,17 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"documents\",\"generated-documents\"]"],
+        "invalidateKeys": [
+          "[\"documents\",\"generated-documents\"]"
+        ],
         "optimisticUpdate": false
       },
       "notes": []
@@ -2785,7 +3345,10 @@
       },
       "repositoryCall": {
         "method": "update",
-        "arguments": ["validated.id", "validated.data"],
+        "arguments": [
+          "validated.id",
+          "validated.data"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -2793,11 +3356,17 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"documents\",\"generated-documents\"]"],
+        "invalidateKeys": [
+          "[\"documents\",\"generated-documents\"]"
+        ],
         "optimisticUpdate": false
       },
       "notes": []
@@ -2824,7 +3393,10 @@
       },
       "repositoryCall": {
         "method": "delete",
-        "arguments": ["validated.id", ""],
+        "arguments": [
+          "validated.id",
+          ""
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -2832,11 +3404,17 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"documents\",\"generated-documents\"]"],
+        "invalidateKeys": [
+          "[\"documents\",\"generated-documents\"]"
+        ],
         "optimisticUpdate": false
       },
       "notes": []
@@ -2863,7 +3441,10 @@
       },
       "repositoryCall": {
         "method": "findById",
-        "arguments": ["validated.id", ""],
+        "arguments": [
+          "validated.id",
+          ""
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -2871,8 +3452,12 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "notes": []
     },
@@ -2898,7 +3483,9 @@
       },
       "repositoryCall": {
         "method": "list",
-        "arguments": ["{}"],
+        "arguments": [
+          "{}"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -2906,8 +3493,12 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "notes": []
     },
@@ -2933,7 +3524,9 @@
       },
       "repositoryCall": {
         "method": "insert",
-        "arguments": ["validated"],
+        "arguments": [
+          "validated"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -2941,11 +3534,17 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"documents\",\"psychologist-patient-guardian-documents\"]"],
+        "invalidateKeys": [
+          "[\"documents\",\"psychologist-patient-guardian-documents\"]"
+        ],
         "optimisticUpdate": false
       },
       "notes": []
@@ -2972,7 +3571,10 @@
       },
       "repositoryCall": {
         "method": "update",
-        "arguments": ["validated.id", "validated.data"],
+        "arguments": [
+          "validated.id",
+          "validated.data"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -2980,11 +3582,17 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"documents\",\"psychologist-patient-guardian-documents\"]"],
+        "invalidateKeys": [
+          "[\"documents\",\"psychologist-patient-guardian-documents\"]"
+        ],
         "optimisticUpdate": false
       },
       "notes": []
@@ -3011,7 +3619,10 @@
       },
       "repositoryCall": {
         "method": "delete",
-        "arguments": ["validated.id", ""],
+        "arguments": [
+          "validated.id",
+          ""
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -3019,11 +3630,17 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"documents\",\"psychologist-patient-guardian-documents\"]"],
+        "invalidateKeys": [
+          "[\"documents\",\"psychologist-patient-guardian-documents\"]"
+        ],
         "optimisticUpdate": false
       },
       "notes": []
@@ -3050,7 +3667,10 @@
       },
       "repositoryCall": {
         "method": "findById",
-        "arguments": ["validated.id", ""],
+        "arguments": [
+          "validated.id",
+          ""
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -3058,8 +3678,12 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "notes": []
     },
@@ -3085,7 +3709,9 @@
       },
       "repositoryCall": {
         "method": "list",
-        "arguments": ["{}"],
+        "arguments": [
+          "{}"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -3093,8 +3719,12 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "notes": []
     },
@@ -3120,7 +3750,9 @@
       },
       "repositoryCall": {
         "method": "insert",
-        "arguments": ["validated"],
+        "arguments": [
+          "validated"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -3128,11 +3760,17 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"financial\",\"psychologist-financial-entries\"]"],
+        "invalidateKeys": [
+          "[\"financial\",\"psychologist-financial-entries\"]"
+        ],
         "optimisticUpdate": false
       },
       "notes": []
@@ -3159,7 +3797,10 @@
       },
       "repositoryCall": {
         "method": "update",
-        "arguments": ["validated.id", "validated.data"],
+        "arguments": [
+          "validated.id",
+          "validated.data"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -3167,11 +3808,17 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"financial\",\"psychologist-financial-entries\"]"],
+        "invalidateKeys": [
+          "[\"financial\",\"psychologist-financial-entries\"]"
+        ],
         "optimisticUpdate": false
       },
       "notes": []
@@ -3198,7 +3845,10 @@
       },
       "repositoryCall": {
         "method": "delete",
-        "arguments": ["validated.id", ""],
+        "arguments": [
+          "validated.id",
+          ""
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -3206,11 +3856,17 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"financial\",\"psychologist-financial-entries\"]"],
+        "invalidateKeys": [
+          "[\"financial\",\"psychologist-financial-entries\"]"
+        ],
         "optimisticUpdate": false
       },
       "notes": []
@@ -3237,7 +3893,10 @@
       },
       "repositoryCall": {
         "method": "findById",
-        "arguments": ["validated.id", ""],
+        "arguments": [
+          "validated.id",
+          ""
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -3245,8 +3904,12 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "notes": []
     },
@@ -3272,7 +3935,9 @@
       },
       "repositoryCall": {
         "method": "list",
-        "arguments": ["{}"],
+        "arguments": [
+          "{}"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -3280,8 +3945,12 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "notes": []
     },
@@ -3307,7 +3976,9 @@
       },
       "repositoryCall": {
         "method": "insert",
-        "arguments": ["validated"],
+        "arguments": [
+          "validated"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -3315,11 +3986,17 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"financial\",\"psychologist-invoices\"]"],
+        "invalidateKeys": [
+          "[\"financial\",\"psychologist-invoices\"]"
+        ],
         "optimisticUpdate": false
       },
       "notes": []
@@ -3346,7 +4023,10 @@
       },
       "repositoryCall": {
         "method": "update",
-        "arguments": ["validated.id", "validated.data"],
+        "arguments": [
+          "validated.id",
+          "validated.data"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -3354,11 +4034,17 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"financial\",\"psychologist-invoices\"]"],
+        "invalidateKeys": [
+          "[\"financial\",\"psychologist-invoices\"]"
+        ],
         "optimisticUpdate": false
       },
       "notes": []
@@ -3385,7 +4071,10 @@
       },
       "repositoryCall": {
         "method": "delete",
-        "arguments": ["validated.id", ""],
+        "arguments": [
+          "validated.id",
+          ""
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -3393,11 +4082,17 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"financial\",\"psychologist-invoices\"]"],
+        "invalidateKeys": [
+          "[\"financial\",\"psychologist-invoices\"]"
+        ],
         "optimisticUpdate": false
       },
       "notes": []
@@ -3424,7 +4119,10 @@
       },
       "repositoryCall": {
         "method": "findById",
-        "arguments": ["validated.id", ""],
+        "arguments": [
+          "validated.id",
+          ""
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -3432,8 +4130,12 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "notes": []
     },
@@ -3459,7 +4161,9 @@
       },
       "repositoryCall": {
         "method": "list",
-        "arguments": ["{}"],
+        "arguments": [
+          "{}"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -3467,8 +4171,12 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "notes": []
     },
@@ -3494,7 +4202,9 @@
       },
       "repositoryCall": {
         "method": "insert",
-        "arguments": ["validated"],
+        "arguments": [
+          "validated"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -3502,11 +4212,17 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"financial\",\"psychologist-patient-charges\"]"],
+        "invalidateKeys": [
+          "[\"financial\",\"psychologist-patient-charges\"]"
+        ],
         "optimisticUpdate": false
       },
       "notes": []
@@ -3533,7 +4249,10 @@
       },
       "repositoryCall": {
         "method": "update",
-        "arguments": ["validated.id", "validated.data"],
+        "arguments": [
+          "validated.id",
+          "validated.data"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -3541,11 +4260,17 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"financial\",\"psychologist-patient-charges\"]"],
+        "invalidateKeys": [
+          "[\"financial\",\"psychologist-patient-charges\"]"
+        ],
         "optimisticUpdate": false
       },
       "notes": []
@@ -3572,7 +4297,10 @@
       },
       "repositoryCall": {
         "method": "delete",
-        "arguments": ["validated.id", ""],
+        "arguments": [
+          "validated.id",
+          ""
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -3580,11 +4308,17 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"financial\",\"psychologist-patient-charges\"]"],
+        "invalidateKeys": [
+          "[\"financial\",\"psychologist-patient-charges\"]"
+        ],
         "optimisticUpdate": false
       },
       "notes": []
@@ -3611,7 +4345,10 @@
       },
       "repositoryCall": {
         "method": "findById",
-        "arguments": ["validated.id", ""],
+        "arguments": [
+          "validated.id",
+          ""
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -3619,8 +4356,12 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "notes": []
     },
@@ -3646,7 +4387,9 @@
       },
       "repositoryCall": {
         "method": "list",
-        "arguments": ["{}"],
+        "arguments": [
+          "{}"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -3654,8 +4397,12 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "notes": []
     },
@@ -3681,7 +4428,9 @@
       },
       "repositoryCall": {
         "method": "insert",
-        "arguments": ["validated"],
+        "arguments": [
+          "validated"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -3689,11 +4438,17 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"google-sync\",\"google-calendar-connections\"]"],
+        "invalidateKeys": [
+          "[\"google-sync\",\"google-calendar-connections\"]"
+        ],
         "optimisticUpdate": false
       },
       "notes": []
@@ -3720,7 +4475,10 @@
       },
       "repositoryCall": {
         "method": "update",
-        "arguments": ["validated.id", "validated.data"],
+        "arguments": [
+          "validated.id",
+          "validated.data"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -3728,11 +4486,17 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"google-sync\",\"google-calendar-connections\"]"],
+        "invalidateKeys": [
+          "[\"google-sync\",\"google-calendar-connections\"]"
+        ],
         "optimisticUpdate": false
       },
       "notes": []
@@ -3759,7 +4523,10 @@
       },
       "repositoryCall": {
         "method": "delete",
-        "arguments": ["validated.id", ""],
+        "arguments": [
+          "validated.id",
+          ""
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -3767,11 +4534,17 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"google-sync\",\"google-calendar-connections\"]"],
+        "invalidateKeys": [
+          "[\"google-sync\",\"google-calendar-connections\"]"
+        ],
         "optimisticUpdate": false
       },
       "notes": []
@@ -3798,7 +4571,9 @@
       },
       "repositoryCall": {
         "method": "list",
-        "arguments": ["{}"],
+        "arguments": [
+          "{}"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -3806,8 +4581,12 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "notes": []
     },
@@ -3833,7 +4612,9 @@
       },
       "repositoryCall": {
         "method": "insert",
-        "arguments": ["validated"],
+        "arguments": [
+          "validated"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -3841,11 +4622,17 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"google-sync\",\"google-sync-idempotency\"]"],
+        "invalidateKeys": [
+          "[\"google-sync\",\"google-sync-idempotency\"]"
+        ],
         "optimisticUpdate": false
       },
       "notes": []
@@ -3872,7 +4659,10 @@
       },
       "repositoryCall": {
         "method": "update",
-        "arguments": ["validated.id", "validated.data"],
+        "arguments": [
+          "validated.id",
+          "validated.data"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -3880,11 +4670,17 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"google-sync\",\"google-sync-idempotency\"]"],
+        "invalidateKeys": [
+          "[\"google-sync\",\"google-sync-idempotency\"]"
+        ],
         "optimisticUpdate": false
       },
       "notes": []
@@ -3911,7 +4707,10 @@
       },
       "repositoryCall": {
         "method": "delete",
-        "arguments": ["validated.id", ""],
+        "arguments": [
+          "validated.id",
+          ""
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -3919,11 +4718,17 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"google-sync\",\"google-sync-idempotency\"]"],
+        "invalidateKeys": [
+          "[\"google-sync\",\"google-sync-idempotency\"]"
+        ],
         "optimisticUpdate": false
       },
       "notes": []
@@ -3950,7 +4755,9 @@
       },
       "repositoryCall": {
         "method": "list",
-        "arguments": ["{}"],
+        "arguments": [
+          "{}"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -3958,8 +4765,12 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "notes": []
     },
@@ -3985,7 +4796,9 @@
       },
       "repositoryCall": {
         "method": "insert",
-        "arguments": ["validated"],
+        "arguments": [
+          "validated"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -3993,11 +4806,17 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"google-sync\",\"google-sync-inbound-coalesce\"]"],
+        "invalidateKeys": [
+          "[\"google-sync\",\"google-sync-inbound-coalesce\"]"
+        ],
         "optimisticUpdate": false
       },
       "notes": []
@@ -4024,7 +4843,10 @@
       },
       "repositoryCall": {
         "method": "update",
-        "arguments": ["validated.id", "validated.data"],
+        "arguments": [
+          "validated.id",
+          "validated.data"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -4032,11 +4854,17 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"google-sync\",\"google-sync-inbound-coalesce\"]"],
+        "invalidateKeys": [
+          "[\"google-sync\",\"google-sync-inbound-coalesce\"]"
+        ],
         "optimisticUpdate": false
       },
       "notes": []
@@ -4063,7 +4891,10 @@
       },
       "repositoryCall": {
         "method": "delete",
-        "arguments": ["validated.id", ""],
+        "arguments": [
+          "validated.id",
+          ""
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -4071,11 +4902,17 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"google-sync\",\"google-sync-inbound-coalesce\"]"],
+        "invalidateKeys": [
+          "[\"google-sync\",\"google-sync-inbound-coalesce\"]"
+        ],
         "optimisticUpdate": false
       },
       "notes": []
@@ -4102,7 +4939,9 @@
       },
       "repositoryCall": {
         "method": "list",
-        "arguments": ["{}"],
+        "arguments": [
+          "{}"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -4110,8 +4949,12 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "notes": []
     },
@@ -4137,7 +4980,9 @@
       },
       "repositoryCall": {
         "method": "insert",
-        "arguments": ["validated"],
+        "arguments": [
+          "validated"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -4145,11 +4990,17 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"google-sync\",\"google-sync-job-dedup\"]"],
+        "invalidateKeys": [
+          "[\"google-sync\",\"google-sync-job-dedup\"]"
+        ],
         "optimisticUpdate": false
       },
       "notes": []
@@ -4176,7 +5027,10 @@
       },
       "repositoryCall": {
         "method": "update",
-        "arguments": ["validated.id", "validated.data"],
+        "arguments": [
+          "validated.id",
+          "validated.data"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -4184,11 +5038,17 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"google-sync\",\"google-sync-job-dedup\"]"],
+        "invalidateKeys": [
+          "[\"google-sync\",\"google-sync-job-dedup\"]"
+        ],
         "optimisticUpdate": false
       },
       "notes": []
@@ -4215,7 +5075,10 @@
       },
       "repositoryCall": {
         "method": "delete",
-        "arguments": ["validated.id", ""],
+        "arguments": [
+          "validated.id",
+          ""
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -4223,11 +5086,17 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"google-sync\",\"google-sync-job-dedup\"]"],
+        "invalidateKeys": [
+          "[\"google-sync\",\"google-sync-job-dedup\"]"
+        ],
         "optimisticUpdate": false
       },
       "notes": []
@@ -4254,7 +5123,10 @@
       },
       "repositoryCall": {
         "method": "findById",
-        "arguments": ["validated.id", ""],
+        "arguments": [
+          "validated.id",
+          ""
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -4262,8 +5134,12 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "notes": []
     },
@@ -4289,7 +5165,9 @@
       },
       "repositoryCall": {
         "method": "list",
-        "arguments": ["{}"],
+        "arguments": [
+          "{}"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -4297,8 +5175,12 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "notes": []
     },
@@ -4324,7 +5206,9 @@
       },
       "repositoryCall": {
         "method": "insert",
-        "arguments": ["validated"],
+        "arguments": [
+          "validated"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -4332,11 +5216,17 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"google-sync\",\"google-sync-logs\"]"],
+        "invalidateKeys": [
+          "[\"google-sync\",\"google-sync-logs\"]"
+        ],
         "optimisticUpdate": false
       },
       "notes": []
@@ -4363,7 +5253,10 @@
       },
       "repositoryCall": {
         "method": "update",
-        "arguments": ["validated.id", "validated.data"],
+        "arguments": [
+          "validated.id",
+          "validated.data"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -4371,11 +5264,17 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"google-sync\",\"google-sync-logs\"]"],
+        "invalidateKeys": [
+          "[\"google-sync\",\"google-sync-logs\"]"
+        ],
         "optimisticUpdate": false
       },
       "notes": []
@@ -4402,7 +5301,10 @@
       },
       "repositoryCall": {
         "method": "delete",
-        "arguments": ["validated.id", ""],
+        "arguments": [
+          "validated.id",
+          ""
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -4410,11 +5312,17 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"google-sync\",\"google-sync-logs\"]"],
+        "invalidateKeys": [
+          "[\"google-sync\",\"google-sync-logs\"]"
+        ],
         "optimisticUpdate": false
       },
       "notes": []
@@ -4441,7 +5349,10 @@
       },
       "repositoryCall": {
         "method": "findById",
-        "arguments": ["validated.id", ""],
+        "arguments": [
+          "validated.id",
+          ""
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -4449,8 +5360,12 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "notes": []
     },
@@ -4476,7 +5391,9 @@
       },
       "repositoryCall": {
         "method": "list",
-        "arguments": ["{}"],
+        "arguments": [
+          "{}"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -4484,8 +5401,12 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "notes": []
     },
@@ -4511,7 +5432,9 @@
       },
       "repositoryCall": {
         "method": "insert",
-        "arguments": ["validated"],
+        "arguments": [
+          "validated"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -4519,11 +5442,17 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"google-sync\",\"google-sync-worker-metrics\"]"],
+        "invalidateKeys": [
+          "[\"google-sync\",\"google-sync-worker-metrics\"]"
+        ],
         "optimisticUpdate": false
       },
       "notes": []
@@ -4550,7 +5479,10 @@
       },
       "repositoryCall": {
         "method": "update",
-        "arguments": ["validated.id", "validated.data"],
+        "arguments": [
+          "validated.id",
+          "validated.data"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -4558,11 +5490,17 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"google-sync\",\"google-sync-worker-metrics\"]"],
+        "invalidateKeys": [
+          "[\"google-sync\",\"google-sync-worker-metrics\"]"
+        ],
         "optimisticUpdate": false
       },
       "notes": []
@@ -4589,7 +5527,10 @@
       },
       "repositoryCall": {
         "method": "delete",
-        "arguments": ["validated.id", ""],
+        "arguments": [
+          "validated.id",
+          ""
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -4597,11 +5538,17 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"google-sync\",\"google-sync-worker-metrics\"]"],
+        "invalidateKeys": [
+          "[\"google-sync\",\"google-sync-worker-metrics\"]"
+        ],
         "optimisticUpdate": false
       },
       "notes": []
@@ -4628,7 +5575,10 @@
       },
       "repositoryCall": {
         "method": "findById",
-        "arguments": ["validated.id", ""],
+        "arguments": [
+          "validated.id",
+          ""
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -4636,8 +5586,12 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "notes": []
     },
@@ -4663,7 +5617,9 @@
       },
       "repositoryCall": {
         "method": "list",
-        "arguments": ["{}"],
+        "arguments": [
+          "{}"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -4671,8 +5627,12 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "notes": []
     },
@@ -4698,7 +5658,9 @@
       },
       "repositoryCall": {
         "method": "insert",
-        "arguments": ["validated"],
+        "arguments": [
+          "validated"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -4706,11 +5668,17 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"notes\",\"psychologist-notes\"]"],
+        "invalidateKeys": [
+          "[\"notes\",\"psychologist-notes\"]"
+        ],
         "optimisticUpdate": false
       },
       "notes": []
@@ -4737,7 +5705,10 @@
       },
       "repositoryCall": {
         "method": "update",
-        "arguments": ["validated.id", "validated.data"],
+        "arguments": [
+          "validated.id",
+          "validated.data"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -4745,11 +5716,17 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"notes\",\"psychologist-notes\"]"],
+        "invalidateKeys": [
+          "[\"notes\",\"psychologist-notes\"]"
+        ],
         "optimisticUpdate": false
       },
       "notes": []
@@ -4776,7 +5753,10 @@
       },
       "repositoryCall": {
         "method": "delete",
-        "arguments": ["validated.id", ""],
+        "arguments": [
+          "validated.id",
+          ""
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -4784,11 +5764,17 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"notes\",\"psychologist-notes\"]"],
+        "invalidateKeys": [
+          "[\"notes\",\"psychologist-notes\"]"
+        ],
         "optimisticUpdate": false
       },
       "notes": []
@@ -4815,7 +5801,10 @@
       },
       "repositoryCall": {
         "method": "findById",
-        "arguments": ["validated.id", ""],
+        "arguments": [
+          "validated.id",
+          ""
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -4823,8 +5812,12 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "notes": []
     },
@@ -4850,7 +5843,9 @@
       },
       "repositoryCall": {
         "method": "list",
-        "arguments": ["{}"],
+        "arguments": [
+          "{}"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -4858,8 +5853,12 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "notes": []
     },
@@ -4885,7 +5884,9 @@
       },
       "repositoryCall": {
         "method": "insert",
-        "arguments": ["validated"],
+        "arguments": [
+          "validated"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -4893,11 +5894,17 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"notes\",\"psychologist-quick-notes\"]"],
+        "invalidateKeys": [
+          "[\"notes\",\"psychologist-quick-notes\"]"
+        ],
         "optimisticUpdate": false
       },
       "notes": []
@@ -4924,7 +5931,10 @@
       },
       "repositoryCall": {
         "method": "update",
-        "arguments": ["validated.id", "validated.data"],
+        "arguments": [
+          "validated.id",
+          "validated.data"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -4932,11 +5942,17 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"notes\",\"psychologist-quick-notes\"]"],
+        "invalidateKeys": [
+          "[\"notes\",\"psychologist-quick-notes\"]"
+        ],
         "optimisticUpdate": false
       },
       "notes": []
@@ -4963,7 +5979,10 @@
       },
       "repositoryCall": {
         "method": "delete",
-        "arguments": ["validated.id", ""],
+        "arguments": [
+          "validated.id",
+          ""
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -4971,11 +5990,17 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"notes\",\"psychologist-quick-notes\"]"],
+        "invalidateKeys": [
+          "[\"notes\",\"psychologist-quick-notes\"]"
+        ],
         "optimisticUpdate": false
       },
       "notes": []
@@ -5002,7 +6027,9 @@
       },
       "repositoryCall": {
         "method": "list",
-        "arguments": ["{}"],
+        "arguments": [
+          "{}"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -5010,8 +6037,12 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "notes": []
     },
@@ -5037,7 +6068,9 @@
       },
       "repositoryCall": {
         "method": "insert",
-        "arguments": ["validated"],
+        "arguments": [
+          "validated"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -5045,11 +6078,17 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"onboarding\",\"psychologist-onboarding-state\"]"],
+        "invalidateKeys": [
+          "[\"onboarding\",\"psychologist-onboarding-state\"]"
+        ],
         "optimisticUpdate": false
       },
       "notes": []
@@ -5076,7 +6115,10 @@
       },
       "repositoryCall": {
         "method": "update",
-        "arguments": ["validated.id", "validated.data"],
+        "arguments": [
+          "validated.id",
+          "validated.data"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -5084,11 +6126,17 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"onboarding\",\"psychologist-onboarding-state\"]"],
+        "invalidateKeys": [
+          "[\"onboarding\",\"psychologist-onboarding-state\"]"
+        ],
         "optimisticUpdate": false
       },
       "notes": []
@@ -5115,7 +6163,10 @@
       },
       "repositoryCall": {
         "method": "delete",
-        "arguments": ["validated.id", ""],
+        "arguments": [
+          "validated.id",
+          ""
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -5123,11 +6174,17 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"onboarding\",\"psychologist-onboarding-state\"]"],
+        "invalidateKeys": [
+          "[\"onboarding\",\"psychologist-onboarding-state\"]"
+        ],
         "optimisticUpdate": false
       },
       "notes": []
@@ -5154,7 +6211,10 @@
       },
       "repositoryCall": {
         "method": "findById",
-        "arguments": ["validated.id", ""],
+        "arguments": [
+          "validated.id",
+          ""
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -5162,8 +6222,12 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "notes": []
     },
@@ -5189,7 +6253,9 @@
       },
       "repositoryCall": {
         "method": "list",
-        "arguments": ["{}"],
+        "arguments": [
+          "{}"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -5197,8 +6263,12 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "notes": []
     },
@@ -5224,7 +6294,9 @@
       },
       "repositoryCall": {
         "method": "insert",
-        "arguments": ["validated"],
+        "arguments": [
+          "validated"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -5232,11 +6304,17 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"patients\",\"psychologist-patient-activities\"]"],
+        "invalidateKeys": [
+          "[\"patients\",\"psychologist-patient-activities\"]"
+        ],
         "optimisticUpdate": false
       },
       "notes": []
@@ -5263,7 +6341,10 @@
       },
       "repositoryCall": {
         "method": "update",
-        "arguments": ["validated.id", "validated.data"],
+        "arguments": [
+          "validated.id",
+          "validated.data"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -5271,11 +6352,17 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"patients\",\"psychologist-patient-activities\"]"],
+        "invalidateKeys": [
+          "[\"patients\",\"psychologist-patient-activities\"]"
+        ],
         "optimisticUpdate": false
       },
       "notes": []
@@ -5302,7 +6389,10 @@
       },
       "repositoryCall": {
         "method": "delete",
-        "arguments": ["validated.id", ""],
+        "arguments": [
+          "validated.id",
+          ""
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -5310,11 +6400,17 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"patients\",\"psychologist-patient-activities\"]"],
+        "invalidateKeys": [
+          "[\"patients\",\"psychologist-patient-activities\"]"
+        ],
         "optimisticUpdate": false
       },
       "notes": []
@@ -5341,7 +6437,10 @@
       },
       "repositoryCall": {
         "method": "findById",
-        "arguments": ["validated.id", ""],
+        "arguments": [
+          "validated.id",
+          ""
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -5349,8 +6448,12 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "notes": []
     },
@@ -5376,7 +6479,9 @@
       },
       "repositoryCall": {
         "method": "list",
-        "arguments": ["{}"],
+        "arguments": [
+          "{}"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -5384,8 +6489,12 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "notes": []
     },
@@ -5411,7 +6520,9 @@
       },
       "repositoryCall": {
         "method": "insert",
-        "arguments": ["validated"],
+        "arguments": [
+          "validated"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -5419,11 +6530,17 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"patients\",\"psychologist-patient-assessments\"]"],
+        "invalidateKeys": [
+          "[\"patients\",\"psychologist-patient-assessments\"]"
+        ],
         "optimisticUpdate": false
       },
       "notes": []
@@ -5450,7 +6567,10 @@
       },
       "repositoryCall": {
         "method": "update",
-        "arguments": ["validated.id", "validated.data"],
+        "arguments": [
+          "validated.id",
+          "validated.data"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -5458,11 +6578,17 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"patients\",\"psychologist-patient-assessments\"]"],
+        "invalidateKeys": [
+          "[\"patients\",\"psychologist-patient-assessments\"]"
+        ],
         "optimisticUpdate": false
       },
       "notes": []
@@ -5489,7 +6615,10 @@
       },
       "repositoryCall": {
         "method": "delete",
-        "arguments": ["validated.id", ""],
+        "arguments": [
+          "validated.id",
+          ""
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -5497,11 +6626,17 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"patients\",\"psychologist-patient-assessments\"]"],
+        "invalidateKeys": [
+          "[\"patients\",\"psychologist-patient-assessments\"]"
+        ],
         "optimisticUpdate": false
       },
       "notes": []
@@ -5528,7 +6663,10 @@
       },
       "repositoryCall": {
         "method": "findById",
-        "arguments": ["validated.id", ""],
+        "arguments": [
+          "validated.id",
+          ""
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -5536,8 +6674,12 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "notes": []
     },
@@ -5563,7 +6705,9 @@
       },
       "repositoryCall": {
         "method": "list",
-        "arguments": ["{}"],
+        "arguments": [
+          "{}"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -5571,8 +6715,12 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "notes": []
     },
@@ -5598,7 +6746,9 @@
       },
       "repositoryCall": {
         "method": "insert",
-        "arguments": ["validated"],
+        "arguments": [
+          "validated"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -5606,11 +6756,17 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"patients\",\"psychologist-patient-emergency-contacts\"]"],
+        "invalidateKeys": [
+          "[\"patients\",\"psychologist-patient-emergency-contacts\"]"
+        ],
         "optimisticUpdate": false
       },
       "notes": []
@@ -5637,7 +6793,10 @@
       },
       "repositoryCall": {
         "method": "update",
-        "arguments": ["validated.id", "validated.data"],
+        "arguments": [
+          "validated.id",
+          "validated.data"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -5645,11 +6804,17 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"patients\",\"psychologist-patient-emergency-contacts\"]"],
+        "invalidateKeys": [
+          "[\"patients\",\"psychologist-patient-emergency-contacts\"]"
+        ],
         "optimisticUpdate": false
       },
       "notes": []
@@ -5676,7 +6841,10 @@
       },
       "repositoryCall": {
         "method": "delete",
-        "arguments": ["validated.id", ""],
+        "arguments": [
+          "validated.id",
+          ""
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -5684,11 +6852,17 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"patients\",\"psychologist-patient-emergency-contacts\"]"],
+        "invalidateKeys": [
+          "[\"patients\",\"psychologist-patient-emergency-contacts\"]"
+        ],
         "optimisticUpdate": false
       },
       "notes": []
@@ -5715,7 +6889,10 @@
       },
       "repositoryCall": {
         "method": "findById",
-        "arguments": ["validated.id", ""],
+        "arguments": [
+          "validated.id",
+          ""
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -5723,8 +6900,12 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "notes": []
     },
@@ -5750,7 +6931,9 @@
       },
       "repositoryCall": {
         "method": "list",
-        "arguments": ["{}"],
+        "arguments": [
+          "{}"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -5758,8 +6941,12 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "notes": []
     },
@@ -5785,7 +6972,9 @@
       },
       "repositoryCall": {
         "method": "insert",
-        "arguments": ["validated"],
+        "arguments": [
+          "validated"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -5793,11 +6982,17 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"patients\",\"psychologist-patient-guardians\"]"],
+        "invalidateKeys": [
+          "[\"patients\",\"psychologist-patient-guardians\"]"
+        ],
         "optimisticUpdate": false
       },
       "notes": []
@@ -5824,7 +7019,10 @@
       },
       "repositoryCall": {
         "method": "update",
-        "arguments": ["validated.id", "validated.data"],
+        "arguments": [
+          "validated.id",
+          "validated.data"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -5832,11 +7030,17 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"patients\",\"psychologist-patient-guardians\"]"],
+        "invalidateKeys": [
+          "[\"patients\",\"psychologist-patient-guardians\"]"
+        ],
         "optimisticUpdate": false
       },
       "notes": []
@@ -5863,7 +7067,10 @@
       },
       "repositoryCall": {
         "method": "delete",
-        "arguments": ["validated.id", ""],
+        "arguments": [
+          "validated.id",
+          ""
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -5871,11 +7078,17 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"patients\",\"psychologist-patient-guardians\"]"],
+        "invalidateKeys": [
+          "[\"patients\",\"psychologist-patient-guardians\"]"
+        ],
         "optimisticUpdate": false
       },
       "notes": []
@@ -5902,7 +7115,10 @@
       },
       "repositoryCall": {
         "method": "findById",
-        "arguments": ["validated.id", ""],
+        "arguments": [
+          "validated.id",
+          ""
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -5910,8 +7126,12 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "notes": []
     },
@@ -5937,7 +7157,9 @@
       },
       "repositoryCall": {
         "method": "list",
-        "arguments": ["{}"],
+        "arguments": [
+          "{}"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -5945,8 +7167,12 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "notes": []
     },
@@ -5972,7 +7198,9 @@
       },
       "repositoryCall": {
         "method": "insert",
-        "arguments": ["validated"],
+        "arguments": [
+          "validated"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -5980,11 +7208,17 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"patients\",\"psychologist-patient-medical-items\"]"],
+        "invalidateKeys": [
+          "[\"patients\",\"psychologist-patient-medical-items\"]"
+        ],
         "optimisticUpdate": false
       },
       "notes": []
@@ -6011,7 +7245,10 @@
       },
       "repositoryCall": {
         "method": "update",
-        "arguments": ["validated.id", "validated.data"],
+        "arguments": [
+          "validated.id",
+          "validated.data"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -6019,11 +7256,17 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"patients\",\"psychologist-patient-medical-items\"]"],
+        "invalidateKeys": [
+          "[\"patients\",\"psychologist-patient-medical-items\"]"
+        ],
         "optimisticUpdate": false
       },
       "notes": []
@@ -6050,7 +7293,10 @@
       },
       "repositoryCall": {
         "method": "delete",
-        "arguments": ["validated.id", ""],
+        "arguments": [
+          "validated.id",
+          ""
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -6058,11 +7304,17 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"patients\",\"psychologist-patient-medical-items\"]"],
+        "invalidateKeys": [
+          "[\"patients\",\"psychologist-patient-medical-items\"]"
+        ],
         "optimisticUpdate": false
       },
       "notes": []
@@ -6089,7 +7341,10 @@
       },
       "repositoryCall": {
         "method": "findById",
-        "arguments": ["validated.id", ""],
+        "arguments": [
+          "validated.id",
+          ""
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -6097,8 +7352,12 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "notes": []
     },
@@ -6124,7 +7383,9 @@
       },
       "repositoryCall": {
         "method": "list",
-        "arguments": ["{}"],
+        "arguments": [
+          "{}"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -6132,8 +7393,12 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "notes": []
     },
@@ -6159,7 +7424,9 @@
       },
       "repositoryCall": {
         "method": "insert",
-        "arguments": ["validated"],
+        "arguments": [
+          "validated"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -6167,11 +7434,17 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"patients\",\"psychologist-patient-services\"]"],
+        "invalidateKeys": [
+          "[\"patients\",\"psychologist-patient-services\"]"
+        ],
         "optimisticUpdate": false
       },
       "notes": []
@@ -6198,7 +7471,10 @@
       },
       "repositoryCall": {
         "method": "update",
-        "arguments": ["validated.id", "validated.data"],
+        "arguments": [
+          "validated.id",
+          "validated.data"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -6206,11 +7482,17 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"patients\",\"psychologist-patient-services\"]"],
+        "invalidateKeys": [
+          "[\"patients\",\"psychologist-patient-services\"]"
+        ],
         "optimisticUpdate": false
       },
       "notes": []
@@ -6237,7 +7519,10 @@
       },
       "repositoryCall": {
         "method": "delete",
-        "arguments": ["validated.id", ""],
+        "arguments": [
+          "validated.id",
+          ""
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -6245,11 +7530,17 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"patients\",\"psychologist-patient-services\"]"],
+        "invalidateKeys": [
+          "[\"patients\",\"psychologist-patient-services\"]"
+        ],
         "optimisticUpdate": false
       },
       "notes": []
@@ -6276,7 +7567,10 @@
       },
       "repositoryCall": {
         "method": "findById",
-        "arguments": ["validated.id", ""],
+        "arguments": [
+          "validated.id",
+          ""
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -6284,8 +7578,12 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "notes": []
     },
@@ -6311,7 +7609,9 @@
       },
       "repositoryCall": {
         "method": "list",
-        "arguments": ["{}"],
+        "arguments": [
+          "{}"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -6319,8 +7619,12 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "notes": []
     },
@@ -6346,7 +7650,9 @@
       },
       "repositoryCall": {
         "method": "insert",
-        "arguments": ["validated"],
+        "arguments": [
+          "validated"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -6354,11 +7660,17 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"patients\",\"psychologist-patients\"]"],
+        "invalidateKeys": [
+          "[\"patients\",\"psychologist-patients\"]"
+        ],
         "optimisticUpdate": false
       },
       "notes": []
@@ -6385,7 +7697,10 @@
       },
       "repositoryCall": {
         "method": "update",
-        "arguments": ["validated.id", "validated.data"],
+        "arguments": [
+          "validated.id",
+          "validated.data"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -6393,11 +7708,17 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"patients\",\"psychologist-patients\"]"],
+        "invalidateKeys": [
+          "[\"patients\",\"psychologist-patients\"]"
+        ],
         "optimisticUpdate": false
       },
       "notes": []
@@ -6424,7 +7745,10 @@
       },
       "repositoryCall": {
         "method": "delete",
-        "arguments": ["validated.id", ""],
+        "arguments": [
+          "validated.id",
+          ""
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -6432,11 +7756,17 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"patients\",\"psychologist-patients\"]"],
+        "invalidateKeys": [
+          "[\"patients\",\"psychologist-patients\"]"
+        ],
         "optimisticUpdate": false
       },
       "notes": []
@@ -6463,7 +7793,10 @@
       },
       "repositoryCall": {
         "method": "findById",
-        "arguments": ["validated.id", ""],
+        "arguments": [
+          "validated.id",
+          ""
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -6471,8 +7804,12 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "notes": []
     },
@@ -6498,7 +7835,9 @@
       },
       "repositoryCall": {
         "method": "list",
-        "arguments": ["{}"],
+        "arguments": [
+          "{}"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -6506,8 +7845,12 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "notes": []
     },
@@ -6533,7 +7876,9 @@
       },
       "repositoryCall": {
         "method": "insert",
-        "arguments": ["validated"],
+        "arguments": [
+          "validated"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -6541,11 +7886,17 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"preferences\",\"psychologist-preferences\"]"],
+        "invalidateKeys": [
+          "[\"preferences\",\"psychologist-preferences\"]"
+        ],
         "optimisticUpdate": false
       },
       "notes": []
@@ -6572,7 +7923,10 @@
       },
       "repositoryCall": {
         "method": "update",
-        "arguments": ["validated.id", "validated.data"],
+        "arguments": [
+          "validated.id",
+          "validated.data"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -6580,11 +7934,17 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"preferences\",\"psychologist-preferences\"]"],
+        "invalidateKeys": [
+          "[\"preferences\",\"psychologist-preferences\"]"
+        ],
         "optimisticUpdate": false
       },
       "notes": []
@@ -6611,7 +7971,10 @@
       },
       "repositoryCall": {
         "method": "delete",
-        "arguments": ["validated.id", ""],
+        "arguments": [
+          "validated.id",
+          ""
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -6619,11 +7982,17 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"preferences\",\"psychologist-preferences\"]"],
+        "invalidateKeys": [
+          "[\"preferences\",\"psychologist-preferences\"]"
+        ],
         "optimisticUpdate": false
       },
       "notes": []
@@ -6650,7 +8019,10 @@
       },
       "repositoryCall": {
         "method": "findById",
-        "arguments": ["validated.id", ""],
+        "arguments": [
+          "validated.id",
+          ""
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -6658,8 +8030,12 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "notes": []
     },
@@ -6685,7 +8061,9 @@
       },
       "repositoryCall": {
         "method": "list",
-        "arguments": ["{}"],
+        "arguments": [
+          "{}"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -6693,8 +8071,12 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "notes": []
     },
@@ -6720,7 +8102,9 @@
       },
       "repositoryCall": {
         "method": "insert",
-        "arguments": ["validated"],
+        "arguments": [
+          "validated"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -6728,11 +8112,17 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"preferences\",\"psychologist-services\"]"],
+        "invalidateKeys": [
+          "[\"preferences\",\"psychologist-services\"]"
+        ],
         "optimisticUpdate": false
       },
       "notes": []
@@ -6759,7 +8149,10 @@
       },
       "repositoryCall": {
         "method": "update",
-        "arguments": ["validated.id", "validated.data"],
+        "arguments": [
+          "validated.id",
+          "validated.data"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -6767,11 +8160,17 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"preferences\",\"psychologist-services\"]"],
+        "invalidateKeys": [
+          "[\"preferences\",\"psychologist-services\"]"
+        ],
         "optimisticUpdate": false
       },
       "notes": []
@@ -6798,7 +8197,10 @@
       },
       "repositoryCall": {
         "method": "delete",
-        "arguments": ["validated.id", ""],
+        "arguments": [
+          "validated.id",
+          ""
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -6806,11 +8208,17 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"preferences\",\"psychologist-services\"]"],
+        "invalidateKeys": [
+          "[\"preferences\",\"psychologist-services\"]"
+        ],
         "optimisticUpdate": false
       },
       "notes": []
@@ -6837,7 +8245,10 @@
       },
       "repositoryCall": {
         "method": "findById",
-        "arguments": ["validated.id", ""],
+        "arguments": [
+          "validated.id",
+          ""
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -6845,8 +8256,12 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "notes": []
     },
@@ -6872,7 +8287,9 @@
       },
       "repositoryCall": {
         "method": "list",
-        "arguments": ["{}"],
+        "arguments": [
+          "{}"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -6880,8 +8297,12 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "notes": []
     },
@@ -6907,7 +8328,10 @@
       },
       "repositoryCall": {
         "method": "findById",
-        "arguments": ["validated.id", ""],
+        "arguments": [
+          "validated.id",
+          ""
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -6915,8 +8339,12 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "notes": []
     },
@@ -6942,7 +8370,9 @@
       },
       "repositoryCall": {
         "method": "list",
-        "arguments": ["{}"],
+        "arguments": [
+          "{}"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -6950,8 +8380,12 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "notes": []
     },
@@ -6977,7 +8411,9 @@
       },
       "repositoryCall": {
         "method": "insert",
-        "arguments": ["validated"],
+        "arguments": [
+          "validated"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -6985,11 +8421,17 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"account-management\",\"account-deletion-requests\"]"],
+        "invalidateKeys": [
+          "[\"account-management\",\"account-deletion-requests\"]"
+        ],
         "optimisticUpdate": false
       },
       "notes": []
@@ -7016,7 +8458,10 @@
       },
       "repositoryCall": {
         "method": "update",
-        "arguments": ["validated.id", "validated.data"],
+        "arguments": [
+          "validated.id",
+          "validated.data"
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -7024,11 +8469,17 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"account-management\",\"account-deletion-requests\"]"],
+        "invalidateKeys": [
+          "[\"account-management\",\"account-deletion-requests\"]"
+        ],
         "optimisticUpdate": false
       },
       "notes": []
@@ -7055,7 +8506,10 @@
       },
       "repositoryCall": {
         "method": "delete",
-        "arguments": ["validated.id", ""],
+        "arguments": [
+          "validated.id",
+          ""
+        ],
         "errorHandling": true
       },
       "auth": {
@@ -7063,11 +8517,17 @@
         "customChecks": []
       },
       "logging": {
-        "successMetadata": ["entityId: result?.id"],
-        "errorMetadata": ["input: JSON.stringify(input)"]
+        "successMetadata": [
+          "entityId: result?.id"
+        ],
+        "errorMetadata": [
+          "input: JSON.stringify(input)"
+        ]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"account-management\",\"account-deletion-requests\"]"],
+        "invalidateKeys": [
+          "[\"account-management\",\"account-deletion-requests\"]"
+        ],
         "optimisticUpdate": false
       },
       "notes": []

@@ -1,6 +1,6 @@
 /**
  * Unit tests for updateCalendarChangeLogAction
- *
+ * 
  * codegen:actions-hooks (generated) — do not hand-edit
  */
 import { describe, expect, it, vi, beforeEach } from "vitest"
@@ -19,12 +19,9 @@ vi.mock("@workspace/supabase-data/lib/auth/rate-limit", () => ({
   checkActionRateLimit: vi.fn(),
 }))
 
-vi.mock(
-  "@workspace/supabase-data/modules/calendar/infrastructure/repositories/calendar-change-log-supabase.repository.codegen",
-  () => ({
-    CalendarChangeLogSupabaseRepository: vi.fn(),
-  })
-)
+vi.mock("@workspace/supabase-data/modules/calendar/infrastructure/repositories/calendar-change-log-supabase.repository.codegen", () => ({
+  CalendarChangeLogSupabaseRepository: vi.fn(),
+}))
 
 vi.mock("@workspace/logging/server", () => ({
   logServerEvent: vi.fn(),
@@ -75,53 +72,54 @@ describe("updateCalendarChangeLogAction", () => {
     it("should accept valid input for update operation", async () => {
       const { getClaims } = await import("@workspace/supabase-auth/session/get-claims")
       const { checkActionRateLimit } = await import("@workspace/supabase-data/lib/auth/rate-limit")
-      const { CalendarChangeLogSupabaseRepository } =
-        await import("@workspace/supabase-data/modules/calendar/infrastructure/repositories/calendar-change-log-supabase.repository.codegen")
+      const { CalendarChangeLogSupabaseRepository } = await import("@workspace/supabase-data/modules/calendar/infrastructure/repositories/calendar-change-log-supabase.repository.codegen")
       vi.mocked(getClaims).mockResolvedValue({ claims: { sub: "test-user-id" } } as any)
       vi.mocked(checkActionRateLimit).mockResolvedValue(undefined)
 
-      const { createServerAuthClient } =
-        await import("@workspace/supabase-auth/server/create-server-auth-client")
+      const { createServerAuthClient } = await import("@workspace/supabase-auth/server/create-server-auth-client")
       vi.mocked(createServerAuthClient).mockResolvedValue({} as any)
-      vi.mocked(CalendarChangeLogSupabaseRepository).mockImplementation(function MockRepository() {
-        return {
-          findById: vi.fn(),
-          list: vi.fn(),
-          insert: vi.fn(),
-          update: vi.fn().mockResolvedValue({ id: "test-id" }),
-          delete: vi.fn(),
+      vi.mocked(CalendarChangeLogSupabaseRepository).mockImplementation(
+        function MockRepository() {
+          return {
+        findById: vi.fn(),
+        list: vi.fn(),
+        insert: vi.fn(),
+        update: vi.fn().mockResolvedValue({ id: "test-id" }),
+        delete: vi.fn(),
+      } as any
         } as any
-      } as any)
+      )
 
       // TODO: Replace with actual valid input for calendar_change_log
       const validInput = {} as any
 
       await expect(updateCalendarChangeLogAction(validInput)).resolves.not.toThrow()
     })
+
   })
 
   describe("Logging", () => {
     it("should log on success", async () => {
       const { getClaims } = await import("@workspace/supabase-auth/session/get-claims")
       const { checkActionRateLimit } = await import("@workspace/supabase-data/lib/auth/rate-limit")
-      const { CalendarChangeLogSupabaseRepository } =
-        await import("@workspace/supabase-data/modules/calendar/infrastructure/repositories/calendar-change-log-supabase.repository.codegen")
+      const { CalendarChangeLogSupabaseRepository } = await import("@workspace/supabase-data/modules/calendar/infrastructure/repositories/calendar-change-log-supabase.repository.codegen")
       const { logServerEvent } = await import("@workspace/logging/server")
       vi.mocked(getClaims).mockResolvedValue({ claims: { sub: "test-user-id" } } as any)
       vi.mocked(checkActionRateLimit).mockResolvedValue(undefined)
 
-      const { createServerAuthClient } =
-        await import("@workspace/supabase-auth/server/create-server-auth-client")
+      const { createServerAuthClient } = await import("@workspace/supabase-auth/server/create-server-auth-client")
       vi.mocked(createServerAuthClient).mockResolvedValue({} as any)
-      vi.mocked(CalendarChangeLogSupabaseRepository).mockImplementation(function MockRepository() {
-        return {
-          findById: vi.fn(),
-          list: vi.fn(),
-          insert: vi.fn(),
-          update: vi.fn().mockResolvedValue({ id: "test-id" }),
-          delete: vi.fn(),
+      vi.mocked(CalendarChangeLogSupabaseRepository).mockImplementation(
+        function MockRepository() {
+          return {
+        findById: vi.fn(),
+        list: vi.fn(),
+        insert: vi.fn(),
+        update: vi.fn().mockResolvedValue({ id: "test-id" }),
+        delete: vi.fn(),
+      } as any
         } as any
-      } as any)
+      )
 
       await updateCalendarChangeLogAction({} as any).catch(swallowExpectedError)
 
@@ -137,24 +135,24 @@ describe("updateCalendarChangeLogAction", () => {
     it("should log on error with sanitized metadata", async () => {
       const { getClaims } = await import("@workspace/supabase-auth/session/get-claims")
       const { checkActionRateLimit } = await import("@workspace/supabase-data/lib/auth/rate-limit")
-      const { CalendarChangeLogSupabaseRepository } =
-        await import("@workspace/supabase-data/modules/calendar/infrastructure/repositories/calendar-change-log-supabase.repository.codegen")
+      const { CalendarChangeLogSupabaseRepository } = await import("@workspace/supabase-data/modules/calendar/infrastructure/repositories/calendar-change-log-supabase.repository.codegen")
       const { logServerEvent } = await import("@workspace/logging/server")
       vi.mocked(getClaims).mockResolvedValue({ claims: { sub: "test-user-id" } } as any)
       vi.mocked(checkActionRateLimit).mockResolvedValue(undefined)
 
-      const { createServerAuthClient } =
-        await import("@workspace/supabase-auth/server/create-server-auth-client")
+      const { createServerAuthClient } = await import("@workspace/supabase-auth/server/create-server-auth-client")
       vi.mocked(createServerAuthClient).mockResolvedValue({} as any)
-      vi.mocked(CalendarChangeLogSupabaseRepository).mockImplementation(function MockRepository() {
-        return {
-          findById: vi.fn().mockRejectedValue(new Error("Test error")),
-          list: vi.fn().mockRejectedValue(new Error("Test error")),
-          insert: vi.fn().mockRejectedValue(new Error("Test error")),
-          update: vi.fn().mockRejectedValue(new Error("Test error")),
-          delete: vi.fn().mockRejectedValue(new Error("Test error")),
+      vi.mocked(CalendarChangeLogSupabaseRepository).mockImplementation(
+        function MockRepository() {
+          return {
+            findById: vi.fn().mockRejectedValue(new Error("Test error")),
+            list: vi.fn().mockRejectedValue(new Error("Test error")),
+            insert: vi.fn().mockRejectedValue(new Error("Test error")),
+            update: vi.fn().mockRejectedValue(new Error("Test error")),
+            delete: vi.fn().mockRejectedValue(new Error("Test error")),
+          } as any
         } as any
-      } as any)
+      )
 
       await updateCalendarChangeLogAction({} as any).catch(swallowExpectedError)
 

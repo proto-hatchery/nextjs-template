@@ -20,7 +20,7 @@ const PsychologistOnboardingStateDTOSchema = z.object({
   profileStepCompleted: looseCell,
   psychologistId: looseCell,
   totalSteps: looseCell,
-  updatedAt: looseCell,
+  updatedAt: looseCell
 })
 
 type PsychologistOnboardingStateDTO = z.infer<typeof PsychologistOnboardingStateDTOSchema>

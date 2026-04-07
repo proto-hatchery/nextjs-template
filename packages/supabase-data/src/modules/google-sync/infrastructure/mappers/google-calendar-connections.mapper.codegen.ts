@@ -1,17 +1,12 @@
 // codegen:backend — do not hand-edit; regenerate with `pnpm codegen:backend --write`.
 
-import {
-  GoogleCalendarConnectionsDTOSchema,
-  type GoogleCalendarConnectionsDTO,
-} from "@workspace/supabase-data/modules/google-sync/domain/dto/google-calendar-connections.dto.codegen"
 import type { Database } from "@workspace/supabase-infra/types/database"
 
-type GoogleCalendarConnectionsRow =
-  Database["public"]["Tables"]["google_calendar_connections"]["Row"]
-type GoogleCalendarConnectionsInsert =
-  Database["public"]["Tables"]["google_calendar_connections"]["Insert"]
-type GoogleCalendarConnectionsUpdate =
-  Database["public"]["Tables"]["google_calendar_connections"]["Update"]
+import { GoogleCalendarConnectionsDTOSchema, type GoogleCalendarConnectionsDTO } from "@workspace/supabase-data/modules/google-sync/domain/dto/google-calendar-connections.dto.codegen"
+
+type GoogleCalendarConnectionsRow = Database["public"]["Tables"]["google_calendar_connections"]["Row"]
+type GoogleCalendarConnectionsInsert = Database["public"]["Tables"]["google_calendar_connections"]["Insert"]
+type GoogleCalendarConnectionsUpdate = Database["public"]["Tables"]["google_calendar_connections"]["Update"]
 
 const GoogleCalendarConnectionsFieldMappings = {
   accessToken: "access_token",
@@ -60,9 +55,7 @@ const GoogleCalendarConnectionsFieldMappings = {
 
 type GoogleCalendarConnectionsField = keyof typeof GoogleCalendarConnectionsFieldMappings
 
-function fromGoogleCalendarConnectionsRow(
-  row: GoogleCalendarConnectionsRow
-): GoogleCalendarConnectionsDTO {
+function fromGoogleCalendarConnectionsRow(row: GoogleCalendarConnectionsRow): GoogleCalendarConnectionsDTO {
   const mapped = {
     accessToken: row.access_token,
     accessTokenEncrypted: row.access_token_encrypted,
@@ -110,17 +103,10 @@ function fromGoogleCalendarConnectionsRow(
   return GoogleCalendarConnectionsDTOSchema.parse(mapped)
 }
 
-function toGoogleCalendarConnectionsInsert(
-  dto: Partial<GoogleCalendarConnectionsDTO>
-): GoogleCalendarConnectionsInsert {
+function toGoogleCalendarConnectionsInsert(dto: Partial<GoogleCalendarConnectionsDTO>): GoogleCalendarConnectionsInsert {
   const out: Record<string, unknown> = {}
-  for (const [camelKey, snakeKey] of Object.entries(
-    GoogleCalendarConnectionsFieldMappings
-  ) as Array<
-    [
-      GoogleCalendarConnectionsField,
-      (typeof GoogleCalendarConnectionsFieldMappings)[GoogleCalendarConnectionsField],
-    ]
+  for (const [camelKey, snakeKey] of Object.entries(GoogleCalendarConnectionsFieldMappings) as Array<
+    [GoogleCalendarConnectionsField, (typeof GoogleCalendarConnectionsFieldMappings)[GoogleCalendarConnectionsField]]
   >) {
     const value = dto[camelKey]
     if (typeof value !== "undefined") {
@@ -131,14 +117,8 @@ function toGoogleCalendarConnectionsInsert(
   return out as GoogleCalendarConnectionsInsert
 }
 
-function toGoogleCalendarConnectionsUpdate(
-  dto: Partial<GoogleCalendarConnectionsDTO>
-): GoogleCalendarConnectionsUpdate {
+function toGoogleCalendarConnectionsUpdate(dto: Partial<GoogleCalendarConnectionsDTO>): GoogleCalendarConnectionsUpdate {
   return toGoogleCalendarConnectionsInsert(dto) as GoogleCalendarConnectionsUpdate
 }
 
-export {
-  fromGoogleCalendarConnectionsRow,
-  toGoogleCalendarConnectionsInsert,
-  toGoogleCalendarConnectionsUpdate,
-}
+export { fromGoogleCalendarConnectionsRow, toGoogleCalendarConnectionsInsert, toGoogleCalendarConnectionsUpdate }

@@ -1,10 +1,8 @@
 // codegen:backend — do not hand-edit; regenerate with `pnpm codegen:backend --write`.
 
-import {
-  AssistantInvitesDTOSchema,
-  type AssistantInvitesDTO,
-} from "@workspace/supabase-data/modules/assistants/domain/dto/assistant-invites.dto.codegen"
 import type { Database } from "@workspace/supabase-infra/types/database"
+
+import { AssistantInvitesDTOSchema, type AssistantInvitesDTO } from "@workspace/supabase-data/modules/assistants/domain/dto/assistant-invites.dto.codegen"
 
 type AssistantInvitesRow = Database["public"]["Tables"]["assistant_invites"]["Row"]
 type AssistantInvitesInsert = Database["public"]["Tables"]["assistant_invites"]["Insert"]

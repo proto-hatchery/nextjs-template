@@ -1,17 +1,17 @@
 /**
  * ListGoogleCalendarConnections Server Action
- *
+ * 
  * Handles list operation for google_calendar_connections.
- *
+ * 
  * ## Usage
- *
+ * 
  * Example:
  * ```typescript
  * import { listGoogleCalendarConnectionsAction } from "@workspace/supabase-data/actions/google-sync/google-calendar-connections-list.codegen"
- *
+ * 
  * const result = await listGoogleCalendarConnectionsAction(input)
  * ```
- *
+ * 
  * @module @workspace/supabase-data/actions/google-sync/google-calendar-connections-list
  * codegen:actions-hooks (generated) — do not hand-edit
  */
@@ -19,22 +19,22 @@
 
 import { z } from "zod"
 
-import { logServerEvent } from "@workspace/logging/server"
-import { createServerAuthClient } from "@workspace/supabase-auth/server/create-server-auth-client"
-import { sanitizeForAudit } from "@workspace/supabase-data/lib/audit/sanitize-phi"
 import { requireAuth } from "@workspace/supabase-data/lib/auth/require-auth"
+import { createServerAuthClient } from "@workspace/supabase-auth/server/create-server-auth-client"
 import { GoogleCalendarConnectionsSupabaseRepository } from "@workspace/supabase-data/modules/google-sync/infrastructure/repositories/google-calendar-connections-supabase.repository.codegen"
+import { logServerEvent } from "@workspace/logging/server"
+import { sanitizeForAudit } from "@workspace/supabase-data/lib/audit/sanitize-phi"
 
 /**
  * Audit-safe fields for this table (HIPAA §164.312(b) compliant)
- *
+ * 
  * These fields are safe to log in error metadata without exposing PHI.
  */
 const AUDIT_SAFE_FIELDS = ["id", "createdAt", "updatedAt"] as const
 
 /**
  * Input schema for listGoogleCalendarConnectionsAction
- *
+ * 
  * Uses Zod v4 syntax (top-level APIs, not z.string().email() etc.)
  */
 const GoogleCalendarConnectionsListInputSchema = z.object({
@@ -50,9 +50,7 @@ const GoogleCalendarConnectionsListInputSchema = z.object({
 /**
  * Input type for listGoogleCalendarConnectionsAction
  */
-export type GoogleCalendarConnectionsListInput = z.infer<
-  typeof GoogleCalendarConnectionsListInputSchema
->
+export type GoogleCalendarConnectionsListInput = z.infer<typeof GoogleCalendarConnectionsListInputSchema>
 
 /**
  * Output type for listGoogleCalendarConnectionsAction — unknown until the action is wired to real DTOs / port types.
@@ -61,7 +59,7 @@ export type GoogleCalendarConnectionsListOutput = unknown
 
 /**
  * ListGoogleCalendarConnections Server Action
- *
+ * 
  * @param input - Action input
  */
 export async function listGoogleCalendarConnectionsAction(
@@ -82,7 +80,7 @@ export async function listGoogleCalendarConnectionsAction(
     // 3. Auth client — created after all guards pass
     const supabase = await createServerAuthClient()
     const repository = new GoogleCalendarConnectionsSupabaseRepository(supabase)
-
+    
     // 4. Execute operation — pass resolved context explicitly
     // @type-escape: generated action stub — list params unknown until semantic plan fills Zod input
     const result = await repository.list(validated as never)

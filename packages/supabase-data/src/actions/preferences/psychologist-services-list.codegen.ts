@@ -1,17 +1,17 @@
 /**
  * ListPsychologistServices Server Action
- *
+ * 
  * Handles list operation for psychologist_services.
- *
+ * 
  * ## Usage
- *
+ * 
  * Example:
  * ```typescript
  * import { listPsychologistServicesAction } from "@workspace/supabase-data/actions/preferences/psychologist-services-list.codegen"
- *
+ * 
  * const result = await listPsychologistServicesAction(input)
  * ```
- *
+ * 
  * @module @workspace/supabase-data/actions/preferences/psychologist-services-list
  * codegen:actions-hooks (generated) — do not hand-edit
  */
@@ -19,22 +19,22 @@
 
 import { z } from "zod"
 
-import { logServerEvent } from "@workspace/logging/server"
-import { createServerAuthClient } from "@workspace/supabase-auth/server/create-server-auth-client"
-import { sanitizeForAudit } from "@workspace/supabase-data/lib/audit/sanitize-phi"
 import { requireAuth } from "@workspace/supabase-data/lib/auth/require-auth"
+import { createServerAuthClient } from "@workspace/supabase-auth/server/create-server-auth-client"
 import { PsychologistServicesSupabaseRepository } from "@workspace/supabase-data/modules/preferences/infrastructure/repositories/psychologist-services-supabase.repository.codegen"
+import { logServerEvent } from "@workspace/logging/server"
+import { sanitizeForAudit } from "@workspace/supabase-data/lib/audit/sanitize-phi"
 
 /**
  * Audit-safe fields for this table (HIPAA §164.312(b) compliant)
- *
+ * 
  * These fields are safe to log in error metadata without exposing PHI.
  */
 const AUDIT_SAFE_FIELDS = ["id", "createdAt", "updatedAt"] as const
 
 /**
  * Input schema for listPsychologistServicesAction
- *
+ * 
  * Uses Zod v4 syntax (top-level APIs, not z.string().email() etc.)
  */
 const PsychologistServicesListInputSchema = z.object({
@@ -59,7 +59,7 @@ export type PsychologistServicesListOutput = unknown
 
 /**
  * ListPsychologistServices Server Action
- *
+ * 
  * @param input - Action input
  */
 export async function listPsychologistServicesAction(
@@ -80,7 +80,7 @@ export async function listPsychologistServicesAction(
     // 3. Auth client — created after all guards pass
     const supabase = await createServerAuthClient()
     const repository = new PsychologistServicesSupabaseRepository(supabase)
-
+    
     // 4. Execute operation — pass resolved context explicitly
     // @type-escape: generated action stub — list params unknown until semantic plan fills Zod input
     const result = await repository.list(validated as never)

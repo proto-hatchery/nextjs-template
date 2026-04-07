@@ -1,7 +1,7 @@
 /**
  * TanStack Query key factory for domain "audit".
  * Import keys from this module only — avoid string literals in hooks/components.
- *
+ * 
  * @module @workspace/supabase-data/hooks/audit/query-keys.codegen
  * codegen:actions-hooks (generated) — do not hand-edit
  */
@@ -16,8 +16,7 @@ export const auditQueryKeys = {
   patientDeletionAuditLog: () => [...auditQueryKeys.all, "patient-deletion-audit-log"] as const,
   patientDeletionAuditLogList: (filters?: Record<string, unknown>) =>
     [...auditQueryKeys.patientDeletionAuditLog(), "list", filters ?? {}] as const,
-  psychologistPreferencesAuditLog: () =>
-    [...auditQueryKeys.all, "psychologist-preferences-audit-log"] as const,
+  psychologistPreferencesAuditLog: () => [...auditQueryKeys.all, "psychologist-preferences-audit-log"] as const,
   psychologistPreferencesAuditLogList: (filters?: Record<string, unknown>) =>
     [...auditQueryKeys.psychologistPreferencesAuditLog(), "list", filters ?? {}] as const,
 }
