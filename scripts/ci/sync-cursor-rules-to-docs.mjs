@@ -1,6 +1,7 @@
 /**
- * Regenerate docs/standards/rules/<name>.md from .cursor/rules/<name>.mdc
- * (strip YAML frontmatter; add canonical header).
+ * One-way copy: `.cursor/rules/<name>.mdc` → `docs/standards/rules/<name>.md`.
+ * Strips YAML frontmatter, writes a new `.md` file (no symlinks, no git links).
+ * The `.mdc` file remains the editor/Cursor source of truth.
  *
  * Run: node scripts/ci/sync-cursor-rules-to-docs.mjs
  */

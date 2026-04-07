@@ -75,6 +75,10 @@ tests/
 
 **Why:** Source directories are for source code. Tests are separate.
 
+**`@workspace/ui`:** shadcn primitives are CLI-managed; this template does **not**
+use `tests/unit/ui/`. Test shared compositions under `tests/unit/brand/` and
+app code under `tests/unit/web/`.
+
 ### **NEVER in App Layer**
 
 ```

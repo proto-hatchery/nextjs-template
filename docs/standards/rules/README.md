@@ -8,23 +8,19 @@ two places (keep them in sync):
 | [`.cursor/rules/*.mdc`](../../../.cursor/rules) | Cursor / editor AI                              |
 | **`docs/standards/rules/*.md`** (this folder)   | Everyone else (CLI, review, non-Cursor editors) |
 
-There is **exactly one `.md` file per `.mdc` file** (31 rules). Parity is
-checked in CI: `pnpm check:cursor-rules-parity`.
+There is **exactly one `.md` file per `.mdc` file** (32 rules). Parity is
+checked in CI: `pnpm check:cursor-rules-parity`. The sync script **copies** each
+`.mdc` into the matching `.md` (plain files, **not** symlinks); edit the `.mdc`
+in `.cursor/rules/`, then run `node scripts/ci/sync-cursor-rules-to-docs.mjs`.
 
 **See also (not a numbered Cursor rule):**
 [Package file suffixes](../package-file-suffixes.md) — `*.component.tsx` /
 `*.hook.ts` / `*.provider.tsx` in composition packages only; `packages/ui`
 excluded.
 
-After editing a Cursor rule, refresh the doc copy:
-
-```bash
-node scripts/ci/sync-cursor-rules-to-docs.mjs
-```
-
 ---
 
-## Index (31 rules)
+## Index (32 rules)
 
 | #   | Rule                             | File                                                                         |
 | --- | -------------------------------- | ---------------------------------------------------------------------------- |
@@ -58,7 +54,8 @@ node scripts/ci/sync-cursor-rules-to-docs.mjs
 | 28  | Three-level documentation        | [three-level-docs.md](./three-level-docs.md)                                 |
 | 29  | Use safe actions                 | [use-safe-actions.md](./use-safe-actions.md)                                 |
 | 30  | Zod v4 syntax                    | [zod-v4-syntax.md](./zod-v4-syntax.md)                                       |
-| 31  | Zero barrel policy               | [zero-barrel-policy.md](./zero-barrel-policy.md)                             |
+| 31  | Zod v4 rules (reference)         | [zod-v4-rules.md](./zod-v4-rules.md)                                         |
+| 32  | Zero barrel policy               | [zero-barrel-policy.md](./zero-barrel-policy.md)                             |
 
 ---
 

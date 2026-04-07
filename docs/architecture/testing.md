@@ -85,10 +85,15 @@ tests/unit/
 ├── supabase-infra/         # Mirror structure
 │   ├── clients/
 │   └── env/
+├── brand/                  # Shared compositions (@workspace/brand)
 └── web/                    # Mirror structure
     ├── components/
     └── lib/
 ```
+
+**`@workspace/ui` (shadcn):** do **not** add tests under `tests/unit/ui/`. That
+package is CLI-generated and treated as vendored; test **compositions** in
+`tests/unit/brand/` and product components in `tests/unit/web/` (or e2e).
 
 **Example:**
 
@@ -336,8 +341,11 @@ packages/ui/src/components/button.test.ts
 ✅ REQUIRED:
 tests/unit/web/app/dashboard/page.test.ts
 tests/unit/supabase-data/actions/tasks.test.ts
-tests/unit/ui/src/components/button.test.ts
+tests/unit/brand/components/your-composition.test.tsx
 ```
+
+**Note:** There is **no** `tests/unit/ui/` tree by design — shadcn primitives are
+not re-tested in this template (see `@workspace/ui` README / AGENTS).
 
 ### **NEVER in App Layer for Business Logic**
 

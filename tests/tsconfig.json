@@ -1,6 +1,7 @@
 {
   "extends": "../apps/example/tsconfig.json",
   "compilerOptions": {
+    "jsx": "react-jsx",
     "paths": {
       "*": ["../apps/example/*"]
     },

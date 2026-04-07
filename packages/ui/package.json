@@ -13,8 +13,6 @@
   "scripts": {
     "lint": "oxlint",
     "format": "oxfmt --write",
-    "test": "mkdir -p coverage/.tmp && vitest run --config vitest.config.ts",
-    "test:watch": "vitest --config vitest.config.ts",
     "typecheck": "tsc --noEmit",
     "check:exports": "publint"
   },
@@ -36,18 +34,13 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.2.2",
-    "@testing-library/jest-dom": "^6.9.1",
-    "@testing-library/react": "^16.3.0",
-    "@testing-library/user-event": "^14.6.1",
     "@turbo/gen": "^2.9.3",
     "@types/node": "^25.5.2",
     "@types/react": "^19.2.10",
     "@types/react-dom": "^19.2.3",
     "@workspace/typescript-config": "workspace:*",
-    "@workspace/vitest-config": "workspace:*",
     "publint": "^0.3.18",
     "tailwindcss": "^4.2.2",
-    "typescript": "^5.9.3",
-    "vitest": "^4.1.2"
+    "typescript": "^5.9.3"
   }
 }
