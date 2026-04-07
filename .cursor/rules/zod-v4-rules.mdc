@@ -1,0 +1,226 @@
+---
+description: Zod v4 mandatory patterns — top-level formats, record arity, error param (codegen-safe)
+globs: **/*.{ts,tsx}
+---
+
+# Zod v4 Rules (MANDATORY)
+
+**Este projeto usa Zod v4 (`^4.3.6`). NÃO use sintaxe Zod v3!**
+
+## 🚨 Top 3 Mudanças Que Quebram Codegen
+
+### 1. String Formats → Top-Level APIs
+
+**Zod v3 (❌ NUNCA USE):**
+
+```typescript
+z.string().email()
+z.string().uuid()
+z.string().datetime()
+z.string().url()
+```
+
+**Zod v4 (✅ USE SEMPRE):**
+
+```typescript
+z.email()
+z.uuid()
+z.iso.datetime()
+z.url()
+```
+
+**Por que?** Zod v4 moveu formatos para top-level para melhor tree-shaking e
+performance.
+
+### 2. Record Requires 2 Arguments
+
+**Zod v3 (❌ NUNCA USE):**
+
+```typescript
+z.record(z.unknown())
+z.record(z.string())
+```
+
+**Zod v4 (✅ USE SEMPRE):**
+
+```typescript
+z.record(z.string(), z.unknown())
+z.record(z.string(), z.number())
+```
+
+**Por que?** `z.record()` agora requer key type + value type explicitamente.
+
+### 3. Error Messages → `error` Param
+
+**Zod v3 (❌ DEPRECATED):**
+
+```typescript
+z.string().min(5, "Too short")
+z.string().uuid("Invalid UUID")
+```
+
+**Zod v4 (✅ USE SEMPRE):**
+
+```typescript
+z.string().min(5, { error: "Too short" })
+z.uuid({ error: "Invalid UUID" })
+```
+
+**Por que?** Unificado sob `error` param para consistência.
+
+---
+
+## 📋 Quick Reference
+
+### Strings
+
+| Validação | Zod v4             |
+| --------- | ------------------ |
+| Email     | `z.email()`        |
+| UUID      | `z.uuid()`         |
+| URL       | `z.url()`          |
+| Datetime  | `z.iso.datetime()` |
+| Date      | `z.iso.date()`     |
+| Time      | `z.iso.time()`     |
+| IPv4      | `z.ipv4()`         |
+| IPv6      | `z.ipv6()`         |
+| Base64    | `z.base64()`       |
+| Base64URL | `z.base64url()`    |
+
+### Numbers
+
+```typescript
+z.number()
+z.number().int()
+z.number().positive()
+z.number().negative()
+z.number().min(0)
+z.number().max(100)
+```
+
+### Objects
+
+```typescript
+z.object({
+  name: z.string(),
+  age: z.number(),
+  metadata: z.record(z.string(), z.unknown()).optional(),
+})
+```
+
+### Arrays
+
+```typescript
+z.array(z.string())
+z.array(z.number()).min(1)
+z.array(z.number()).max(10)
+```
+
+### Refinements
+
+```typescript
+z.string().refine((val) => val.length > 0, {
+  error: "Cannot be empty",
+})
+
+z.number().refine((n) => n % 2 === 0, {
+  error: "Must be even",
+})
+```
+
+---
+
+## 🔍 Como Evitar Erros no Codegen
+
+### Regra 1: Nunca Passe String como Segundo Argumento
+
+```typescript
+// ❌ ERRADO
+z.string().uuid("Invalid UUID")
+
+// ✅ CORRETO
+z.uuid({ error: "Invalid UUID" })
+```
+
+### Regra 2: Sempre Use 2 Argumentos em z.record
+
+```typescript
+// ❌ ERRADO
+z.record(z.unknown())
+
+// ✅ CORRETO
+z.record(z.string(), z.unknown())
+```
+
+### Regra 3: Use error: {} para Mensagens
+
+```typescript
+// ❌ ERRADO
+z.number().min(1, "Must be positive")
+
+// ✅ CORRETO
+z.number().min(1, { error: "Must be positive" })
+```
+
+---
+
+## ⚠️ Erros Comuns no Codegen
+
+### Erro 1: `(params?: string | { ... }) is deprecated`
+
+**Causa:** Usando `z.string().uuid("msg")`  
+**Solução:** Use `z.uuid({ error: "msg" })` sem argumentos
+
+### Erro 2: `Expected 2-3 arguments, but got 1`
+
+**Causa:** `z.record(z.unknown())` com 1 argumento  
+**Solução:** `z.record(z.string(), z.unknown())`
+
+### Erro 3: `Property 'uuid' does not exist on type 'ZodString'`
+
+**Causa:** Tentando usar `z.string().uuid()` em Zod v4  
+**Solução:** Use `z.uuid()` diretamente
+
+---
+
+## 📚 Recursos
+
+- [Zod v4 Release Notes](https://github.com/colinhacks/zod/releases)
+- [Zod v4 Documentation](https://zod.dev/)
+- [Migration Guide](https://zod.dev/v4)
+
+---
+
+## 🎯 Exemplo Completo
+
+**Zod v3 (❌ ERRADO):**
+
+```typescript
+const InsertAssistantInvitesInputSchema = z.object({
+  email: z.string().email("Invalid email"),
+  expires_at: z.string().datetime(),
+  metadata: z.record(z.unknown()).optional(),
+})
+```
+
+**Zod v4 (✅ CORRETO):**
+
+```typescript
+const InsertAssistantInvitesInputSchema = z.object({
+  email: z.email(), // ou .refine() para custom message
+  expires_at: z.iso.datetime(), // ou .refine() para custom validation
+  metadata: z.record(z.string(), z.unknown()).optional(),
+})
+```
+
+---
+
+**REGRAS PARA CODEGEN:**
+
+1. ✅ Templates devem usar `z.email()`, `z.uuid()`, `z.iso.datetime()`
+2. ✅ Templates devem usar `z.record(keyType, valueType)`
+3. ✅ Templates devem usar `{ error: "..." }` para mensagens
+4. ❌ NUNCA use `z.string().email()`, `z.string().uuid()`, etc.
+5. ❌ NUNCA use `z.record(valueType)` com 1 argumento
+
+**Se o codegen gerar código errado, atualize os templates!**
