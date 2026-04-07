@@ -44,7 +44,10 @@ async function signInServerSession(overrides?: {
   const cookieStore = createNextCookieStore()
   cookiesMock.mockResolvedValue(cookieStore)
 
-  const { supabaseUrl, supabasePublishableKey } = getSupabasePublicEnv()
+  const {
+    NEXT_PUBLIC_SUPABASE_URL: supabaseUrl,
+    NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: supabasePublishableKey,
+  } = getSupabasePublicEnv()
   const bootstrap = createServerClient<Database>(supabaseUrl, supabasePublishableKey, {
     cookieOptions: getSupabaseCookieOptions(),
     cookies: {
