@@ -21,6 +21,12 @@ This package contains ONLY:
 - ✅ Utility functions (utils, lib)
 - ✅ Configuration files (components.json, tailwind setup)
 
+## Testing
+
+**No package-level unit tests.** shadcn primitives are CLI-managed; upstream
+covers behaviour. Add tests for **composed** UI in `@workspace/brand` and for
+app-specific components under `tests/unit/web/` (or e2e).
+
 ## What NEVER Lives Here
 
 - ❌ Custom business logic components
