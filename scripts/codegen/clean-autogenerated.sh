@@ -72,6 +72,26 @@ echo -e "${GREEN}  ✓${NC} Cleaned $UNIT_TESTS_COUNT unit test files"
 echo -e "${YELLOW}  Note: Manual tests are PRESERVED${NC}"
 echo ""
 
+# Prune empty domain folders left after *.codegen.ts deletion (safe: only dirs with zero entries)
+echo "🗑️  Pruning empty domain directories under actions/hooks/tests..."
+PRUNE_BASES=(
+  "packages/supabase-data/src/actions"
+  "packages/supabase-data/src/hooks"
+  "tests/unit/supabase-data/actions"
+  "tests/unit/supabase-data/hooks"
+  "tests/integration/supabase-data/modules"
+)
+PRUNED=0
+for base in "${PRUNE_BASES[@]}"; do
+  if [ -d "$base" ]; then
+    COUNT=$(find "$base" -mindepth 1 -depth -type d -empty 2>/dev/null | wc -l | tr -d "[:space:]")
+    find "$base" -mindepth 1 -depth -type d -empty -delete 2>/dev/null || true
+    PRUNED=$((PRUNED + COUNT))
+  fi
+done
+echo -e "${GREEN}  ✓${NC} Removed $PRUNED empty director(y/ies) (template dirs with files unchanged)"
+echo ""
+
 echo "📊 Final state:"
 echo "   Actions: $(find packages/supabase-data/src/actions -type f -name '*.ts' | wc -l | xargs)"
 echo "   Modules: $(find packages/supabase-data/src/modules -type f -name '*.ts' 2>/dev/null | wc -l | xargs)"
