@@ -21,6 +21,13 @@ reutilizáveis entre apps), isso vai para **`@workspace/brand`**
 - **Um só sítio** para primitivos; a equipa sabe sempre onde procurar
 - **Menos regressões** visuais por edições “pontuais”
 
+## Testes
+
+**Não** mantemos testes unitários neste pacote: os primitivos vêm do shadcn e
+são cobertos pelo upstream e pelos maintainers. Retestar aqui duplica esforço e
+quebra facilmente quando corres `shadcn add … --overwrite`. Testa composições e
+marca em **`@workspace/brand`** e fluxos nas apps (e2e se fizer sentido).
+
 ## Documentação relacionada
 
 - [AGENTS.md](./AGENTS.md) — regras detalhadas (inglês)
