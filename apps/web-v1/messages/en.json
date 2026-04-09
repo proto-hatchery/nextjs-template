@@ -1,0 +1,43 @@
+{
+  "Metadata": {
+    "title": "Your Product Name",
+    "description": "Your product description — update at fork time."
+  },
+  "Marketing": {
+    "hero": {
+      "heading": "Your headline here",
+      "subheading": "Your subheading here.",
+      "cta": "Get started"
+    },
+    "templateLabel": "Template",
+    "bodyLine1": "This is a minimal placeholder. Add your product story, then build authenticated routes under",
+    "bodyAuthSegment": "app/(auth)",
+    "bodySuffix": ".",
+    "jsonLdOrganizationName": "Your Product Name"
+  },
+  "Auth": {
+    "login": {
+      "title": "Sign in",
+      "submit": "Sign in"
+    },
+    "forgotPassword": {
+      "title": "Forgot password"
+    },
+    "validation": {
+      "emailRequired": "Enter your email.",
+      "emailInvalid": "Enter a valid email address.",
+      "passwordMin": "Password must be at least 8 characters.",
+      "confirmPasswordRequired": "Confirm your password.",
+      "passwordsMatch": "Passwords must match.",
+      "mfaCodeFormat": "Enter the 6-digit code from your authenticator app."
+    },
+    "errors": {
+      "unexpected": "An unexpected error occurred. Please try again.",
+      "supabaseErrors": {}
+    }
+  },
+  "Nav": {
+    "brand": "Brand",
+    "login": "Sign in"
+  }
+}
