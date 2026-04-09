@@ -126,11 +126,12 @@ function emitMapper(
   domainId: string,
   camelFields: { snake: string; camel: string }[],
   rowRef: string,
-  writeTable: string
+  writeTable?: string
 ): string {
   const dtoName = `${pascal}DTO`
   const dtoImport =
     entry.dto.style === "zod" ? `${dtoName}Schema, type ${dtoName}` : `type ${dtoName}`
+  const hasWriteTable = typeof writeTable === "string" && writeTable.length > 0
 
   const fromBody = camelFields.map((f) => `    ${f.camel}: row.${f.snake},`).join("\n")
   const fieldMappingsConstName = `${pascal}FieldMappings`
@@ -143,14 +144,13 @@ function emitMapper(
 import { ${dtoImport} } from "${dtoModuleImport}"
 
 type ${pascal}Row = ${rowRef}
-type ${pascal}Insert = ${insertTypeRef(writeTable)}
-type ${pascal}Update = ${updateTypeRef(writeTable)}
+${hasWriteTable ? `type ${pascal}Insert = ${insertTypeRef(writeTable)}\ntype ${pascal}Update = ${updateTypeRef(writeTable)}\n` : ""}
 
 const ${fieldMappingsConstName} = {
 ${fieldMappingsBody}
 } as const
 
-type ${pascal}Field = keyof typeof ${fieldMappingsConstName}
+${hasWriteTable ? `type ${pascal}Field = keyof typeof ${fieldMappingsConstName}` : `type _${pascal}Field = keyof typeof ${fieldMappingsConstName}`}
 
 function from${pascal}Row(row: ${pascal}Row): ${dtoName} {
   const mapped = {
@@ -159,6 +159,7 @@ ${fromBody}
   return ${entry.dto.style === "zod" ? `${dtoName}Schema.parse(mapped)` : `(mapped as ${dtoName})`}
 }
 
+${hasWriteTable ? `
 function to${pascal}Insert(dto: Partial<${dtoName}>): ${pascal}Insert {
   const out: Record<string, unknown> = {}
   for (const [camelKey, snakeKey] of Object.entries(${fieldMappingsConstName}) as Array<
@@ -178,6 +179,7 @@ function to${pascal}Update(dto: Partial<${dtoName}>): ${pascal}Update {
 }
 
 export { from${pascal}Row, to${pascal}Insert, to${pascal}Update }
+` : `export { from${pascal}Row }\n`}
 `
 }
 
@@ -528,7 +530,10 @@ function emitFromPlan(opts: EmitFromPlanOptions): EmitResult {
   const entityKebab = planModuleEntityKebab(entry.table)
   const camelFields = opts.columns.map((snake) => ({ snake, camel: camelFromSnake(snake) }))
   const rowRef = rowTypeRef(entry)
-  const writeTable = entry.write?.name ?? entry.table
+  const hasWriteMethods = entry.methods.some((method) =>
+    ["insert", "update", "upsert", "delete", "softDelete"].includes(method)
+  )
+  const writeTable = hasWriteMethods ? (entry.write?.name ?? entry.table) : undefined
   const idColumn = entry.idColumn ?? "id"
 
   const targets: { path: string; content: string }[] = [

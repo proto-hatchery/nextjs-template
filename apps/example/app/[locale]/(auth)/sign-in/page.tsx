@@ -10,7 +10,6 @@ import { getClaims } from "@workspace/supabase-auth/session/get-claims"
 import { getUser } from "@workspace/supabase-auth/session/get-user"
 import {
   buildAuthContinueUrl,
-  getConfiguredAppUrl,
   getContinueDecision,
 } from "@workspace/supabase-auth/shared/app-destination"
 import { getDefaultRedirectTo } from "@workspace/supabase-auth/shared/auth-redirect"
@@ -44,11 +43,7 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
     })
 
     if (decision.kind === "redirect") {
-      const appOrigin = new URL(getConfiguredAppUrl("institutional")).origin
-      const dest = new URL(decision.href)
-      if (dest.origin === appOrigin) {
-        redirect(decision.href)
-      }
+      redirect(decision.href)
     }
 
     if (decision.kind === "chooser") {

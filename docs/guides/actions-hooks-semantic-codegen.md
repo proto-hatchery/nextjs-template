@@ -1,78 +1,106 @@
-# Actions & Hooks Semantic Codegen (Phase B)
+# Actions & Server Actions Semantic Codegen (Phase B)
 
-**Pipeline de codegen semântico** para preencher automaticamente os TODOs
-deixados pelo codegen determinístico (Phase A).
+**Semantic codegen pipeline** for automatically filling TODOs left by
+deterministic codegen (Phase A). This pipeline generates **Server Actions
+only**. Query hooks are also generated (read-only). Mutation hooks do not
+exist and are not generated.
 
-## Visão Geral
+## Architecture
 
-O processo de codegen acontece em duas fases:
+```
+Write path:
+  RHF form (useAppForm / useActionForm)
+    → useAction (next-safe-action/hooks)
+    → app-local *.action.ts  (thin orchestrator)
+    → generated Server Action  (@workspace/supabase-data/actions/*)
+    → revalidatePath()
 
-### Phase A - Determinístico
+Read path:
+  Server Component
+    → generated Server Action  (@workspace/supabase-data/actions/*)
+
+Query hooks (read-only, generated):
+  @workspace/supabase-data/hooks/*/use-*-query.hook.codegen.ts
+  → called from client components that need reactive state
+```
+
+## What is generated vs what is not
+
+| Artifact | Generated? |
+|---|---|
+| Server Actions (`*.codegen.ts`) | ✅ Yes |
+| Query hooks (`use-*-query.hook.codegen.ts`) | ✅ Yes |
+| Query keys (`query-keys.codegen.ts`) | ✅ Yes |
+| Mutation hooks (`use-*-mutation.hook.codegen.ts`) | ❌ **No — do not create** |
+
+## Pipeline phases
+
+### Phase A — Deterministic
 
 - **Script:** `pnpm codegen:actions-hooks --write`
-- **O que faz:** Gera estrutura, imports, auth, logging
-- **Resultado:** Stubs com TODOs nos lugares certos
-- **Limitação:** Não sabe as regras de negócio específicas
+- **What it does:** Generates file structure, imports, auth, logging
+- **Result:** Stubs with TODOs in the right places
+- **Limitation:** Does not know specific business rules
 
-### Phase B - Semântico → Determinístico
+### Phase B — Semantic → Deterministic
 
 - **Scripts:**
-  - `pnpm codegen:actions-semantic-plan` (LLM/analista)
-  - `pnpm codegen:actions-fill-todos` (determinístico)
-- **O que faz:** Analisa semanticamente e preenche TODOs
-- **Resultado:** Implementações completas e tipadas
+  - `pnpm codegen:actions-semantic-plan` (LLM/analyst)
+  - `pnpm codegen:actions-fill-todos` (deterministic)
+- **What it does:** Analyzes semantics and fills TODOs
+- **Result:** Complete, typed implementations
 
-## Arquitetura
+## ASCII flow
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│  Phase A (Determinístico)                                   │
+│  Phase A (Deterministic)                                    │
 │  pnpm codegen:actions-hooks --write                         │
 │                                                             │
-│  Gera:                                                      │
-│  - Estrutura de arquivos                                    │
-│  - Imports corretos                                         │
-│  - Autenticação (getClaims)                                 │
-│  - Logging estruturado                                      │
-│  - TODOs nos lugares certos                                 │
+│  Generates:                                                 │
+│  - File structure                                           │
+│  - Correct imports                                          │
+│  - Authentication (getClaims)                               │
+│  - Structured logging                                       │
+│  - TODOs in the right places                                │
 └─────────────────────────────────────────────────────────────┘
                             ↓
 ┌─────────────────────────────────────────────────────────────┐
-│  Phase B.1 (Semântico - LLM)                                │
+│  Phase B.1 (Semantic — LLM)                                 │
 │  pnpm codegen:actions-semantic-plan                         │
 │                                                             │
-│  Gera: config/action-semantic-plan.json                     │
-│  - Input schemas específicos                                │
+│  Generates: config/action-semantic-plan.json                │
+│  - Specific input schemas                                   │
 │  - Output schemas                                           │
 │  - Repository calls                                         │
-│  - Regras de auth                                           │
-│  - Metadata de logging                                      │
-│  - Cache invalidation                                       │
+│  - Auth rules                                               │
+│  - Logging metadata                                         │
+│  - Cache invalidation (via revalidatePath)                  │
 └─────────────────────────────────────────────────────────────┘
                             ↓
 ┌─────────────────────────────────────────────────────────────┐
-│  Phase B.2 (Determinístico)                                 │
+│  Phase B.2 (Deterministic)                                  │
 │  pnpm codegen:actions-fill-todos --plan ...                 │
 │                                                             │
-│  Gera: Código TypeScript completo                           │
-│  - Lê JSON semântico                                        │
-│  - Aplica templates                                         │
-│  - Preenche TODOs                                           │
-│  - Gera código final                                        │
+│  Generates: Complete TypeScript code                        │
+│  - Reads semantic JSON                                      │
+│  - Applies templates                                        │
+│  - Fills TODOs                                              │
+│  - Generates final code                                     │
 └─────────────────────────────────────────────────────────────┘
 ```
 
 ## Workflow
 
-### 1. Gerar Phase A (Stubs)
+### 1. Generate Phase A (Stubs)
 
 ```bash
 pnpm codegen:actions-hooks --write
 ```
 
-Isso gera ~290 actions + ~146 hooks com TODOs.
+This generates ~290 Server Actions + ~146 query hooks with TODOs.
 
-### 2. Analisar Semanticamente (LLM)
+### 2. Analyze Semantically (LLM)
 
 ```bash
 pnpm codegen:actions-semantic-plan
@@ -80,9 +108,9 @@ pnpm codegen:actions-semantic-plan
 
 **Output:** `config/action-semantic-plan.json`
 
-Este JSON contém o plano semântico para cada action.
+This JSON contains the semantic plan for each action.
 
-**Exemplo de entrada JSON:**
+**Example JSON entry:**
 
 ```json
 {
@@ -141,7 +169,7 @@ Este JSON contém o plano semântico para cada action.
         "errorMetadata": ["input: JSON.stringify(input)"]
       },
       "cacheInvalidation": {
-        "invalidateKeys": ["[\"catalog\",\"reference-values\"]"],
+        "revalidatePaths": ["/settings"],
         "optimisticUpdate": false
       },
       "notes": [
@@ -149,25 +177,19 @@ Este JSON contém o plano semântico para cada action.
         "⚠️ Consider caching for frequently accessed reference values"
       ]
     }
-  ],
-  "meta": {
-    "generator": "llm-agent",
-    "modelUsed": "llm-analyst",
-    "confidence": "high",
-    "requiresHumanReview": true
-  }
+  ]
 }
 ```
 
-### 3. Preencher TODOs (Determinístico)
+### 3. Fill TODOs (Deterministic)
 
 ```bash
 pnpm codegen:actions-fill-todos --plan config/action-semantic-plan.json
 ```
 
-Isso lê o JSON e gera código TypeScript completo.
+This reads the JSON and generates complete TypeScript.
 
-**Resultado:**
+**Result:**
 
 ```typescript
 "use server"
@@ -179,33 +201,21 @@ import { createServerAuthClient } from "@workspace/supabase-auth/server/create-s
 import { ReferenceValuesSupabaseRepository } from "@workspace/supabase-data/modules/catalog/infrastructure/repositories/reference-values-supabase.repository.codegen"
 import { logServerEvent } from "@workspace/logging/server"
 
-/**
- * Input schema for ListReferenceValuesAction
- */
 const ListReferenceValuesInputSchema = z.object({
   scope: z.string().optional(),
   limit: z.number().int().positive().max(100).default(50),
   offset: z.number().int().nonnegative().default(0),
 })
 
-/**
- * Input type for ListReferenceValuesAction
- */
 export type ListReferenceValuesInput = z.infer<
   typeof ListReferenceValuesInputSchema
 >
 
-/**
- * ListReferenceValuesAction Server Action
- *
- * @param input - Action input
- */
 export async function listReferenceValuesAction(
   input: ListReferenceValuesInput
 ): Promise<{ data: ReferenceValuesDTO[]; total: number }> {
   const startedAt = Date.now()
 
-  // 1. Auth check (SSOT via requireAuth)
   const claims = await requireAuth({
     action: "list_reference-values",
   })
@@ -213,21 +223,17 @@ export async function listReferenceValuesAction(
   const userId = claims.sub
 
   try {
-    // 2. Validate input
     const validated = ListReferenceValuesInputSchema.parse(input)
 
-    // 3. Create auth client + repository
     const supabase = await createServerAuthClient()
     const repository = new ReferenceValuesSupabaseRepository(supabase)
 
-    // 4. Execute operation
     const result = await repository.list({
       scope: validated.scope,
       limit: validated.limit,
       offset: validated.offset,
     })
 
-    // 5. Log success
     await logServerEvent({
       actorId: userId,
       actorType: "user",
@@ -244,10 +250,8 @@ export async function listReferenceValuesAction(
       service: "supabase-data",
     })
 
-    // 6. Return result
     return { data: result, total: result.length }
   } catch (error) {
-    // 7. Log error
     await logServerEvent({
       actorId: userId,
       actorType: "user",
@@ -268,47 +272,23 @@ export async function listReferenceValuesAction(
 }
 ```
 
-## Como Funciona a Análise Semântica
+## What the semantic analysis must consider
 
-### O LLM/Analista Deve Considerar:
+1. **Database schema:** column types, constraints, FKs and relationships
+2. **Business rules:** required vs optional fields, specific validations, tenant
+   isolation rules
+3. **Auth & Authorization:** specific role requirements, tenant scoping, custom
+   checks
+4. **Performance:** pagination, cache invalidation via `revalidatePath()`
+5. **Logging & Observability:** useful debug metadata, entity IDs, correlation IDs
 
-1. **Schema do Banco:**
-   - Tipos de colunas (string, number, boolean, etc.)
-   - Constraints (NOT NULL, UNIQUE, etc.)
-   - FKs e relacionamentos
+## Validation
 
-2. **Regras de Negócio:**
-   - Quais campos são required vs optional?
-   - Validações específicas (ex: email, CPF, etc.)
-   - Regras de tenant isolation
-
-3. **Auth & Authorization:**
-   - Precisa de role específico?
-   - Tenant scoping necessário?
-   - Custom checks?
-
-4. **Performance:**
-   - Paginação necessária?
-   - Cache invalidation strategy
-   - Optimistic updates seguros?
-
-5. **Logging & Observability:**
-   - Quais metadados são úteis para debug?
-   - Quais IDs devem ser logados?
-   - Correlation IDs?
-
-## Validação
-
-Após gerar o código:
+After generating code:
 
 ```bash
-# Typecheck
 pnpm typecheck
-
-# Lint
 pnpm lint
-
-# Forbidden patterns
 pnpm check:forbidden
 ```
 
@@ -317,3 +297,4 @@ pnpm check:forbidden
 - [Backend codegen](./backend-codegen.md)
 - [Data access pattern](../architecture/data-access-pattern.md)
 - [LLM-to-LLM prompt](./llm-prompt-action-hook-codegen.md)
+- [Form island pattern](./form-island-pattern.md)

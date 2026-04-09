@@ -105,7 +105,7 @@ Setup: [docs/guides/supabase-setup.md](../guides/supabase-setup.md). Types:
 | ----------------------- | --------------------------- | ----------------------------------------------------------- |
 | **TanStack Query**      | Async server-state, caching | Add to your app when needed (not required by the template). |
 | **TanStack Table**      | Headless tables             | `apps/example`, `packages/ui`.                              |
-| **TanStack Form**       | Form state + Zod            | `@workspace/forms` (`@tanstack/react-form`).                |
+| **React Hook Form**    | Form state + Zod            | `@workspace/forms` (`react-hook-form`).                     |
 | **React Hook Form**     | Controlled forms + shadcn   | `apps/example`, `packages/ui` (primitives/hooks).           |
 | **@hookform/resolvers** | **RHF + Zod** bridge        | `apps/example` (e.g. `zodResolver` patterns).               |
 

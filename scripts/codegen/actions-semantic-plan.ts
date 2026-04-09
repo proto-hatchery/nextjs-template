@@ -46,6 +46,18 @@ interface SemanticField {
   zodSchema: string
 }
 
+interface QueryFrontendContract {
+  actionImportPath: string
+  hookImportPath: string
+  hookKind: "query"
+  hookName: string
+  queryKeyFactory: string
+}
+
+interface MutationFrontendContract {
+  actionImportPath: string
+}
+
 interface ActionSemanticPlan {
   actionName: string
   actionPath: string
@@ -55,14 +67,7 @@ interface ActionSemanticPlan {
     optimisticUpdate: boolean
   }
   domainId: string
-  frontendContract: {
-    actionImportPath: string
-    generateHook: boolean
-    hookImportPath?: string
-    hookKind?: "mutation" | "query"
-    hookName?: string
-    queryKeyFactory?: string
-  }
+  frontendContract: QueryFrontendContract | MutationFrontendContract
   inputSchema: {
     fields: SemanticField[]
     typeName: string
@@ -313,40 +318,19 @@ function queryKeyFactoryName(table: string, method: CrudMethod): string {
   return tableCamel
 }
 
-function hookNameFor(table: string, method: CrudMethod): string | undefined {
+function hookNameFor(table: string, method: "list" | "findById"): string {
   const tablePascal = toPascalCase(table)
   if (method === "list") {
     return `use${tablePascal}Query`
   }
-  if (method === "findById") {
-    return `use${tablePascal}ByIdQuery`
-  }
-  if (method === "insert") {
-    return `use${tablePascal}InsertMutation`
-  }
-  if (method === "update") {
-    return `use${tablePascal}UpdateMutation`
-  }
-  if (method === "delete") {
-    return `use${tablePascal}DeleteMutation`
-  }
-  if (method === "upsert") {
-    return `use${tablePascal}UpsertMutation`
-  }
-  return undefined
+  return `use${tablePascal}ByIdQuery`
 }
 
-function hookFileNameFor(table: string, method: CrudMethod): string | undefined {
+function hookFileNameFor(table: string, method: "list" | "findById"): string {
   if (method === "list") {
     return `use-${toKebabCase(table)}-query.hook.codegen`
   }
-  if (method === "findById") {
-    return `use-${toKebabCase(table)}-by-id-query.hook.codegen`
-  }
-  if (method === "insert" || method === "update" || method === "delete" || method === "upsert") {
-    return `use-${toKebabCase(table)}-${toKebabCase(method)}-mutation.hook.codegen`
-  }
-  return undefined
+  return `use-${toKebabCase(table)}-by-id-query.hook.codegen`
 }
 
 function inferListFields(entry: RepositoryPlanEntry, rowFields: ExtractedField[]): SemanticField[] {
@@ -564,9 +548,7 @@ function buildActionSemanticPlan(
   const schemaSource =
     method === "list" || method === "findById"
       ? entry.read
-      : // For mutations, prefer the write target (tables) so Insert/Update shapes exist.
-        // Falls back to read when a write target isn't configured.
-        (entry.write ?? entry.read)
+      : (entry.write ?? entry.read)
 
   const shapes = extractTableShapes(
     typesSource,
@@ -579,9 +561,19 @@ function buildActionSemanticPlan(
   const tableKebab = toKebabCase(entry.table)
   const methodCamel = toCamelCase(method)
   const actionName = `${methodCamel}${toPascalCase(entry.table)}Action`
-  const hookName = hookNameFor(entry.table, method)
-  const hookFileName = hookFileNameFor(entry.table, method)
-  const hookKind = inferActionKind(method)
+  const isQueryMethod = method === "list" || method === "findById"
+
+  const frontendContract: QueryFrontendContract | MutationFrontendContract = isQueryMethod
+    ? {
+        actionImportPath: `@workspace/supabase-data/actions/${domainKebab}/${tableKebab}-${methodCamel}.codegen`,
+        hookImportPath: `@workspace/supabase-data/hooks/${domainKebab}/${hookFileNameFor(entry.table, method)}`,
+        hookKind: "query",
+        hookName: hookNameFor(entry.table, method),
+        queryKeyFactory: queryKeyFactoryName(entry.table, method),
+      }
+    : {
+        actionImportPath: `@workspace/supabase-data/actions/${domainKebab}/${tableKebab}-${methodCamel}.codegen`,
+      }
 
   return {
     actionName,
@@ -589,22 +581,13 @@ function buildActionSemanticPlan(
     authPolicy: inferAuthPolicy(domain),
     cacheInvalidation: inferCacheInvalidation(entry, method),
     domainId: entry.domainId,
-    frontendContract: {
-      actionImportPath: `@workspace/supabase-data/actions/${domainKebab}/${tableKebab}-${methodCamel}.codegen`,
-      generateHook: Boolean(hookName && hookFileName),
-      hookImportPath: hookFileName
-        ? `@workspace/supabase-data/hooks/${domainKebab}/${hookFileName}`
-        : undefined,
-      hookKind,
-      hookName,
-      queryKeyFactory: queryKeyFactoryName(entry.table, method),
-    },
+    frontendContract,
     inputSchema: {
       fields: inputFields,
       typeName: `${toPascalCase(entry.table)}${toPascalCase(method)}Input`,
       zodSchema: renderZodObject(inputFields),
     },
-    kind: hookKind,
+    kind: inferActionKind(method),
     logging: inferLoggingMetadata(entry, method),
     method,
     notes: [
@@ -693,4 +676,11 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   }
 }
 
-export { generateSemanticPlan, type ActionSemanticPlan, type SemanticPlanFile, type SemanticField }
+export {
+  generateSemanticPlan,
+  type ActionSemanticPlan,
+  type MutationFrontendContract,
+  type QueryFrontendContract,
+  type SemanticField,
+  type SemanticPlanFile,
+}

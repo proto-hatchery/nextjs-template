@@ -6,7 +6,7 @@
 
 **⚠️ READ THESE FIRST — YOUR PR WILL BE REJECTED IF YOU BREAK THESE:**
 
-1. **[CRITICAL ARCHITECTURE RULES](./docs/architecture/CRITICAL-RULES.md)** — 5
+1. **[CRITICAL ARCHITECTURE RULES](./docs/architecture/CRITICAL-RULES.md)** — 7
    non-negotiable rules with examples
 
 - **Server Actions:** only in `packages/supabase-data/src/actions/<module>/`
@@ -16,6 +16,9 @@
 - Zod validators MUST have `()` (`.uuid()` not `.uuid`)
 - NO server imports in client components
 - NO barrel exports (explicit imports only)
+- **Mutation hooks DO NOT EXIST** — `use-*-mutation.hook.codegen.ts` must not
+  be created; mutations go through Server Actions only
+- `authActionClient` comes from `@workspace/safe-action` ONLY
 
 2. **[Proxy Not Middleware](./docs/standards/rules/proxy-not-middleware.md)** -
    Next.js 16 uses proxy.ts
@@ -96,6 +99,8 @@ pnpm skills:update                     # Update from docs
 - ✅ Test in /tests directory
 - ✅ Document with JSDoc
 - ✅ Use templates for creation
+- ✅ Write path: `useActionForm` → `authActionClient` Server Action → `revalidatePath()`
+- ✅ Read path: Server Components fetch via generated Server Actions (RSC-first)
 
 ## ❌ Never
 
@@ -105,6 +110,10 @@ pnpm skills:update                     # Update from docs
 - ❌ Create tests outside /tests
 - ❌ Create migrations manually
 - ❌ Create barrel imports
+- ❌ Create mutation hooks (`use-*-mutation.hook.codegen.ts`) — they do not exist
+- ❌ Import authActionClient from anywhere except `@workspace/safe-action`
+- ❌ Use `@tanstack/react-form` (React Hook Form only: useAppForm / useActionForm)
+- ❌ Use `.schema()` on authActionClient (use `.inputSchema()`)
 
 ---
 

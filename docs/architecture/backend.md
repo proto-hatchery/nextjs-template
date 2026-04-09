@@ -337,43 +337,36 @@ export async function createEntityAction(
 
 ### Client-Side Consumption
 
+For server-first writable routes (settings, profile, configuration), consume
+Server Actions through `useActionForm`:
+
 ```typescript
 "use client"
 
-import { useMutation } from "@tanstack/react-query"
-import { z } from "zod"
+import { useActionForm } from "@workspace/forms/hooks/use-action-form"
 import { createEntityAction } from "@workspace/supabase-data/actions/entities/create-entity"
-import {
-  unwrapActionResult,
-  isActionError,
-} from "@workspace/supabase-data/lib/boundary"
 
-const EntitySchema = z.object({
-  id: z.string(),
-  name: z.string(),
-})
-
-export function useEntityMutations() {
-  const create = useMutation({
-    mutationFn: async (input: CreateEntityInput) => {
-      try {
-        const data = await unwrapActionResult(
-          await createEntityAction(input),
-          EntitySchema
-        )
-        return { success: true as const, data }
-      } catch (error) {
-        if (isActionError(error)) {
-          return { success: false as const, error: error.message }
-        }
-        throw error
-      }
-    },
+export function CreateEntityForm({ initialValues }: Props) {
+  const { form, handleSubmitWithAction, action } = useActionForm({
+    action: createEntityAction,
+    schema: createEntitySchema,
+    defaultValues: initialValues,
+    values: initialValues,
   })
 
-  return { create }
+  return (
+    <form onSubmit={handleSubmitWithAction}>
+      {/* fields */}
+      {action.result.serverError && <p>{action.result.serverError}</p>}
+      <Button disabled={action.isPending}>Create</Button>
+    </form>
+  )
 }
 ```
+
+> ⚠️ **Note:** `use-*-mutation.hook.codegen.ts` files **do not exist** in this
+> codebase and must not be created. All mutations go through Server Actions.
+> See [data-access-pattern.md](./data-access-pattern.md).
 
 ### ✅ CORRECT Examples
 
@@ -636,13 +629,16 @@ export async function createEntityWrapper(...) {
 
 | Situation                                       | Correct Home               | Correct Consumer Surface |
 | ----------------------------------------------- | -------------------------- | ------------------------ |
-| Query with React Query caching in client UI     | `@workspace/supabase-data` | Hook                     |
-| Client mutation with invalidation/optimistic UI | `@workspace/supabase-data` | Hook                     |
+| Query with React Query caching in client UI     | `@workspace/supabase-data` | Query hook               |
+| Client mutation (all writable routes)           | `@workspace/supabase-data` | Server Action + useActionForm |
 | File upload with server validation              | `@workspace/supabase-data` | Action                   |
 | Signed URL generation                           | `@workspace/supabase-data` | Action                   |
 | Server page fetch needing authenticated access  | `@workspace/supabase-data` | Action                   |
 | App-specific redirect/toast/view glue           | App feature folder         | Local helper             |
 | App-local wrapper over package data logic       | **FORBIDDEN**              | N/A                      |
+
+> Mutation hooks are not a consumer surface in this architecture. All mutations
+> go through Server Actions. See [data-access-pattern.md](./data-access-pattern.md).
 
 ### Use Hooks When
 

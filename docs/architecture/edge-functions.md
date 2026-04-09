@@ -158,7 +158,7 @@ export interface MyFunctionResponse {
 import { z } from "https://deno.land/x/zod@v3.22.4/mod.ts"
 
 const myFunctionSchema = z.object({
-  userId: z.string().uuid(),
+  userId: z.uuid(),
   amount: z.number().positive(),
 })
 

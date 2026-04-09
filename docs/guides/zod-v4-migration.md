@@ -4,14 +4,14 @@
 
 ## ❌ Padrões Zod v3 (DEPRECIADOS)
 
-### 1. `z.string().email()`
+### 1. `z.email()`
 
 ```typescript
 // ❌ Zod v3 - DEPRECIADO
-z.string().email("Invalid email")
+z.email("Invalid email")
 
 // ❌ Também deprecia do:
-z.string().email({ message: "Invalid email" })
+z.email({ message: "Invalid email" })
 ```
 
 **Erro:** `'(params?: string | { ... })' is deprecated`
@@ -27,7 +27,7 @@ z.string().datetime({ precision: 3 })
 
 **Erro:** `'(params?: string | { ... })' is deprecated`
 
-### 3. `z.string().uuid()`
+### 3. `z.uuid()`
 
 ```typescript
 // ❌ Zod v3 - DEPRECIADO
@@ -114,10 +114,10 @@ z.record(z.string(), z.object({ name: z.string() }))
 
 ### Strings
 
-- [ ] `z.string().email()` → `z.email()`
+- [ ] `z.email()` → `z.email()`
 - [ ] `z.string().datetime()` → `z.iso.datetime()`
-- [ ] `z.string().uuid()` → `z.uuid()`
-- [ ] `z.string().url()` → `z.url()`
+- [ ] `z.uuid()` → `z.uuid()`
+- [ ] `z.url()` → `z.url()`
 
 ### Records
 
@@ -187,7 +187,7 @@ ZodError: [
 
 ```typescript
 const InsertAssistantInvitesInputSchema = z.object({
-  email: z.string().email("Invalid email"),
+  email: z.email("Invalid email"),
   expires_at: z.string().datetime(),
   metadata: z.record(z.unknown()).optional(),
 })

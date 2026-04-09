@@ -13,7 +13,7 @@ const UserAccessDTOSchema = z.object({
   permissions: z.array(z.enum(AUTH_PERMISSIONS)),
   roles: z.array(z.enum(AUTH_ROLES)),
   subscription: z.record(z.string(), z.unknown()),
-  userId: z.string().uuid(),
+  userId: z.uuid(),
 })
 
 type UserAccessDTO = z.infer<typeof UserAccessDTOSchema>

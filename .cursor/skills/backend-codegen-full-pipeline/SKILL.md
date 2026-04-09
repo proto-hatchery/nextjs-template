@@ -128,12 +128,11 @@ packages/supabase-data/src/actions/patients/
 └── update-patient.codegen.ts
 
 packages/supabase-data/src/hooks/patients/
-├── use-patient-query.hook.codegen.ts
-└── use-patient-mutation.hook.codegen.ts
+└── use-patient-query.hook.codegen.ts
 
 tests/unit/supabase-data/
 ├── actions/patients/*.codegen.test.ts
-└── hooks/patients/*.codegen.test.ts
+└── hooks/patients/*-query.hook.codegen.test.ts
 ```
 
 ### Step 5: Validation (Automatic)

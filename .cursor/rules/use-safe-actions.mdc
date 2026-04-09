@@ -1,12 +1,24 @@
 ---
-description: Always use authActionClient for Server Actions requiring auth
+description: Always use authActionClient from @workspace/safe-action for Server Actions requiring auth
 ---
 
 When creating Server Actions that require authentication:
-- Use `authActionClient` from `@/lib/safe-action`
-- Never manually call getClaims() in each action
+
+- Use `authActionClient` from `@workspace/safe-action` — this is the **only** correct source
+- Never import `authActionClient` from `@workspace/supabase-auth/server` or anywhere else
+- Never manually call `getClaims()` in each action
 - Let the middleware handle auth checks
-- Access userId via ctx.userId
+- Access userId via `ctx.userId`
+- Use `.inputSchema()` — never `.schema()` (deprecated in next-safe-action v8)
+
+## Write path
+
+All mutations go through Server Actions. Mutation hooks (`use-*-mutation.hook`)
+**do not exist** in this codebase and must not be created.
+
+```
+useActionForm → authActionClient Server Action → revalidatePath()
+```
 
 ## Examples
 
@@ -15,38 +27,36 @@ When creating Server Actions that require authentication:
 ```typescript
 'use server'
 
-import { authActionClient } from '@/lib/safe-action'
+import { authActionClient } from '@workspace/safe-action'
 import { z } from 'zod'
 
 export const createTask = authActionClient
-  .schema(z.object({ title: z.string() }))
+  .inputSchema(z.object({ title: z.string().min(1) }))
   .action(async ({ parsedInput, ctx }) => {
-    // ctx.userId is available from auth middleware
     const { title } = parsedInput
-    
-    // Use ctx.userId for ownership
-    return await db.task.create({
-      data: {
-        title,
-        userId: ctx.userId
-      }
-    })
+    const task = await createTaskInDb({ title, userId: ctx.userId })
+    revalidatePath('/tasks')
+    return { task }
   })
 ```
 
 ### Incorrect Usage
 
 ```typescript
+// ❌ Wrong - wrong import source
+import { authActionClient } from '@workspace/supabase-auth/server'
+
+// ❌ Wrong - deprecated .schema() API
+export const createTask = authActionClient
+  .schema(z.object({ title: z.string() }))
+  .action(...)
+
 // ❌ Wrong - manually calling getClaims()
 'use server'
-
 import { getClaims } from '@workspace/supabase-auth/session'
-
 export const createTask = async (title: string) => {
   const claims = await getClaims()
   if (!claims?.sub) throw new Error('Unauthorized')
-  
-  // This pattern is error-prone and verbose
 }
 ```
 
@@ -54,3 +64,4 @@ export const createTask = async (title: string) => {
 
 - [auth-invariants](./auth-invariants.mdc) - Auth pattern enforcement
 - [security-invariants](./security-invariants.mdc) - Security best practices
+- [critical-architecture-rules](./critical-architecture-rules.mdc) - Full rule set

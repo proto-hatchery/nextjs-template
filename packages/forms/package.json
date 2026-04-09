@@ -4,9 +4,8 @@
   "private": true,
   "type": "module",
   "exports": {
-    "./components/form-field": "./src/components/form-field.component.tsx",
     "./hooks/use-app-form": "./src/hooks/use-app-form.hook.ts",
-    "./lib/get-form-error-text": "./src/lib/get-form-error-text.ts"
+    "./hooks/use-action-form": "./src/hooks/use-action-form.hook.ts"
   },
   "scripts": {
     "lint": "oxlint",
@@ -17,9 +16,12 @@
     "check:exports": "publint"
   },
   "dependencies": {
-    "@tanstack/react-form": "^1.28.6",
+    "@next-safe-action/adapter-react-hook-form": "2.0.5",
+    "@hookform/resolvers": "^5.2.2",
     "@workspace/ui": "workspace:*",
+    "next-safe-action": "^8.3.0",
     "react": "^19.2.4",
+    "react-hook-form": "^7.72.1",
     "zod": "^4.3.6"
   },
   "devDependencies": {

@@ -11,13 +11,13 @@ globs: **/*.{ts,tsx}
 
 **CORRECT:**
 ```typescript
-import { authActionClient } from '@/lib/safe-action'
+import { authActionClient } from '@workspace/safe-action'
 import { z } from 'zod'
 
 export const updateProfile = authActionClient
   .inputSchema(z.object({
     name: z.string().min(1),
-    email: z.string().email()
+    email: z.email()
   }))
   .action(async ({ parsedInput, ctx }) => {
     // ...
@@ -37,9 +37,9 @@ export const updateProfile = authActionClient
 
 | Validator | Correct | Wrong |
 |-----------|---------|-------|
-| UUID | `z.string().uuid()` | `z.string().uuid` (missing `()`) |
-| Email | `z.string().email()` | `z.string().email` (missing `()`) |
-| URL | `z.string().url()` | `z.string().url` (missing `()`) |
+| UUID | `z.uuid()` | `z.string().uuid` (missing `()`) |
+| Email | `z.email()` | `z.email` (missing `()`) |
+| URL | `z.url()` | `z.url` (missing `()`) |
 | Min length | `z.string().min(1)` | `z.string().minlength(1)` |
 | Max length | `z.string().max(100)` | `z.string().maxlength(100)` |
 | Positive | `z.number().positive()` | `z.number().min(0)` |
@@ -65,13 +65,13 @@ const user = z.object({
 const title = z.string().min(1)
 
 // Email
-const email = z.string().email()
+const email = z.email()
 
 // UUID
-const id = z.string().uuid()
+const id = z.uuid()
 
 // URL
-const website = z.string().url()
+const website = z.url()
 
 // Regex pattern
 const slug = z.string().regex(/^[a-z0-9-]+$/)
@@ -103,7 +103,7 @@ const score = z.number().nonnegative()
 const role = z.enum(['admin', 'user', 'guest'])
 
 // Union
-const id = z.union([z.string().uuid(), z.number()])
+const id = z.union([z.uuid(), z.number()])
 
 // Native enum
 enum Status { Draft, Published }

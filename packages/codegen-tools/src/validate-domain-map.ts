@@ -1,5 +1,6 @@
 import { ZodError } from "zod"
 
+import { extractPublicViewNames } from "./extract-public-view-names"
 import { parseDomainMapJson, type DomainMapFile } from "./domain-map-schema"
 import { extractPublicTableNames } from "./extract-public-table-names"
 
@@ -7,15 +8,18 @@ type ValidateResult = { domainMap: DomainMapFile; errors: string[]; ok: boolean 
 
 function validateDomainMapAgainstTypes(
   domainMap: DomainMapFile,
-  publicTableNames: readonly string[]
+  publicTableNames: readonly string[],
+  publicViewNames: readonly string[]
 ): string[] {
   const errors: string[] = []
-  const publicSet = new Set(publicTableNames)
+  const publicTableSet = new Set(publicTableNames)
+  const _publicViewSet = new Set(publicViewNames)
+  const publicEntitySet = new Set([...publicTableNames, ...publicViewNames])
   const assigned = new Set<string>()
   const ignored = new Set(domainMap.ignoreTables ?? [])
 
   for (const t of ignored) {
-    if (!publicSet.has(t)) {
+    if (!publicTableSet.has(t)) {
       errors.push(`ignoreTables: unknown table "${t}" (not in Database["public"]["Tables"])`)
     }
   }
@@ -26,8 +30,8 @@ function validateDomainMapAgainstTypes(
         errors.push(`Table "${table}" appears in more than one domain`)
       }
       assigned.add(table)
-      if (!publicSet.has(table)) {
-        errors.push(`Domain "${domain.id}": unknown table "${table}"`)
+      if (!publicEntitySet.has(table)) {
+        errors.push(`Domain "${domain.id}": unknown table or view "${table}"`)
       }
       if (ignored.has(table)) {
         errors.push(`Table "${table}" is both in domain "${domain.id}" and ignoreTables`)
@@ -57,6 +61,7 @@ function validateDomainMapContent(rawJson: unknown, databaseTypesSource: string)
   }
 
   const tables = extractPublicTableNames(databaseTypesSource)
+  const views = extractPublicViewNames(databaseTypesSource)
   if (tables.length === 0) {
     return {
       domainMap,
@@ -65,7 +70,7 @@ function validateDomainMapContent(rawJson: unknown, databaseTypesSource: string)
     }
   }
 
-  const errors = validateDomainMapAgainstTypes(domainMap, tables)
+  const errors = validateDomainMapAgainstTypes(domainMap, tables, views)
   return { domainMap, errors, ok: errors.length === 0 }
 }
 

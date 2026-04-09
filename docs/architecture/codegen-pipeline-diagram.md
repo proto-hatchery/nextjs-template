@@ -12,7 +12,7 @@ flowchart TD
         A1["📄 database.types.ts<br/>(Supabase CLI)"]
         A2["📝 domain-map.json<br/>(Tables → Domains)"]
         A3["📋 repository-plan.json<br/>(Codegen Scope)"]
-        A4["🎯 action-semantic-plan.json<br/>(Actions/Hooks Blueprint)"]
+        A4["🎯 action-semantic-plan.json<br/>(Actions Blueprint)"]
 
         A1 --> A2
         A2 --> A3
@@ -39,16 +39,16 @@ flowchart TD
         D1 --> D2
     end
 
-    subgraph Step3["Step 3: Actions & Hooks Codegen"]
+    subgraph Step3["Step 3: Actions & Query Hooks Codegen"]
         E1["pnpm codegen:actions-hooks --write"]
-        E2["Generates:<br/>- Server Actions<br/>- Query Hooks<br/>- Mutation Hooks<br/>- Query Keys"]
+        E2["Generates:<br/>- Server Actions<br/>- Query Hooks (read-only)<br/>- Query Keys"]
         E1 --> E2
     end
 
     subgraph Step4["Step 4: Generate Tests"]
         F1["pnpm codegen:generate-action-tests"]
         F2["pnpm codegen:generate-hook-tests"]
-        F3["Generates:<br/>- Action unit tests<br/>- Hook unit tests"]
+        F3["Generates:<br/>- Action unit tests<br/>- Query hook unit tests"]
         F1 --> F3
         F2 --> F3
     end
@@ -91,7 +91,7 @@ flowchart TD
 - ✅ `packages/supabase-infra/src/types/database.types.ts` (via Supabase CLI)
 - ✅ `config/domain-map.json` (tables → domains mapping)
 - ✅ `config/repository-plan.json` (defines codegen scope + methods)
-- ✅ `config/action-semantic-plan.json` (blueprint for actions/hooks)
+- ✅ `config/action-semantic-plan.json` (blueprint for actions codegen)
 
 **Commands:**
 
@@ -128,17 +128,10 @@ pnpm codegen:actions-semantic-plan
 - ✅ `config/repository-plan.json`
 - ✅ `config/action-semantic-plan.json`
 
-**Why All in Step 0:**
-
-- `database.types.ts` is the **source of truth** (Supabase CLI generated)
-- `domain-map.json` maps tables → domains (semantic grouping)
-- `repository-plan.json` defines codegen scope (which tables + methods)
-- `action-semantic-plan.json` is the blueprint for actions/hooks generation
-
 **Consumed By:**
 
 - Step 1 (Backend Codegen) → reads `repository-plan.json` + `database.types.ts`
-- Step 3 (Actions/Hooks) → reads `action-semantic-plan.json`
+- Step 3 (Actions/Query Hooks) → reads `action-semantic-plan.json`
 
 ---
 
@@ -210,7 +203,7 @@ pnpm lint
 **Consumed By:**
 
 - Step 2 (Semantic Plan) — imports repository types
-- Step 3 (Actions/Hooks) — imports repository classes
+- Step 3 (Actions/Query Hooks) — imports repository classes
 
 ---
 
@@ -239,45 +232,19 @@ ls config/action-semantic-plan.json
 
 - ✅ `config/action-semantic-plan.json`
 
-**What's Inside:**
-
-```json
-{
-  "version": 1,
-  "generatedAt": "2026-04-07T12:00:00.000Z",
-  "actions": [
-    {
-      "domainId": "patients",
-      "table": "psychologist_patients",
-      "method": "list",
-      "actionName": "listPsychologistPatientsAction",
-      "inputSchema": {
-        "zodSchema": "z.object({ limit: z.number().optional(), ... })",
-        "typeName": "ListPsychologistPatientsInput",
-        "fields": [...]
-      },
-      "outputSchema": { ... },
-      "auth": {
-        "tenantScoping": true,
-        "requiredRole": "psychologist"
-      },
-      "logging": { ... },
-      "cacheInvalidation": { ... }
-    }
-    // ... 289 more actions
-  ]
-}
-```
-
 **Consumed By:**
 
-- Step 3 (Actions/Hooks Codegen) — reads this JSON to generate code
+- Step 3 (Actions/Query Hooks Codegen) — reads this JSON to generate code
 
 ---
 
-### Step 3: Actions & Hooks Codegen
+### Step 3: Actions & Query Hooks Codegen
 
-**Goal:** Generate Server Actions and TanStack Query hooks.
+**Goal:** Generate Server Actions and read-only TanStack Query hooks.
+
+> ⚠️ **IMPORTANT:** Only **query hooks** are generated. **Mutation hooks do not
+> exist** in this codebase and must not be created. All mutations go through
+> Server Actions.
 
 **Prerequisites:**
 
@@ -287,7 +254,7 @@ ls config/action-semantic-plan.json
 **Commands:**
 
 ```bash
-# 3.1: Generate all actions and hooks
+# 3.1: Generate all actions and query hooks
 pnpm codegen:actions-hooks --write
 
 # OR regenerate specific domain
@@ -299,9 +266,11 @@ pnpm codegen:actions-hooks --write --domain patients
 - ✅ `packages/supabase-data/src/actions/<domain>/<table>-<method>.codegen.ts`
 - ✅
   `packages/supabase-data/src/hooks/<domain>/use-<table>-query.hook.codegen.ts`
-- ✅
-  `packages/supabase-data/src/hooks/<domain>/use-<table>-mutation.hook.codegen.ts`
 - ✅ `packages/supabase-data/src/hooks/<domain>/query-keys.codegen.ts`
+
+**NOT generated (do not create these manually):**
+
+- ❌ `use-<table>-mutation.hook.codegen.ts` — mutation hooks do not exist
 
 **Generated Code Pattern:**
 
@@ -356,7 +325,7 @@ export async function listPsychologistPatientsAction(
 
 ### Step 4: Generate Tests
 
-**Goal:** Generate unit tests for actions and hooks.
+**Goal:** Generate unit tests for actions and query hooks.
 
 **Commands:**
 
@@ -374,8 +343,6 @@ pnpm codegen:generate-hook-tests --write
   `tests/unit/supabase-data/actions/<domain>/<table>-<method>.codegen.action.test.ts`
 - ✅
   `tests/unit/supabase-data/hooks/<domain>/<table>-query.hook.codegen.test.tsx`
-- ✅
-  `tests/unit/supabase-data/hooks/<domain>/<table>-mutation.hook.codegen.test.tsx`
 
 **What Each Test Covers:**
 
@@ -386,19 +353,15 @@ pnpm codegen:generate-hook-tests --write
 - ✅ Tenant isolation
 - ✅ Logging (success + failure)
 
-**Hook Tests:**
+**Query Hook Tests:**
 
 - ✅ Query hook fetches data on mount
 - ✅ Query key factory consistency
-- ✅ Mutation hook mutates data
-- ✅ Cache invalidation on mutation
 - ✅ Error handling
-- ✅ Optimistic updates (pattern)
 
-**Consumed By:**
+**NOT generated:**
 
-- CI/CD — runs these tests on every commit
-- Developers — verify generated code works correctly
+- ❌ `<table>-mutation.hook.codegen.test.tsx` — no mutation hooks exist
 
 ---
 
@@ -419,8 +382,6 @@ grep -c '"./actions/\|"./hooks/\|"./modules/' packages/supabase-data/package.jso
 **Artifacts Updated:**
 
 - ✅ `packages/supabase-data/package.json` → `exports` field
-
-**Result:** ~436 explicit exports, sorted alphabetically
 
 ---
 
@@ -469,7 +430,8 @@ pnpm check:forbidden
 | **Hook Unit Tests**   | ~146            | `tests/unit/supabase-data/hooks/`            |
 | **Package Exports**   | ~436            | `packages/supabase-data/package.json`        |
 
-**Total:** ~1,893 files generated/updated
+> **Note:** Query hooks listed above are **read-only** query hooks only.
+> Mutation hook files and mutation hook tests are **not generated**.
 
 ---
 
@@ -495,16 +457,15 @@ flowchart TD
         T1["Integration Tests<br/>*.codegen.test.ts"]
     end
 
-    subgraph Phase3["Phase 3: Actions + Hooks"]
+    subgraph Phase3["Phase 3: Actions + Query Hooks"]
         A1["Server Actions<br/>*.codegen.ts"]
-        A2["Query Hooks<br/>*.hook.codegen.ts"]
-        A3["Mutation Hooks<br/>*.hook.codegen.ts"]
+        A2["Query Hooks (read-only)<br/>*-query.hook.codegen.ts"]
         A4["Query Keys<br/>query-keys.codegen.ts"]
     end
 
     subgraph Phase4["Phase 4: Unit Tests"]
         U1["Action Tests<br/>*.codegen.action.test.ts"]
-        U2["Hook Tests<br/>*.codegen.hook.test.tsx"]
+        U2["Query Hook Tests<br/>*-query.hook.codegen.test.tsx"]
     end
 
     subgraph Phase5["Phase 5: Exports + Validate"]
@@ -525,7 +486,7 @@ flowchart TD
     M1 --> M2 --> M3 --> M4
     M4 --> T1
     Phase2 --> Phase3
-    A1 --> A2 --> A3 --> A4
+    A1 --> A2 --> A4
     Phase3 --> Phase4
     U1 --> U2
     Phase4 --> Phase5
@@ -562,8 +523,11 @@ flowchart TD
   `tests/unit/supabase-data/actions/<domain>/<table>-<method>.codegen.action.test.ts`
 - ✅
   `tests/unit/supabase-data/hooks/<domain>/<table>-query.hook.codegen.test.tsx`
-- ✅
-  `tests/unit/supabase-data/hooks/<domain>/<table>-mutation.hook.codegen.test.tsx`
+
+**NOT generated:**
+
+- ❌ `tests/unit/supabase-data/hooks/<domain>/<table>-mutation.hook.codegen.test.tsx`
+  — mutation hooks do not exist
 
 **Manual (Preserved):**
 

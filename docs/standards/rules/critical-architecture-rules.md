@@ -24,7 +24,7 @@
 // 🚫 DELETE IMMEDIATELY
 
 'use server'
-import { authActionClient } from '@/lib/safe-action'
+import { authActionClient } from "@workspace/safe-action"
 
 export const createUser = authActionClient
   .inputSchema(...)
@@ -37,7 +37,7 @@ export const createUser = authActionClient
 // ✅ packages/supabase-data/src/actions/users/create-user.ts
 
 'use server'
-import { authActionClient } from '@workspace/supabase-auth/server'
+import { authActionClient } from '@workspace/safe-action'
 
 export const createUser = authActionClient
   .inputSchema(...)
@@ -81,9 +81,9 @@ export const myAction = authActionClient
 
 ## 🚫 RULE #3: Zod Validators Must Have `()`
 
-**MUST use:** `z.string().uuid()`, `z.string().email()`, `z.string().url()`
+**MUST use:** `z.uuid()`, `z.email()`, `z.url()`
 
-**MUST NOT use:** `z.string().uuid`, `z.string().email`, `z.string().url`
+**MUST NOT use:** `z.string().uuid`, `z.email`, `z.url`
 (missing parentheses)
 
 ### If You See This → REQUEST CHANGES
@@ -91,8 +91,8 @@ export const myAction = authActionClient
 ```typescript
 const schema = z.object({
   id: z.string().uuid, // ❌ FUNCTION REFERENCE, NOT VALIDATOR
-  email: z.string().email, // ❌ FUNCTION REFERENCE, NOT VALIDATOR
-  website: z.string().url, // ❌ FUNCTION REFERENCE, NOT VALIDATOR
+  email: z.email, // ❌ FUNCTION REFERENCE, NOT VALIDATOR
+  website: z.url, // ❌ FUNCTION REFERENCE, NOT VALIDATOR
 })
 ```
 
@@ -103,9 +103,9 @@ calls, not properties."
 
 ```typescript
 const schema = z.object({
-  id: z.string().uuid(), // ✅ FUNCTION CALL
-  email: z.string().email(), // ✅ FUNCTION CALL
-  website: z.string().url(), // ✅ FUNCTION CALL
+  id: z.uuid(), // ✅ FUNCTION CALL
+  email: z.email(), // ✅ FUNCTION CALL
+  website: z.url(), // ✅ FUNCTION CALL
 })
 ```
 
@@ -198,6 +198,80 @@ import { updateProfile } from "@workspace/supabase-data/actions/profiles/update-
 
 ---
 
+## 🚫 RULE #6: Mutation Hooks Do NOT Exist
+
+**MUST NOT create:** `use-*-mutation.hook.codegen.ts` or any TanStack Query
+mutation hook for database writes.
+
+**MUST use:** Server Action via `authActionClient` → `revalidatePath()`
+
+### If You See This → INSTANT REJECT
+
+```typescript
+// ❌ packages/supabase-data/src/hooks/patients/use-patient-mutation.hook.codegen.ts
+// 🚫 THIS FILE SHOULD NOT EXIST
+
+"use client"
+import { useMutation } from "@tanstack/react-query"
+import { createPatientAction } from "..."
+
+export function useCreatePatientMutation() {
+  return useMutation({ mutationFn: createPatientAction, ... })
+}
+```
+
+**Comment:** "Mutation hooks do not exist. Use `useActionForm` + Server Action.
+See docs/architecture/data-access-pattern.md"
+
+### Do This Instead → APPROVE
+
+```typescript
+// ✅ apps/example/features/patients/_components/create-patient-form.tsx
+"use client"
+
+import { useActionForm } from "@workspace/forms/hooks/use-action-form"
+import { createPatientAction } from "@workspace/supabase-data/actions/patients/create-patient"
+
+export function CreatePatientForm({ initialValues }: Props) {
+  const { form, handleSubmitWithAction, action } = useActionForm({
+    action: createPatientAction,
+    schema: createPatientSchema,
+    defaultValues: initialValues,
+  })
+  return (
+    <form onSubmit={handleSubmitWithAction}>
+      <Button disabled={action.isPending}>Create</Button>
+    </form>
+  )
+}
+```
+
+---
+
+## 🚫 RULE #7: authActionClient From `@workspace/safe-action` Only
+
+**MUST import from:** `@workspace/safe-action`
+
+**MUST NOT import from:** `@workspace/supabase-auth/server` or anywhere else
+
+### If You See This → REQUEST CHANGES
+
+```typescript
+// ❌ Wrong source
+import { authActionClient } from "@workspace/supabase-auth/server"
+```
+
+**Comment:** "`authActionClient` must be imported from `@workspace/safe-action` only."
+
+### Do This Instead → APPROVE
+
+```typescript
+// ✅ Correct source
+import { authActionClient } from "@workspace/safe-action"
+```
+
+---
+
 ## 📋 Pre-Commit Verification
 
 Before committing ANY code, verify:
@@ -206,13 +280,16 @@ Before committing ANY code, verify:
 # 1. Check for actions in wrong location
 find apps -name "*.ts" -path "*/actions/*"  # Should return NOTHING
 
-# 2. Check for barrel exports
+# 2. Check for mutation hooks (they do not exist and must not be created)
+find packages/supabase-data/src/hooks -name "*mutation*"  # Should return NOTHING
+
+# 3. Check for barrel exports
 find . -name "index.ts" -exec grep -l "export \* from" {} \;  # Should return NOTHING
 
-# 3. Run dependency-cruiser
+# 4. Run dependency-cruiser
 pnpm depcruise apps/*/app packages/*/src --config .dependency-cruiser.cjs
 
-# 4. Run typecheck
+# 5. Run typecheck
 pnpm typecheck
 ```
 
@@ -236,10 +313,12 @@ Do you need to expose data/mutation to clients?
 
 ```
 Need Server Action? → @workspace/supabase-data/actions/{module}/{file}
-Need Hook? → @workspace/supabase-data/hooks/{module}/{file}
-Need Auth? → @workspace/supabase-auth/{module}
+Need Query Hook (read)? → @workspace/supabase-data/hooks/{module}/{file}
+Need Auth client? → @workspace/safe-action  (authActionClient)
+Need Auth helpers? → @workspace/supabase-auth/{module}
 Need UI? → @workspace/ui/components/{component}
 Need Brand? → @workspace/brand/components/{component}
+Need forms? → @workspace/forms/hooks/use-app-form or use-action-form
 ```
 
 ---
@@ -253,6 +332,9 @@ Need Brand? → @workspace/brand/components/{component}
 | Missing `()` on validators | **REQUEST CHANGES** — Add parentheses               |
 | Server import in client    | **INSTANT REJECT** — Refactor to Server Action      |
 | Barrel export              | **REQUEST CHANGES** — Use explicit imports          |
+| Mutation hook file created | **INSTANT REJECT** — Delete file; use Server Action |
+| Wrong authActionClient source | **REQUEST CHANGES** — Use `@workspace/safe-action` |
+| Using `@tanstack/react-form` | **REQUEST CHANGES** — Use React Hook Form          |
 
 **NO WARNINGS. FIX BEFORE MERGE.**
 

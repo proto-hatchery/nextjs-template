@@ -19,11 +19,8 @@ export default mergeConfig(
   {
     resolve: {
       alias: {
-        "@workspace/forms/components/form-field": resolve(
-          dir,
-          "src/components/form-field.component.tsx"
-        ),
         "@workspace/forms/hooks/use-app-form": resolve(dir, "src/hooks/use-app-form.hook.ts"),
+        "@workspace/forms/hooks/use-action-form": resolve(dir, "src/hooks/use-action-form.hook.ts"),
         "@workspace/forms": resolve(dir, "src"),
         "@workspace/ui": resolve(dir, "../ui/src"),
         zod: require.resolve("zod"),

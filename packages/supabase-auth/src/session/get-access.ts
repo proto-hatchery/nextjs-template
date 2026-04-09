@@ -3,7 +3,7 @@ import type { JwtPayload } from "@supabase/supabase-js"
 
 import { createServerAuthClient } from "@workspace/supabase-auth/server/create-server-auth-client"
 import { getClaims, type JWTClaims } from "@workspace/supabase-auth/session/get-claims"
-import { isAuthRole, type AuthRole } from "@workspace/supabase-auth/shared/auth-role"
+import { normalizeAuthRole, type AuthRole } from "@workspace/supabase-auth/shared/auth-role"
 import {
   getAccessFromClaims,
   type AccessFromClaims,
@@ -15,10 +15,16 @@ function parseRolesFromRpc(value: unknown): AuthRole[] {
     return []
   }
 
-  return value.filter(
-    (role, index): role is AuthRole =>
-      typeof role === "string" && isAuthRole(role) && value.indexOf(role) === index
-  )
+  return value
+    .filter((role, index): role is AuthRole => {
+      if (typeof role !== "string" || value.indexOf(role) !== index) {
+        return false
+      }
+
+      return normalizeAuthRole(role) !== null
+    })
+    .map((role) => normalizeAuthRole(role))
+    .filter((role): role is AuthRole => role !== null)
 }
 
 function parsePermissionsFromRpc(value: unknown): Permission[] {

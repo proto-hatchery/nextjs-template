@@ -1,0 +1,22 @@
+{
+  "name": "@workspace/safe-action",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "lint": "oxlint",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@workspace/supabase-auth": "workspace:*",
+    "next-safe-action": "^8.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "^25.5.2",
+    "@workspace/typescript-config": "workspace:*",
+    "typescript": "^5.9.3"
+  }
+}

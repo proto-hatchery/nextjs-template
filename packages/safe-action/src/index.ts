@@ -2,11 +2,9 @@ import { createSafeActionClient } from "next-safe-action"
 
 import { getClaims } from "@workspace/supabase-auth/session/get-claims"
 
-// Base action client
-export const actionClient = createSafeActionClient()
+const actionClient = createSafeActionClient()
 
-// Auth action client with middleware
-export const authActionClient = actionClient.use(async ({ next, ctx: _ctx }) => {
+const authActionClient = actionClient.use(async ({ next }) => {
   const claims = await getClaims()
 
   if (!claims?.sub) {
@@ -15,3 +13,7 @@ export const authActionClient = actionClient.use(async ({ next, ctx: _ctx }) => 
 
   return next({ ctx: { userId: claims.sub } })
 })
+
+type AuthActionContext = { userId: string }
+
+export { actionClient, authActionClient, type AuthActionContext }

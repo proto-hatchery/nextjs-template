@@ -21,7 +21,10 @@
       "codegen": true,
       "exposeActions": true,
       "readOnly": false,
-      "tables": ["assistant_invites", "psychologist_assistants"]
+      "tables": [
+        "assistant_invites",
+        "psychologist_assistants"
+      ]
     },
     {
       "id": "audit",
@@ -57,7 +60,11 @@
       "codegen": true,
       "exposeActions": true,
       "readOnly": false,
-      "tables": ["clinical_session_details", "psychologist_clinical_sessions"]
+      "tables": [
+        "clinical_session_details",
+        "psychologist_clinical_sessions",
+        "therapeutic_session_events"
+      ]
     },
     {
       "id": "documents",
@@ -65,7 +72,10 @@
       "codegen": true,
       "exposeActions": true,
       "readOnly": false,
-      "tables": ["generated_documents", "psychologist_patient_guardian_documents"]
+      "tables": [
+        "generated_documents",
+        "psychologist_patient_guardian_documents"
+      ]
     },
     {
       "id": "financial",
@@ -73,7 +83,11 @@
       "codegen": true,
       "exposeActions": true,
       "readOnly": false,
-      "tables": ["psychologist_financial_entries", "psychologist_invoices", "psychologist_patient_charges"]
+      "tables": [
+        "psychologist_financial_entries",
+        "psychologist_invoices",
+        "psychologist_patient_charges"
+      ]
     },
     {
       "id": "google-calendar",
@@ -81,7 +95,9 @@
       "codegen": true,
       "exposeActions": true,
       "readOnly": false,
-      "tables": ["google_calendar_connections"]
+      "tables": [
+        "google_calendar_connections"
+      ]
     },
     {
       "id": "sync-infra",
@@ -106,7 +122,10 @@
       "codegen": true,
       "exposeActions": true,
       "readOnly": false,
-      "tables": ["psychologist_notes", "psychologist_quick_notes"]
+      "tables": [
+        "psychologist_notes",
+        "psychologist_quick_notes"
+      ]
     },
     {
       "id": "onboarding",
@@ -114,7 +133,9 @@
       "codegen": true,
       "exposeActions": true,
       "readOnly": false,
-      "tables": ["psychologist_onboarding_state"]
+      "tables": [
+        "psychologist_onboarding_state"
+      ]
     },
     {
       "id": "patients",
@@ -138,7 +159,10 @@
       "codegen": true,
       "exposeActions": true,
       "readOnly": false,
-      "tables": ["psychologist_preferences", "psychologist_services"]
+      "tables": [
+        "psychologist_preferences",
+        "psychologist_services"
+      ]
     },
     {
       "id": "profiles",
@@ -146,7 +170,9 @@
       "codegen": false,
       "exposeActions": true,
       "readOnly": false,
-      "tables": ["profiles"]
+      "tables": [
+        "profiles"
+      ]
     },
     {
       "id": "observability",
@@ -154,7 +180,9 @@
       "codegen": true,
       "exposeActions": true,
       "readOnly": true,
-      "tables": ["observability_events"]
+      "tables": [
+        "observability_events"
+      ]
     },
     {
       "id": "user-roles",
@@ -162,7 +190,10 @@
       "codegen": false,
       "exposeActions": true,
       "readOnly": false,
-      "tables": ["app_roles", "user_roles"]
+      "tables": [
+        "app_roles",
+        "user_roles"
+      ]
     },
     {
       "id": "account-management",
@@ -170,7 +201,9 @@
       "codegen": true,
       "exposeActions": true,
       "readOnly": false,
-      "tables": ["account_deletion_requests"]
+      "tables": [
+        "account_deletion_requests"
+      ]
     },
     {
       "id": "public-directory",
@@ -178,7 +211,11 @@
       "codegen": false,
       "exposeActions": true,
       "readOnly": false,
-      "tables": ["public_linktree_links", "public_locations", "public_profiles"]
+      "tables": [
+        "public_linktree_links",
+        "public_locations",
+        "public_profiles"
+      ]
     },
     {
       "id": "identity-profiles",
@@ -186,7 +223,12 @@
       "codegen": false,
       "exposeActions": true,
       "readOnly": false,
-      "tables": ["user_admins", "user_assistants", "user_patients", "user_psychologists"]
+      "tables": [
+        "user_admins",
+        "user_assistants",
+        "user_patients",
+        "user_psychologists"
+      ]
     },
     {
       "id": "practice-operations",
@@ -220,7 +262,12 @@
       "codegen": false,
       "exposeActions": false,
       "readOnly": true,
-      "tables": ["stripe_idempotency_log", "stripe_webhook_events", "webhook_audit_log", "webhook_events"]
+      "tables": [
+        "stripe_idempotency_log",
+        "stripe_webhook_events",
+        "webhook_audit_log",
+        "webhook_events"
+      ]
     },
     {
       "id": "platform-audit",
@@ -228,7 +275,10 @@
       "codegen": false,
       "exposeActions": false,
       "readOnly": true,
-      "tables": ["security_audit_events", "unified_events"]
+      "tables": [
+        "security_audit_events",
+        "unified_events"
+      ]
     }
   ],
   "ignoreTables": []
