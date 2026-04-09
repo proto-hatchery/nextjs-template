@@ -17,7 +17,7 @@
 1. ❌ Creating actions in `apps/` → MUST be in
    `packages/supabase-data/src/actions/`
 2. ❌ Using `.schema()` → MUST use `.inputSchema()` (v8)
-3. ❌ Missing `()` on validators → `z.string().uuid()` not `.uuid`
+3. ❌ Missing `()` on validators → `z.uuid()` not `.uuid`
 4. ❌ Server imports in client components → Use Server Actions
 5. ❌ Barrel exports → Explicit imports only (GR-001)
 

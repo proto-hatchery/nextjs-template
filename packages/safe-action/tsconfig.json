@@ -1,0 +1,10 @@
+{
+  "extends": "@workspace/typescript-config/react-library.json",
+  "compilerOptions": {
+    "paths": {
+      "@workspace/safe-action/*": ["./src/*"]
+    }
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "dist", "**/*.test.ts", "**/*.test.tsx"]
+}

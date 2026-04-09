@@ -235,7 +235,7 @@ and error handling.
 ```typescript
 "use server"
 
-import { authActionClient } from "@/lib/safe-action"
+import { authActionClient } from "@workspace/safe-action"
 import { z } from "zod"
 
 export const myAction = authActionClient

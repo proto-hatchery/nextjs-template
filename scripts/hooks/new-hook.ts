@@ -3,13 +3,13 @@
  * TanStack Query hook scaffold
  *
  * Usage:
- *   pnpm hook:new -- <domain> <entity> query|mutation
+ *   pnpm hook:new -- <domain> <entity> query
  *
  * Example:
  *   pnpm hook:new -- catalog reference-values query
  *
  * Creates:
- *   packages/supabase-data/src/hooks/<domain>/use-<entity>-query|mutation.hook.codegen.ts
+ *   packages/supabase-data/src/hooks/<domain>/use-<entity>-query.hook.codegen.ts
  *   packages/supabase-data/src/hooks/<domain>/query-keys.codegen.ts (if missing)
  */
 
@@ -20,13 +20,13 @@ const args = process.argv.slice(2).filter((a) => a !== "--")
 const [domain, entity, hookType] = args
 
 if (!domain || !entity || !hookType) {
-  console.error("Usage: pnpm hook:new -- <domain> <entity> <query|mutation>")
+  console.error("Usage: pnpm hook:new -- <domain> <entity> query")
   console.error("Example: pnpm hook:new -- catalog reference-values query")
   process.exit(1)
 }
 
-if (hookType !== "query" && hookType !== "mutation") {
-  console.error(`Invalid type "${hookType}". Use "query" or "mutation".`)
+if (hookType !== "query") {
+  console.error(`Invalid type "${hookType}". Only "query" is supported.`)
   process.exit(1)
 }
 
@@ -83,8 +83,7 @@ const hookFnName = hookFileBase
   .map((s) => s.charAt(0).toUpperCase() + s.slice(1))
   .join("")
 
-if (hookType === "query") {
-  const body = `/**
+const body = `/**
  * ${hookFnName} — TanStack Query wrapper for a Server Action.
  *
  * TODO: Import the Server Action from \`@workspace/supabase-data/actions/...\` and
@@ -102,49 +101,16 @@ import { ${keysExportName} } from "@workspace/supabase-data/hooks/${domainSegmen
 // TODO: import { /* yourListAction */ } from "@workspace/supabase-data/actions/${domainSegment}/..."
 
 export function ${hookFnName}(filters?: Record<string, unknown>) {
-  return useQuery({
-    queryKey: ${keysExportName}.${entityCamel}List(filters),
-    queryFn: async () => {
-      // TODO: return yourListAction(filters ?? {})
-      throw new Error("Wire Server Action in queryFn")
-    },
-  })
+return useQuery({
+  queryKey: ${keysExportName}.${entityCamel}List(filters),
+  queryFn: async () => {
+    // TODO: return yourListAction(filters ?? {})
+    throw new Error("Wire Server Action in queryFn")
+  },
+})
 }
 `
-  writeFileSync(hookPath, body, "utf-8")
-} else {
-  const body = `/**
- * ${hookFnName} — TanStack Query mutation wrapper for a Server Action.
- *
- * TODO: Import the Server Action, narrow \`_input\`, and tune invalidation (prefer precise keys).
- * Do not add console.log — use structured logging in the action (logServerEvent).
- *
- * @module @workspace/supabase-data/hooks/${domainSegment}/${hookFileBase}
- * codegen:new-hook (generated)
- */
-"use client"
-
-import { useMutation, useQueryClient } from "@tanstack/react-query"
-
-import { ${keysExportName} } from "@workspace/supabase-data/hooks/${domainSegment}/query-keys.codegen"
-
-// TODO: import { /* yourMutationAction */ } from "@workspace/supabase-data/actions/${domainSegment}/..."
-
-export function ${hookFnName}() {
-  const queryClient = useQueryClient()
-  return useMutation({
-    mutationFn: async (_input: unknown) => {
-      // TODO: return yourMutationAction(_input)
-      throw new Error("Wire Server Action in mutationFn")
-    },
-    onSettled: async () => {
-      await queryClient.invalidateQueries({ queryKey: ${keysExportName}.${entityCamel}() })
-    },
-  })
-}
-`
-  writeFileSync(hookPath, body, "utf-8")
-}
+writeFileSync(hookPath, body, "utf-8")
 
 console.log(`✅ Created hook: ${hookPath}`)
 console.log("")

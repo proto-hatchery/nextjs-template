@@ -14,15 +14,15 @@ completion**) for:
 
 1. **Server Actions** under
    `packages/supabase-data/src/actions/<module>/<name>.codegen.ts`
-2. **TanStack Query hooks** under
-   `packages/supabase-data/src/hooks/<domain>/use-<entity>-query|mutation.hook.codegen.ts`
+2. **TanStack Query hooks (read-only)** under
+   `packages/supabase-data/src/hooks/<domain>/use-<entity>-query.hook.codegen.ts`
 3. **Query key factories** in
    `packages/supabase-data/src/hooks/<domain>/query-keys.codegen.ts`
 
 ### Non-negotiable architecture
 
 - **Repositories** are the only place for `supabase.from(...)`. Actions call
-  repositories; hooks call actions inside `queryFn` / `mutationFn` only.
+  repositories.
 - **Server Actions** use `"use server"`, `requireAuth()` from
   `@workspace/supabase-data/lib/auth/require-auth`, Zod input validation, and
   structured logging via `logServerEvent` from `@workspace/logging/server` on
@@ -30,10 +30,17 @@ completion**) for:
   `component`, `eventFamily`, `eventName`, `outcome`, `durationMs`, `actorId`
   when known, and **rich `metadata`** (entity ids, operation, safe filter
   summaries — never secrets or full PII).
-- **Hooks** use `"use client"`, `useQuery` / `useMutation` from
-  `@tanstack/react-query`, import query keys only from
-  **`query-keys.codegen.ts`** for that domain (no scattered string literals).
-  **Do not** use `console.log` in hooks.
+- **Write path:** `RHF form (useAppForm / useActionForm)` →
+  `useAction (next-safe-action/hooks)` → `app-local *.action.ts (thin orchestrator)`
+  → `generated Server Action` → `revalidatePath()`. There is no client-side
+  mutation hook layer.
+- **Query hooks** use `"use client"`, `useQuery` from `@tanstack/react-query`,
+  import query keys only from **`query-keys.codegen.ts`** for that domain (no
+  scattered string literals). **Do not** use `console.log` in hooks.
+- **Mutation hooks (`use-*-mutation.hook.codegen.ts`) MUST NOT be generated.**
+  They do not exist in this codebase. All mutations go through Server Actions.
+- **`@workspace/safe-action`** is the only source for `authActionClient`.
+  Never import it from `@workspace/supabase-auth/server` or any other path.
 - **Package exports**: every new action path and hook path needs an explicit
   entry in `packages/supabase-data/package.json` → `exports` (sorted), matching
   existing style.
@@ -46,13 +53,12 @@ completion**) for:
   layout, logging placeholders, Zod, `serializeResult` / `ActionResult` if
   present in repo; if those libs are missing, align with whatever boundary types
   the repo actually ships — do not invent unused imports).
-- **Hook scaffold:** mirror `scripts/hooks/new-hook.ts` output
+- **Query hook scaffold:** mirror `scripts/hooks/new-hook.ts` output
   (`query-keys.codegen.ts` factory pattern,
-  `use-<entity>-query|mutation.hook.codegen.ts`).
+  `use-<entity>-query.hook.codegen.ts`).
 - **CLI parity:** document that humans/LLMs can run
-  `pnpm action:new -- <module> <name>` and
-  `pnpm hook:new -- <domain> <entity> query|mutation` before codegen fills
-  bodies.
+  `pnpm action:new -- <module> <name>` before codegen fills bodies. Do not
+  reference `pnpm hook:new` for mutation hooks — they do not exist.
 
 ### Codegen pipeline (suggested phases)
 
@@ -65,31 +71,28 @@ completion**) for:
   `findById` for reads; `insert`/`update`/`delete` for writes per plan). File
   naming: kebab-case with `.codegen.` extension, one primary action per
   repository method group if that keeps imports predictable.
-- Emit **hook stubs** paired to actions:
-  `use-<table-kebab>-query.hook.codegen.ts` for read actions,
-  `use-<table-kebab>-mutation.hook.codegen.ts` for mutations; extend
+- Emit **read-only query hook stubs** paired to read actions:
+  `use-<table-kebab>-query.hook.codegen.ts`; extend
   `query-keys.codegen.ts` with typed factories
   (`<domainCamel>QueryKeys.<entityCamel>()` / `...List(filters)`).
+- **Do NOT emit** `use-<table-kebab>-mutation.hook.codegen.ts`. Mutations go
+  through Server Actions only.
 
 **Phase B — Semantic (LLM, non-deterministic):**
 
 - For each action: choose **minimal Zod input** from `Insert`/`Update` Row types
   and plan methods; add **defense-in-depth** checks (e.g. tenant/psychologist
   scoping) if types or FKs imply multi-tenant boundaries.
-- For each mutation hook: decide **`onMutate` optimistic update** vs simple
-  `invalidateQueries`; list **which query keys** to invalidate (precise, not
-  only `all`).
-- For **cross-table** mutations, document invalidation sets in hook comments or
-  a small `invalidation-map.json` if you introduce one.
+- For write actions: document which `revalidatePath()` calls to make after the
+  mutation succeeds. Do not create mutation hooks.
+- For **cross-table** mutations, document invalidation paths in action comments.
 
 **Phase C — Validation**
 
 - Run `pnpm codegen:repository-plan:validate -- --strict` (if plan changed),
-  `pnpm typecheck`, `pnpm lint` (**Oxlint** only). Verify **Rule 4** manually or
-  with tests: no direct `myAction()` in `"use client"` outside `queryFn` /
-  `mutationFn`, JSX `action={...}`, or `useActionState` with an action
-  **reference**. **Do not** add ESLint; this repository uses Oxlint as the sole
-  linter.
+  `pnpm typecheck`, `pnpm lint` (**Oxlint** only). Verify that no mutation
+  hook files were created. **Do not** add ESLint; this repository uses Oxlint
+  as the sole linter.
 
 ### Deliverables
 
@@ -106,6 +109,7 @@ completion**) for:
 - Changing `packages/ui/**` (immutable for agents).
 - Hand-editing `database.types.ts` (regenerate via `pnpm supabase:types:local`).
 - **ESLint** or any second linter — use **Oxlint** (`pnpm lint`) only.
+- Generating mutation hooks of any kind.
 
 End of prompt.
 

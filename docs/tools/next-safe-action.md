@@ -31,7 +31,7 @@ When working with AI coding assistants, type safety and consistency are crucial:
 ```typescript
 "use server"
 
-import { actionClient } from "@/lib/safe-action"
+import { actionClient } from "@workspace/safe-action"
 import { z } from "zod"
 
 export const createTask = actionClient
@@ -58,14 +58,14 @@ export const createTask = actionClient
 ```typescript
 "use server"
 
-import { authActionClient } from "@/lib/safe-action"
+import { authActionClient } from "@workspace/safe-action"
 import { z } from "zod"
 
 export const updateUserProfile = authActionClient
   .schema(
     z.object({
       name: z.string().min(1),
-      email: z.string().email(),
+      email: z.email(),
     })
   )
   .action(async ({ parsedInput, ctx }) => {
@@ -127,7 +127,7 @@ export function CreateTaskForm() {
 ### Base Action Client
 
 ```typescript
-// lib/safe-action.ts
+// packages/safe-action/src/index.ts
 import { createSafeActionClient } from "next-safe-action"
 import { z } from "zod"
 
@@ -137,7 +137,7 @@ export const actionClient = createSafeActionClient()
 ### Auth Action Client (Recommended)
 
 ```typescript
-// lib/safe-action.ts
+// packages/safe-action/src/index.ts
 import { createSafeActionClient } from "next-safe-action"
 import { getClaims } from "@workspace/supabase-auth/session"
 
@@ -174,7 +174,7 @@ export const createTask = actionClient
 
 ```typescript
 export const deleteTask = authActionClient
-  .schema(z.object({ id: z.string().uuid() }))
+  .schema(z.object({ id: z.uuid() }))
   .action(async ({ parsedInput, ctx }) => {
     try {
       await db.task.delete({
@@ -215,7 +215,7 @@ Create a Server Action using authActionClient that creates a new task with title
 ```typescript
 "use server"
 
-import { authActionClient } from "@/lib/safe-action"
+import { authActionClient } from "@workspace/safe-action"
 import { z } from "zod"
 
 export const createTask = authActionClient

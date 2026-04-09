@@ -1,43 +1,43 @@
 "use client"
 
-import { useForm } from "@tanstack/react-form"
-import { z } from "zod"
+import { zodResolver } from "@hookform/resolvers/zod"
+import {
+  useForm,
+  type DefaultValues,
+  type FieldValues,
+  type Resolver,
+} from "react-hook-form"
+import type { z, ZodTypeAny } from "zod"
 
-type UseAppFormOptions<TSchema extends z.ZodType> = {
-  defaultValues: z.input<TSchema>
-  formId?: string
-  onSubmit: (props: {
-    formApi: unknown
-    rawValue: z.input<TSchema>
-    value: z.output<TSchema>
-  }) => Promise<void> | void
+type FormValues<TSchema extends ZodTypeAny> = z.input<TSchema> & FieldValues
+
+type UseAppFormOptions<TSchema extends ZodTypeAny> = {
   schema: TSchema
+  defaultValues: DefaultValues<FormValues<TSchema>>
+  values?: FormValues<TSchema>
 }
 
-function useAppForm<TSchema extends z.ZodType>({
-  defaultValues,
-  formId,
-  onSubmit,
-  schema,
-}: UseAppFormOptions<TSchema>) {
-  return useForm({
-    defaultValues,
-    ...(formId !== undefined && { formId }),
-    validators: {
-      onBlur: schema,
-      onChange: schema,
-      onSubmit: schema,
-    },
-    onSubmit: async ({ value, formApi }) => {
-      const parsedValue = await schema.parseAsync(value)
+function createResolver<TSchema extends ZodTypeAny>(
+  schema: TSchema
+): Resolver<FormValues<TSchema>, unknown, z.output<TSchema>> {
+  return (zodResolver as (...args: unknown[]) => unknown)(schema) as Resolver<
+    FormValues<TSchema>,
+    unknown,
+    z.output<TSchema>
+  >
+}
 
-      await onSubmit({
-        formApi,
-        rawValue: value,
-        value: parsedValue,
-      })
-    },
+function useAppForm<TSchema extends ZodTypeAny>({
+  schema,
+  defaultValues,
+  values,
+}: UseAppFormOptions<TSchema>) {
+  return useForm<FormValues<TSchema>, unknown, z.output<TSchema>>({
+    resolver: createResolver(schema),
+    defaultValues,
+    ...(values !== undefined && { values }),
   })
 }
 
 export { useAppForm }
+export type { UseAppFormOptions }

@@ -1,31 +1,33 @@
 "use client"
 
-import { useRouter } from "next/navigation"
 import * as React from "react"
+import { type z } from "zod"
 
 import { AuthSubmitFooter } from "@/app/[locale]/(auth)/_components/auth-submit-footer"
 import { useAuthErrorTranslator } from "@/app/[locale]/(auth)/_lib/auth-error-message"
 import { useAuthFormSchemas } from "@/app/[locale]/(auth)/_lib/auth-form-schemas"
 import { Link } from "@/i18n/navigation"
-import {
-  FormField,
-  FormFieldDescription,
-  FormFieldError,
-  FormFieldLabel,
-} from "@workspace/forms/components/form-field"
 import { useAppForm } from "@workspace/forms/hooks/use-app-form"
-import { getFormErrorText } from "@workspace/forms/lib/get-form-error-text"
 import { getMfaFactors } from "@workspace/supabase-auth/browser/get-mfa-factors"
 import { verifyTotpChallenge } from "@workspace/supabase-auth/browser/verify-totp-challenge"
 import { Button } from "@workspace/ui/components/button"
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@workspace/ui/components/form"
 import { Input } from "@workspace/ui/components/input"
+import { Label } from "@workspace/ui/components/label"
 
 type MfaChallengeFormProps = {
   redirectTo: string
 }
 
 function MfaChallengeForm({ redirectTo }: MfaChallengeFormProps) {
-  const router = useRouter()
   const translateAuthError = useAuthErrorTranslator()
   const schemas = useAuthFormSchemas()
   const [authError, setAuthError] = React.useState<string | null>(null)
@@ -55,52 +57,44 @@ function MfaChallengeForm({ redirectTo }: MfaChallengeFormProps) {
   }, [translateAuthError])
 
   const form = useAppForm({
-    defaultValues: schemas.mfaCodeDefaultValues,
-    formId: "auth-mfa-challenge",
-    onSubmit: async ({ value }) => {
-      setAuthError(null)
-
-      if (!factorId) {
-        setAuthError("Registe um fator TOTP antes de tentar o desafio MFA.")
-        return
-      }
-
-      const { error } = await verifyTotpChallenge({
-        code: value.code,
-        factorId,
-      })
-
-      if (error) {
-        setAuthError(translateAuthError(error.message))
-        return
-      }
-
-      router.refresh()
-      window.location.assign(redirectTo)
-    },
     schema: schemas.mfaCodeSchema,
+    defaultValues: schemas.mfaCodeDefaultValues,
   })
 
-  return (
-    <form
-      className="grid gap-5"
-      noValidate
-      onSubmit={(event) => {
-        event.preventDefault()
-        void form.handleSubmit()
-      }}
-    >
-      {authError ? (
-        <div className="border-destructive/30 bg-destructive/10 text-destructive rounded-md border px-3 py-2 text-xs/relaxed">
-          {authError}
-        </div>
-      ) : null}
+  async function onSubmit(value: z.output<typeof schemas.mfaCodeSchema>) {
+    setAuthError(null)
 
-      <div className="grid gap-2">
-        <FormField invalid={!factorId && !loadingFactors} required>
-          <FormFieldLabel htmlFor="factor-id" required>
+    if (!factorId) {
+      setAuthError("Registe um fator TOTP antes de tentar o desafio MFA.")
+      return
+    }
+
+    const { error } = await verifyTotpChallenge({
+      code: value.code,
+      factorId,
+    })
+
+    if (error) {
+      setAuthError(translateAuthError(error.message))
+      return
+    }
+
+    window.location.assign(redirectTo)
+  }
+
+  return (
+    <Form {...form}>
+      <form className="grid gap-5" noValidate onSubmit={form.handleSubmit(onSubmit)}>
+        {authError ? (
+          <div className="border-destructive/30 bg-destructive/10 text-destructive rounded-md border px-3 py-2 text-xs/relaxed">
+            {authError}
+          </div>
+        ) : null}
+
+        <div className="grid gap-2">
+          <Label className={!factorId && !loadingFactors ? "text-destructive" : undefined} htmlFor="factor-id">
             ID do fator
-          </FormFieldLabel>
+          </Label>
           <Input
             className="h-11 rounded-lg"
             disabled={loadingFactors}
@@ -109,72 +103,49 @@ function MfaChallengeForm({ redirectTo }: MfaChallengeFormProps) {
             placeholder="ID do fator verificado"
             value={factorId}
           />
-          <FormFieldDescription id="factor-id-description">
+          <p className="text-muted-foreground text-xs/relaxed">
             O primeiro fator registado é carregado automaticamente. Substitua o valor se precisar de
             outro fator.
-          </FormFieldDescription>
-        </FormField>
-      </div>
+          </p>
+        </div>
 
-      <form.Subscribe
-        selector={(state) => ({
-          canSubmit: state.canSubmit,
-          isDirty: state.isDirty,
-          isSubmitting: state.isSubmitting,
-        })}
-      >
-        {({ canSubmit, isDirty, isSubmitting }) => (
-          <>
-            <form.Field name="code">
-              {(field) => {
-                const invalid = field.state.meta.isTouched && field.state.meta.errors.length > 0
-                const errorMessage = getFormErrorText(field.state.meta.errors)
-                const descriptionId = `${field.name}-description`
-                const errorId = `${field.name}-error`
+        <FormField
+          control={form.control}
+          name="code"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Código de 6 dígitos</FormLabel>
+              <FormControl>
+                <Input
+                  {...field}
+                  autoComplete="one-time-code"
+                  className="h-11 rounded-lg"
+                  disabled={form.formState.isSubmitting}
+                  inputMode="numeric"
+                  placeholder="123456"
+                />
+              </FormControl>
+              <FormDescription>
+                Introduza o código temporário da aplicação de autenticação que registou.
+              </FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
 
-                return (
-                  <FormField invalid={invalid} required>
-                    <FormFieldLabel htmlFor={field.name} required>
-                      Código de 6 dígitos
-                    </FormFieldLabel>
-                    <Input
-                      aria-describedby={invalid ? `${descriptionId} ${errorId}` : descriptionId}
-                      aria-invalid={invalid}
-                      autoComplete="one-time-code"
-                      className="h-11 rounded-lg"
-                      disabled={isSubmitting}
-                      id={field.name}
-                      inputMode="numeric"
-                      name={field.name}
-                      onBlur={field.handleBlur}
-                      onChange={(event) => field.handleChange(event.target.value)}
-                      placeholder="123456"
-                      value={field.state.value}
-                    />
-                    <FormFieldDescription id={descriptionId}>
-                      Introduza o código temporário da aplicação de autenticação que registou.
-                    </FormFieldDescription>
-                    <FormFieldError id={errorId}>{errorMessage}</FormFieldError>
-                  </FormField>
-                )
-              }}
-            </form.Field>
+        <AuthSubmitFooter
+          canSubmit={Boolean(factorId) && !loadingFactors}
+          isDirty={form.formState.isDirty}
+          isSubmitting={form.formState.isSubmitting}
+          submitLabel="Verificar fator"
+          submittingLabel="A verificar…"
+        />
 
-            <AuthSubmitFooter
-              canSubmit={canSubmit && Boolean(factorId)}
-              isDirty={isDirty}
-              isSubmitting={isSubmitting}
-              submitLabel="Verificar fator"
-              submittingLabel="A verificar…"
-            />
-          </>
-        )}
-      </form.Subscribe>
-
-      <Button asChild type="button" variant="ghost">
-        <Link href="/mfa">Voltar às definições MFA</Link>
-      </Button>
-    </form>
+        <Button asChild type="button" variant="ghost">
+          <Link href="/mfa">Voltar às definições MFA</Link>
+        </Button>
+      </form>
+    </Form>
   )
 }
 

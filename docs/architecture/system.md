@@ -334,20 +334,24 @@ Do you need to expose data/mutation to clients?
 ### "Should I create a new hook?"
 
 ```
-Do you need client-side data with React Query caching?
+Do you need client-side reactive data with React Query caching?
 │
-├─ NO → Use server action instead
+├─ NO → Use server action directly (RSC fetch or Server Action call)
 │
-└─ YES → Does @workspace/supabase-data already have a hook for this?
+└─ YES (read only) → Does @workspace/supabase-data already have a query hook?
          │
-         ├─ YES → Import and use existing hook
+         ├─ YES → Import and use existing query hook
          │
-         └─ NO → Create new hook:
+         └─ NO → Create new query hook:
                   1. Add to @workspace/supabase-data/hooks/{module}/
-                  2. Use useMutation/useQuery from React Query
-                  3. Call server action inside mutationFn
-                  4. Use unwrapActionResult for error handling
+                  2. Use useQuery from React Query
+                  3. Call server action inside queryFn
+                  4. Add query keys to query-keys.codegen.ts
 ```
+
+> ⚠️ **Do NOT create mutation hooks.** `use-*-mutation.hook.codegen.ts` files
+> do not exist in this codebase. Mutations always go through Server Actions.
+> See [data-access-pattern.md](./data-access-pattern.md).
 
 ### "Can I put this in my app's lib/ folder?"
 

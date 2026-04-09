@@ -3,7 +3,7 @@
 import { existsSync, readFileSync } from "node:fs"
 import { resolve } from "node:path"
 
-import type { SemanticPlanFile } from "./actions-semantic-plan"
+import type { QueryFrontendContract, SemanticPlanFile } from "./actions-semantic-plan"
 
 const repoRoot = resolve(process.cwd())
 
@@ -50,9 +50,10 @@ function main(): void {
       errors.push(`Missing input schema in action: ${actionFile}`)
     }
 
-    if (action.frontendContract.generateHook && action.frontendContract.hookImportPath) {
+    if (action.kind === "query") {
+      const queryContract = action.frontendContract as QueryFrontendContract
       const hookRelative =
-        action.frontendContract.hookImportPath.replace(
+        queryContract.hookImportPath.replace(
           "@workspace/supabase-data/",
           "packages/supabase-data/src/"
         ) + ".ts"

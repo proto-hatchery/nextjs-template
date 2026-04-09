@@ -7,7 +7,6 @@ import { parseRepositoryPlanJson } from "../../../packages/codegen-tools/src/rep
 import {
   renderActionFile,
   renderHookTest,
-  renderMutationHook,
   renderQueryHook,
   renderQueryKeysFile,
   runActionsHooksCodegen,
@@ -37,25 +36,26 @@ describe("actions-hooks-codegen", () => {
     expect(semanticPlan.meta.requiresHumanReview).toBe(false)
     expect(listAction?.inputSchema.zodSchema).not.toContain("TODO")
     expect(listAction?.outputSchema.returnType).not.toContain("unknown")
-    expect(insertAction?.frontendContract.hookName).toContain("InsertMutation")
+    // Mutation actions have no hook fields — the type system enforces this
+    expect(insertAction?.frontendContract).not.toHaveProperty("hookName")
+    expect(insertAction?.frontendContract).not.toHaveProperty("hookImportPath")
+    expect(insertAction?.frontendContract).not.toHaveProperty("generateHook")
   })
 
   it("renders action and hooks without TODO placeholders", () => {
     const semanticPlan = loadSemanticPlan()
     const listAction = semanticPlan.actions.find((action) => action.method === "list")
-    const insertAction = semanticPlan.actions.find((action) => action.method === "insert")
 
-    if (!listAction || !insertAction) {
-      throw new Error("Missing expected semantic actions for fixture")
+    if (!listAction) {
+      throw new Error("Missing expected list action for fixture")
     }
 
     const actionFile = renderActionFile(listAction)
     const hookTest = renderHookTest(listAction)
     const queryHook = renderQueryHook(listAction)
-    const mutationHook = renderMutationHook(insertAction)
     const queryKeys = renderQueryKeysFile("demo", semanticPlan.actions)
 
-    for (const content of [actionFile, hookTest, queryHook, mutationHook, queryKeys]) {
+    for (const content of [actionFile, hookTest, queryHook, queryKeys]) {
       expect(content).not.toContain("TODO")
       expect(content).not.toMatch(/[=]\s*unknown\b/)
       expect(content).not.toContain("Wire Server Action")

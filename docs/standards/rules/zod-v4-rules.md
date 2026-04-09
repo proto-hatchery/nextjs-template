@@ -15,10 +15,10 @@
 **Zod v3 (❌ NUNCA USE):**
 
 ```typescript
-z.string().email()
-z.string().uuid()
+z.email()
+z.uuid()
 z.string().datetime()
-z.string().url()
+z.url()
 ```
 
 **Zod v4 (✅ USE SEMPRE):**
@@ -179,7 +179,7 @@ z.number().min(1, { error: "Must be positive" })
 
 ### Erro 3: `Property 'uuid' does not exist on type 'ZodString'`
 
-**Causa:** Tentando usar `z.string().uuid()` em Zod v4  
+**Causa:** Tentando usar `z.uuid()` em Zod v4  
 **Solução:** Use `z.uuid()` diretamente
 
 ---
@@ -198,7 +198,7 @@ z.number().min(1, { error: "Must be positive" })
 
 ```typescript
 const InsertAssistantInvitesInputSchema = z.object({
-  email: z.string().email("Invalid email"),
+  email: z.email("Invalid email"),
   expires_at: z.string().datetime(),
   metadata: z.record(z.unknown()).optional(),
 })
@@ -221,7 +221,7 @@ const InsertAssistantInvitesInputSchema = z.object({
 1. ✅ Templates devem usar `z.email()`, `z.uuid()`, `z.iso.datetime()`
 2. ✅ Templates devem usar `z.record(keyType, valueType)`
 3. ✅ Templates devem usar `{ error: "..." }` para mensagens
-4. ❌ NUNCA use `z.string().email()`, `z.string().uuid()`, etc.
+4. ❌ NUNCA use `z.email()`, `z.uuid()`, etc.
 5. ❌ NUNCA use `z.record(valueType)` com 1 argumento
 
 **Se o codegen gerar código errado, atualize os templates!**

@@ -13,6 +13,7 @@ export const AUTH_ROUTE_PATH_PREFIXES = [
   "/magic-link",
   "/mfa",
   "/reset-password",
+  "/sign-up",
 ] as const
 
 export type AuthRoutePathPrefix = (typeof AUTH_ROUTE_PATH_PREFIXES)[number]

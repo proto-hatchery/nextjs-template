@@ -244,7 +244,7 @@ if (isValidUser(data)) {
 import { z } from "zod"
 
 const userSchema = z.object({
-  id: z.string().uuid(),
+  id: z.uuid(),
   name: z.string().min(1),
 })
 

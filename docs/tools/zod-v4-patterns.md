@@ -25,13 +25,13 @@ const shortText = z.string().max(100)
 const code = z.string().length(6)
 
 // Email validation
-const email = z.string().email()
+const email = z.email()
 
 // UUID validation
-const id = z.string().uuid() // ✅ Correct v4
+const id = z.uuid() // ✅ Correct v4
 
 // URL validation
-const website = z.string().url()
+const website = z.url()
 
 // Regex pattern
 const slug = z.string().regex(/^[a-z0-9-]+$/)
@@ -96,8 +96,8 @@ const scores = z.array(z.number())
 ```typescript
 // Basic object
 const user = z.object({
-  id: z.string().uuid(),
-  email: z.string().email(),
+  id: z.uuid(),
+  email: z.email(),
   name: z.string().min(1),
   age: z.number().optional(),
 })
@@ -129,7 +129,7 @@ const status = z.nativeEnum(Status)
 const role = z.enum(["admin", "user", "guest"])
 
 // Union of mixed types
-const id = z.union([z.string().uuid(), z.number()])
+const id = z.union([z.uuid(), z.number()])
 ```
 
 ### Advanced Patterns
@@ -182,10 +182,10 @@ for architecture rules.
 "use server"
 
 // File: packages/supabase-data/src/actions/posts/create-post.ts
-import { actionClient } from "@workspace/supabase-auth/server"
+import { authActionClient } from "@workspace/safe-action"
 import { z } from "zod"
 
-export const createPost = actionClient
+export const createPost = authActionClient
   .inputSchema(
     z.object({
       title: z.string().min(1),
@@ -205,14 +205,14 @@ export const createPost = actionClient
 "use server"
 
 // File: packages/supabase-data/src/actions/profiles/update-profile.ts
-import { authActionClient } from "@workspace/supabase-auth/server"
+import { authActionClient } from "@workspace/safe-action"
 import { z } from "zod"
 
 export const updateProfile = authActionClient
   .inputSchema(
     z.object({
       name: z.string().min(1),
-      email: z.string().email(),
+      email: z.email(),
     })
   )
   .action(async ({ parsedInput, ctx }) => {
@@ -245,13 +245,13 @@ export default async function ProfilePage() {
 ```typescript
 "use server"
 
-import { authActionClient } from "@/lib/safe-action"
+import { authActionClient } from "@workspace/safe-action"
 import { z } from "zod"
 
 export const deleteItem = authActionClient
   .inputSchema(
     z.object({
-      id: z.string().uuid(),
+      id: z.uuid(),
     })
   )
   .metadata({ name: "deleteItem" })
@@ -267,13 +267,13 @@ export const deleteItem = authActionClient
 ```typescript
 "use server"
 
-import { actionClient } from "@/lib/safe-action"
+import { actionClient } from "@workspace/safe-action"
 import { z } from "zod"
 
 export const getUser = actionClient
   .inputSchema(
     z.object({
-      id: z.string().uuid(),
+      id: z.uuid(),
     })
   )
   .action(async ({ parsedInput }) => {
@@ -324,7 +324,7 @@ const id = z.string().uid() // ❌ Not a valid method
 
 ```typescript
 // CORRECT
-const id = z.string().uuid() // ✅ Function call with ()
+const id = z.uuid() // ✅ Function call with ()
 ```
 
 ### ❌ Wrong: Optional vs nullable confusion
@@ -356,9 +356,9 @@ const user = z.object({
 | Validator               | Purpose          | Example                               |
 | ----------------------- | ---------------- | ------------------------------------- |
 | `z.string().min(1)`     | Required string  | `title: z.string().min(1)`            |
-| `z.string().email()`    | Email format     | `email: z.string().email()`           |
-| `z.string().uuid()`     | UUID format      | `id: z.string().uuid()`               |
-| `z.string().url()`      | URL format       | `website: z.string().url()`           |
+| `z.email()`    | Email format     | `email: z.email()`           |
+| `z.uuid()`     | UUID format      | `id: z.uuid()`               |
+| `z.url()`      | URL format       | `website: z.url()`           |
 | `z.number().positive()` | Positive number  | `age: z.number().positive()`          |
 | `z.number().int()`      | Integer only     | `count: z.number().int()`             |
 | `z.boolean()`           | Boolean          | `isActive: z.boolean()`               |

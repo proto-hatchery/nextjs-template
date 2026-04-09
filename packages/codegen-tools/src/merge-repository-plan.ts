@@ -100,15 +100,23 @@ function mergeAndValidateRepositoryPlan(
       )
     }
 
-    const writeTarget = e.write ?? { kind: "table" as const, name: e.table }
-    if (writeTarget.kind !== "table") {
-      errors.push(`repository-plan: write.kind must be "table" for "${k}"`)
-      continue
-    }
-    if (!publicTables.has(writeTarget.name)) {
-      errors.push(
-        `repository-plan: write name "${writeTarget.name}" is not in Database["public"]["Tables"]`
-      )
+    const hasWriteMethods = e.methods.some((method) =>
+      ["insert", "update", "upsert", "delete", "softDelete"].includes(method)
+    )
+    const writeTarget = hasWriteMethods
+      ? (e.write ?? { kind: "table" as const, name: e.table })
+      : null
+
+    if (writeTarget) {
+      if (writeTarget.kind !== "table") {
+        errors.push(`repository-plan: write.kind must be "table" for "${k}"`)
+        continue
+      }
+      if (!publicTables.has(writeTarget.name)) {
+        errors.push(
+          `repository-plan: write name "${writeTarget.name}" is not in Database["public"]["Tables"]`
+        )
+      }
     }
 
     const readBucket = e.read.kind === "view" ? "Views" : "Tables"
@@ -130,7 +138,7 @@ function mergeAndValidateRepositoryPlan(
       }
     }
 
-    if (e.methods.includes("softDelete") && e.softDelete) {
+    if (writeTarget && e.methods.includes("softDelete") && e.softDelete) {
       const writeCols = extractRowColumnNames(opts.databaseTypesSource, writeTarget.name, "Tables")
       const writeColSet = new Set(writeCols)
       if (writeCols.length > 0 && !writeColSet.has(e.softDelete.column)) {

@@ -66,7 +66,7 @@ apps/example/
 
 "use server"
 
-import { authActionClient } from "@/lib/safe-action"
+import { authActionClient } from "@workspace/safe-action"
 import { z } from "zod"
 
 export const createUser = authActionClient
@@ -98,7 +98,7 @@ export const createUser = authActionClient
 
 "use server"
 
-import { authActionClient } from "@workspace/supabase-auth/server"
+import { authActionClient } from "@workspace/safe-action"
 import { z } from "zod"
 
 export const createUser = authActionClient
@@ -196,13 +196,13 @@ export const myAction = authActionClient
 
 ```typescript
 ❌ z.string().uuid      ← WRONG (function reference)
-✅ z.string().uuid()    ← CORRECT (function call)
+✅ z.uuid()    ← CORRECT (function call)
 
-❌ z.string().email     ← WRONG (function reference)
-✅ z.string().email()   ← CORRECT (function call)
+❌ z.email     ← WRONG (function reference)
+✅ z.email()   ← CORRECT (function call)
 
-❌ z.string().url       ← WRONG (function reference)
-✅ z.string().url()     ← CORRECT (function call)
+❌ z.url       ← WRONG (function reference)
+✅ z.url()     ← CORRECT (function call)
 ```
 
 ### Why
@@ -218,8 +218,8 @@ export const myAction = authActionClient
 ```typescript
 const schema = z.object({
   id: z.string().uuid, // ❌ WRONG! This is a function reference
-  email: z.string().email, // ❌ WRONG! This is a function reference
-  website: z.string().url, // ❌ WRONG! This is a function reference
+  email: z.email, // ❌ WRONG! This is a function reference
+  website: z.url, // ❌ WRONG! This is a function reference
 })
 ```
 
@@ -235,9 +235,9 @@ const schema = z.object({
 
 ```typescript
 const schema = z.object({
-  id: z.string().uuid(), // ✅ CORRECT! Function call
-  email: z.string().email(), // ✅ CORRECT! Function call
-  website: z.string().url(), // ✅ CORRECT! Function call
+  id: z.uuid(), // ✅ CORRECT! Function call
+  email: z.email(), // ✅ CORRECT! Function call
+  website: z.url(), // ✅ CORRECT! Function call
 })
 ```
 
@@ -370,7 +370,97 @@ import { updateProfile } from "@workspace/supabase-data/actions/profiles/update-
 
 ---
 
-## 📋 Pre-Merge Checklist
+## 🚫 RULE #6: Mutation Hooks Do NOT Exist
+
+### The Rule
+
+```
+❌ use-*-mutation.hook.codegen.ts   ← DOES NOT EXIST — DO NOT CREATE
+❌ useMutation from @tanstack/react-query for DB writes ← DO NOT USE for mutations
+✅ Server Action via authActionClient → revalidatePath()  ← THE ONLY WRITE PATH
+```
+
+### Why
+
+- Mutation hooks were removed in favor of a server-first write path.
+- The codegen pipeline does **not** generate mutation hooks.
+- All database writes must go through Server Actions.
+- If you create mutation hook files, they will be rejected.
+
+### The Correct Write Path
+
+```
+RHF form (useAppForm / useActionForm)
+  → useAction (next-safe-action/hooks)
+  → app-local *.action.ts  (thin orchestrator in apps/)
+  → generated Server Action  (@workspace/supabase-data/actions/*)
+  → revalidatePath()
+```
+
+### Code Example
+
+#### ❌ WRONG — Mutation hook (INSTANT REJECT)
+
+```typescript
+// File: packages/supabase-data/src/hooks/patients/use-patient-mutation.hook.codegen.ts
+// 🚫 THIS FILE SHOULD NOT EXIST
+// 🚫 DELETE IMMEDIATELY
+
+"use client"
+
+import { useMutation, useQueryClient } from "@tanstack/react-query"
+import { createPatientAction } from "@workspace/supabase-data/actions/patients/create-patient"
+
+export function useCreatePatientMutation() {
+  const queryClient = useQueryClient()
+  return useMutation({
+    mutationFn: createPatientAction,
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["patients"] }),
+  })
+}
+```
+
+#### ✅ CORRECT — Server Action + form island (APPROVE)
+
+```typescript
+// File: apps/example/features/patients/_components/create-patient-form.tsx
+"use client"
+
+import { useActionForm } from "@workspace/forms/hooks/use-action-form"
+import { createPatientAction } from "@workspace/supabase-data/actions/patients/create-patient"
+
+export function CreatePatientForm({ initialValues }: Props) {
+  const { form, handleSubmitWithAction, action } = useActionForm({
+    action: createPatientAction,
+    schema: createPatientSchema,
+    defaultValues: initialValues,
+  })
+
+  return (
+    <form onSubmit={handleSubmitWithAction}>
+      {/* fields */}
+      <Button disabled={action.isPending}>Create</Button>
+    </form>
+  )
+}
+```
+
+---
+
+## 🚫 RULE #7: authActionClient Comes From `@workspace/safe-action` Only
+
+### The Rule
+
+```typescript
+✅ import { authActionClient } from '@workspace/safe-action'
+❌ import { authActionClient } from '@workspace/supabase-auth/server'
+❌ import { authActionClient } from anywhere else
+```
+
+`authActionClient` is defined exclusively in `@workspace/safe-action`. Any
+other import path is incorrect and will cause a runtime error.
+
+---
 
 Before approving ANY PR, verify:
 
@@ -384,6 +474,9 @@ Before approving ANY PR, verify:
 □ No server imports in "use client" files
 □ No barrel exports (index.ts re-exporting)
 □ Imports are explicit (no barrels)
+□ No use-*-mutation.hook.*.ts files created
+□ authActionClient imported from @workspace/safe-action only
+□ @tanstack/react-form not used (React Hook Form only)
 ```
 
 **If ANY box is unchecked → REQUEST CHANGES**
@@ -396,11 +489,14 @@ Before approving ANY PR, verify:
 | ---------------- | --------------------------------- | ------------------------------------- |
 | Action location  | `apps/example/actions/`           | `packages/supabase-data/src/actions/` |
 | next-safe-action | `.schema()`                       | `.inputSchema()`                      |
-| Zod UUID         | `z.string().uuid`                 | `z.string().uuid()`                   |
-| Zod Email        | `z.string().email`                | `z.string().email()`                  |
-| Zod URL          | `z.string().url`                  | `z.string().url()`                    |
+| Zod UUID         | `z.string().uuid`                 | `z.uuid()`                   |
+| Zod Email        | `z.email`                | `z.email()`                  |
+| Zod URL          | `z.url`                  | `z.url()`                    |
 | Client imports   | Server client in client component | Server Action called from client      |
 | Exports          | `index.ts` barrel                 | Explicit paths                        |
+| Write path       | `use-*-mutation.hook.codegen.ts`  | Server Action + `revalidatePath()`    |
+| authActionClient | `@workspace/supabase-auth/server` | `@workspace/safe-action`              |
+| Form library     | `@tanstack/react-form`            | `react-hook-form` (useAppForm / useActionForm) |
 
 ---
 
@@ -430,6 +526,9 @@ Before approving ANY PR, verify:
 | Missing `()` on validators | **REQUEST CHANGES** |
 | Server import in client    | **INSTANT REJECT**  |
 | Barrel export              | **REQUEST CHANGES** |
+| Mutation hook file created | **INSTANT REJECT**  |
+| Wrong authActionClient source | **REQUEST CHANGES** |
+| Using `@tanstack/react-form` | **REQUEST CHANGES** |
 
 **No warnings. No exceptions. Fix before merge.**
 

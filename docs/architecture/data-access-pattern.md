@@ -1,223 +1,80 @@
-# Data access pattern: Server Actions + TanStack Query hooks
+# Data access pattern
 
-This document is the **canonical contract** for how presentation code reaches
-the database in this template: **Server Actions** for the server boundary,
-**TanStack Query hooks** for client-side caching, loading state, and
-invalidation.
+This document defines how writable UI reaches the database in this template.
 
-**Related:** [Client UI data sync](../guides/client-ui-data-sync.md) ·
-[Backend](./backend.md) ·
-[Repository standards](../standards/repository-standards.md)
+## Architecture overview
 
----
+### Write path (all writable routes)
 
-## Rationale
-
-Two layers are intentional:
-
-1. **Security and secrets** — Server Actions run on the server with access to
-   cookies, `requireAuth()`, and `createServerAuthClient()`. The browser never
-   receives service credentials or raw repository constructors for ad-hoc SQL.
-
-2. **Reactivity and UX** — Client components need stable loading/error state,
-   deduplication, and post-mutation cache updates. TanStack Query provides that;
-   calling a Server Action **directly** from event handlers bypasses a single
-   place to invalidate or optimistically update the cache.
-
-Hooks are the **application-layer adapter** between UI and actions, not a
-duplicate domain model.
-
----
-
-## Where code lives
-
-| Artifact             | Package                    | Path (canonical)                                                                          |
-| -------------------- | -------------------------- | ----------------------------------------------------------------------------------------- |
-| Server Action        | `@workspace/supabase-data` | `src/actions/<domain>/<action-name>.codegen.ts`                                           |
-| Client hook          | `@workspace/supabase-data` | `src/hooks/<domain>/use-<entity>-query.hook.codegen.ts` or `...-mutation.hook.codegen.ts` |
-| Query key factory    | `@workspace/supabase-data` | `src/hooks/<domain>/query-keys.codegen.ts`                                                |
-| Repository (codegen) | `@workspace/supabase-data` | `src/modules/<domain>/infrastructure/...`                                                 |
-
-- **Scaffold (human or LLM):** `pnpm action:new -- <module> <action-name>`
-- **Scaffold hooks:** `pnpm hook:new -- <domain> <entity> <query|mutation>`
-
-Future **codegen** may emit actions and hooks into these same paths by reusing
-the scaffolds as templates.
-
----
-
-## Decision table: hook vs direct action call
-
-| Situation                                                     | Use                                                                                     |
-| ------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
-| Client Component needs data with cache, refetch, `isPending`  | **`useQuery` hook** that calls the action inside `queryFn`                              |
-| Client Component mutates data and must refresh lists/details  | **`useMutation` hook**; `invalidateQueries` / `setQueryData` on success                 |
-| Server Component or Route Handler                             | **Call the action or repository** directly (no TanStack on server)                      |
-| `<form action={serverAction}>` (Next.js / React form actions) | **Form `action` prop** — allowed without a hook wrapper                                 |
-| `useActionState(action, initial)`                             | **Allowed** — pass the **action function reference** (not `action()` in random effects) |
-| One-off imperative call in client without cache concerns      | **Avoid**; if unavoidable, document and prefer hook; see Rule 4                         |
-
----
-
-## Observability (logging), not only errors
-
-Actions must emit **structured lifecycle logs** for operations analysis, not
-only when something throws.
-
-- Use **`logServerEvent`** from `@workspace/logging/server` on the **server**
-  (inside Server Actions and route handlers).
-- Log **success and failure** paths with consistent `component`, `eventFamily`,
-  `eventName`, `outcome`, `durationMs`, and **rich `metadata`** (entity ids,
-  correlation ids, safe input summaries — no secrets, no PII dumps).
-- Treat logging as **observability**: dashboards, SLOs, and support workflows,
-  not as a substitute for returning typed errors to the client.
-
-Hooks **must not** use `console.log`; client-side analytics or error reporting
-should follow app-level patterns (e.g. product observability packages), not raw
-console.
-
----
-
-## Query key factory (required)
-
-Each domain folder under `hooks/<domain>/` owns a **`query-keys.codegen.ts`**
-file that exports a **typed factory** (e.g. `catalogQueryKeys`). Hooks import
-keys from this module only — **no string literals** scattered across components.
-
-Example shape:
-
-```typescript
-// packages/supabase-data/src/hooks/catalog/query-keys.codegen.ts
-export const catalogQueryKeys = {
-  all: ["catalog"] as const,
-  referenceValues: () => [...catalogQueryKeys.all, "reference-values"] as const,
-  referenceValuesList: (filters?: { scope?: string }) =>
-    [...catalogQueryKeys.referenceValues(), "list", filters ?? {}] as const,
-}
+```
+RHF form (useAppForm / useActionForm)
+  → useAction (next-safe-action/hooks)
+  → app-local *.action.ts  (thin orchestrator, lives in apps/)
+  → generated Server Action  (@workspace/supabase-data/actions/*)
+  → revalidatePath()
 ```
 
----
+All mutations go through Server Actions. There is no client-side mutation hook
+layer. Generated mutation hooks do not exist in this codebase and must not be
+created.
 
-## Example: action → `useQuery` → component
+### Read path (all readable routes)
 
-**Server Action** (excerpt — full file from `pnpm action:new`):
+Server Components fetch data directly via generated Server Actions from
+`@workspace/supabase-data/actions/*`. Generated query hooks (`use-*-query.hook.codegen.ts`)
+are read-only infrastructure available for client surfaces that require live
+reactive state (e.g. tables, real-time lists). They are not the primary fetch
+mechanism for server-first pages.
 
-```typescript
-"use server"
+## Form system
 
-import { listReferenceValuesAction } from "@workspace/supabase-data/actions/catalog/list-reference-values.codegen"
-// implementation: auth, logServerEvent, repository, serializeResult
-```
+The only form library is **React Hook Form**.
 
-**Hook:**
+| Hook | Use case |
+|------|----------|
+| `useAppForm` from `@workspace/forms/hooks/use-app-form` | Browser SDK forms (auth, OAuth) |
+| `useActionForm` from `@workspace/forms/hooks/use-action-form` | Server Action forms (settings, configuration, all writable server-first pages) |
 
-```typescript
-"use client"
+`@tanstack/react-form` must not be used.
 
-import { useQuery } from "@tanstack/react-query"
+## Mutation transport
 
-import { listReferenceValuesAction } from "@workspace/supabase-data/actions/catalog/list-reference-values.codegen"
-import { catalogQueryKeys } from "@workspace/supabase-data/hooks/catalog/query-keys.codegen"
+### Server-first routes (settings, preferences, profile, configuration)
 
-export function useReferenceValuesListQuery(filters?: { scope?: string }) {
-  return useQuery({
-    queryKey: catalogQueryKeys.referenceValuesList(filters),
-    queryFn: () => listReferenceValuesAction({ scope: filters?.scope }),
-  })
-}
-```
+Use: `useActionForm` → `authActionClient` (from `@workspace/safe-action`) → `revalidatePath()`
 
-**Component:**
+Do not use: `router.refresh()` on the client, TanStack Query mutation hooks.
 
-```typescript
-"use client"
+The Server Action writes to the database and calls `revalidatePath()` in the
+same request. The RSC tree re-runs on the server. The form island re-syncs via
+the `values` option in `useActionForm`. This is one network round trip.
 
-import { useReferenceValuesListQuery } from "@workspace/supabase-data/hooks/catalog/use-reference-values-query.hook.codegen"
+### When `router.refresh()` is correct
 
-export function ReferenceValuesPanel() {
-  const { data, isPending, error } = useReferenceValuesListQuery()
-  if (isPending) return <span>Loading…</span>
-  if (error) return <span>Failed to load</span>
-  return <ul>{/* render data */}</ul>
-}
-```
+Only when a Server Action is architecturally inappropriate:
 
----
+1. Browser auth SDK flows (Supabase Auth sign-in, OAuth handoff)
+2. WebSocket or other browser-owned mutation transports
+3. Wrap in `startTransition(() => router.refresh())`
 
-## Example: action → `useMutation` → `invalidateQueries`
+### When `setQueryData` or optimism is correct
 
-```typescript
-"use client"
+Only for client surfaces (not settings forms) where:
 
-import { useMutation, useQueryClient } from "@tanstack/react-query"
+1. A TanStack Query subscriber is mounted and watching the mutated entity
+2. Rollback on error is trivial and the user benefit of instant feedback
+   outweighs the implementation cost
+3. The mutation still goes through a Server Action — not a mutation hook
 
-import { createReferenceValueAction } from "@workspace/supabase-data/actions/catalog/create-reference-value.codegen"
-import { catalogQueryKeys } from "@workspace/supabase-data/hooks/catalog/query-keys.codegen"
+## Revalidation rules
 
-export function useCreateReferenceValueMutation() {
-  const queryClient = useQueryClient()
-  return useMutation({
-    mutationFn: (input: { code: string; label: string }) =>
-      createReferenceValueAction(input),
-    onSettled: async () => {
-      await queryClient.invalidateQueries({
-        queryKey: catalogQueryKeys.referenceValues(),
-      })
-    },
-  })
-}
-```
+- Server-first writable routes use `revalidatePath()` inside the Server Action body
+- Variant B form islands never call `router.refresh()`
+- Form islands use `values` (not `useEffect`, `reset()`, or `useTransition`)
+- Field-level validation errors come from the next-safe-action adapter
 
-Prefer **`setQueryData`** when the mutation response includes the full row and
-you can update the list without a round trip.
+## What does NOT exist
 
----
-
-## Rule 4 — code smell (direct action calls in client components)
-
-**Smell:** In a file marked **`"use client"`**, calling an imported Server
-Action like `await myAction()` from `onClick`, `useEffect`, or arbitrary
-handlers **without** going through:
-
-- `useQuery` / `useMutation` **`queryFn` / `mutationFn`**, or
-- a **form** `action={...}` prop, or
-- **`useActionState(fn, ...)`** with the server action as **`fn`** (reference,
-  not `fn()` in random effects)
-
-**Why it matters:** cache and invalidation drift; duplicate request patterns;
-hard to enforce optimistic updates and GR-017.
-
-**Remediation:** wrap the call in a hook, or move the fetch to a Server
-Component / route.
-
-**Enforcement:** This template **does not** add a second linter. **Oxlint** is
-the only configured linter (`pnpm lint`). Rule 4 is enforced by **code review**,
-checklists in [client UI data sync](../guides/client-ui-data-sync.md), and
-optional **integration tests** or a **future** Oxlint plugin / small `node`
-script under `scripts/ci/` if the maintainers want automation — **not** ESLint
-(see [Oxlint / Oxfmt](../tools/oxlint-oxfmt.md)).
-
----
-
-## Future: codegen + semantic layer
-
-Repository codegen is **deterministic**. Actions and hooks may require a
-**non-deterministic (LLM) pass** for:
-
-- which mutations need optimistic updates,
-- which query keys to invalidate together,
-- input/output Zod shapes tied to product rules.
-
-The intended workflow is: **scaffold** with `action:new` / `hook:new`, then
-**codegen or agent** fills implementations while preserving paths, logging, and
-this document's rules.
-
----
-
-## See also
-
-- [Client UI: automatic sync and optimistic updates](../guides/client-ui-data-sync.md)
-- [LLM-to-LLM prompt: action + hook codegen](../guides/llm-prompt-action-hook-codegen.md)
-- [Backend standards](./backend.md)
-- [Backend codegen](../guides/backend-codegen.md)
-- [Logging (structured, no console)](../../.cursor/skills/logging-required/SKILL.md)
+- **Mutation hooks** (`use-*-mutation.hook.codegen.ts`) — do not exist, must not be
+  created, and must not be regenerated. The codegen pipeline does not emit them.
+- **Dual mutation patterns** — there is one path: Server Action via `authActionClient`.

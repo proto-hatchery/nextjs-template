@@ -19,9 +19,12 @@ import { parseRepositoryPlanJson } from "@workspace/codegen-tools/repository-pla
 import {
   generateSemanticPlan,
   type ActionSemanticPlan,
+  type QueryFrontendContract,
   type SemanticField,
   type SemanticPlanFile,
 } from "./actions-semantic-plan"
+
+type QueryActionSemanticPlan = ActionSemanticPlan & { frontendContract: QueryFrontendContract }
 
 interface ActionsHooksCodegenOptions {
   checkOnly: boolean
@@ -311,7 +314,7 @@ ${body}
 `
 }
 
-function renderQueryHook(plan: ActionSemanticPlan): string {
+function renderQueryHook(plan: QueryActionSemanticPlan): string {
   const domainKebab = toKebabCase(plan.domainId)
   const hookName = plan.frontendContract.hookName
   const queryKeysExport = `${toCamelCase(plan.domainId)}QueryKeys`
@@ -353,58 +356,7 @@ export function ${hookName}(${paramsSignature}): UseQueryResult<${actionOutputTy
 `
 }
 
-function renderInvalidation(plan: ActionSemanticPlan): string {
-  if (plan.cacheInvalidation.invalidateKeys.length === 0) {
-    return ""
-  }
-
-  return plan.cacheInvalidation.invalidateKeys
-    .map(
-      (keyExpression) => `      await queryClient.invalidateQueries({ queryKey: ${keyExpression} })`
-    )
-    .join("\n")
-}
-
-function renderMutationHook(plan: ActionSemanticPlan): string {
-  const hookName = plan.frontendContract.hookName
-  const actionOutputType = renderOutputTypeName(plan)
-  const invalidation = renderInvalidation(plan)
-  const queryKeysImport =
-    plan.cacheInvalidation.invalidateKeys.length > 0
-      ? `import { ${toCamelCase(plan.domainId)}QueryKeys } from "@workspace/supabase-data/hooks/${toKebabCase(plan.domainId)}/query-keys.codegen"\n`
-      : ""
-
-  return `/**
- * ${hookName}
- *
- * @module ${plan.frontendContract.hookImportPath}
- * codegen:actions-hooks (generated) — do not hand-edit
- */
-"use client"
-
-import { useMutation, useQueryClient, type UseMutationResult } from "@tanstack/react-query"
-
-import {
-  ${plan.actionName},
-  type ${plan.inputSchema.typeName},
-  type ${actionOutputType},
-} from "${plan.frontendContract.actionImportPath}"
-${queryKeysImport}
-
-export function ${hookName}(): UseMutationResult<${actionOutputType}, Error, ${plan.inputSchema.typeName}, unknown> {
-  const queryClient = useQueryClient()
-
-  return useMutation({
-    mutationFn: ${plan.actionName},
-    onSuccess: async () => {
-${invalidation || "      return"}
-    },
-  })
-}
-`
-}
-
-function renderHookTest(plan: ActionSemanticPlan): string {
+function renderHookTest(plan: QueryActionSemanticPlan): string {
   const hookName = plan.frontendContract.hookName
   const domainKebab = toKebabCase(plan.domainId)
   const queryKeysExport = `${toCamelCase(plan.domainId)}QueryKeys`
@@ -441,8 +393,8 @@ describe("${hookName}", () => {
 `
 }
 
-function hookFileBasename(plan: ActionSemanticPlan): string {
-  return plan.frontendContract.hookImportPath?.split("/").at(-1) ?? "missing-hook"
+function hookFileBasename(plan: QueryActionSemanticPlan): string {
+  return plan.frontendContract.hookImportPath.split("/").at(-1) ?? "missing-hook"
 }
 
 function renderActionTest(plan: ActionSemanticPlan): string {
@@ -644,24 +596,24 @@ export function runActionsHooksCodegen(options: ActionsHooksCodegenOptions): Cod
         }
         actionsGenerated += 1
 
-        if (!action.frontendContract.generateHook || !action.frontendContract.hookImportPath) {
+        if (action.kind !== "query") {
           continue
         }
 
-        const hookFile = join(domainHooksDir, `${hookFileBasename(action)}.ts`)
+        const queryAction = action as QueryActionSemanticPlan
+        const hookFile = join(domainHooksDir, `${hookFileBasename(queryAction)}.ts`)
         const hookTestFile = join(
           repoRoot,
           "tests/unit/supabase-data/hooks",
           domainId,
-          `${hookFileBasename(action)}.test.ts`
+          `${hookFileBasename(queryAction)}.test.ts`
         )
 
         if (!checkOnly) {
-          const hookContent =
-            action.kind === "query" ? renderQueryHook(action) : renderMutationHook(action)
+          const hookContent = renderQueryHook(queryAction)
           writeFileSync(hookFile, hookContent, "utf8")
           ensureDir(hookTestFile)
-          writeFileSync(hookTestFile, renderHookTest(action), "utf8")
+          writeFileSync(hookTestFile, renderHookTest(queryAction), "utf8")
           filesWritten.push(relative(repoRoot, hookFile), relative(repoRoot, hookTestFile))
         }
         hooksGenerated += 1
@@ -728,7 +680,6 @@ if (import.meta.url === `file://${process.argv[1]}`) {
 export {
   renderActionFile,
   renderHookTest,
-  renderMutationHook,
   renderQueryHook,
   renderQueryKeysFile,
 }

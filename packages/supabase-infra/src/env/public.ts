@@ -67,10 +67,11 @@ import { z } from "zod"
  * - NEXT_PUBLIC_SITE_URL (optional, must be valid URL if present)
  */
 const publicEnvSchema = z.object({
-  NEXT_PUBLIC_SUPABASE_URL: z.string().url("Must be a valid URL"),
+  NEXT_PUBLIC_SUPABASE_URL: z.url("Must be a valid URL"),
   NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: z.string().min(1, "Supabase publishable key is required"),
-  NEXT_PUBLIC_SITE_URL: z.string().url().optional(),
-  NEXT_PUBLIC_AUTH_APP_URL: z.string().url().optional(),
+  NEXT_PUBLIC_SITE_URL: z.url().optional(),
+  NEXT_PUBLIC_AUTH_APP_URL: z.url().optional(),
+  NEXT_PUBLIC_SPACE_APP_URL: z.url().optional(),
   NEXT_PUBLIC_AUTH_ALLOWED_REDIRECT_ORIGINS: z
     .string()
     .transform((str) => str.split(",").map((s) => s.trim()))

@@ -13,8 +13,11 @@ Supabase database schema and generates:
 
 - ✅ **Repositories** with DTOs, mappers, and ports
 - ✅ **Server Actions** with Zod validation, auth, and logging
-- ✅ **TanStack Query Hooks** with type-safe query keys
+- ✅ **TanStack Query hooks (read-only)** with type-safe query keys
 - ✅ **Unit & Integration Tests** for all generated code
+
+> ⚠️ **Mutation hooks are not generated and do not exist.** All mutations go
+> through Server Actions. See [data-access-pattern.md](../architecture/data-access-pattern.md).
 
 **Zero manual coding required** - just run the pipeline!
 
@@ -58,13 +61,14 @@ Supabase database schema and generates:
 └─────────────────────────────────────────────────────────────┘
                             ↓
 ┌─────────────────────────────────────────────────────────────┐
-│ PHASE 3: UI Layer (Hooks)                                   │
+│ PHASE 3: UI Layer (Query Hooks — read-only)                 │
 │ Input:  config/action-semantic-plan.json (SSOT #3)          │
 │ Output:                                                     │
-│   - hooks/*/*.codegen.ts                                    │
+│   - hooks/*/*.codegen.ts  (query hooks only)                │
 │   - tests/unit/supabase-data/hooks/*/*.test.ts              │
 │ Command: pnpm codegen:actions-hooks --write                 │
 │ Tests: Generated IMMEDIATELY after hooks                    │
+│ NOTE: Mutation hooks are NOT generated.                     │
 └─────────────────────────────────────────────────────────────┘
 ```
 
@@ -220,13 +224,14 @@ tests/unit/supabase-data/actions/patients/
 ```
 packages/supabase-data/src/hooks/patients/
 ├── use-patient-query.hook.codegen.ts
-├── use-patient-mutation.hook.codegen.ts
 └── query-keys.codegen.ts
 
 tests/unit/supabase-data/hooks/patients/
-├── use-patient-query.hook.codegen.test.ts
-└── use-patient-mutation.hook.codegen.test.ts
+└── use-patient-query.hook.codegen.test.ts
 ```
+
+> ⚠️ `use-patient-mutation.hook.codegen.ts` is **not generated**. Mutations go
+> through Server Actions — see [data-access-pattern.md](../architecture/data-access-pattern.md).
 
 ---
 
@@ -245,8 +250,8 @@ z.record(z.string(), z.unknown())
 z.string().min(5, { error: "Too short" })
 
 // ❌ WRONG (Zod v3 - deprecated)
-z.string().email()
-z.string().uuid()
+z.email()
+z.uuid()
 z.record(z.unknown())
 z.string().min(5, "Too short")
 ```

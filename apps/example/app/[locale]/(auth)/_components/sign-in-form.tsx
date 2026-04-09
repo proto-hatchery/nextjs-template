@@ -1,16 +1,23 @@
 "use client"
 
 import * as React from "react"
+import { type z } from "zod"
 
 import { AuthSubmitFooter } from "@/app/[locale]/(auth)/_components/auth-submit-footer"
 import { useAuthErrorTranslator } from "@/app/[locale]/(auth)/_lib/auth-error-message"
 import { useAuthFormSchemas } from "@/app/[locale]/(auth)/_lib/auth-form-schemas"
 import { Link } from "@/i18n/navigation"
-import { FormField, FormFieldError, FormFieldLabel } from "@workspace/forms/components/form-field"
 import { useAppForm } from "@workspace/forms/hooks/use-app-form"
-import { getFormErrorText } from "@workspace/forms/lib/get-form-error-text"
 import { signInWithPassword } from "@workspace/supabase-auth/browser/sign-in-with-password"
 import { buildAuthContinueUrl } from "@workspace/supabase-auth/shared/app-destination"
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@workspace/ui/components/form"
 import { Input } from "@workspace/ui/components/input"
 
 type SignInFormProps = {
@@ -24,24 +31,24 @@ function SignInForm({ redirectTo }: SignInFormProps) {
   const [notice, setNotice] = React.useState<string | null>(null)
 
   const form = useAppForm({
-    defaultValues: schemas.signInDefaultValues,
-    formId: "auth-sign-in",
-    onSubmit: async ({ value }) => {
-      setAuthError(null)
-      setNotice(null)
-
-      const { error } = await signInWithPassword(value)
-
-      if (error) {
-        setAuthError(translateAuthError(error.message))
-        return
-      }
-
-      setNotice("Sessão iniciada. A verificar o acesso e a redirecionar…")
-      window.location.assign(buildAuthContinueUrl(redirectTo))
-    },
     schema: schemas.signInSchema,
+    defaultValues: schemas.signInDefaultValues,
   })
+
+  async function onSubmit(value: z.output<typeof schemas.signInSchema>) {
+    setAuthError(null)
+    setNotice(null)
+
+    const { error } = await signInWithPassword(value)
+
+    if (error) {
+      setAuthError(translateAuthError(error.message))
+      return
+    }
+
+    setNotice("Sessão iniciada. A verificar o acesso e a redirecionar…")
+    window.location.assign(buildAuthContinueUrl(redirectTo))
+  }
 
   return (
     <div className="w-full max-w-md">
@@ -54,122 +61,85 @@ function SignInForm({ redirectTo }: SignInFormProps) {
         </p>
       </header>
 
-      <form
-        className="grid gap-5"
-        noValidate
-        onSubmit={(event) => {
-          event.preventDefault()
-          void form.handleSubmit()
-        }}
-      >
-        <form.Subscribe
-          selector={(state) => ({
-            canSubmit: state.canSubmit,
-            isDirty: state.isDirty,
-            isSubmitting: state.isSubmitting,
-          })}
-        >
-          {({ canSubmit, isDirty, isSubmitting }) => (
-            <>
-              {notice ? (
-                <div className="rounded-md border border-emerald-500/30 bg-emerald-500/10 px-3 py-2 text-xs/relaxed text-emerald-700 dark:text-emerald-300">
-                  {notice}
-                </div>
-              ) : null}
-              {authError ? (
-                <div className="border-destructive/30 bg-destructive/10 text-destructive rounded-md border px-3 py-2 text-xs/relaxed">
-                  {authError}
-                </div>
-              ) : null}
+      <Form {...form}>
+        <form className="grid gap-5" noValidate onSubmit={form.handleSubmit(onSubmit)}>
+          {notice ? (
+            <div className="rounded-md border border-emerald-500/30 bg-emerald-500/10 px-3 py-2 text-xs/relaxed text-emerald-700 dark:text-emerald-300">
+              {notice}
+            </div>
+          ) : null}
+          {authError ? (
+            <div className="border-destructive/30 bg-destructive/10 text-destructive rounded-md border px-3 py-2 text-xs/relaxed">
+              {authError}
+            </div>
+          ) : null}
 
-              <form.Field name="email">
-                {(field) => {
-                  const invalid = field.state.meta.isTouched && field.state.meta.errors.length > 0
-                  const errorMessage = getFormErrorText(field.state.meta.errors)
-                  const errorId = `${field.name}-error`
+          <FormField
+            control={form.control}
+            name="email"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>E-mail</FormLabel>
+                <FormControl>
+                  <Input
+                    {...field}
+                    autoComplete="email"
+                    className="border-border bg-background h-11 rounded-lg"
+                    disabled={form.formState.isSubmitting}
+                    placeholder="email@exemplo.com"
+                    type="email"
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
-                  return (
-                    <FormField invalid={invalid} required>
-                      <FormFieldLabel htmlFor={field.name} required>
-                        E-mail
-                      </FormFieldLabel>
-                      <Input
-                        aria-describedby={invalid ? errorId : undefined}
-                        aria-invalid={invalid}
-                        autoComplete="email"
-                        className="border-border bg-background h-11 rounded-lg"
-                        disabled={isSubmitting}
-                        id={field.name}
-                        name={field.name}
-                        onBlur={field.handleBlur}
-                        onChange={(event) => field.handleChange(event.target.value)}
-                        placeholder="email@exemplo.com"
-                        type="email"
-                        value={field.state.value}
-                      />
-                      <FormFieldError id={errorId}>{errorMessage}</FormFieldError>
-                    </FormField>
-                  )
-                }}
-              </form.Field>
+          <FormField
+            control={form.control}
+            name="password"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Palavra-passe</FormLabel>
+                <FormControl>
+                  <Input
+                    {...field}
+                    autoComplete="current-password"
+                    className="border-border bg-background h-11 rounded-lg"
+                    disabled={form.formState.isSubmitting}
+                    placeholder="palavra-passe"
+                    type="password"
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
-              <form.Field name="password">
-                {(field) => {
-                  const invalid = field.state.meta.isTouched && field.state.meta.errors.length > 0
-                  const errorMessage = getFormErrorText(field.state.meta.errors)
-                  const errorId = `${field.name}-error`
+          <AuthSubmitFooter
+            canSubmit
+            isDirty={form.formState.isDirty}
+            isSubmitting={form.formState.isSubmitting}
+            showStatusRow={false}
+            submitLabel="Iniciar sessão"
+            submittingLabel="A iniciar sessão…"
+          />
 
-                  return (
-                    <FormField invalid={invalid} required>
-                      <FormFieldLabel htmlFor={field.name} required>
-                        Palavra-passe
-                      </FormFieldLabel>
-                      <Input
-                        aria-describedby={invalid ? errorId : undefined}
-                        aria-invalid={invalid}
-                        autoComplete="current-password"
-                        className="border-border bg-background h-11 rounded-lg"
-                        disabled={isSubmitting}
-                        id={field.name}
-                        name={field.name}
-                        onBlur={field.handleBlur}
-                        onChange={(event) => field.handleChange(event.target.value)}
-                        placeholder="palavra-passe"
-                        type="password"
-                        value={field.state.value}
-                      />
-                      <FormFieldError id={errorId}>{errorMessage}</FormFieldError>
-                    </FormField>
-                  )
-                }}
-              </form.Field>
+          <div className="-mt-1 text-center">
+            <Link
+              className="text-sm font-medium text-[#4F6EF7] underline-offset-4 hover:underline"
+              href={`/forgot-password?redirect_to=${encodeURIComponent(redirectTo)}`}
+            >
+              Esqueceu-se da palavra-passe?
+            </Link>
+          </div>
 
-              <AuthSubmitFooter
-                canSubmit={canSubmit}
-                isDirty={isDirty}
-                isSubmitting={isSubmitting}
-                showStatusRow={false}
-                submitLabel="Iniciar sessão"
-                submittingLabel="A iniciar sessão…"
-              />
-
-              <div className="-mt-1 text-center">
-                <Link
-                  className="text-sm font-medium text-[#4F6EF7] underline-offset-4 hover:underline"
-                  href={`/forgot-password?redirect_to=${encodeURIComponent(redirectTo)}`}
-                >
-                  Esqueceu-se da palavra-passe?
-                </Link>
-              </div>
-
-              <p className="text-muted-foreground text-center text-sm">
-                As contas são criadas por administradores. Se precisa de acesso, contacte a equipa
-                responsável.
-              </p>
-            </>
-          )}
-        </form.Subscribe>
-      </form>
+          <p className="text-muted-foreground text-center text-sm">
+            As contas são criadas por administradores. Se precisa de acesso, contacte a equipa
+            responsável.
+          </p>
+        </form>
+      </Form>
     </div>
   )
 }

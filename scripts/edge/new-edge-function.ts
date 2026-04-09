@@ -227,7 +227,7 @@ import type { ${capitalize(functionName)}Request } from "./types.ts"
 const ${functionName.replace(/-/g, "_")}Schema = z.object({
   // TODO: Define validation schema
   // Example:
-  // userId: z.string().uuid(),
+  // userId: z.uuid(),
   // amount: z.number().positive(),
 })
 
