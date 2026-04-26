@@ -24,16 +24,16 @@
     "check:exports": "publint"
   },
   "dependencies": {
-    "typescript": "^5.9.3",
+    "typescript": "^6.0.3",
     "zod": "^4.3.6"
   },
   "devDependencies": {
-    "@types/node": "^25.5.2",
+    "@types/node": "^25.6.0",
     "@workspace/typescript-config": "workspace:*",
     "@workspace/vitest-config": "workspace:*",
-    "oxlint": "^1.58.0",
+    "oxlint": "^1.61.0",
     "publint": "^0.3.18",
-    "typescript": "^5.9.3",
-    "vitest": "^4.1.2"
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.5"
   }
 }
