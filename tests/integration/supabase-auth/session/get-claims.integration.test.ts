@@ -7,7 +7,6 @@ import { createServerClient } from "@supabase/ssr"
  */
 import { afterEach, describe, expect, it, vi } from "vitest"
 
-import { getClaims } from "@workspace/supabase-auth/session/get-claims"
 import { getSupabaseCookieOptions } from "@workspace/supabase-auth/shared/get-supabase-cookie-options"
 import { ACCESS_CONTROL_TEMPLATE } from "@workspace/supabase-auth/testing/access-control-template"
 import { getSupabasePublicEnv } from "@workspace/supabase-infra/env/public"
@@ -24,6 +23,17 @@ const { cookiesMock } = vi.hoisted(() => ({
 vi.mock("next/headers", () => ({
   cookies: cookiesMock,
 }))
+
+async function loadGetClaims(supabase: unknown) {
+  vi.resetModules()
+  vi.doMock("@workspace/supabase-auth/server/create-server-auth-client", () => ({
+    createServerAuthClient: vi.fn(async () => supabase),
+  }))
+
+  const getClaimsModule = await import("@workspace/supabase-auth/session/get-claims")
+
+  return getClaimsModule.getClaims
+}
 
 function createNextCookieStore() {
   const jar = new Map<string, string>()
@@ -73,7 +83,7 @@ async function signInServerSession(overrides?: {
 
   expect(error).toBeNull()
 
-  return { user }
+  return { supabase: bootstrap, user }
 }
 
 async function seedTemplatePrivilegedRole(userId: string) {
@@ -99,9 +109,10 @@ afterEach(() => {
 
 describe("getClaims (integration — hook-shaped app_metadata)", () => {
   it("exposes roles, empty permissions[], subscription, access_version on verified claims", async () => {
-    const { user } = await signInServerSession({
+    const { supabase, user } = await signInServerSession({
       beforeSignIn: seedTemplatePrivilegedRole,
     })
+    const getClaims = await loadGetClaims(supabase)
 
     const claims = await getClaims()
 

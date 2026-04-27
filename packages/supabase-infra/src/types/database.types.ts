@@ -778,11 +778,11 @@ export type Database = {
             referencedColumns: ["id"]
           },
           {
-            foreignKeyName: "clinical_session_details_clinical_session_id_fkey"
-            columns: ["clinical_session_id"]
-            isOneToOne: false
-            referencedRelation: "calendar_events_full"
-            referencedColumns: ["clinical_session_id"]
+            foreignKeyName: "clinical_session_details_calendar_event_id_fkey"
+            columns: ["calendar_event_id"]
+            isOneToOne: true
+            referencedRelation: "therapeutic_session_events"
+            referencedColumns: ["calendar_event_id"]
           },
           {
             foreignKeyName: "clinical_session_details_clinical_session_id_fkey"
@@ -790,6 +790,13 @@ export type Database = {
             isOneToOne: false
             referencedRelation: "psychologist_clinical_sessions"
             referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "clinical_session_details_clinical_session_id_fkey"
+            columns: ["clinical_session_id"]
+            isOneToOne: false
+            referencedRelation: "therapeutic_session_events"
+            referencedColumns: ["legacy_session_id"]
           },
           {
             foreignKeyName: "clinical_session_details_patient_id_fkey"
@@ -1139,6 +1146,13 @@ export type Database = {
             referencedColumns: ["id"]
           },
           {
+            foreignKeyName: "google_sync_idempotency_calendar_event_id_fkey"
+            columns: ["calendar_event_id"]
+            isOneToOne: false
+            referencedRelation: "therapeutic_session_events"
+            referencedColumns: ["calendar_event_id"]
+          },
+          {
             foreignKeyName: "google_sync_idempotency_psychologist_id_fkey"
             columns: ["psychologist_id"]
             isOneToOne: false
@@ -1260,6 +1274,13 @@ export type Database = {
             isOneToOne: false
             referencedRelation: "calendar_events_full"
             referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "google_sync_logs_calendar_event_id_fkey"
+            columns: ["calendar_event_id"]
+            isOneToOne: false
+            referencedRelation: "therapeutic_session_events"
+            referencedColumns: ["calendar_event_id"]
           },
           {
             foreignKeyName: "google_sync_logs_psychologist_id_fkey"
@@ -1647,6 +1668,13 @@ export type Database = {
             referencedRelation: "calendar_events_full"
             referencedColumns: ["id"]
           },
+          {
+            foreignKeyName: "psychologist_clinical_sessions_calendar_event_id_fkey"
+            columns: ["calendar_event_id"]
+            isOneToOne: false
+            referencedRelation: "therapeutic_session_events"
+            referencedColumns: ["calendar_event_id"]
+          },
         ]
       }
       psychologist_financial_entries: {
@@ -1760,15 +1788,15 @@ export type Database = {
             foreignKeyName: "psychologist_financial_entries_session_id_fkey"
             columns: ["session_id"]
             isOneToOne: false
-            referencedRelation: "calendar_events_full"
-            referencedColumns: ["clinical_session_id"]
+            referencedRelation: "psychologist_clinical_sessions"
+            referencedColumns: ["id"]
           },
           {
             foreignKeyName: "psychologist_financial_entries_session_id_fkey"
             columns: ["session_id"]
             isOneToOne: false
-            referencedRelation: "psychologist_clinical_sessions"
-            referencedColumns: ["id"]
+            referencedRelation: "therapeutic_session_events"
+            referencedColumns: ["legacy_session_id"]
           },
           {
             foreignKeyName: "psychologist_financial_entries_transaction_category_id_fkey"
@@ -1920,15 +1948,15 @@ export type Database = {
             foreignKeyName: "psychologist_notes_session_id_fkey"
             columns: ["session_id"]
             isOneToOne: false
-            referencedRelation: "calendar_events_full"
-            referencedColumns: ["clinical_session_id"]
+            referencedRelation: "psychologist_clinical_sessions"
+            referencedColumns: ["id"]
           },
           {
             foreignKeyName: "psychologist_notes_session_id_fkey"
             columns: ["session_id"]
             isOneToOne: false
-            referencedRelation: "psychologist_clinical_sessions"
-            referencedColumns: ["id"]
+            referencedRelation: "therapeutic_session_events"
+            referencedColumns: ["legacy_session_id"]
           },
         ]
       }
@@ -2325,15 +2353,15 @@ export type Database = {
             foreignKeyName: "psychologist_client_charges_session_id_fkey"
             columns: ["session_id"]
             isOneToOne: false
-            referencedRelation: "calendar_events_full"
-            referencedColumns: ["clinical_session_id"]
+            referencedRelation: "psychologist_clinical_sessions"
+            referencedColumns: ["id"]
           },
           {
             foreignKeyName: "psychologist_client_charges_session_id_fkey"
             columns: ["session_id"]
             isOneToOne: false
-            referencedRelation: "psychologist_clinical_sessions"
-            referencedColumns: ["id"]
+            referencedRelation: "therapeutic_session_events"
+            referencedColumns: ["legacy_session_id"]
           },
         ]
       }
@@ -3462,15 +3490,15 @@ export type Database = {
             foreignKeyName: "marketplace_payment_intents_session_id_fkey"
             columns: ["session_id"]
             isOneToOne: false
-            referencedRelation: "calendar_events_full"
-            referencedColumns: ["clinical_session_id"]
+            referencedRelation: "psychologist_clinical_sessions"
+            referencedColumns: ["id"]
           },
           {
             foreignKeyName: "marketplace_payment_intents_session_id_fkey"
             columns: ["session_id"]
             isOneToOne: false
-            referencedRelation: "psychologist_clinical_sessions"
-            referencedColumns: ["id"]
+            referencedRelation: "therapeutic_session_events"
+            referencedColumns: ["legacy_session_id"]
           },
         ]
       }
@@ -3874,15 +3902,15 @@ export type Database = {
             foreignKeyName: "session_billing_dead_letter_session_id_fkey"
             columns: ["session_id"]
             isOneToOne: false
-            referencedRelation: "calendar_events_full"
-            referencedColumns: ["clinical_session_id"]
+            referencedRelation: "psychologist_clinical_sessions"
+            referencedColumns: ["id"]
           },
           {
             foreignKeyName: "session_billing_dead_letter_session_id_fkey"
             columns: ["session_id"]
             isOneToOne: false
-            referencedRelation: "psychologist_clinical_sessions"
-            referencedColumns: ["id"]
+            referencedRelation: "therapeutic_session_events"
+            referencedColumns: ["legacy_session_id"]
           },
         ]
       }
@@ -3932,15 +3960,15 @@ export type Database = {
             foreignKeyName: "session_reschedule_logs_session_id_fkey"
             columns: ["session_id"]
             isOneToOne: false
-            referencedRelation: "calendar_events_full"
-            referencedColumns: ["clinical_session_id"]
+            referencedRelation: "psychologist_clinical_sessions"
+            referencedColumns: ["id"]
           },
           {
             foreignKeyName: "session_reschedule_logs_session_id_fkey"
             columns: ["session_id"]
             isOneToOne: false
-            referencedRelation: "psychologist_clinical_sessions"
-            referencedColumns: ["id"]
+            referencedRelation: "therapeutic_session_events"
+            referencedColumns: ["legacy_session_id"]
           },
         ]
       }
@@ -3992,15 +4020,15 @@ export type Database = {
             foreignKeyName: "session_reschedule_requests_session_id_fkey"
             columns: ["session_id"]
             isOneToOne: false
-            referencedRelation: "calendar_events_full"
-            referencedColumns: ["clinical_session_id"]
+            referencedRelation: "psychologist_clinical_sessions"
+            referencedColumns: ["id"]
           },
           {
             foreignKeyName: "session_reschedule_requests_session_id_fkey"
             columns: ["session_id"]
             isOneToOne: false
-            referencedRelation: "psychologist_clinical_sessions"
-            referencedColumns: ["id"]
+            referencedRelation: "therapeutic_session_events"
+            referencedColumns: ["legacy_session_id"]
           },
         ]
       }
@@ -4220,6 +4248,13 @@ export type Database = {
             isOneToOne: false
             referencedRelation: "calendar_events_full"
             referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "sync_conflict_resolutions_event_id_fkey"
+            columns: ["event_id"]
+            isOneToOne: false
+            referencedRelation: "therapeutic_session_events"
+            referencedColumns: ["calendar_event_id"]
           },
         ]
       }
@@ -4632,14 +4667,28 @@ export type Database = {
             referencedColumns: ["id"]
           },
           {
-            foreignKeyName: "clinical_sessions_psychologist_patient_id_fkey"
-            columns: ["psychologist_patient_id"]
+            foreignKeyName: "clinical_session_details_clinical_session_id_fkey"
+            columns: ["clinical_session_id"]
             isOneToOne: false
-            referencedRelation: "psychologist_patients"
+            referencedRelation: "psychologist_clinical_sessions"
             referencedColumns: ["id"]
           },
           {
-            foreignKeyName: "clinical_sessions_psychologist_service_id_fkey"
+            foreignKeyName: "clinical_session_details_clinical_session_id_fkey"
+            columns: ["clinical_session_id"]
+            isOneToOne: false
+            referencedRelation: "therapeutic_session_events"
+            referencedColumns: ["legacy_session_id"]
+          },
+          {
+            foreignKeyName: "clinical_session_details_patient_id_fkey"
+            columns: ["psychologist_patient_id"]
+            isOneToOne: false
+            referencedRelation: "user_patients"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "clinical_session_details_psychologist_service_id_fkey"
             columns: ["psychologist_service_id"]
             isOneToOne: false
             referencedRelation: "psychologist_services"
@@ -4751,6 +4800,107 @@ export type Database = {
             columns: ["psychologist_id"]
             isOneToOne: true
             referencedRelation: "user_psychologists"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      therapeutic_session_events: {
+        Row: {
+          all_day: boolean | null
+          attendance_confirmed: boolean | null
+          billing_attempt_count: number | null
+          billing_last_attempt_at: string | null
+          billing_last_error: string | null
+          billing_next_attempt_at: string | null
+          billing_status: string | null
+          calendar_event_id: string | null
+          clinical_session_id: string | null
+          color: string | null
+          confirmation_sent_at: string | null
+          created_at: string | null
+          description: string | null
+          duration_minutes: number | null
+          end_datetime: string | null
+          google_event_id: string | null
+          google_sync_error: string | null
+          google_sync_status:
+            | Database["public"]["Enums"]["google_sync_status"]
+            | null
+          last_synced_at: string | null
+          legacy_session_id: string | null
+          location: string | null
+          metadata: Json | null
+          patient_display_name: string | null
+          patient_name: string | null
+          private_notes: string | null
+          psychologist_id: string | null
+          psychologist_patient_id: string | null
+          psychologist_service_id: string | null
+          reminder_sent_at: string | null
+          scheduling_status:
+            | Database["public"]["Enums"]["calendar_event_status"]
+            | null
+          series_id: string | null
+          service_duration: number | null
+          service_name: string | null
+          service_price: number | null
+          session_detail_id: string | null
+          session_number: number | null
+          session_type_id: string | null
+          source: Database["public"]["Enums"]["calendar_event_source"] | null
+          start_datetime: string | null
+          timezone: string | null
+          title: string | null
+          updated_at: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "calendar_events_psychologist_id_fkey"
+            columns: ["psychologist_id"]
+            isOneToOne: false
+            referencedRelation: "user_psychologists"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "calendar_events_series_id_fkey"
+            columns: ["series_id"]
+            isOneToOne: false
+            referencedRelation: "calendar_event_series"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "clinical_session_details_clinical_session_id_fkey"
+            columns: ["clinical_session_id"]
+            isOneToOne: false
+            referencedRelation: "psychologist_clinical_sessions"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "clinical_session_details_clinical_session_id_fkey"
+            columns: ["clinical_session_id"]
+            isOneToOne: false
+            referencedRelation: "therapeutic_session_events"
+            referencedColumns: ["legacy_session_id"]
+          },
+          {
+            foreignKeyName: "clinical_session_details_patient_id_fkey"
+            columns: ["psychologist_patient_id"]
+            isOneToOne: false
+            referencedRelation: "user_patients"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "clinical_session_details_psychologist_service_id_fkey"
+            columns: ["psychologist_service_id"]
+            isOneToOne: false
+            referencedRelation: "psychologist_services"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "clinical_session_details_session_type_id_fkey"
+            columns: ["session_type_id"]
+            isOneToOne: false
+            referencedRelation: "session_types"
             referencedColumns: ["id"]
           },
         ]

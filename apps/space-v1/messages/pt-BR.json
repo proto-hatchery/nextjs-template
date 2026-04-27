@@ -1,0 +1,188 @@
+{
+  "Metadata": {
+    "title": "Nome do Produto",
+    "description": "Descrição do produto — atualizar ao fazer fork."
+  },
+  "Auth": {
+    "login": {
+      "title": "Entrar",
+      "submit": "Entrar"
+    },
+    "forgotPassword": {
+      "title": "Esqueci a password"
+    },
+    "validation": {
+      "emailRequired": "Indique o e-mail.",
+      "emailInvalid": "Indique um endereço de e-mail válido.",
+      "passwordMin": "A palavra-passe deve ter pelo menos 8 caracteres.",
+      "confirmPasswordRequired": "Confirme a palavra-passe.",
+      "passwordsMatch": "As palavras-passe têm de coincidir.",
+      "mfaCodeFormat": "Introduza o código de 6 dígitos da aplicação de autenticação."
+    },
+    "errors": {
+      "unexpected": "Ocorreu um erro inesperado. Tente novamente.",
+      "supabaseErrors": {
+        "Invalid login credentials": "Credenciais inválidas. Verifique o e-mail e a palavra-passe.",
+        "Email not confirmed": "O e-mail ainda não foi confirmado. Consulte a sua caixa de entrada.",
+        "User already registered": "Já existe uma conta associada a este e-mail.",
+        "Signups not allowed for this instance": "Novos registos não estão permitidos neste momento.",
+        "Signup is disabled": "O registo de novas contas está desativado.",
+        "Invalid email": "Indique um endereço de e-mail válido.",
+        "Unable to validate email address: invalid format": "O formato do endereço de e-mail não é válido.",
+        "Password should be at least 6 characters": "A palavra-passe deve ter pelo menos 6 caracteres.",
+        "Password should be at least 8 characters": "A palavra-passe deve ter pelo menos 8 caracteres.",
+        "Token has expired or is invalid": "A ligação expirou ou é inválida. Solicite um novo envio.",
+        "Email link is invalid or has expired": "A ligação por e-mail é inválida ou expirou.",
+        "New password should be different from the old password": "A nova palavra-passe tem de ser diferente da anterior.",
+        "For security purposes, you can only request this once every 60 seconds": "Por segurança, só pode pedir isto novamente em 60 segundos.",
+        "Email rate limit exceeded": "Foram enviados demasiados e-mails. Tente novamente mais tarde.",
+        "Too many requests": "Demasiados pedidos. Tente novamente dentro de alguns instantes.",
+        "User not found": "Não foi encontrada uma conta com este e-mail.",
+        "Invalid Refresh Token: Refresh Token Not Found": "Sessão inválida ou expirada. Inicie sessão novamente.",
+        "Invalid Refresh Token: Already Used": "Sessão inválida ou expirada. Inicie sessão novamente.",
+        "Invalid JWT": "Sessão inválida ou expirada. Inicie sessão novamente.",
+        "Invalid credentials": "Credenciais inválidas.",
+        "Email address not authorized": "Este endereço de e-mail não está autorizado.",
+        "Email logins are disabled": "Início de sessão por e-mail desativado no Auth. No projeto (hosted): Authentication → Providers → Email. Em local: `supabase/config.toml` com `[auth.email].enable_signup = true` e reiniciar o stack; o registo público segue bloqueado por `[auth].enable_signup`.",
+        "Provider not enabled": "Este método de início de sessão não está disponível.",
+        "OAuth provider not supported": "Este fornecedor de início de sessão não está disponível.",
+        "Request rate limit reached": "Limite de pedidos atingido. Tente mais tarde.",
+        "Database error saving new user": "Erro ao guardar a conta. Tente novamente ou contacte o suporte.",
+        "A user with this email address has already been registered": "Já existe uma conta com este e-mail.",
+        "Only an email address or phone number should be provided on verify": "Pedido de verificação inválido.",
+        "MFA factor not found": "Fator de autenticação não encontrado.",
+        "MFA challenge failed": "A verificação MFA falhou. Tente novamente.",
+        "MFA challenge expired": "A verificação MFA expirou. Tente novamente.",
+        "Invalid TOTP code entered": "Código de autenticação inválido.",
+        "Factor not found": "Fator de autenticação não encontrado.",
+        "Enroll a TOTP factor before attempting the MFA challenge.": "Registe um fator TOTP antes de tentar a verificação MFA."
+      }
+    }
+  },
+  "Nav": {
+    "brand": "Marca",
+    "login": "Entrar"
+  },
+  "AppShell": {
+    "brand": "Space",
+    "shellLabel": "Workspace",
+    "careLabel": "Prestação clínica",
+    "operationsLabel": "Operações",
+    "workspaceLabel": "Workspace",
+    "sidebarIntro": "O Space está agora organizado como uma superfície protegida do produto com fronteiras de migração locais por rota.",
+    "manageWorkspace": "Abrir preferências",
+    "detailEyebrow": "Estrutura de rota de detalhe",
+    "bareEyebrow": "Estrutura de rota bare",
+    "sectionEyebrow": "Estrutura de rota de secção",
+    "signOut": "Terminar sessão",
+    "nav": {
+      "dashboard": "Dashboard",
+      "calendar": "Calendário",
+      "sessions": "Sessões",
+      "patients": "Pacientes",
+      "billing": "Faturação",
+      "documents": "Documentos",
+      "notes": "Notas",
+      "presence": "Presença",
+      "preferences": "Preferências"
+    },
+    "routes": {
+      "dashboard": {
+        "title": "Estrutura do dashboard",
+        "description": "Esta rota ancora a superfície protegida do produto e passa a ser a área de visão geral por defeito dentro do shell do workspace."
+      },
+      "calendar": {
+        "title": "Estrutura do calendário",
+        "description": "O calendário migrará para aqui como um domínio local à rota, sem depender de controladores globais da app."
+      },
+      "sessions": {
+        "title": "Estrutura de sessões",
+        "description": "As sessões têm agora uma fronteira dedicada para listas, detalhes e fluxos de estado dentro do shell protegido."
+      },
+      "patients": {
+        "title": "Estrutura de pacientes",
+        "description": "Os pacientes mantêm a sua própria árvore de rotas para que a migração de lista e detalhe possa acontecer de forma incremental sem derramar para a app toda."
+      },
+      "patientDetail": {
+        "title": "Estrutura de detalhe do paciente",
+        "description": "Esta rota reserva espaço para o futuro workspace do paciente e impede que a UI específica de detalhe fuja para o shell mais amplo da app."
+      },
+      "sessionDetail": {
+        "title": "Estrutura de detalhe da sessão",
+        "description": "Esta rota existe para que as futuras vistas específicas da sessão possam migrar com ownership local."
+      },
+      "billing": {
+        "title": "Estrutura de faturação",
+        "description": "A faturação passa a ter uma fronteira dedicada de operações para cobranças, listas e workflows financeiros."
+      },
+      "documents": {
+        "title": "Estrutura de documentos",
+        "description": "Os documentos mantêm a sua própria árvore de rotas para que os fluxos de criação, edição e preview permaneçam locais ao domínio."
+      },
+      "documentDetail": {
+        "title": "Estrutura de detalhe do documento",
+        "description": "Esta rota marca o futuro editor e workspace de preview do documento sem reintroduzir helpers globais da app."
+      },
+      "notes": {
+        "title": "Estrutura de notas",
+        "description": "As notas são estruturadas como um domínio da área de operações, com espaço para o seu próprio fluxo local de edição."
+      },
+      "noteDetail": {
+        "title": "Estrutura de detalhe da nota",
+        "description": "Esta rota mantém o futuro comportamento de edição da nota localizado à árvore de notas."
+      },
+      "presence": {
+        "title": "Estrutura de presença",
+        "description": "O perfil público e a configuração do website pessoal migrarão para este domínio dedicado, em vez de viverem como páginas globais espalhadas."
+      },
+      "presenceProfile": {
+        "title": "Estrutura do perfil de presença",
+        "description": "Esta secção reserva a futura superfície de perfil e apresentação pública dentro do domínio de presença."
+      },
+      "presenceLinks": {
+        "title": "Estrutura de links de presença",
+        "description": "Esta secção mantém os links profissionais e superfícies públicas de contacto locais à árvore de presença."
+      },
+      "presencePreferences": {
+        "title": "Estrutura de preferências de presença",
+        "description": "Os controlos de publicação e visibilidade pertencem aqui, em vez de se misturarem com as preferências mais amplas do workspace."
+      },
+      "preferences": {
+        "title": "Estrutura de preferências",
+        "description": "As preferências da conta e do workspace têm agora uma fronteira clara de rota separada do restante produto."
+      },
+      "preferencesGeneral": {
+        "title": "Estrutura de preferências gerais",
+        "description": "As definições gerais da conta e do workspace migrarão para aqui dentro da árvore dedicada de preferências."
+      },
+      "preferencesAvailability": {
+        "title": "Estrutura de preferências de disponibilidade",
+        "description": "As definições de disponibilidade ficam dentro de preferências para que a configuração de agenda mantenha ownership local."
+      },
+      "preferencesNotifications": {
+        "title": "Estrutura de preferências de notificações",
+        "description": "A configuração de notificações pode migrar para aqui sem afetar rotas não relacionadas."
+      },
+      "preferencesSecurity": {
+        "title": "Estrutura de preferências de segurança",
+        "description": "As definições de segurança do workspace têm a sua própria superfície local no domínio de preferências."
+      },
+      "noteCreate": {
+        "title": "Estrutura de criação de nota",
+        "description": "Esta rota reserva um workspace focado de criação de notas dentro do domínio de notas."
+      },
+      "documentEdit": {
+        "title": "Estrutura de edição de documento",
+        "description": "Esta rota mantém o futuro ownership da edição de documentos local à árvore de documentos."
+      },
+      "onboarding": {
+        "title": "Estrutura de onboarding",
+        "description": "Os fluxos protegidos de configuração vivem no grupo bare para poderem evoluir sem acoplamento à navegação do shell principal."
+      },
+      "onboardingSuccess": {
+        "title": "Estrutura de sucesso do onboarding",
+        "description": "Esta rota reserva o estado protegido de conclusão do onboarding sem introduzir navegação do shell."
+      }
+    }
+  }
+}

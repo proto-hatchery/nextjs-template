@@ -78,7 +78,6 @@ describe("access pipeline (integration template)", () => {
     const user = await createTestUser()
 
     const ins = await admin.from("profiles").insert({
-      email: user.email,
       user_id: user.userId,
     })
     expect(ins.error).toBeNull()

@@ -40,7 +40,7 @@
  *
  * @see {@link https://www.hhs.gov/hipaa/for-professionals/security/laws-regulations/index.html} - HIPAA Security Rule
  */
-"use server"
+import "server-only"
 
 /**
  * Sanitize input for audit logging

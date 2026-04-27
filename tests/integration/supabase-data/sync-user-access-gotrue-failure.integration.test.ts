@@ -14,9 +14,8 @@ import { syncUserAccess } from "@workspace/supabase-data/actions/user-access/syn
 import { createServiceRoleTestClient } from "@workspace/test-utils/supabase/clients"
 import { createTestUser } from "@workspace/test-utils/supabase/users"
 
-vi.mock("@workspace/supabase-infra/clients/create-admin-client", async (importOriginal) => {
-  const actual =
-    await importOriginal<typeof import("@workspace/supabase-infra/clients/create-admin-client")>()
+vi.mock("@workspace/supabase-infra/clients/admin", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("@workspace/supabase-infra/clients/admin")>()
   return {
     createAdminClient: () => {
       const client = actual.createAdminClient()

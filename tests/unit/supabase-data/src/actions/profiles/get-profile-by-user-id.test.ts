@@ -16,7 +16,6 @@ describe("getProfileByUserId", () => {
     const profile = {
       avatarUrl: null,
       createdAt: "2026-03-25T00:00:00.000Z",
-      email: "user@example.test",
       fullName: "Test User",
       updatedAt: "2026-03-25T00:00:00.000Z",
       userId: "550e8400-e29b-41d4-a716-446655440000",

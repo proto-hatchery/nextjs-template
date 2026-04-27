@@ -16,6 +16,8 @@ High-level map of this template. For depth, use the
 ## Documentation map
 
 - **[Backend](./backend.md)** — Data layer, actions, repositories
+- **[Business logic placement](./business-logic-placement.md)** — Service layer,
+  separation of responsibilities
 - **[Database](./database.md)** — Migrations, RLS, policies
 - **[Testing](./testing.md)** — Vitest, integration, RLS, pgTAP
 - **[TDD](./tdd.md)** — Red / green / refactor

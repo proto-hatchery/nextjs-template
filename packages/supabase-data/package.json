@@ -23,7 +23,8 @@
     "./modules/user-access/domain/dto/user-access.dto": "./src/modules/user-access/domain/dto/user-access.dto.ts",
     "./modules/user-roles/domain/dto/user-role.dto": "./src/modules/user-roles/domain/dto/user-role.dto.ts",
     "./modules/user-roles/domain/ports/user-role-repository.port": "./src/modules/user-roles/domain/ports/user-role-repository.port.ts",
-    "./modules/user-roles/infrastructure/repositories/user-role-supabase.repository": "./src/modules/user-roles/infrastructure/repositories/user-role-supabase.repository.ts"
+    "./modules/user-roles/infrastructure/repositories/user-role-supabase.repository": "./src/modules/user-roles/infrastructure/repositories/user-role-supabase.repository.ts",
+    "./modules/preferences/domain/services/upsert-preferences": "./src/modules/preferences/domain/services/upsert-preferences.service.ts"
   },
   "scripts": {
     "lint": "oxlint",

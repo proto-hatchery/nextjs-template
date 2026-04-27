@@ -71,6 +71,7 @@
     "check:cursor-rules-parity": "node scripts/ci/check-cursor-rules-parity.mjs",
     "sync:cursor-rules-docs": "node scripts/ci/sync-cursor-rules-to-docs.mjs",
     "check:security-smells": "node scripts/ci/check-security-smells.mjs",
+    "check:service-layer": "node scripts/ci/check-service-layer.mjs",
     "check:docs-drift": "node scripts/ci/check-docs-drift.mjs",
     "env:check:local": "node scripts/dev/env-check-local.mjs",
     "seed:local-users": "tsx scripts/qa/seed-local-test-users.ts"
@@ -121,7 +122,8 @@
       "minimatch@^9.0.0": "9.0.7",
       "path-to-regexp": ">=8.4.0",
       "picomatch@^2.0.0": ">=2.3.2",
-      "picomatch@^4.0.0": ">=4.0.4"
+      "picomatch@^4.0.0": ">=4.0.4",
+      "protobufjs": ">=7.5.5"
     }
   }
 }

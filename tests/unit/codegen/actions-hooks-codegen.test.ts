@@ -4,13 +4,7 @@ import { resolve } from "node:path"
 import { describe, expect, it } from "vitest"
 
 import { parseRepositoryPlanJson } from "../../../packages/codegen-tools/src/repository-plan-schema"
-import {
-  renderActionFile,
-  renderHookTest,
-  renderQueryHook,
-  renderQueryKeysFile,
-  runActionsHooksCodegen,
-} from "../../../scripts/codegen/actions-hooks-codegen"
+import { renderActionFile, runActionsCodegen } from "../../../scripts/codegen/actions-hooks-codegen"
 import { generateSemanticPlan } from "../../../scripts/codegen/actions-semantic-plan"
 
 const repoRoot = resolve(process.cwd(), "../..")
@@ -36,13 +30,10 @@ describe("actions-hooks-codegen", () => {
     expect(semanticPlan.meta.requiresHumanReview).toBe(false)
     expect(listAction?.inputSchema.zodSchema).not.toContain("TODO")
     expect(listAction?.outputSchema.returnType).not.toContain("unknown")
-    // Mutation actions have no hook fields — the type system enforces this
-    expect(insertAction?.frontendContract).not.toHaveProperty("hookName")
-    expect(insertAction?.frontendContract).not.toHaveProperty("hookImportPath")
-    expect(insertAction?.frontendContract).not.toHaveProperty("generateHook")
+    expect(insertAction?.actionPath).toContain("/actions/")
   })
 
-  it("renders action and hooks without TODO placeholders", () => {
+  it("renders action without TODO placeholders", () => {
     const semanticPlan = loadSemanticPlan()
     const listAction = semanticPlan.actions.find((action) => action.method === "list")
 
@@ -51,23 +42,19 @@ describe("actions-hooks-codegen", () => {
     }
 
     const actionFile = renderActionFile(listAction)
-    const hookTest = renderHookTest(listAction)
-    const queryHook = renderQueryHook(listAction)
-    const queryKeys = renderQueryKeysFile("demo", semanticPlan.actions)
 
-    for (const content of [actionFile, hookTest, queryHook, queryKeys]) {
+    for (const content of [actionFile]) {
       expect(content).not.toContain("TODO")
       expect(content).not.toMatch(/[=]\s*unknown\b/)
       expect(content).not.toContain("Wire Server Action")
     }
 
-    expect(hookTest).toContain("vi.doMock")
-    expect(hookTest).toContain("await import(")
-    expect(hookTest).not.toContain(`import { ${listAction.frontendContract.hookName} }`)
+    expect(actionFile).toContain(`export async function ${listAction.actionName}`)
+    expect(actionFile).toContain("sanitizeForAudit")
   })
 
   it("keeps check mode operational", () => {
-    const result = runActionsHooksCodegen({
+    const result = runActionsCodegen({
       checkOnly: true,
       domainMapPath,
       planPath: repositoryPlanPath,

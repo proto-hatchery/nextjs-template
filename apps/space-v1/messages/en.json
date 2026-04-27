@@ -1,0 +1,153 @@
+{
+  "Metadata": {
+    "title": "Your Product Name",
+    "description": "Your product description — update at fork time."
+  },
+  "Auth": {
+    "login": {
+      "title": "Sign in",
+      "submit": "Sign in"
+    },
+    "forgotPassword": {
+      "title": "Forgot password"
+    },
+    "validation": {
+      "emailRequired": "Enter your email.",
+      "emailInvalid": "Enter a valid email address.",
+      "passwordMin": "Password must be at least 8 characters.",
+      "confirmPasswordRequired": "Confirm your password.",
+      "passwordsMatch": "Passwords must match.",
+      "mfaCodeFormat": "Enter the 6-digit code from your authenticator app."
+    },
+    "errors": {
+      "unexpected": "An unexpected error occurred. Please try again.",
+      "supabaseErrors": {}
+    }
+  },
+  "Nav": {
+    "brand": "Brand",
+    "login": "Sign in"
+  },
+  "AppShell": {
+    "brand": "Space",
+    "shellLabel": "Workspace",
+    "careLabel": "Care delivery",
+    "operationsLabel": "Operations",
+    "workspaceLabel": "Workspace",
+    "sidebarIntro": "Space is now organized as a protected product surface with route-local migration boundaries.",
+    "manageWorkspace": "Open preferences",
+    "detailEyebrow": "Detail route scaffold",
+    "bareEyebrow": "Bare route scaffold",
+    "sectionEyebrow": "Section route scaffold",
+    "signOut": "Sign out",
+    "nav": {
+      "dashboard": "Dashboard",
+      "calendar": "Calendar",
+      "sessions": "Sessions",
+      "patients": "Patients",
+      "billing": "Billing",
+      "documents": "Documents",
+      "notes": "Notes",
+      "presence": "Presence",
+      "preferences": "Preferences"
+    },
+    "routes": {
+      "dashboard": {
+        "title": "Dashboard scaffold",
+        "description": "This route anchors the protected product surface and becomes the default overview area inside the workspace shell."
+      },
+      "calendar": {
+        "title": "Calendar scaffold",
+        "description": "Calendar scheduling will migrate here as its own route-local domain, without depending on app-wide controllers."
+      },
+      "sessions": {
+        "title": "Sessions scaffold",
+        "description": "Sessions now have a dedicated boundary for list, detail, and status flows inside the protected shell."
+      },
+      "patients": {
+        "title": "Patients scaffold",
+        "description": "Patients keep their own route tree so list and detail migration can happen incrementally without app-global spillover."
+      },
+      "patientDetail": {
+        "title": "Patient detail scaffold",
+        "description": "This detail route reserves space for the future patient workspace and prevents detail-specific UI from leaking into the broader app shell."
+      },
+      "sessionDetail": {
+        "title": "Session detail scaffold",
+        "description": "This route exists so future session-specific views can migrate under their own local ownership."
+      },
+      "billing": {
+        "title": "Billing scaffold",
+        "description": "Billing now has a dedicated operations boundary for charges, lists, and financial workflows."
+      },
+      "documents": {
+        "title": "Documents scaffold",
+        "description": "Documents keep their own route tree so creation, editing, and preview flows remain domain-local."
+      },
+      "documentDetail": {
+        "title": "Document detail scaffold",
+        "description": "This route marks the future document editor and preview workspace without reintroducing app-global document helpers."
+      },
+      "notes": {
+        "title": "Notes scaffold",
+        "description": "Notes are scaffolded as an operations-area domain with room for their own local editing flow."
+      },
+      "noteDetail": {
+        "title": "Note detail scaffold",
+        "description": "This route keeps future note editing behavior localized to the notes tree."
+      },
+      "presence": {
+        "title": "Presence scaffold",
+        "description": "Public profile and personal website configuration will migrate into this dedicated domain instead of living as scattered app-global pages."
+      },
+      "presenceProfile": {
+        "title": "Presence profile scaffold",
+        "description": "This section reserves the future profile and public presentation surface inside the presence domain."
+      },
+      "presenceLinks": {
+        "title": "Presence links scaffold",
+        "description": "This section keeps professional links and public contact surfaces local to the presence tree."
+      },
+      "presencePreferences": {
+        "title": "Presence preferences scaffold",
+        "description": "Publishing and visibility controls belong here instead of mixing with broader workspace preferences."
+      },
+      "preferences": {
+        "title": "Preferences scaffold",
+        "description": "Workspace and account preferences now have a clear route boundary separate from the rest of the product surface."
+      },
+      "preferencesGeneral": {
+        "title": "General preferences scaffold",
+        "description": "General account and workspace settings will migrate here under the dedicated preferences tree."
+      },
+      "preferencesAvailability": {
+        "title": "Availability preferences scaffold",
+        "description": "Availability settings stay inside preferences so scheduling configuration remains locally owned."
+      },
+      "preferencesNotifications": {
+        "title": "Notification preferences scaffold",
+        "description": "Notification configuration can migrate here without affecting unrelated routes."
+      },
+      "preferencesSecurity": {
+        "title": "Security preferences scaffold",
+        "description": "Security-related workspace settings have their own local surface in the preferences domain."
+      },
+      "noteCreate": {
+        "title": "Note creation scaffold",
+        "description": "This route reserves a focused note-creation workspace inside the notes domain."
+      },
+      "documentEdit": {
+        "title": "Document edit scaffold",
+        "description": "This route keeps future document editing ownership local to the documents tree."
+      },
+      "onboarding": {
+        "title": "Onboarding scaffold",
+        "description": "Protected setup flows live in the bare route group so they can evolve without coupling to the main shell navigation."
+      },
+      "onboardingSuccess": {
+        "title": "Onboarding success scaffold",
+        "description": "This route reserves the protected completion state for onboarding without introducing shell navigation."
+      }
+    }
+  }
+}

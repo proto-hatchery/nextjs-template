@@ -55,11 +55,7 @@ async function loadAccessFromDb(claims: JwtPayload | null): Promise<AccessFromCl
 
   try {
     const supabase = await createServerAuthClient()
-    const rpcArgs = {
-      p_user_id: claims.sub,
-    }
-    // @type-escape: BOUNDARY — rpc get_my_access_payload args vs generated Database types; tracked: https://github.com/supabase/supabase-js
-    const { data, error } = await supabase.rpc("get_my_access_payload", rpcArgs as never)
+    const { data, error } = await supabase.rpc("get_my_access_payload")
 
     if (error || !data || !Array.isArray(data) || !data[0]) {
       return null

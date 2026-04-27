@@ -13,10 +13,10 @@ module.exports = {
       comment: "Server code cannot be imported into client code",
       from: {
         pathNot:
-          "(server|database|supabase-admin|supabase-auth/src/(session|server|proxy)|supabase-data/src/(actions|lib/auth)|supabase-infra/src/(env|clients)|logging/src/server|logging/server|apps/.*/app/|apps/.*/components/.*-header|apps/.*/proxy\\.ts|apps/.*/i18n/)",
+          "(server|database|supabase-admin|supabase-auth/src/(session|server|proxy)|supabase-data/src/(actions|lib/(auth|audit|scheduling)|modules/.*/domain/services)|supabase-infra/src/(env|clients)|logging/src/server|logging/server|apps/.*/app/|apps/.*/components/.*-header|apps/.*/proxy\\.ts|apps/.*/i18n/)",
       },
       to: {
-        path: "(server|database|supabase-admin|supabase-auth/src/(session|server|proxy)|supabase-data/src/(actions|lib/auth)|supabase-infra/src/(env|clients)|logging/src/server|logging/server)|server-only",
+        path: "(server|database|supabase-admin|supabase-auth/src/(session|server|proxy)|supabase-data/src/(actions|lib/(auth|audit|scheduling)|modules/.*/domain/services)|supabase-infra/src/(env|clients)|logging/src/server|logging/server)|server-only",
       },
     },
     {

@@ -57,7 +57,7 @@
       "codegen": true,
       "exposeActions": true,
       "readOnly": false,
-      "tables": ["clinical_session_details", "psychologist_clinical_sessions"]
+      "tables": ["clinical_session_details", "psychologist_clinical_sessions", "therapeutic_session_events"]
     },
     {
       "id": "documents",

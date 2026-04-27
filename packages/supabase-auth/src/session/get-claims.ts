@@ -66,8 +66,10 @@
  */
 import "server-only"
 import type { JwtPayload } from "@supabase/supabase-js"
+import { unstable_rethrow } from "next/navigation"
 import { cache } from "react"
 
+import { logServerEvent } from "@workspace/logging/server"
 import { createServerAuthClient } from "@workspace/supabase-auth/server/create-server-auth-client"
 
 /**
@@ -101,6 +103,8 @@ export interface JWTClaims extends Omit<JwtPayload, "sub" | "role" | "aal" | "se
  * @returns Promise resolving to JWT claims or null
  */
 export const getClaims = cache(async (): Promise<JWTClaims | null> => {
+  const startedAt = Date.now()
+
   try {
     const supabase = await createServerAuthClient()
     const { data } = await supabase.auth.getClaims()
@@ -110,7 +114,25 @@ export const getClaims = cache(async (): Promise<JWTClaims | null> => {
     }
 
     return data.claims as JWTClaims
-  } catch {
+  } catch (error) {
+    unstable_rethrow(error)
+
+    await logServerEvent({
+      component: "auth.session",
+      durationMs: Date.now() - startedAt,
+      error,
+      eventFamily: "auth.flow",
+      eventName: "claims_lookup_failed",
+      metadata: {
+        failure_phase: "claims",
+      },
+      operation: "get_claims",
+      operationType: "auth",
+      outcome: "failure",
+      persist: true,
+      service: "auth",
+    })
+
     // Auth errors return null - let caller handle unauthorized
     return null
   }

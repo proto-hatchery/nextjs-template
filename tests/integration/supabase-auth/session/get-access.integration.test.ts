@@ -7,7 +7,6 @@ import { createServerClient } from "@supabase/ssr"
  */
 import { afterEach, describe, expect, it, vi } from "vitest"
 
-import { getAccess } from "@workspace/supabase-auth/session/get-access"
 import { getSupabaseCookieOptions } from "@workspace/supabase-auth/shared/get-supabase-cookie-options"
 import { ACCESS_CONTROL_TEMPLATE } from "@workspace/supabase-auth/testing/access-control-template"
 import { getSupabasePublicEnv } from "@workspace/supabase-infra/env/public"
@@ -24,6 +23,17 @@ const { cookiesMock } = vi.hoisted(() => ({
 vi.mock("next/headers", () => ({
   cookies: cookiesMock,
 }))
+
+async function loadGetAccess(supabase: unknown) {
+  vi.resetModules()
+  vi.doMock("@workspace/supabase-auth/server/create-server-auth-client", () => ({
+    createServerAuthClient: vi.fn(async () => supabase),
+  }))
+
+  const getAccessModule = await import("@workspace/supabase-auth/session/get-access")
+
+  return getAccessModule.getAccess
+}
 
 function createNextCookieStore() {
   const jar = new Map<string, string>()
@@ -73,7 +83,7 @@ async function signInServerSession(overrides?: {
 
   expect(error).toBeNull()
 
-  return { user }
+  return { supabase: bootstrap, user }
 }
 
 /** Ensures `app_roles` + `user_roles` match seed so the JWT hook can emit `roles: [R]`. */
@@ -100,9 +110,10 @@ afterEach(() => {
 
 describe("getAccess (integration — JWT + RPC contract)", () => {
   it("resolves access from JWT after hook enriches session (template: one privileged role)", async () => {
-    await signInServerSession({
+    const { supabase } = await signInServerSession({
       beforeSignIn: seedTemplatePrivilegedRole,
     })
+    const getAccess = await loadGetAccess(supabase)
 
     await expect(getAccess()).resolves.toEqual({
       accessVersion: 1,
@@ -113,8 +124,9 @@ describe("getAccess (integration — JWT + RPC contract)", () => {
   })
 
   it("loads roles from DB when claims omit role list but `user_roles` is seeded", async () => {
-    const { user } = await signInServerSession()
+    const { supabase, user } = await signInServerSession()
     await seedTemplatePrivilegedRole(user.userId)
+    const getAccess = await loadGetAccess(supabase)
 
     await expect(getAccess()).resolves.toEqual({
       accessVersion: 1,
@@ -125,13 +137,14 @@ describe("getAccess (integration — JWT + RPC contract)", () => {
   })
 
   it("merges JWT + DB permission arrays (template DB is empty; add codes when you enrich hook)", async () => {
-    const { user } = await signInServerSession({
+    const { supabase, user } = await signInServerSession({
       appMetadata: {
         permissions: [],
         roles: [R],
       },
     })
     await seedTemplatePrivilegedRole(user.userId)
+    const getAccess = await loadGetAccess(supabase)
 
     await expect(getAccess()).resolves.toEqual({
       accessVersion: 1,

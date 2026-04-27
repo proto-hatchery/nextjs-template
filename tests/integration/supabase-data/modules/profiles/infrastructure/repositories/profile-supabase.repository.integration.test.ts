@@ -27,7 +27,6 @@ describe("ProfileSupabaseRepository", () => {
     const repository = new ProfileSupabaseRepository(client)
 
     const inserted = await admin.from("profiles").insert({
-      email: `profile.${crypto.randomUUID()}@example.test`,
       full_name: "Profile User",
       user_id: user.userId,
     })

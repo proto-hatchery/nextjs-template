@@ -9,6 +9,7 @@
     "NEXT_PUBLIC_*",
     "SENTRY_*",
     "SUPABASE_*",
+    "UPSTASH_REDIS_*",
     "TZ",
     "ROBOTS_ALLOW",
     "CSP_ENFORCE",

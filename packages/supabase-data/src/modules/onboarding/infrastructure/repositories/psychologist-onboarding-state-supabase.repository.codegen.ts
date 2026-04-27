@@ -1,0 +1,101 @@
+// codegen:backend — do not hand-edit; regenerate with `pnpm codegen:backend --write`.
+
+import type { SupabaseClient } from "@supabase/supabase-js"
+
+import { SupabaseRepositoryError } from "@workspace/supabase-data/lib/supabase-repository-error"
+import type { PsychologistOnboardingStateDTO } from "@workspace/supabase-data/modules/onboarding/domain/dto/psychologist-onboarding-state.dto.codegen"
+import type {
+  PsychologistOnboardingStateRepository,
+  PsychologistOnboardingStateListParams,
+  PsychologistOnboardingStateListResult,
+} from "@workspace/supabase-data/modules/onboarding/domain/ports/psychologist-onboarding-state-repository.port.codegen"
+import {
+  fromPsychologistOnboardingStateRow,
+  toPsychologistOnboardingStateInsert,
+  toPsychologistOnboardingStateUpdate,
+} from "@workspace/supabase-data/modules/onboarding/infrastructure/mappers/psychologist-onboarding-state.mapper.codegen"
+
+class PsychologistOnboardingStateSupabaseRepository implements PsychologistOnboardingStateRepository {
+  constructor(private readonly supabase: SupabaseClient) {}
+
+  async findById(id: string): Promise<PsychologistOnboardingStateDTO | null> {
+    const { data, error } = await this.supabase
+      .from("psychologist_onboarding_summary")
+      .select(
+        "abandoned_at, completion_percentage, configuration_step_completed, current_step, essential_complete, fully_complete, identity_step_completed, last_resumed_at, next_pending_step, onboarding_completed_at, payment_step_completed, professional_step_completed, profile_step_completed, psychologist_id, subscription_status, total_steps"
+      )
+      .eq("psychologist_id", id)
+      .maybeSingle()
+    if (error) {
+      throw new SupabaseRepositoryError("Failed to load psychologist_onboarding_state.", {
+        cause: error,
+      })
+    }
+    if (!data) return null
+    return fromPsychologistOnboardingStateRow(data)
+  }
+
+  async list(
+    params: PsychologistOnboardingStateListParams
+  ): Promise<PsychologistOnboardingStateListResult> {
+    const limit = Math.min(params.limit ?? 20, 100)
+    const offset = params.offset ?? 0
+    const end = offset + limit - 1
+    const q = this.supabase
+      .from("psychologist_onboarding_summary")
+      .select(
+        "abandoned_at, completion_percentage, configuration_step_completed, current_step, essential_complete, fully_complete, identity_step_completed, last_resumed_at, next_pending_step, onboarding_completed_at, payment_step_completed, professional_step_completed, profile_step_completed, psychologist_id, subscription_status, total_steps"
+      )
+      .range(offset, end)
+    const { data, error } = await q
+    if (error) {
+      throw new SupabaseRepositoryError("Failed to list psychologist_onboarding_state.", {
+        cause: error,
+      })
+    }
+    const rows = (data ?? []).map((row) => fromPsychologistOnboardingStateRow(row))
+    return { rows }
+  }
+
+  async insert(
+    data: Partial<PsychologistOnboardingStateDTO>
+  ): Promise<PsychologistOnboardingStateDTO> {
+    const payload = toPsychologistOnboardingStateInsert(data)
+    const { data: row, error } = await this.supabase
+      .from("psychologist_onboarding_state")
+      .insert(payload)
+      .select(
+        "abandoned_at, completion_percentage, configuration_step_completed, current_step, essential_complete, fully_complete, identity_step_completed, last_resumed_at, next_pending_step, onboarding_completed_at, payment_step_completed, professional_step_completed, profile_step_completed, psychologist_id, subscription_status, total_steps"
+      )
+      .single()
+    if (error) {
+      throw new SupabaseRepositoryError("Failed to insert psychologist_onboarding_state.", {
+        cause: error,
+      })
+    }
+    return fromPsychologistOnboardingStateRow(row)
+  }
+
+  async update(
+    id: string,
+    patch: Partial<PsychologistOnboardingStateDTO>
+  ): Promise<PsychologistOnboardingStateDTO> {
+    const payload = toPsychologistOnboardingStateUpdate(patch)
+    const { data: row, error } = await this.supabase
+      .from("psychologist_onboarding_state")
+      .update(payload)
+      .eq("psychologist_id", id)
+      .select(
+        "abandoned_at, completion_percentage, configuration_step_completed, current_step, essential_complete, fully_complete, identity_step_completed, last_resumed_at, next_pending_step, onboarding_completed_at, payment_step_completed, professional_step_completed, profile_step_completed, psychologist_id, subscription_status, total_steps"
+      )
+      .single()
+    if (error) {
+      throw new SupabaseRepositoryError("Failed to update psychologist_onboarding_state.", {
+        cause: error,
+      })
+    }
+    return fromPsychologistOnboardingStateRow(row)
+  }
+}
+
+export { PsychologistOnboardingStateSupabaseRepository }

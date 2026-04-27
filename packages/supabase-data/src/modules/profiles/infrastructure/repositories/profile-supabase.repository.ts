@@ -19,7 +19,7 @@ class ProfileSupabaseRepository implements ProfileRepository {
   async findByUserId(userId: string): Promise<ProfileDTO | null> {
     const { data, error } = await this.supabase
       .from("profiles")
-      .select("user_id, email, full_name, avatar_url, created_at, updated_at")
+      .select("user_id, full_name, avatar_url, created_at, updated_at")
       .eq("user_id", userId)
       .maybeSingle()
 
@@ -36,7 +36,6 @@ class ProfileSupabaseRepository implements ProfileRepository {
     return ProfileDTOSchema.parse({
       avatarUrl: data.avatar_url,
       createdAt: data.created_at,
-      email: data.email,
       fullName: data.full_name,
       updatedAt: data.updated_at,
       userId: data.user_id,

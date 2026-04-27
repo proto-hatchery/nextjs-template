@@ -489,6 +489,61 @@
       ]
     },
     {
+      "domainId": "clinical-sessions",
+      "table": "therapeutic_session_events",
+      "read": {
+        "kind": "view",
+        "name": "therapeutic_session_events"
+      },
+      "methods": ["findById", "list"],
+      "dto": {
+        "style": "zod",
+        "include": "all_columns"
+      },
+      "idColumn": "calendar_event_id",
+      "phiFields": [
+        "title",
+        "description",
+        "location",
+        "metadata",
+        "private_notes",
+        "patient_name",
+        "patient_display_name",
+        "billing_last_error"
+      ],
+      "auditSafeFields": [
+        "calendar_event_id",
+        "psychologist_id",
+        "series_id",
+        "duration_minutes",
+        "all_day",
+        "scheduling_status",
+        "source",
+        "google_event_id",
+        "google_sync_status",
+        "last_synced_at",
+        "session_detail_id",
+        "clinical_session_id",
+        "legacy_session_id",
+        "psychologist_patient_id",
+        "psychologist_service_id",
+        "session_type_id",
+        "session_number",
+        "attendance_confirmed",
+        "confirmation_sent_at",
+        "reminder_sent_at",
+        "billing_status",
+        "billing_attempt_count",
+        "billing_last_attempt_at",
+        "billing_next_attempt_at",
+        "service_name",
+        "service_price",
+        "service_duration",
+        "created_at",
+        "updated_at"
+      ]
+    },
+    {
       "domainId": "documents",
       "table": "generated_documents",
       "read": {

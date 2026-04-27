@@ -53,6 +53,11 @@ pre-commit:
       run: pnpm check:docs-drift
       priority: 6
 
+    # Service layer invariants (server-only, no next/ imports in services)
+    service-layer:
+      run: pnpm check:service-layer
+      priority: 6
+
 # Commit-msg: Validate conventional commits
 commit-msg:
   commands:
