@@ -34,19 +34,19 @@
     "check:exports": "publint"
   },
   "dependencies": {
-    "@supabase/supabase-js": "^2.101.1",
+    "@supabase/supabase-js": "^2.105.4",
     "@workspace/logging": "workspace:*",
     "@workspace/supabase-auth": "workspace:*",
     "@workspace/supabase-infra": "workspace:*",
     "server-only": "^0.0.1",
-    "zod": "^4.3.6"
+    "zod": "^4.4.3"
   },
   "devDependencies": {
-    "@types/node": "^25.5.2",
+    "@types/node": "^25.6.2",
     "@workspace/typescript-config": "workspace:*",
     "@workspace/vitest-config": "workspace:*",
-    "publint": "^0.3.18",
-    "typescript": "^5.9.3",
-    "vitest": "^4.1.2"
+    "publint": "^0.3.20",
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.5"
   }
 }

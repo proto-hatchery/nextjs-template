@@ -8,15 +8,15 @@
     "test:rls": "mkdir -p coverage/.tmp && vitest run --config vitest.rls.config.ts"
   },
   "devDependencies": {
-    "@supabase/ssr": "^0.10.0",
-    "@types/node": "^25.5.2",
+    "@supabase/ssr": "^0.10.3",
+    "@types/node": "^25.6.2",
     "@workspace/supabase-auth": "workspace:*",
     "@workspace/supabase-data": "workspace:*",
     "@workspace/supabase-infra": "workspace:*",
     "@workspace/test-utils": "workspace:*",
     "@workspace/typescript-config": "workspace:*",
     "@workspace/vitest-config": "workspace:*",
-    "typescript": "^5.9.3",
-    "vitest": "^4.1.2"
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.5"
   }
 }
