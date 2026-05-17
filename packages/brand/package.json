@@ -16,12 +16,12 @@
     "@workspace/core": "workspace:*"
   },
   "devDependencies": {
-    "@types/node": "^25.5.2",
+    "@types/node": "^25.8.0",
     "@types/react": "^19.2.10",
     "@types/react-dom": "^19.2.3",
     "@workspace/typescript-config": "workspace:*",
-    "publint": "^0.3.18",
-    "typescript": "^5.9.3"
+    "publint": "^0.3.21",
+    "typescript": "^6.0.3"
   },
   "peerDependencies": {
     "react": "^19.0.0",
