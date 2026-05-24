@@ -20,17 +20,17 @@
     "check:exports": "publint"
   },
   "dependencies": {
-    "@supabase/supabase-js": "^2.101.1",
+    "@supabase/supabase-js": "^2.106.1",
     "@workspace/supabase-infra": "workspace:*"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.0",
-    "@types/node": "^25.5.2",
+    "@types/node": "^25.9.1",
     "@workspace/supabase-infra": "workspace:*",
     "@workspace/typescript-config": "workspace:*",
-    "publint": "^0.3.18",
-    "typescript": "^5.9.3",
-    "vitest": "^4.1.2"
+    "publint": "^0.3.21",
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.7"
   }
 }

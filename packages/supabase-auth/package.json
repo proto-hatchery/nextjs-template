@@ -19,21 +19,21 @@
     "check:exports": "publint"
   },
   "dependencies": {
-    "@supabase/ssr": "^0.10.0",
-    "@supabase/supabase-js": "^2.101.1",
+    "@supabase/ssr": "^0.10.3",
+    "@supabase/supabase-js": "^2.106.1",
     "@workspace/auth-config": "workspace:*",
     "@workspace/logging": "workspace:*",
     "@workspace/supabase-infra": "workspace:*",
-    "next": "^16.2.2",
-    "react": "^19.2.4",
+    "next": "^16.2.6",
+    "react": "^19.2.6",
     "server-only": "^0.0.1",
-    "zod": "^4.3.6"
+    "zod": "^4.4.3"
   },
   "devDependencies": {
-    "@types/react": "^19.2.10",
+    "@types/react": "^19.2.15",
     "@workspace/typescript-config": "workspace:*",
-    "oxlint": "^1.58.0",
-    "publint": "^0.3.18",
-    "typescript": "^5.9.3"
+    "oxlint": "^1.66.0",
+    "publint": "^0.3.21",
+    "typescript": "^6.0.3"
   }
 }
