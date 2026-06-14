@@ -11,6 +11,6 @@
     "check:exports": "publint"
   },
   "devDependencies": {
-    "publint": "^0.3.18"
+    "publint": "^0.3.21"
   }
 }
