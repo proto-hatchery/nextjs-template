@@ -1,0 +1,12 @@
+/*
+ * Package Source Manifest - @workspace/lexical-editor
+ * Owns Tailwind source scanning for the lexical editor package only.
+ */
+
+@source "../components/**/*.{ts,tsx}";
+@source "../autosave/**/*.{ts,tsx}";
+@source "../plugins/**/*.{ts,tsx}";
+@source "../nodes/**/*.{ts,tsx}";
+@source "../themes/**/*.{ts,tsx}";
+
+@custom-variant dark (&:is(.dark *));

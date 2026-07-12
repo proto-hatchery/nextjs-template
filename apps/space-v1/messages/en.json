@@ -1,7 +1,7 @@
 {
   "Metadata": {
-    "title": "Your Product Name",
-    "description": "Your product description — update at fork time."
+    "title": "Fluri Space",
+    "description": "Fluri clinical and operational workspace."
   },
   "Auth": {
     "login": {
@@ -29,26 +29,26 @@
     "login": "Sign in"
   },
   "AppShell": {
-    "brand": "Space",
-    "shellLabel": "Workspace",
-    "careLabel": "Care delivery",
-    "operationsLabel": "Operations",
-    "workspaceLabel": "Workspace",
-    "sidebarIntro": "Space is now organized as a protected product surface with route-local migration boundaries.",
-    "manageWorkspace": "Open preferences",
-    "detailEyebrow": "Detail route scaffold",
-    "bareEyebrow": "Bare route scaffold",
-    "sectionEyebrow": "Section route scaffold",
+    "brand": "Fluri Space",
+    "shellLabel": "Fluri Space",
+    "manageWorkspace": "Preferences",
     "signOut": "Sign out",
+    "sections": {
+      "main": "Main",
+      "financial": "Financial",
+      "care": "Care",
+      "clinical": "Clinical",
+      "workspace": "Presence"
+    },
     "nav": {
-      "dashboard": "Dashboard",
+      "home": "Home",
       "calendar": "Calendar",
       "sessions": "Sessions",
       "patients": "Patients",
       "billing": "Billing",
       "documents": "Documents",
       "notes": "Notes",
-      "presence": "Presence",
+      "presence": "My site",
       "preferences": "Preferences"
     },
     "routes": {
@@ -149,5 +149,26 @@
         "description": "This route reserves the protected completion state for onboarding without introducing shell navigation."
       }
     }
+  },
+  "Dashboard": {
+    "eyebrow": "Home",
+    "title": "Home",
+    "intro": "Your day at a glance: sessions, metrics, and shortcuts to what matters now.",
+    "todayTitle": "Today",
+    "todayDescription": "Upcoming sessions and shortcuts to calendar and care.",
+    "emptyAgendaTitle": "No upcoming sessions",
+    "emptyAgendaDescription": "Scheduled sessions from your calendar will appear here.",
+    "openSession": "Open session",
+    "quickLinksTitle": "Shortcuts",
+    "quickLinksDescription": "Quick access to the most used areas in Space."
+  },
+  "Patients": {
+    "eyebrow": "Care",
+    "title": "Patients",
+    "intro": "Patient list, filters, and access to clinical records.",
+    "invite": "Invite patient",
+    "create": "New patient",
+    "directoryTitle": "Directory",
+    "directoryDescription": "{shown} of {total} patients match the current filters."
   }
 }

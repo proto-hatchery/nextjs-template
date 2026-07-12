@@ -33,9 +33,9 @@ lives next to `app/`:
 | `components/`     | Minimal app-level shared UI (currently `locale-switcher.tsx` only).                                             |
 | `lib/`            | App-only helpers (e.g. `site-url.ts`).                                                                          |
 | `app/_providers/` | App shell providers; e.g. `app-providers.example.tsx` (wrapper around `@workspace/core`).                       |
-| `app/_hooks/`     | App-only hooks; prefer `*.example.ts` / `*.example.tsx` for template/fork clarity (see `app/_hooks/AGENTS.md`). |
+| `app/_hooks/`     | App-only hooks (see `app/_hooks/AGENTS.md`).                                                                    |
 
-Forks should keep the same shape so docs and env comments stay accurate.
+Keep this shape so docs and env comments stay accurate across Fluri surfaces.
 
 ## Layouts and components
 
@@ -53,6 +53,6 @@ to a single route.
 ## Tests
 
 Centralized unit tests mirror this app’s paths under
-[`tests/unit/example/`](../../tests/unit/example/). Vitest `include` is set in
+[`tests/unit/space-v1/`](../../tests/unit/space-v1/). Vitest `include` is set in
 [`vitest.config.ts`](./vitest.config.ts). See root
 [`tests/README.md`](../../tests/README.md).

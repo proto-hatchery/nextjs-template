@@ -1,6 +1,6 @@
 "use client"
 
-import { updateNotificationsPreferencesAction } from "@/app/[locale]/(workspace)/(settings)/preferences/_actions/update-notifications-preferences.action"
+import { updateNotificationsPreferencesAction } from "@workspace/supabase-data/actions/preferences/update-notifications-preferences"
 import {
   notificationsPrefsSchema,
   type NotificationsPrefsSchema,

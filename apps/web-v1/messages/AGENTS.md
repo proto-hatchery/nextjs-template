@@ -1,4 +1,4 @@
-# `apps/example/messages`
+# `apps/web-v1/messages`
 
 **Audience:** agents / LLM.
 

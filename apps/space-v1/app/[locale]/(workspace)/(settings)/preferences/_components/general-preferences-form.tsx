@@ -1,6 +1,6 @@
 "use client"
 
-import { updateGeneralPreferencesAction } from "@/app/[locale]/(workspace)/(settings)/preferences/_actions/update-general-preferences.action"
+import { updateGeneralPreferencesAction } from "@workspace/supabase-data/actions/preferences/update-general-preferences"
 import {
   generalPrefsSchema,
   type GeneralPrefsSchema,

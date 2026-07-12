@@ -85,6 +85,22 @@ const publicEnvSchema = z.object({
 export type PublicEnv = z.infer<typeof publicEnvSchema>
 
 /**
+ * Read public env with per-key `process.env` access so Next.js/Turbopack can inline
+ * `NEXT_PUBLIC_*` values into client bundles (dynamic `process.env` reads are not replaced).
+ */
+function readPublicEnvFromProcess(): Record<string, string | undefined> {
+  return {
+    NEXT_PUBLIC_SUPABASE_URL: process.env.NEXT_PUBLIC_SUPABASE_URL,
+    NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY,
+    NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_SITE_URL,
+    NEXT_PUBLIC_AUTH_APP_URL: process.env.NEXT_PUBLIC_AUTH_APP_URL,
+    NEXT_PUBLIC_SPACE_APP_URL: process.env.NEXT_PUBLIC_SPACE_APP_URL,
+    NEXT_PUBLIC_AUTH_ALLOWED_REDIRECT_ORIGINS:
+      process.env.NEXT_PUBLIC_AUTH_ALLOWED_REDIRECT_ORIGINS,
+  }
+}
+
+/**
  * Get validated public environment variables
  *
  * Validates environment variables against Zod schema.
@@ -100,7 +116,7 @@ export type PublicEnv = z.infer<typeof publicEnvSchema>
  * @returns Validated public environment object
  */
 export function getSupabasePublicEnv(): PublicEnv {
-  const result = publicEnvSchema.safeParse(process.env)
+  const result = publicEnvSchema.safeParse(readPublicEnvFromProcess())
 
   if (!result.success) {
     throw new Error(`Invalid Supabase public environment variables:\n${result.error.message}`)

@@ -29,6 +29,7 @@ const IMMUTABLE_GENERATED_PATHS = new Set([
 const ALLOWED_BARREL_INDEX_FILES = new Set([
   "packages/logging/src/index.ts",
   "packages/seo/src/index.ts",
+  "packages/lexical-editor/src/index.ts",
 ])
 
 /** @param {string} dir */

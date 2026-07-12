@@ -1,11 +1,11 @@
-# `apps/example` — template Next.js app
+# `apps/web-v1` — public web and auth app
 
 **Audience:** agents / LLM. Human-oriented file list: `README.md` in this
 folder.
 
 ## Stack entry
 
-- Dev: `pnpm --filter example dev`
+- Dev: `pnpm --filter web-v1 dev`
 - Env: root `.env.example`, `docs/guides/supabase-setup.md`
 - Post-login URLs: `packages/supabase-auth/src/shared/app-destination.ts`
 
@@ -14,8 +14,7 @@ folder.
 - **No `src/`** — `app/`, `proxy.ts`, `next.config.mjs` at package root.
 - **`app/_providers/`** — see `app/_providers/AGENTS.md`
   (`app-providers.example.tsx` → `@workspace/core`).
-- **`app/_hooks/`** — see `app/_hooks/AGENTS.md` (app-only hooks; `*.example.*`
-  naming).
+- **`app/_hooks/`** — see `app/_hooks/AGENTS.md` (app-only hooks).
 - **`i18n/`** — `routing.ts`, `request.ts`, `navigation.ts`
 - **`messages/`** — see `messages/AGENTS.md`
 - **`app/[locale]/`** — marketing + auth routes; `(auth-handlers)/` for

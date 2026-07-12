@@ -22,7 +22,7 @@ class PsychologistPreferencesSupabaseRepository implements PsychologistPreferenc
     const { data, error } = await this.supabase
       .from("psychologist_preferences")
       .select(
-        "created_at, id, notifications_billing_alerts, notifications_email_reminders, notifications_marketing, notifications_payment_receipts, notifications_security_alerts, notifications_whatsapp_reminders, preferences, updated_at, user_id"
+        "created_at, id, notifications_billing_alerts, notifications_email_reminders, notifications_marketing, notifications_payment_receipts, notifications_security_alerts, notifications_whatsapp_reminders, preferences, sensitive_data_visible, updated_at, user_id"
       )
       .eq("id", id)
       .maybeSingle()
@@ -44,7 +44,7 @@ class PsychologistPreferencesSupabaseRepository implements PsychologistPreferenc
     const q = this.supabase
       .from("psychologist_preferences")
       .select(
-        "created_at, id, notifications_billing_alerts, notifications_email_reminders, notifications_marketing, notifications_payment_receipts, notifications_security_alerts, notifications_whatsapp_reminders, preferences, updated_at, user_id"
+        "created_at, id, notifications_billing_alerts, notifications_email_reminders, notifications_marketing, notifications_payment_receipts, notifications_security_alerts, notifications_whatsapp_reminders, preferences, sensitive_data_visible, updated_at, user_id"
       )
       .range(offset, end)
     const { data, error } = await q
@@ -63,7 +63,7 @@ class PsychologistPreferencesSupabaseRepository implements PsychologistPreferenc
       .from("psychologist_preferences")
       .insert(payload)
       .select(
-        "created_at, id, notifications_billing_alerts, notifications_email_reminders, notifications_marketing, notifications_payment_receipts, notifications_security_alerts, notifications_whatsapp_reminders, preferences, updated_at, user_id"
+        "created_at, id, notifications_billing_alerts, notifications_email_reminders, notifications_marketing, notifications_payment_receipts, notifications_security_alerts, notifications_whatsapp_reminders, preferences, sensitive_data_visible, updated_at, user_id"
       )
       .single()
     if (error) {
@@ -84,7 +84,7 @@ class PsychologistPreferencesSupabaseRepository implements PsychologistPreferenc
       .update(payload)
       .eq("id", id)
       .select(
-        "created_at, id, notifications_billing_alerts, notifications_email_reminders, notifications_marketing, notifications_payment_receipts, notifications_security_alerts, notifications_whatsapp_reminders, preferences, updated_at, user_id"
+        "created_at, id, notifications_billing_alerts, notifications_email_reminders, notifications_marketing, notifications_payment_receipts, notifications_security_alerts, notifications_whatsapp_reminders, preferences, sensitive_data_visible, updated_at, user_id"
       )
       .single()
     if (error) {

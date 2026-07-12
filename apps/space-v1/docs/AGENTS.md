@@ -1,4 +1,4 @@
-# Example app — local docs (`apps/example/docs`)
+# Space app — local docs (`apps/space-v1/docs`)
 
 **Audience:** agents / LLM. **Level 3** — docs for **this** deployable only
 (routes, features, runbooks).

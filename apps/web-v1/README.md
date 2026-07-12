@@ -1,9 +1,7 @@
-# Example app (`apps/example`)
+# Web app (`apps/web-v1`)
 
-A Next.js app with **public marketing** (`(marketing)`) and **auth flows**
-(`(auth)` pages + `(auth-handlers)` for `/callback`, `/auth/confirm`,
-`/logout`). Rename this folder and package when you scaffold a real product
-surface.
+A Next.js app for Fluri's public marketing surface and auth flows (`(auth)`
+pages plus auth handlers for callback, confirmation, and logout).
 
 | Path                                                                                                                | Content                                                                               |
 | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
@@ -16,7 +14,7 @@ Set `NEXT_PUBLIC_AUTH_APP_URL` per root [`.env.example`](../../.env.example) and
 destinations: `packages/supabase-auth/src/shared/app-destination.ts`.
 
 ```bash
-pnpm --filter example dev
+pnpm --filter web-v1 dev
 ```
 
 ## Directory convention (no `src/`)
@@ -31,9 +29,9 @@ lives next to `app/`:
 | `components/`     | Cross-route UI (e.g. `components/marketing/`, `locale-switcher.tsx`).                                           |
 | `lib/`            | App-only helpers (e.g. `site-url.ts`).                                                                          |
 | `app/_providers/` | App shell providers; e.g. `app-providers.example.tsx` (wrapper around `@workspace/core`).                       |
-| `app/_hooks/`     | App-only hooks; prefer `*.example.ts` / `*.example.tsx` for template/fork clarity (see `app/_hooks/AGENTS.md`). |
+| `app/_hooks/`     | App-only hooks (see `app/_hooks/AGENTS.md`).                                                                    |
 
-Forks should keep the same shape so docs and env comments stay accurate.
+Keep this shape so docs and env comments stay accurate across Fluri surfaces.
 
 ## Layouts and components
 
@@ -50,7 +48,7 @@ to a single route.
 ## Tests
 
 Centralized unit tests mirror this app’s paths under
-[`tests/unit/example/`](../../tests/unit/example/) (e.g.
+[`tests/unit/web-v1/`](../../tests/unit/web-v1/) (e.g.
 `app/(auth-handlers)/callback/route.test.ts` next to the real `route.ts` in
 spirit). Vitest `include` is set in [`vitest.config.ts`](./vitest.config.ts).
 See root [`tests/README.md`](../../tests/README.md).

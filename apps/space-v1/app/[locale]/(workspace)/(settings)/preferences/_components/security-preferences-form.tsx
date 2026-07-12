@@ -1,6 +1,6 @@
 "use client"
 
-import { updateSecurityPreferencesAction } from "@/app/[locale]/(workspace)/(settings)/preferences/_actions/update-security-preferences.action"
+import { updateSecurityPreferencesAction } from "@workspace/supabase-data/actions/preferences/update-security-preferences"
 import {
   securityPrefsSchema,
   type SecurityPrefsSchema,

@@ -7,9 +7,19 @@
     "./providers/app": "./src/providers/app-providers.provider.tsx",
     "./providers/query-client": "./src/providers/query-client.ts",
     "./hooks/use-mounted": "./src/hooks/use-mounted.hook.ts",
-    "./components/theme-provider": "./src/components/theme-provider.component.tsx"
+    "./components/theme-provider": "./src/components/theme-provider.component.tsx",
+    "./privacy/masking-utils": "./src/privacy/masking-utils.ts",
+    "./privacy/privacy-provider": "./src/privacy/privacy-provider.tsx",
+    "./privacy/sensitive": "./src/privacy/sensitive.tsx",
+    "./privacy/use-sensitive-value": "./src/privacy/use-sensitive-value.ts",
+    "./privacy/styles.css": {
+      "import": "./src/privacy/privacy.css",
+      "style": "./src/privacy/privacy.css"
+    }
   },
   "scripts": {
+    "test": "mkdir -p coverage/.tmp && vitest run --config vitest.config.ts",
+    "test:watch": "vitest --config vitest.config.ts",
     "lint": "oxlint",
     "format": "oxfmt --write",
     "typecheck": "tsc --noEmit",

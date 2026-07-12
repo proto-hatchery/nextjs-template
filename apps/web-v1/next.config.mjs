@@ -24,7 +24,7 @@ function assertValidProductionSiteUrl() {
   const raw = process.env.NEXT_PUBLIC_SITE_URL?.trim()
   if (!raw) {
     throw new Error(
-      "[example] Production build requires NEXT_PUBLIC_SITE_URL (https canonical origin). See docs/guides/seo.md"
+      "[web-v1] Production build requires NEXT_PUBLIC_SITE_URL (https canonical origin). See docs/guides/seo.md"
     )
   }
   let parsed
@@ -32,12 +32,12 @@ function assertValidProductionSiteUrl() {
     parsed = new URL(raw)
   } catch {
     throw new Error(
-      `[example] NEXT_PUBLIC_SITE_URL must be a valid URL (got: ${raw}). See docs/guides/seo.md`
+      `[web-v1] NEXT_PUBLIC_SITE_URL must be a valid URL (got: ${raw}). See docs/guides/seo.md`
     )
   }
   if (parsed.protocol !== "https:") {
     throw new Error(
-      `[example] Production NEXT_PUBLIC_SITE_URL must use https: (got ${parsed.protocol}). See docs/guides/preview-environments.md`
+      `[web-v1] Production NEXT_PUBLIC_SITE_URL must use https: (got ${parsed.protocol}). See docs/guides/preview-environments.md`
     )
   }
   const host = parsed.hostname.toLowerCase()
@@ -49,7 +49,7 @@ function assertValidProductionSiteUrl() {
     host.endsWith(".local")
   ) {
     throw new Error(
-      `[example] Production NEXT_PUBLIC_SITE_URL must use a public hostname (got: ${host}).`
+      `[web-v1] Production NEXT_PUBLIC_SITE_URL must use a public hostname (got: ${host}).`
     )
   }
 }
@@ -66,6 +66,7 @@ const ROOT_PUBLIC_ENV_NAMES = [
   "NEXT_PUBLIC_BNF_APP_URL",
   "NEXT_PUBLIC_DEFAULT_LOCALE",
   "NEXT_PUBLIC_PORTAL_APP_URL",
+  "NEXT_PUBLIC_SPACE_APP_URL",
   "NEXT_PUBLIC_SITE_URL",
   "NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY",
   "NEXT_PUBLIC_SUPABASE_URL",

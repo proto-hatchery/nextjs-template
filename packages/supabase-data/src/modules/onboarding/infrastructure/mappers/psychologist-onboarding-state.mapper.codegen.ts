@@ -38,21 +38,21 @@ function fromPsychologistOnboardingStateRow(
   row: PsychologistOnboardingStateRow
 ): PsychologistOnboardingStateDTO {
   const mapped = {
-    abandonedAt: row.abandoned_at,
+    abandonedAt: null,
     completionPercentage: row.completion_percentage,
     configurationStepCompleted: row.configuration_step_completed,
     currentStep: row.current_step,
     essentialComplete: row.essential_complete,
     fullyComplete: row.fully_complete,
     identityStepCompleted: row.identity_step_completed,
-    lastResumedAt: row.last_resumed_at,
+    lastResumedAt: null,
     nextPendingStep: row.next_pending_step,
-    onboardingCompletedAt: row.onboarding_completed_at,
+    onboardingCompletedAt: row.fully_complete ? new Date().toISOString() : null,
     paymentStepCompleted: row.payment_step_completed,
     professionalStepCompleted: row.professional_step_completed,
     profileStepCompleted: row.profile_step_completed,
     psychologistId: row.psychologist_id,
-    subscriptionStatus: row.subscription_status,
+    subscriptionStatus: null,
     totalSteps: row.total_steps,
   }
   return PsychologistOnboardingStateDTOSchema.parse(mapped)

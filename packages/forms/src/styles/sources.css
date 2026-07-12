@@ -1,0 +1,12 @@
+/*
+ * Package Source Manifest - @workspace/forms
+ * This file owns source scanning for the @workspace/forms package ONLY.
+ * Do NOT import Tailwind or tw-animate-css here.
+ * Do NOT redefine global theme tokens.
+ */
+
+/* Package-local source scanning - relative to this file's location */
+@source "../forms/**/*.{ts,tsx}";
+
+/* Dark variant (required for form components) */
+@custom-variant dark (&:is(.dark *));

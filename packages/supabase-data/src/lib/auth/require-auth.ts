@@ -98,10 +98,7 @@ interface RequireAuthResult {
 
 export async function requireAuth(context: RequireAuthContext): Promise<RequireAuthResult> {
   // 1. Identity resolution via getClaims() (JWKS cached, ~0.1-1ms)
-  const claimsResult = await getClaims()
-
-  // Type guard: check if claimsResult has the expected structure
-  const claims = (claimsResult as { claims?: AuthClaims })?.claims
+  const claims = (await getClaims()) as AuthClaims | null
 
   if (!claims?.sub) {
     // Log unauthorized attempt (compliance requirement)

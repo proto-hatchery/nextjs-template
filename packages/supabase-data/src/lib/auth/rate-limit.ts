@@ -33,18 +33,29 @@ import { Redis } from "@upstash/redis"
 
 import { logServerEvent } from "@workspace/logging/server"
 
-/**
- * Rate limiter instance
- *
- * Configured for 60 requests per minute per user using sliding window.
- * Sliding window provides smoother rate limiting than fixed windows by
- * calculating rate over a rolling time period.
- */
-const ratelimit = new Ratelimit({
-  redis: Redis.fromEnv(),
-  limiter: Ratelimit.slidingWindow(60, "1 m"), // 60 req/min per user
-  analytics: true,
-})
+function shouldUseUpstashActionRateLimit(): boolean {
+  const mode = process.env.AUTH_RATE_LIMIT_MODE?.trim()
+  return (
+    mode !== "off" &&
+    mode !== "memory" &&
+    Boolean(process.env.UPSTASH_REDIS_REST_URL?.trim()) &&
+    Boolean(process.env.UPSTASH_REDIS_REST_TOKEN?.trim())
+  )
+}
+
+let actionRatelimit: Ratelimit | undefined
+
+function getActionRatelimit(): Ratelimit {
+  if (!actionRatelimit) {
+    actionRatelimit = new Ratelimit({
+      redis: Redis.fromEnv(),
+      limiter: Ratelimit.slidingWindow(60, "1 m"), // 60 req/min per user
+      analytics: true,
+    })
+  }
+
+  return actionRatelimit
+}
 
 /**
  * Check rate limit for user actions
@@ -63,7 +74,11 @@ const ratelimit = new Ratelimit({
  * ```
  */
 export async function checkActionRateLimit(userId: string): Promise<void> {
-  const { success, limit, remaining } = await ratelimit.limit(`action:${userId}`)
+  if (!shouldUseUpstashActionRateLimit()) {
+    return
+  }
+
+  const { success, limit, remaining } = await getActionRatelimit().limit(`action:${userId}`)
 
   if (!success) {
     await logServerEvent({

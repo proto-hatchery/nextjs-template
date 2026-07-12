@@ -1,11 +1,11 @@
 import type { MetadataRoute } from "next"
 
-/** Replace name/theme at fork — see apps/example/docs/seo.md */
+/** Web public surface manifest. */
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "Example App",
-    short_name: "Example",
-    description: "Replace at fork — PWA manifest stub for Add to Home Screen and share targets.",
+    name: "Fluri",
+    short_name: "Fluri",
+    description: "Plataforma Fluri para psicologas e pacientes.",
     start_url: "/",
     display: "standalone",
     background_color: "#ffffff",

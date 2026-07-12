@@ -1,27 +1,52 @@
-import type { ReactNode } from "react"
+"use client";
 
-import { PresenceSectionNav } from "@/app/[locale]/(workspace)/(presence)/presence/_components/presence-section-nav"
-import { AppShellPage } from "@/app/[locale]/(workspace)/_components/app-shell-page"
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@workspace/ui/components/breadcrumb";
+import { Home } from "lucide-react";
+import { MonitorSmartphone } from "lucide-react";
+import { useMemo } from "react";
 
-export default function PresenceLayout({
-  children,
-}: Readonly<{
-  children: ReactNode
-}>) {
+import { PageContentHeader } from "../../_components/page-content-header";
+import { PageContentWrapper } from "../../_components/page-content-wrapper";
+
+export default function ProfileLayout({ children }: { children: React.ReactNode }) {
+  const breadcrumbs = useMemo(() => {
+    return (
+      <Breadcrumb>
+        <BreadcrumbList>
+          <BreadcrumbItem>
+            <BreadcrumbLink href="/home" className="inline-flex items-center gap-1.5">
+              <Home className="size-4" />
+              Home
+            </BreadcrumbLink>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator />
+          <BreadcrumbItem>
+            <BreadcrumbPage className="inline-flex items-center gap-1.5">
+              <MonitorSmartphone className="size-4" />
+              Meu Site
+            </BreadcrumbPage>
+          </BreadcrumbItem>
+        </BreadcrumbList>
+      </Breadcrumb>
+    );
+  }, []);
+
   return (
-    <AppShellPage>
-      <div className="space-y-2">
-        <p className="text-muted-foreground text-xs tracking-[0.2em] uppercase">
-          Presence workspace
-        </p>
-        <h1 className="text-2xl font-semibold tracking-tight">Presence</h1>
-        <p className="text-muted-foreground max-w-3xl text-sm leading-relaxed">
-          This domain owns the future public profile, website, and publishing surfaces for the
-          professional workspace.
-        </p>
+    <PageContentHeader breadcrumbs={breadcrumbs}>
+      <div className="h-full">
+        <PageContentWrapper className="h-full !p-0">
+          <div className="h-full animate-in fade-in slide-in-from-bottom-4 duration-500">
+            {children}
+          </div>
+        </PageContentWrapper>
       </div>
-      <PresenceSectionNav />
-      <div className="flex flex-1 flex-col">{children}</div>
-    </AppShellPage>
-  )
+    </PageContentHeader>
+  );
 }

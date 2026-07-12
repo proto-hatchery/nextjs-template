@@ -1,0 +1,35 @@
+{
+  "name": "@workspace/pdf-generator",
+  "version": "0.0.0",
+  "private": true,
+  "exports": {
+    ".": "./src/index.ts",
+    "./renderer": "./src/LexicalPdfRenderer.tsx",
+    "./styles": "./src/styles.ts"
+  },
+  "scripts": {
+    "lint": "oxlint",
+    "format": "oxfmt --write",
+    "typecheck": "tsc --noEmit",
+    "check:exports": "publint",
+    "test": "mkdir -p coverage/.tmp && vitest run --config vitest.config.ts"
+  },
+  "dependencies": {
+    "@lexical/react": "^0.38.2",
+    "@react-pdf/renderer": "^4.3.1",
+    "lexical": "^0.38.2",
+    "react": "^19.2.4"
+  },
+  "devDependencies": {
+    "@types/node": "^25.5.2",
+    "@types/react": "^19.2.10",
+    "@vitest/coverage-v8": "^4.1.3",
+    "@workspace/typescript-config": "workspace:*",
+    "@workspace/vitest-config": "workspace:*",
+    "jsdom": "^29.0.1",
+    "publint": "^0.3.18",
+    "typescript": "^5.9.3",
+    "vitest": "^4.1.3"
+  },
+  "type": "module"
+}

@@ -1,16 +1,23 @@
-import { FlowScaffoldPage } from "@/app/[locale]/(flows)/_components/flow-scaffold-page"
+import { getCurrentOnboardingStepAction } from "@workspace/supabase-data/actions/onboarding/flow-controller";
+import { redirect } from "next/navigation";
 
-export default function OnboardingPage() {
-  return (
-    <FlowScaffoldPage
-      stepLabel="Protected setup flow"
-      title="Onboarding"
-      description="Onboarding is a focused protected journey, not a persistent workspace destination. It belongs in the flow group so setup can evolve without shell chrome competing for attention."
-      milestones={[
-        "Protected onboarding steps that should not sit in the main shell",
-        "Profile, service, and setup forms kept inside the onboarding tree",
-        "Completion and success states routed from this bare area only",
-      ]}
-    />
-  )
+export const dynamic = "force-dynamic";
+
+export default async function SpacePhase2OnboardingPage() {
+  const result = await getCurrentOnboardingStepAction({});
+
+  if (result.success) {
+    if (result.data.phase < 2) {
+      const webBase = process.env.NEXT_PUBLIC_WEB_URL ?? "http://localhost:3010";
+      redirect(`${webBase}/onboarding/identity`);
+    }
+
+    if (result.data.isComplete) {
+      redirect("/");
+    }
+
+    redirect(`/onboarding/${result.data.stepId}`);
+  }
+
+  redirect("/onboarding/services");
 }

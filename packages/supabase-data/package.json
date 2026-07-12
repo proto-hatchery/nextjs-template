@@ -5,8 +5,11 @@
   "type": "module",
   "exports": {
     "./actions/*": "./src/actions/*",
+    "./hooks/*": "./src/hooks/*",
     "./modules/*": "./src/modules/*",
     "./lib/*": "./src/lib/*",
+    "./utils/*": "./src/utils/*",
+    "./types/entities": "./src/types/entities.ts",
     "./domain-map": "./config/domain-map.json",
     "./repository-plan": "./config/repository-plan.json",
     "./action-semantic-plan": "./config/action-semantic-plan.json",
@@ -36,9 +39,14 @@
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.101.1",
+    "@tanstack/react-query": "^5.96.2",
     "@workspace/logging": "workspace:*",
+    "@workspace/safe-action": "workspace:*",
     "@workspace/supabase-auth": "workspace:*",
     "@workspace/supabase-infra": "workspace:*",
+    "date-fns": "4.1.0",
+    "neverthrow": "^8.2.0",
+    "next": "16.2.3",
     "server-only": "^0.0.1",
     "zod": "^4.3.6"
   },

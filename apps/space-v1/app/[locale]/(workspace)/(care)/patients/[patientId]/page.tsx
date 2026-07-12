@@ -1,19 +1,11 @@
-import { notFound } from "next/navigation"
+import { PatientDetailContainer } from "./_containers/patient-detail-container";
 
-import { PatientDetailShell } from "@/app/[locale]/(workspace)/(care)/patients/[patientId]/_components/patient-detail-shell"
-import { getPatientProfileById } from "@/app/[locale]/(workspace)/(care)/patients/_lib/patient-view-model.server"
+interface PatientDetailPageProps {
+  params: Promise<{ patientId: string }>;
+}
 
-export default async function PatientDetailPage({
-  params,
-}: {
-  params: Promise<{ patientId: string }>
-}) {
-  const { patientId } = await params
-  const patient = await getPatientProfileById(patientId)
+export default async function PatientDetailPage({ params }: PatientDetailPageProps) {
+  const { patientId } = await params;
 
-  if (!patient) {
-    notFound()
-  }
-
-  return <PatientDetailShell patient={patient} />
+  return <PatientDetailContainer patientId={patientId} />;
 }

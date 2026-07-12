@@ -1,6 +1,9 @@
+"use client"
+
 import type { DashboardOverviewView } from "@/app/[locale]/(workspace)/(overview)/dashboard/_lib/dashboard-types"
 import { AppShellPage } from "@/app/[locale]/(workspace)/_components/app-shell-page"
 import { Link } from "@/i18n/navigation"
+import { useTranslations } from "next-intl"
 import { Badge } from "@workspace/ui/components/badge"
 import { Button } from "@workspace/ui/components/button"
 import {
@@ -16,17 +19,14 @@ type DashboardOverviewShellProps = {
 }
 
 export function DashboardOverviewShell({ overview }: DashboardOverviewShellProps) {
+  const t = useTranslations("Dashboard")
+
   return (
     <AppShellPage>
       <div className="space-y-2">
-        <p className="text-muted-foreground text-xs tracking-[0.2em] uppercase">
-          Workspace overview
-        </p>
-        <h1 className="text-2xl font-semibold tracking-tight">Dashboard</h1>
-        <p className="text-muted-foreground max-w-3xl text-sm leading-relaxed">
-          The overview route is now a reference slice for cross-domain workspace composition. It
-          stays summary-first while the source domains keep their own local route ownership.
-        </p>
+        <p className="text-muted-foreground text-xs tracking-[0.2em] uppercase">{t("eyebrow")}</p>
+        <h1 className="text-2xl font-semibold tracking-tight">{t("title")}</h1>
+        <p className="text-muted-foreground max-w-3xl text-sm leading-relaxed">{t("intro")}</p>
       </div>
 
       <div className="grid gap-4 md:grid-cols-3">
@@ -44,20 +44,14 @@ export function DashboardOverviewShell({ overview }: DashboardOverviewShellProps
       <div className="grid gap-6 xl:grid-cols-[1.15fr_0.85fr]">
         <Card>
           <CardHeader>
-            <CardTitle>Today at a glance</CardTitle>
-            <CardDescription>
-              This route stays lightweight and compositional: it links outward instead of absorbing
-              detail workflows.
-            </CardDescription>
+            <CardTitle>{t("todayTitle")}</CardTitle>
+            <CardDescription>{t("todayDescription")}</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             {overview.agenda.length === 0 ? (
               <div className="space-y-2 rounded-lg border border-dashed p-6 text-center">
-                <p className="text-sm font-medium">No upcoming sessions are visible right now</p>
-                <p className="text-muted-foreground text-sm">
-                  The workspace overview will surface upcoming clinical work here as soon as the
-                  connected session board has scheduled items.
-                </p>
+                <p className="text-sm font-medium">{t("emptyAgendaTitle")}</p>
+                <p className="text-muted-foreground text-sm">{t("emptyAgendaDescription")}</p>
               </div>
             ) : (
               overview.agenda.map((item) => (
@@ -75,7 +69,7 @@ export function DashboardOverviewShell({ overview }: DashboardOverviewShellProps
                       {item.format}
                     </span>
                     <Button asChild size="sm" variant="outline">
-                      <Link href={item.href}>Open session</Link>
+                      <Link href={item.href}>{t("openSession")}</Link>
                     </Button>
                   </div>
                 </div>

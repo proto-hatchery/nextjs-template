@@ -1,0 +1,322 @@
+.EditorTheme__code {
+  background-color: transparent;
+  font-family: Menlo, Consolas, Monaco, monospace;
+  display: block;
+  padding: 8px 8px 8px 52px;
+  line-height: 1.53;
+  font-size: 13px;
+  margin: 0;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  overflow-x: auto;
+  border: 1px solid #ccc;
+  position: relative;
+  border-radius: 8px;
+  tab-size: 2;
+}
+.EditorTheme__code:before {
+  content: attr(data-gutter);
+  position: absolute;
+  background-color: transparent;
+  border-right: 1px solid #ccc;
+  left: 0;
+  top: 0;
+  padding: 8px;
+  color: #777;
+  white-space: pre-wrap;
+  text-align: right;
+  min-width: 25px;
+}
+.EditorTheme__table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  overflow-y: scroll;
+  overflow-x: scroll;
+  table-layout: fixed;
+  width: 100%;
+  margin: 0px 0px 30px 0px;
+}
+.EditorTheme__tokenComment {
+  color: slategray;
+}
+.EditorTheme__tokenPunctuation {
+  color: #999;
+}
+.EditorTheme__tokenProperty {
+  color: #905;
+}
+.EditorTheme__tokenSelector {
+  color: #690;
+}
+.EditorTheme__tokenOperator {
+  color: #9a6e3a;
+}
+.EditorTheme__tokenAttr {
+  color: #07a;
+}
+.EditorTheme__tokenVariable {
+  color: #e90;
+}
+.EditorTheme__tokenFunction {
+  color: #dd4a68;
+}
+
+.Collapsible__container {
+  background-color: var(--background);
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.Collapsible__title {
+  padding: 0.25rem;
+  padding-left: 1rem;
+  position: relative;
+  font-weight: bold;
+  outline: none;
+  cursor: pointer;
+  list-style-type: disclosure-closed;
+  list-style-position: inside;
+}
+
+.Collapsible__title p {
+  display: inline-flex;
+}
+.Collapsible__title::marker {
+  color: lightgray;
+}
+.Collapsible__container[open] > .Collapsible__title {
+  list-style-type: disclosure-open;
+}
+
+/* Slash Command Trigger Styling */
+.slash-command-trigger {
+  display: inline;
+  padding: 2px 4px;
+  background-color: hsl(var(--muted) / 0.5);
+  border: 1px solid hsl(var(--border));
+  border-radius: 4px;
+  font-size: inherit;
+  line-height: 1;
+  color: hsl(var(--foreground));
+  position: relative;
+  vertical-align: baseline;
+  margin: 0;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+.slash-command-trigger[data-placeholder]::after {
+  content: attr(data-placeholder);
+  color: hsl(var(--muted-foreground));
+  opacity: 0.6;
+  margin-left: 1px;
+}
+
+/* Fullscreen editor support */
+.fullscreen-editor {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 9999 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  max-width: 100vw !important;
+  max-height: 100vh !important;
+  margin: 0 !important;
+  border-radius: 0 !important;
+  overflow: auto !important;
+}
+
+.fullscreen-editor .notion-editor-toolbar {
+  max-width: 100% !important;
+  padding-left: 1rem !important;
+  padding-right: 1rem !important;
+}
+
+.fullscreen-editor .relative.px-6,
+.fullscreen-editor .relative.px-8 {
+  max-width: 760px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-left: 2rem !important;
+  padding-right: 2rem !important;
+}
+
+@media (min-width: 640px) {
+  .fullscreen-editor .relative.px-6,
+  .fullscreen-editor .relative.px-8 {
+    padding-left: 3rem !important;
+    padding-right: 3rem !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .fullscreen-editor .relative.px-6,
+  .fullscreen-editor .relative.px-8 {
+    max-width: 840px !important;
+  }
+}
+
+/* Default Lexical Theme Styles */
+
+.EditorTheme__quote {
+  margin: 0;
+  margin-left: 20px;
+  font-size: 15px;
+  color: rgb(101, 103, 107);
+  border-left-color: rgb(206, 208, 212);
+  border-left-width: 4px;
+  border-left-style: solid;
+  padding-left: 16px;
+}
+
+.EditorTheme__ul {
+  padding: 0;
+  margin: 0;
+  list-style-position: inside;
+  margin-left: 16px;
+}
+
+.EditorTheme__ol {
+  padding: 0;
+  margin: 0;
+  list-style-position: inside;
+  margin-left: 16px;
+}
+
+.EditorTheme__listItem {
+  margin: 8px 16px 8px 16px;
+}
+
+@media (min-width: 640px) {
+  .EditorTheme__listItem {
+    margin: 8px 32px 8px 32px;
+  }
+}
+
+.EditorTheme__paragraph {
+  white-space: pre-wrap;
+  word-break: normal;
+  overflow-wrap: anywhere;
+}
+
+.ContentEditable__root {
+  overflow-wrap: anywhere;
+  word-break: normal;
+  max-width: 100%;
+}
+
+/* Mobile-friendly toolbar adjustments */
+@media (max-width: 640px) {
+  .notion-editor-toolbar button {
+    min-width: 36px !important;
+    height: 36px !important;
+    padding: 0 8px !important;
+  }
+}
+
+.EditorTheme__nestedListItem {
+  list-style-type: none;
+}
+
+.EditorTheme__nestedListItem:before,
+.EditorTheme__nestedListItem:after {
+  display: none;
+}
+
+.EditorTheme__ol1 {
+  list-style-type: decimal;
+}
+
+.EditorTheme__ol2 {
+  list-style-type: upper-alpha;
+}
+
+.EditorTheme__ol3 {
+  list-style-type: lower-alpha;
+}
+
+.EditorTheme__ol4 {
+  list-style-type: upper-roman;
+}
+
+.EditorTheme__ol5 {
+  list-style-type: lower-roman;
+}
+
+.EditorTheme__ul1 {
+  list-style-type: disc;
+}
+
+.EditorTheme__ul2 {
+  list-style-type: circle;
+}
+
+.EditorTheme__ul3 {
+  list-style-type: square;
+}
+
+.EditorTheme__ul4 {
+  list-style-type: disc;
+}
+
+.EditorTheme__ul5 {
+  list-style-type: circle;
+}
+
+.EditorTheme__checklist {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.EditorTheme__listItemChecked,
+.EditorTheme__listItemUnchecked {
+  position: relative;
+  margin-left: 8px;
+  margin-right: 8px;
+  padding-left: 24px;
+  padding-right: 24px;
+  list-style-type: none;
+  outline: none;
+}
+
+.EditorTheme__listItemChecked {
+  text-decoration: line-through;
+}
+
+.EditorTheme__listItemUnchecked:before,
+.EditorTheme__listItemChecked:before {
+  content: "";
+  width: 16px;
+  height: 16px;
+  top: 2px;
+  left: 0;
+  cursor: pointer;
+  display: block;
+  background-size: cover;
+  position: absolute;
+  border: 1px solid #999;
+  border-radius: 2px;
+}
+
+.EditorTheme__listItemChecked:before {
+  border-color: rgb(61, 135, 245);
+  background-color: rgb(61, 135, 245);
+}
+
+.EditorTheme__listItemChecked:after {
+  content: "";
+  cursor: pointer;
+  border-color: #fff;
+  border-style: solid;
+  position: absolute;
+  display: block;
+  top: 6px;
+  width: 3px;
+  left: 7px;
+  right: 7px;
+  height: 6px;
+  transform: rotate(45deg);
+  border-width: 0 2px 2px 0;
+}

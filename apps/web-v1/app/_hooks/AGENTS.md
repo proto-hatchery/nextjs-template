@@ -1,16 +1,15 @@
-# `app/_hooks` — example app
+# `app/_hooks` — web-v1 app
 
-**Audience:** agents / LLM. Human overview: `apps/example/README.md`.
+**Audience:** agents / LLM. Human overview: `apps/web-v1/README.md`.
 
 ## Scope
 
-Hooks used **only by this app** (`apps/example`). Not for `packages/*` shared
+Hooks used **only by this app** (`apps/web-v1`). Not for `packages/*` shared
 code.
 
-## Naming: `*.example.ts` / `*.example.tsx`
+## Naming
 
-Template scaffolding: suffix **`.example`** flags files to rename/remove on fork
-(e.g. `use-foo.example.ts` → `use-foo.ts`). Plain names allowed if you prefer.
+Use plain app-local hook filenames.
 
 **Do not** use `*.hook.ts` / `*.component.tsx` / `*.provider.tsx` here — those
 filename patterns are **only** for composition packages under `packages/`
@@ -27,5 +26,3 @@ Shared hooks → `packages/core/src/hooks/` or a domain package.
 | ------------- | ----------------------------------------------- |
 | `_providers/` | Provider trees; thin `@workspace/core` wrappers |
 | `_hooks/`     | `use*` hooks only; no provider components       |
-
-Both may use `*.example.*` for the same fork reason.

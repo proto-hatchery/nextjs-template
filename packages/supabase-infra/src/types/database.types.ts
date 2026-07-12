@@ -229,6 +229,13 @@ export type Database = {
             foreignKeyName: "availability_exceptions_psychologist_id_fkey"
             columns: ["psychologist_id"]
             isOneToOne: false
+            referencedRelation: "psychologist_onboarding_summary"
+            referencedColumns: ["psychologist_id"]
+          },
+          {
+            foreignKeyName: "availability_exceptions_psychologist_id_fkey"
+            columns: ["psychologist_id"]
+            isOneToOne: false
             referencedRelation: "user_psychologists"
             referencedColumns: ["id"]
           },
@@ -273,6 +280,13 @@ export type Database = {
             foreignKeyName: "busy_slots_psychologist_id_fkey"
             columns: ["psychologist_id"]
             isOneToOne: false
+            referencedRelation: "psychologist_onboarding_summary"
+            referencedColumns: ["psychologist_id"]
+          },
+          {
+            foreignKeyName: "busy_slots_psychologist_id_fkey"
+            columns: ["psychologist_id"]
+            isOneToOne: false
             referencedRelation: "user_psychologists"
             referencedColumns: ["id"]
           },
@@ -307,6 +321,13 @@ export type Database = {
           sync_direction?: string
         }
         Relationships: [
+          {
+            foreignKeyName: "calendar_change_log_psychologist_id_fkey"
+            columns: ["psychologist_id"]
+            isOneToOne: false
+            referencedRelation: "psychologist_onboarding_summary"
+            referencedColumns: ["psychologist_id"]
+          },
           {
             foreignKeyName: "calendar_change_log_psychologist_id_fkey"
             columns: ["psychologist_id"]
@@ -384,6 +405,13 @@ export type Database = {
           updated_at?: string
         }
         Relationships: [
+          {
+            foreignKeyName: "calendar_event_series_psychologist_id_fkey"
+            columns: ["psychologist_id"]
+            isOneToOne: false
+            referencedRelation: "psychologist_onboarding_summary"
+            referencedColumns: ["psychologist_id"]
+          },
           {
             foreignKeyName: "calendar_event_series_psychologist_id_fkey"
             columns: ["psychologist_id"]
@@ -535,6 +563,13 @@ export type Database = {
           updated_at?: string
         }
         Relationships: [
+          {
+            foreignKeyName: "calendar_events_psychologist_id_fkey"
+            columns: ["psychologist_id"]
+            isOneToOne: false
+            referencedRelation: "psychologist_onboarding_summary"
+            referencedColumns: ["psychologist_id"]
+          },
           {
             foreignKeyName: "calendar_events_psychologist_id_fkey"
             columns: ["psychologist_id"]
@@ -932,6 +967,13 @@ export type Database = {
             foreignKeyName: "generated_documents_psychologist_id_fkey"
             columns: ["psychologist_id"]
             isOneToOne: false
+            referencedRelation: "psychologist_onboarding_summary"
+            referencedColumns: ["psychologist_id"]
+          },
+          {
+            foreignKeyName: "generated_documents_psychologist_id_fkey"
+            columns: ["psychologist_id"]
+            isOneToOne: false
             referencedRelation: "user_psychologists"
             referencedColumns: ["id"]
           },
@@ -1082,6 +1124,13 @@ export type Database = {
             foreignKeyName: "google_calendar_connections_psychologist_id_fkey"
             columns: ["psychologist_id"]
             isOneToOne: true
+            referencedRelation: "psychologist_onboarding_summary"
+            referencedColumns: ["psychologist_id"]
+          },
+          {
+            foreignKeyName: "google_calendar_connections_psychologist_id_fkey"
+            columns: ["psychologist_id"]
+            isOneToOne: true
             referencedRelation: "user_psychologists"
             referencedColumns: ["id"]
           },
@@ -1151,6 +1200,13 @@ export type Database = {
             isOneToOne: false
             referencedRelation: "therapeutic_session_events"
             referencedColumns: ["calendar_event_id"]
+          },
+          {
+            foreignKeyName: "google_sync_idempotency_psychologist_id_fkey"
+            columns: ["psychologist_id"]
+            isOneToOne: false
+            referencedRelation: "psychologist_onboarding_summary"
+            referencedColumns: ["psychologist_id"]
           },
           {
             foreignKeyName: "google_sync_idempotency_psychologist_id_fkey"
@@ -1281,6 +1337,13 @@ export type Database = {
             isOneToOne: false
             referencedRelation: "therapeutic_session_events"
             referencedColumns: ["calendar_event_id"]
+          },
+          {
+            foreignKeyName: "google_sync_logs_psychologist_id_fkey"
+            columns: ["psychologist_id"]
+            isOneToOne: false
+            referencedRelation: "psychologist_onboarding_summary"
+            referencedColumns: ["psychologist_id"]
           },
           {
             foreignKeyName: "google_sync_logs_psychologist_id_fkey"
@@ -1637,6 +1700,13 @@ export type Database = {
             foreignKeyName: "clinical_sessions_psychologist_id_fkey"
             columns: ["psychologist_id"]
             isOneToOne: false
+            referencedRelation: "psychologist_onboarding_summary"
+            referencedColumns: ["psychologist_id"]
+          },
+          {
+            foreignKeyName: "clinical_sessions_psychologist_id_fkey"
+            columns: ["psychologist_id"]
+            isOneToOne: false
             referencedRelation: "user_psychologists"
             referencedColumns: ["id"]
           },
@@ -1781,6 +1851,13 @@ export type Database = {
             foreignKeyName: "psychologist_financial_entries_psychologist_id_fkey"
             columns: ["psychologist_id"]
             isOneToOne: false
+            referencedRelation: "psychologist_onboarding_summary"
+            referencedColumns: ["psychologist_id"]
+          },
+          {
+            foreignKeyName: "psychologist_financial_entries_psychologist_id_fkey"
+            columns: ["psychologist_id"]
+            isOneToOne: false
             referencedRelation: "user_psychologists"
             referencedColumns: ["id"]
           },
@@ -1858,6 +1935,61 @@ export type Database = {
             foreignKeyName: "psychologist_invoices_psychologist_id_fkey"
             columns: ["psychologist_id"]
             isOneToOne: false
+            referencedRelation: "psychologist_onboarding_summary"
+            referencedColumns: ["psychologist_id"]
+          },
+          {
+            foreignKeyName: "psychologist_invoices_psychologist_id_fkey"
+            columns: ["psychologist_id"]
+            isOneToOne: false
+            referencedRelation: "user_psychologists"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      psychologist_message_preferences: {
+        Row: {
+          category: string
+          channel: string
+          created_at: string
+          id: string
+          is_enabled: boolean
+          psychologist_id: string
+          recipient_role: string
+          updated_at: string
+        }
+        Insert: {
+          category: string
+          channel: string
+          created_at?: string
+          id?: string
+          is_enabled: boolean
+          psychologist_id: string
+          recipient_role: string
+          updated_at?: string
+        }
+        Update: {
+          category?: string
+          channel?: string
+          created_at?: string
+          id?: string
+          is_enabled?: boolean
+          psychologist_id?: string
+          recipient_role?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "psychologist_message_preferences_psychologist_id_fkey"
+            columns: ["psychologist_id"]
+            isOneToOne: false
+            referencedRelation: "psychologist_onboarding_summary"
+            referencedColumns: ["psychologist_id"]
+          },
+          {
+            foreignKeyName: "psychologist_message_preferences_psychologist_id_fkey"
+            columns: ["psychologist_id"]
+            isOneToOne: false
             referencedRelation: "user_psychologists"
             referencedColumns: ["id"]
           },
@@ -1927,6 +2059,13 @@ export type Database = {
             foreignKeyName: "clinical_notes_psychologist_id_fkey"
             columns: ["psychologist_id"]
             isOneToOne: false
+            referencedRelation: "psychologist_onboarding_summary"
+            referencedColumns: ["psychologist_id"]
+          },
+          {
+            foreignKeyName: "clinical_notes_psychologist_id_fkey"
+            columns: ["psychologist_id"]
+            isOneToOne: false
             referencedRelation: "user_psychologists"
             referencedColumns: ["id"]
           },
@@ -1963,10 +2102,12 @@ export type Database = {
       psychologist_onboarding_state: {
         Row: {
           abandoned_at: string | null
+          completed_steps: Json | null
           completion_percentage: number | null
           configuration_step_completed: boolean | null
           created_at: string | null
           current_step: number | null
+          current_step_id: string | null
           draft_data: Json | null
           identity_step_completed: boolean | null
           last_resumed_at: string | null
@@ -1976,15 +2117,18 @@ export type Database = {
           professional_step_completed: boolean | null
           profile_step_completed: boolean | null
           psychologist_id: string
+          step_drafts: Json | null
           total_steps: number | null
           updated_at: string | null
         }
         Insert: {
           abandoned_at?: string | null
+          completed_steps?: Json | null
           completion_percentage?: number | null
           configuration_step_completed?: boolean | null
           created_at?: string | null
           current_step?: number | null
+          current_step_id?: string | null
           draft_data?: Json | null
           identity_step_completed?: boolean | null
           last_resumed_at?: string | null
@@ -1994,15 +2138,18 @@ export type Database = {
           professional_step_completed?: boolean | null
           profile_step_completed?: boolean | null
           psychologist_id: string
+          step_drafts?: Json | null
           total_steps?: number | null
           updated_at?: string | null
         }
         Update: {
           abandoned_at?: string | null
+          completed_steps?: Json | null
           completion_percentage?: number | null
           configuration_step_completed?: boolean | null
           created_at?: string | null
           current_step?: number | null
+          current_step_id?: string | null
           draft_data?: Json | null
           identity_step_completed?: boolean | null
           last_resumed_at?: string | null
@@ -2012,10 +2159,18 @@ export type Database = {
           professional_step_completed?: boolean | null
           profile_step_completed?: boolean | null
           psychologist_id?: string
+          step_drafts?: Json | null
           total_steps?: number | null
           updated_at?: string | null
         }
         Relationships: [
+          {
+            foreignKeyName: "psychologist_onboarding_state_psychologist_id_fkey"
+            columns: ["psychologist_id"]
+            isOneToOne: true
+            referencedRelation: "psychologist_onboarding_summary"
+            referencedColumns: ["psychologist_id"]
+          },
           {
             foreignKeyName: "psychologist_onboarding_state_psychologist_id_fkey"
             columns: ["psychologist_id"]
@@ -2104,6 +2259,13 @@ export type Database = {
             foreignKeyName: "patient_activity_assignments_created_by_fkey"
             columns: ["created_by"]
             isOneToOne: false
+            referencedRelation: "psychologist_onboarding_summary"
+            referencedColumns: ["psychologist_id"]
+          },
+          {
+            foreignKeyName: "patient_activity_assignments_created_by_fkey"
+            columns: ["created_by"]
+            isOneToOne: false
             referencedRelation: "user_psychologists"
             referencedColumns: ["id"]
           },
@@ -2125,8 +2287,22 @@ export type Database = {
             foreignKeyName: "patient_activity_assignments_psychologist_id_fkey"
             columns: ["psychologist_id"]
             isOneToOne: false
+            referencedRelation: "psychologist_onboarding_summary"
+            referencedColumns: ["psychologist_id"]
+          },
+          {
+            foreignKeyName: "patient_activity_assignments_psychologist_id_fkey"
+            columns: ["psychologist_id"]
+            isOneToOne: false
             referencedRelation: "user_psychologists"
             referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "patient_activity_assignments_updated_by_fkey"
+            columns: ["updated_by"]
+            isOneToOne: false
+            referencedRelation: "psychologist_onboarding_summary"
+            referencedColumns: ["psychologist_id"]
           },
           {
             foreignKeyName: "patient_activity_assignments_updated_by_fkey"
@@ -2225,6 +2401,13 @@ export type Database = {
             foreignKeyName: "patient_tests_created_by_fkey"
             columns: ["created_by"]
             isOneToOne: false
+            referencedRelation: "psychologist_onboarding_summary"
+            referencedColumns: ["psychologist_id"]
+          },
+          {
+            foreignKeyName: "patient_tests_created_by_fkey"
+            columns: ["created_by"]
+            isOneToOne: false
             referencedRelation: "user_psychologists"
             referencedColumns: ["id"]
           },
@@ -2239,8 +2422,22 @@ export type Database = {
             foreignKeyName: "patient_tests_psychologist_id_fkey"
             columns: ["psychologist_id"]
             isOneToOne: false
+            referencedRelation: "psychologist_onboarding_summary"
+            referencedColumns: ["psychologist_id"]
+          },
+          {
+            foreignKeyName: "patient_tests_psychologist_id_fkey"
+            columns: ["psychologist_id"]
+            isOneToOne: false
             referencedRelation: "user_psychologists"
             referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "patient_tests_updated_by_fkey"
+            columns: ["updated_by"]
+            isOneToOne: false
+            referencedRelation: "psychologist_onboarding_summary"
+            referencedColumns: ["psychologist_id"]
           },
           {
             foreignKeyName: "patient_tests_updated_by_fkey"
@@ -2335,6 +2532,13 @@ export type Database = {
           updated_by?: string | null
         }
         Relationships: [
+          {
+            foreignKeyName: "psychologist_client_charges_psychologist_id_fkey"
+            columns: ["psychologist_id"]
+            isOneToOne: false
+            referencedRelation: "psychologist_onboarding_summary"
+            referencedColumns: ["psychologist_id"]
+          },
           {
             foreignKeyName: "psychologist_client_charges_psychologist_id_fkey"
             columns: ["psychologist_id"]
@@ -2492,6 +2696,13 @@ export type Database = {
             foreignKeyName: "psychologist_patient_guardian_documents_psychologist_id_fkey"
             columns: ["psychologist_id"]
             isOneToOne: false
+            referencedRelation: "psychologist_onboarding_summary"
+            referencedColumns: ["psychologist_id"]
+          },
+          {
+            foreignKeyName: "psychologist_patient_guardian_documents_psychologist_id_fkey"
+            columns: ["psychologist_id"]
+            isOneToOne: false
             referencedRelation: "user_psychologists"
             referencedColumns: ["id"]
           },
@@ -2585,6 +2796,13 @@ export type Database = {
             foreignKeyName: "psychologist_patient_guardians_psychologist_id_fkey"
             columns: ["psychologist_id"]
             isOneToOne: false
+            referencedRelation: "psychologist_onboarding_summary"
+            referencedColumns: ["psychologist_id"]
+          },
+          {
+            foreignKeyName: "psychologist_patient_guardians_psychologist_id_fkey"
+            columns: ["psychologist_id"]
+            isOneToOne: false
             referencedRelation: "user_psychologists"
             referencedColumns: ["id"]
           },
@@ -2653,6 +2871,13 @@ export type Database = {
             foreignKeyName: "psychologist_patient_medical_items_psychologist_id_fkey"
             columns: ["psychologist_id"]
             isOneToOne: false
+            referencedRelation: "psychologist_onboarding_summary"
+            referencedColumns: ["psychologist_id"]
+          },
+          {
+            foreignKeyName: "psychologist_patient_medical_items_psychologist_id_fkey"
+            columns: ["psychologist_id"]
+            isOneToOne: false
             referencedRelation: "user_psychologists"
             referencedColumns: ["id"]
           },
@@ -2700,6 +2925,13 @@ export type Database = {
             isOneToOne: false
             referencedRelation: "psychologist_patients"
             referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "psychologist_client_services_psychologist_id_fkey"
+            columns: ["psychologist_id"]
+            isOneToOne: false
+            referencedRelation: "psychologist_onboarding_summary"
+            referencedColumns: ["psychologist_id"]
           },
           {
             foreignKeyName: "psychologist_client_services_psychologist_id_fkey"
@@ -2981,8 +3213,22 @@ export type Database = {
             foreignKeyName: "psychologist_clients_psychologist_id_fkey"
             columns: ["psychologist_id"]
             isOneToOne: false
+            referencedRelation: "psychologist_onboarding_summary"
+            referencedColumns: ["psychologist_id"]
+          },
+          {
+            foreignKeyName: "psychologist_clients_psychologist_id_fkey"
+            columns: ["psychologist_id"]
+            isOneToOne: false
             referencedRelation: "user_psychologists"
             referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "psychologist_patients_archived_by_fkey"
+            columns: ["archived_by"]
+            isOneToOne: false
+            referencedRelation: "psychologist_onboarding_summary"
+            referencedColumns: ["psychologist_id"]
           },
           {
             foreignKeyName: "psychologist_patients_archived_by_fkey"
@@ -2995,8 +3241,22 @@ export type Database = {
             foreignKeyName: "psychologist_patients_deleted_by_fkey"
             columns: ["deleted_by"]
             isOneToOne: false
+            referencedRelation: "psychologist_onboarding_summary"
+            referencedColumns: ["psychologist_id"]
+          },
+          {
+            foreignKeyName: "psychologist_patients_deleted_by_fkey"
+            columns: ["deleted_by"]
+            isOneToOne: false
             referencedRelation: "user_psychologists"
             referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "psychologist_patients_price_set_by_fkey"
+            columns: ["price_set_by"]
+            isOneToOne: false
+            referencedRelation: "psychologist_onboarding_summary"
+            referencedColumns: ["psychologist_id"]
           },
           {
             foreignKeyName: "psychologist_patients_price_set_by_fkey"
@@ -3018,6 +3278,7 @@ export type Database = {
           notifications_security_alerts: boolean | null
           notifications_whatsapp_reminders: boolean | null
           preferences: Json | null
+          sensitive_data_visible: boolean
           updated_at: string | null
           user_id: string | null
         }
@@ -3031,6 +3292,7 @@ export type Database = {
           notifications_security_alerts?: boolean | null
           notifications_whatsapp_reminders?: boolean | null
           preferences?: Json | null
+          sensitive_data_visible?: boolean
           updated_at?: string | null
           user_id?: string | null
         }
@@ -3044,6 +3306,7 @@ export type Database = {
           notifications_security_alerts?: boolean | null
           notifications_whatsapp_reminders?: boolean | null
           preferences?: Json | null
+          sensitive_data_visible?: boolean
           updated_at?: string | null
           user_id?: string | null
         }
@@ -3115,6 +3378,13 @@ export type Database = {
             foreignKeyName: "psychologist_quick_notes_psychologist_id_fkey"
             columns: ["psychologist_id"]
             isOneToOne: false
+            referencedRelation: "psychologist_onboarding_summary"
+            referencedColumns: ["psychologist_id"]
+          },
+          {
+            foreignKeyName: "psychologist_quick_notes_psychologist_id_fkey"
+            columns: ["psychologist_id"]
+            isOneToOne: false
             referencedRelation: "user_psychologists"
             referencedColumns: ["id"]
           },
@@ -3178,6 +3448,13 @@ export type Database = {
             foreignKeyName: "psychologist_services_psychologist_id_fkey"
             columns: ["psychologist_id"]
             isOneToOne: false
+            referencedRelation: "psychologist_onboarding_summary"
+            referencedColumns: ["psychologist_id"]
+          },
+          {
+            foreignKeyName: "psychologist_services_psychologist_id_fkey"
+            columns: ["psychologist_id"]
+            isOneToOne: false
             referencedRelation: "user_psychologists"
             referencedColumns: ["id"]
           },
@@ -3228,6 +3505,13 @@ export type Database = {
             foreignKeyName: "psychologist_session_cancellation_policy_psychologist_id_fkey"
             columns: ["psychologist_id"]
             isOneToOne: false
+            referencedRelation: "psychologist_onboarding_summary"
+            referencedColumns: ["psychologist_id"]
+          },
+          {
+            foreignKeyName: "psychologist_session_cancellation_policy_psychologist_id_fkey"
+            columns: ["psychologist_id"]
+            isOneToOne: false
             referencedRelation: "user_psychologists"
             referencedColumns: ["id"]
           },
@@ -3256,6 +3540,13 @@ export type Database = {
           updated_at?: string | null
         }
         Relationships: [
+          {
+            foreignKeyName: "psychologist_stripe_connect_psychologist_id_fkey"
+            columns: ["psychologist_id"]
+            isOneToOne: true
+            referencedRelation: "psychologist_onboarding_summary"
+            referencedColumns: ["psychologist_id"]
+          },
           {
             foreignKeyName: "psychologist_stripe_connect_psychologist_id_fkey"
             columns: ["psychologist_id"]
@@ -3322,8 +3613,22 @@ export type Database = {
             foreignKeyName: "psychologist_subscriptions_psychologist_id_fkey"
             columns: ["psychologist_id"]
             isOneToOne: true
+            referencedRelation: "psychologist_onboarding_summary"
+            referencedColumns: ["psychologist_id"]
+          },
+          {
+            foreignKeyName: "psychologist_subscriptions_psychologist_id_fkey"
+            columns: ["psychologist_id"]
+            isOneToOne: true
             referencedRelation: "user_psychologists"
             referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "psychologist_subscriptions_therapist_id_fkey"
+            columns: ["therapist_id"]
+            isOneToOne: false
+            referencedRelation: "psychologist_onboarding_summary"
+            referencedColumns: ["psychologist_id"]
           },
           {
             foreignKeyName: "psychologist_subscriptions_therapist_id_fkey"
@@ -3390,6 +3695,13 @@ export type Database = {
             isOneToOne: false
             referencedRelation: "public_locations"
             referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "psychologist_availability_psychologist_id_fkey"
+            columns: ["psychologist_id"]
+            isOneToOne: false
+            referencedRelation: "psychologist_onboarding_summary"
+            referencedColumns: ["psychologist_id"]
           },
           {
             foreignKeyName: "psychologist_availability_psychologist_id_fkey"
@@ -3483,6 +3795,13 @@ export type Database = {
             foreignKeyName: "marketplace_payment_intents_psychologist_id_fkey"
             columns: ["psychologist_id"]
             isOneToOne: false
+            referencedRelation: "psychologist_onboarding_summary"
+            referencedColumns: ["psychologist_id"]
+          },
+          {
+            foreignKeyName: "marketplace_payment_intents_psychologist_id_fkey"
+            columns: ["psychologist_id"]
+            isOneToOne: false
             referencedRelation: "user_psychologists"
             referencedColumns: ["id"]
           },
@@ -3534,6 +3853,13 @@ export type Database = {
           url?: string
         }
         Relationships: [
+          {
+            foreignKeyName: "linktree_links_psychologist_id_fkey"
+            columns: ["psychologist_id"]
+            isOneToOne: false
+            referencedRelation: "psychologist_onboarding_summary"
+            referencedColumns: ["psychologist_id"]
+          },
           {
             foreignKeyName: "linktree_links_psychologist_id_fkey"
             columns: ["psychologist_id"]
@@ -3602,6 +3928,13 @@ export type Database = {
           updated_at?: string | null
         }
         Relationships: [
+          {
+            foreignKeyName: "public_locations_psychologist_id_fkey"
+            columns: ["psychologist_id"]
+            isOneToOne: false
+            referencedRelation: "psychologist_onboarding_summary"
+            referencedColumns: ["psychologist_id"]
+          },
           {
             foreignKeyName: "public_locations_psychologist_id_fkey"
             columns: ["psychologist_id"]
@@ -3782,6 +4115,13 @@ export type Database = {
             foreignKeyName: "psychologist_profiles_id_fkey"
             columns: ["id"]
             isOneToOne: true
+            referencedRelation: "psychologist_onboarding_summary"
+            referencedColumns: ["psychologist_id"]
+          },
+          {
+            foreignKeyName: "psychologist_profiles_id_fkey"
+            columns: ["id"]
+            isOneToOne: true
             referencedRelation: "user_psychologists"
             referencedColumns: ["id"]
           },
@@ -3895,6 +4235,13 @@ export type Database = {
             foreignKeyName: "session_billing_dead_letter_psychologist_id_fkey"
             columns: ["psychologist_id"]
             isOneToOne: false
+            referencedRelation: "psychologist_onboarding_summary"
+            referencedColumns: ["psychologist_id"]
+          },
+          {
+            foreignKeyName: "session_billing_dead_letter_psychologist_id_fkey"
+            columns: ["psychologist_id"]
+            isOneToOne: false
             referencedRelation: "user_psychologists"
             referencedColumns: ["id"]
           },
@@ -3949,6 +4296,13 @@ export type Database = {
           to_start_time?: string
         }
         Relationships: [
+          {
+            foreignKeyName: "session_reschedule_logs_created_by_fkey"
+            columns: ["created_by"]
+            isOneToOne: false
+            referencedRelation: "psychologist_onboarding_summary"
+            referencedColumns: ["psychologist_id"]
+          },
           {
             foreignKeyName: "session_reschedule_logs_created_by_fkey"
             columns: ["created_by"]
@@ -4656,6 +5010,13 @@ export type Database = {
             foreignKeyName: "calendar_events_psychologist_id_fkey"
             columns: ["psychologist_id"]
             isOneToOne: false
+            referencedRelation: "psychologist_onboarding_summary"
+            referencedColumns: ["psychologist_id"]
+          },
+          {
+            foreignKeyName: "calendar_events_psychologist_id_fkey"
+            columns: ["psychologist_id"]
+            isOneToOne: false
             referencedRelation: "user_psychologists"
             referencedColumns: ["id"]
           },
@@ -4704,6 +5065,13 @@ export type Database = {
           psychologist_id: string | null
         }
         Relationships: [
+          {
+            foreignKeyName: "psychologist_availability_psychologist_id_fkey"
+            columns: ["psychologist_id"]
+            isOneToOne: false
+            referencedRelation: "psychologist_onboarding_summary"
+            referencedColumns: ["psychologist_id"]
+          },
           {
             foreignKeyName: "psychologist_availability_psychologist_id_fkey"
             columns: ["psychologist_id"]
@@ -4770,31 +5138,9 @@ export type Database = {
             foreignKeyName: "psychologist_onboarding_state_psychologist_id_fkey"
             columns: ["psychologist_id"]
             isOneToOne: true
-            referencedRelation: "user_psychologists"
-            referencedColumns: ["id"]
+            referencedRelation: "psychologist_onboarding_summary"
+            referencedColumns: ["psychologist_id"]
           },
-        ]
-      }
-      psychologist_onboarding_summary: {
-        Row: {
-          abandoned_at: string | null
-          completion_percentage: number | null
-          configuration_step_completed: boolean | null
-          current_step: number | null
-          essential_complete: boolean | null
-          fully_complete: boolean | null
-          identity_step_completed: boolean | null
-          last_resumed_at: string | null
-          next_pending_step: string | null
-          onboarding_completed_at: string | null
-          payment_step_completed: boolean | null
-          professional_step_completed: boolean | null
-          profile_step_completed: boolean | null
-          psychologist_id: string | null
-          subscription_status: string | null
-          total_steps: number | null
-        }
-        Relationships: [
           {
             foreignKeyName: "psychologist_onboarding_state_psychologist_id_fkey"
             columns: ["psychologist_id"]
@@ -4803,6 +5149,23 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      psychologist_onboarding_summary: {
+        Row: {
+          completion_percentage: number | null
+          configuration_step_completed: boolean | null
+          current_step: number | null
+          essential_complete: boolean | null
+          fully_complete: boolean | null
+          identity_step_completed: boolean | null
+          next_pending_step: string | null
+          payment_step_completed: boolean | null
+          professional_step_completed: boolean | null
+          profile_step_completed: boolean | null
+          psychologist_id: string | null
+          total_steps: number | null
+        }
+        Relationships: []
       }
       therapeutic_session_events: {
         Row: {
@@ -4854,6 +5217,13 @@ export type Database = {
           updated_at: string | null
         }
         Relationships: [
+          {
+            foreignKeyName: "calendar_events_psychologist_id_fkey"
+            columns: ["psychologist_id"]
+            isOneToOne: false
+            referencedRelation: "psychologist_onboarding_summary"
+            referencedColumns: ["psychologist_id"]
+          },
           {
             foreignKeyName: "calendar_events_psychologist_id_fkey"
             columns: ["psychologist_id"]
@@ -5148,6 +5518,13 @@ export type Database = {
             foreignKeyName: "calendar_events_psychologist_id_fkey"
             columns: ["psychologist_id"]
             isOneToOne: false
+            referencedRelation: "psychologist_onboarding_summary"
+            referencedColumns: ["psychologist_id"]
+          },
+          {
+            foreignKeyName: "calendar_events_psychologist_id_fkey"
+            columns: ["psychologist_id"]
+            isOneToOne: false
             referencedRelation: "user_psychologists"
             referencedColumns: ["id"]
           },
@@ -5270,6 +5647,10 @@ export type Database = {
         | { Args: never; Returns: undefined }
         | { Args: { p_retention_days?: number }; Returns: number }
       clear_audit_context: { Args: never; Returns: undefined }
+      complete_onboarding_phase: {
+        Args: { p_phase: number; p_psychologist_id: string; p_updates?: Json }
+        Returns: Json
+      }
       complete_onboarding_step: {
         Args: { p_psychologist_id: string; p_step: string }
         Returns: boolean
@@ -5407,6 +5788,10 @@ export type Database = {
           step_name: string
           step_number: number
         }[]
+      }
+      get_current_onboarding_step: {
+        Args: { p_psychologist_id: string }
+        Returns: Json
       }
       get_effective_cancellation_policy: {
         Args: { p_psychologist_id: string; p_reference_timestamp?: string }
@@ -5783,6 +6168,15 @@ export type Database = {
           p_session_id: string
         }
         Returns: boolean
+      }
+      update_onboarding_step: {
+        Args: {
+          p_draft_data?: Json
+          p_is_complete: boolean
+          p_psychologist_id: string
+          p_step_id: string
+        }
+        Returns: Json
       }
       upsert_weekly_availability: {
         Args: {

@@ -23,8 +23,12 @@
 import { writeFileSync, mkdirSync, existsSync } from "node:fs"
 import { join } from "node:path"
 
+function capitalize(str: string): string {
+  return str.charAt(0).toUpperCase() + str.slice(1).replace(/-/g, "")
+}
+
 // Parse arguments
-const args = process.argv.slice(2)
+const args = process.argv.slice(2).filter((arg) => arg !== "--")
 const [functionName] = args
 
 if (!functionName) {

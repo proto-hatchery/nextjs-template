@@ -1,0 +1,65 @@
+/* Privacy Mode Masking Utilities */
+
+/* Generic blur for inline text - small radius for performance */
+.blur-sensitive {
+  filter: blur(4px);
+  transition: filter 120ms ease-out;
+  user-select: none;
+}
+
+/* Stronger blur for avatars and larger blocks */
+.blur-sensitive-lg {
+  filter: blur(8px);
+  transition: filter 120ms ease-out;
+  user-select: none;
+}
+
+/* Redacted text - monospace dots/blocks for sensitive content */
+.redacted-text {
+  color: var(--muted-foreground);
+  user-select: none;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+  letter-spacing: 0.24em;
+}
+
+/* Placeholder block for cards/avatars */
+.masked-placeholder {
+  background-color: var(--muted);
+  border-radius: var(--radius);
+}
+
+/* CSS-only masking driven by data attribute */
+[data-privacy-mode="hidden"] .sensitive-blur {
+  filter: blur(6px);
+}
+
+[data-privacy-mode="hidden"] .sensitive-blur-lg {
+  filter: blur(10px);
+}
+
+/* Ensure blurred text is not selectable */
+[data-privacy-mode="hidden"] .blur-sensitive,
+[data-privacy-mode="hidden"] .blur-sensitive-lg {
+  pointer-events: none;
+}
+
+/* Print styles - keep masking even on paper */
+@media print {
+  [data-privacy-mode="hidden"] .sensitive-blur,
+  [data-privacy-mode="hidden"] .sensitive-blur-lg {
+    filter: blur(8px);
+  }
+
+  [data-privacy-mode="hidden"] .redacted-text::after {
+    content: "████";
+  }
+}
+
+/* Reduced motion - disable transitions for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  .blur-sensitive,
+  .blur-sensitive-lg {
+    transition: none;
+  }
+}

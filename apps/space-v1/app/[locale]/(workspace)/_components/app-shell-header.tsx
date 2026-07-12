@@ -3,7 +3,7 @@
 import { useTranslations } from "next-intl"
 
 import { Link, usePathname } from "@/i18n/navigation"
-import { buildAuthLogoutUrl } from "@workspace/supabase-auth/shared/auth-redirect"
+import { SignOutLink } from "./sign-out-link"
 import { Button } from "@workspace/ui/components/button"
 import { SidebarTrigger } from "@workspace/ui/components/sidebar"
 
@@ -23,7 +23,7 @@ export function AppShellHeader() {
             {t("shellLabel")}
           </p>
           <h1 className="truncate text-sm font-semibold sm:text-base">
-            {section ? t(`nav.${section.labelKey}`) : t("brand")}
+            {section ? section.title : t("brand")}
           </h1>
         </div>
       </div>
@@ -33,7 +33,7 @@ export function AppShellHeader() {
           <Link href="/preferences">{t("nav.preferences")}</Link>
         </Button>
         <Button variant="outline" size="sm" asChild>
-          <a href={buildAuthLogoutUrl()}>{t("signOut")}</a>
+          <SignOutLink>{t("signOut")}</SignOutLink>
         </Button>
       </div>
     </header>

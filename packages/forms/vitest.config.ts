@@ -21,11 +21,12 @@ export default mergeConfig(
       alias: {
         "@workspace/forms/hooks/use-app-form": resolve(dir, "src/hooks/use-app-form.hook.ts"),
         "@workspace/forms/hooks/use-action-form": resolve(dir, "src/hooks/use-action-form.hook.ts"),
-        "@workspace/forms": resolve(dir, "src"),
+        "@workspace/forms/forms": resolve(dir, "src/forms"),
         "@workspace/ui": resolve(dir, "../ui/src"),
         zod: require.resolve("zod"),
-        "react/jsx-runtime": require.resolve("react/jsx-runtime"),
-        "react/jsx-dev-runtime": require.resolve("react/jsx-dev-runtime"),
+        "react": dirname(require.resolve("react/package.json")),
+        "react/jsx-runtime": dirname(require.resolve("react/package.json")),
+        "react/jsx-dev-runtime": dirname(require.resolve("react/package.json")),
       },
     },
     server: {

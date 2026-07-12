@@ -1,28 +1,12 @@
-import { DocumentsLibraryShell } from "@/app/[locale]/(workspace)/(operations)/documents/_components/documents-library-shell"
-import type { DocumentsFilterState } from "@/app/[locale]/(workspace)/(operations)/documents/_lib/document-types"
-import { getDocumentsLibraryView } from "@/app/[locale]/(workspace)/(operations)/documents/_lib/document-view-model.server"
+import { listDocumentTemplatesAction } from "@workspace/supabase-data/actions/documents/list-document-templates";
 
-type DocumentsPageSearchParams = {
-  query?: string
-  status?: string
-}
+import { DocumentsPageClient } from "./_components/documents-page-client";
 
-export default async function DocumentsPage({
-  searchParams,
-}: {
-  searchParams: Promise<DocumentsPageSearchParams>
-}) {
-  const resolvedSearchParams = await searchParams
-
-  const filters: DocumentsFilterState = {
-    query: resolvedSearchParams.query ?? "",
-    status:
-      resolvedSearchParams.status === "Draft" ||
-      resolvedSearchParams.status === "Needs review" ||
-      resolvedSearchParams.status === "Shared"
-        ? resolvedSearchParams.status
-        : "all",
+export default async function DocumentsPage() {
+  const result = await listDocumentTemplatesAction({});
+  if (!result.success) {
+    throw new Error(result.error.message);
   }
 
-  return <DocumentsLibraryShell documentsView={await getDocumentsLibraryView(filters)} />
+  return <DocumentsPageClient templates={result.data.templates} />;
 }

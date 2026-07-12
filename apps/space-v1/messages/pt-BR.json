@@ -1,7 +1,7 @@
 {
   "Metadata": {
-    "title": "Nome do Produto",
-    "description": "Descrição do produto — atualizar ao fazer fork."
+    "title": "Fluri Space",
+    "description": "Área de trabalho clínica e operacional da Fluri."
   },
   "Auth": {
     "login": {
@@ -55,7 +55,7 @@
         "MFA challenge expired": "A verificação MFA expirou. Tente novamente.",
         "Invalid TOTP code entered": "Código de autenticação inválido.",
         "Factor not found": "Fator de autenticação não encontrado.",
-        "Enroll a TOTP factor before attempting the MFA challenge.": "Registe um fator TOTP antes de tentar a verificação MFA."
+        "Enroll a TOTP factor before attempting the MFA challenge": "Registe um fator TOTP antes de tentar a verificação MFA."
       }
     }
   },
@@ -64,26 +64,26 @@
     "login": "Entrar"
   },
   "AppShell": {
-    "brand": "Space",
-    "shellLabel": "Workspace",
-    "careLabel": "Prestação clínica",
-    "operationsLabel": "Operações",
-    "workspaceLabel": "Workspace",
-    "sidebarIntro": "O Space está agora organizado como uma superfície protegida do produto com fronteiras de migração locais por rota.",
-    "manageWorkspace": "Abrir preferências",
-    "detailEyebrow": "Estrutura de rota de detalhe",
-    "bareEyebrow": "Estrutura de rota bare",
-    "sectionEyebrow": "Estrutura de rota de secção",
-    "signOut": "Terminar sessão",
+    "brand": "Fluri Space",
+    "shellLabel": "Fluri Space",
+    "manageWorkspace": "Preferências",
+    "signOut": "Sair",
+    "sections": {
+      "main": "Principal",
+      "financial": "Financeiro",
+      "care": "Atendimentos",
+      "clinical": "Evolução clínica",
+      "workspace": "Presença"
+    },
     "nav": {
-      "dashboard": "Dashboard",
+      "home": "Início",
       "calendar": "Calendário",
       "sessions": "Sessões",
       "patients": "Pacientes",
-      "billing": "Faturação",
+      "billing": "Cobranças",
       "documents": "Documentos",
       "notes": "Notas",
-      "presence": "Presença",
+      "presence": "Meu site",
       "preferences": "Preferências"
     },
     "routes": {
@@ -184,5 +184,26 @@
         "description": "Esta rota reserva o estado protegido de conclusão do onboarding sem introduzir navegação do shell."
       }
     }
+  },
+  "Dashboard": {
+    "eyebrow": "Início",
+    "title": "Início",
+    "intro": "Visão geral do seu dia: sessões, indicadores e atalhos para o que importa agora.",
+    "todayTitle": "Hoje",
+    "todayDescription": "Próximas sessões e atalhos para calendário e atendimentos.",
+    "emptyAgendaTitle": "Nenhuma sessão agendada em breve",
+    "emptyAgendaDescription": "Quando houver sessões no calendário, elas aparecem aqui.",
+    "openSession": "Abrir sessão",
+    "quickLinksTitle": "Atalhos",
+    "quickLinksDescription": "Acesso rápido às áreas mais usadas do Space."
+  },
+  "Patients": {
+    "eyebrow": "Atendimentos",
+    "title": "Pacientes",
+    "intro": "Lista de pacientes, filtros e acesso ao prontuário.",
+    "invite": "Convidar paciente",
+    "create": "Novo paciente",
+    "directoryTitle": "Lista",
+    "directoryDescription": "{shown} de {total} pacientes com os filtros atuais."
   }
 }

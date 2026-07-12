@@ -126,7 +126,10 @@ export default async function LocaleLayout({ children, params }: Props) {
 
   return (
     <html lang={locale} suppressHydrationWarning>
-      <body className={cn("antialiased", fontMono.variable, fontSans.variable)}>
+      <body
+        className={cn("antialiased", fontMono.variable, fontSans.variable)}
+        suppressHydrationWarning
+      >
         <WebVitals />
         <NextIntlClientProvider messages={messages}>
           <AppProviders>{children}</AppProviders>

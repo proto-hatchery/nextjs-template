@@ -1,11 +1,10 @@
-# SEO notes (`apps/example`)
+# SEO notes (`apps/web-v1`)
 
-How this app inherits **template SEO defaults** and where to override them when
-you fork.
+How this app inherits shared SEO defaults and where to override them for Fluri.
 
 ---
 
-## Inheriting template defaults
+## Inheriting shared defaults
 
 | File                                                               | Role                                                                                                                                                                                               |
 | ------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -16,7 +15,7 @@ you fork.
 | `app/sitemap.ts`                                                   | Public URLs from `lib/public-routes.ts` (`PUBLIC_ROUTES`) per locale; empty when `ROBOTS_ALLOW` is not `true`                                                                                      |
 | `lib/public-routes.ts`                                             | Typed list of indexable pathnames for the sitemap — register every new public page here.                                                                                                           |
 | `@workspace/seo`                                                   | `buildCanonicalUrl`, `buildAlternateLanguages`, `buildJsonLd` — pass `siteUrl` and locale args from the app (no import of `i18n/routing` inside the package).                                      |
-| `app/manifest.ts`                                                  | PWA manifest stub                                                                                                                                                                                  |
+| `app/manifest.ts`                                                  | PWA manifest                                                                                                                                                                                       |
 | `app/[locale]/(auth)/layout.tsx`, `app/(auth-handlers)/layout.tsx` | `noindex,nofollow` for auth UI and auth HTTP handlers                                                                                                                                              |
 | `i18n/routing.ts`                                                  | Locales and `localePrefix` — source of truth with `messages/*.json`                                                                                                                                |
 

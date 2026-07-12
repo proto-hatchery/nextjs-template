@@ -4,16 +4,45 @@
   "private": true,
   "type": "module",
   "exports": {
-    "./components/theme-provider": "./src/_providers/theme-provider.provider.tsx"
+    "./components/theme-provider": "./src/_providers/theme-provider.provider.tsx",
+    "./components/brand-button": "./src/components/brand-button.component.tsx",
+    "./components/*": "./src/components/*.component.tsx",
+    "./onboarding": "./src/onboarding/index.ts",
+    "./onboarding/lib/schemas": "./src/onboarding/lib/schemas.ts",
+    "./overlays/*": "./src/overlays/*.tsx",
+    "./patterns/components/*": "./src/patterns/components/*.component.tsx",
+    "./patterns/kibo-ui/*": "./src/patterns/kibo-ui/*/index.tsx",
+    "./patterns/filtering/*": "./src/patterns/filtering/*.tsx",
+    "./patterns/aceternity/*": "./src/patterns/aceternity/*.tsx",
+    "./patterns/*": "./src/patterns/*.tsx"
   },
   "scripts": {
+    "test": "mkdir -p coverage/.tmp && vitest run --config vitest.config.ts",
+    "test:watch": "vitest --config vitest.config.ts",
     "lint": "oxlint",
     "format": "oxfmt --write",
     "typecheck": "tsc --noEmit",
     "check:exports": "publint"
   },
   "dependencies": {
-    "@workspace/core": "workspace:*"
+    "@radix-ui/react-dialog": "^1.1.15",
+    "@radix-ui/react-label": "^2.1.8",
+    "@radix-ui/react-visually-hidden": "^1.2.4",
+    "@workspace/core": "workspace:*",
+    "@workspace/ui": "workspace:*",
+    "class-variance-authority": "^0.7.1",
+    "date-fns": "^4.1.0",
+    "lucide-react": "^1.7.0",
+    "media-chrome": "^4.19.1",
+    "motion": "^12.23.24",
+    "next": "^16.2.7",
+    "next-themes": "^0.4.6",
+    "radix-ui": "^1.4.3",
+    "react-day-picker": "^9.14.0",
+    "react-fast-marquee": "^1.6.5",
+    "react-image-crop": "^11.0.10",
+    "svg-dotted-map": "^2.1.0",
+    "zod": "^4.3.6"
   },
   "devDependencies": {
     "@types/node": "^25.5.2",

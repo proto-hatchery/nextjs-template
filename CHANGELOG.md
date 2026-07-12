@@ -4,6 +4,20 @@
 
 ### Added
 
+- [feat] Port fluri-v0 onboarding RPCs (`get_current_onboarding_step`,
+  `update_onboarding_step`, `completed_steps` SSOT) via stamped migration
+  `20260605164523_port_onboarding_flow_rpcs.sql`; regenerate local DB types.
+- [feat] `@workspace/supabase-data` — onboarding flow-controller and step actions
+  from fluri-v0; `@workspace/brand/onboarding` UI shell; web-v1 phase-1
+  onboarding routes; space-v1 phase-2 onboarding flows, pricing, subscription success.
+- [feat] space-v1 — bulk port of fluri-v0 shell routes (calendar, patients,
+  sessions, billing, documents, activities, finances, chat, presence, preferences tabs).
+- [docs] `docs/refactoring/space-v0-route-gap-matrix.md` — full space-v0 vs
+  space-v1 route/status matrix (onboarding, subscription, Stripe, shell domains).
+- [docs] `docs/refactoring/space-v0-page-parity-matrix.md` — per-route fluri UI
+  parity status and blockers.
+- [refactor] space-v1 — port fluri-v0 sidebar (`SidebarNav`, `nav-entries`,
+  collapsible “Meu Site”), home dashboard components, patients list, coming-soon routes.
 - [refactor] `@workspace/codegen-tools/backend-codegen/plan-module-paths` —
   shared helpers for plan-driven module **basenames** and **import specifiers**
   (`planDtoImportSpecifier`, `planRepositoryImportSpecifier`, etc.); re-exported
@@ -18,6 +32,25 @@
 - [docs] `docs/guides/pre-push-workflow.md` — comprehensive guide for pre-push
   validation workflow with troubleshooting for typecheck, test, publint, knip,
   audit, and depcruise.
+
+### Fixed
+
+- [fix] space-v1 / web-v1 — move copied app-local Server Actions for
+  preferences and checkout into `packages/supabase-data/src/actions`, add
+  missing package exports/dependencies for the Fluri onboarding and forms port,
+  and remove `apps/*/_actions` violations.
+- [fix] space-v1 / web-v1 — mount `AppProviders` (next-themes) only inside
+  `app/[locale]/layout.tsx` `<body>`; root `app/layout.tsx` is pass-through to
+  avoid theme `<script>` hydration errors.
+- [fix] `getSupabasePublicEnv` reads `NEXT_PUBLIC_*` keys explicitly so Turbopack
+  inlines them in client bundles (fixes browser sign-in when env lives in root
+  `.env.local`).
+- [fix] `requireAuth` uses the flat JWT payload from `getClaims()` (was treating
+  it as `{ claims }`, causing every codegen Server Action to throw Unauthorized).
+- [fix] Action rate limiting skips Upstash when `AUTH_RATE_LIMIT_MODE=memory|off`
+  or Redis env is unset; lazy-init client to avoid local dev DNS failures.
+- [feat] `scripts/qa/seed-local-test-users.ts` — seeds a local psychologist for
+  `web-v1` + `space-v1` manual testing (`pnpm seed:local-users`).
 
 ### Changed
 

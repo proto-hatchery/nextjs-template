@@ -1,4 +1,4 @@
-# E2E tests (Playwright) — `apps/example/tests/e2e`
+# E2E tests (Playwright) — `apps/web-v1/tests/e2e`
 
 **Audience:** agents / LLM. Pyramid: E2E only for **essential auth flows**; keep
 the suite minimal.

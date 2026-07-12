@@ -4,6 +4,24 @@
     "paths": {
       "@/i18n/*": ["./i18n/*"],
       "@/*": ["./*"],
+      "@workspace/ui/assets": ["./compat/ui/assets.tsx"],
+      "@workspace/ui/components/kbd": ["./compat/ui/components/kbd.tsx"],
+      "@workspace/ui/components/visually-hidden": [
+        "./compat/ui/components/visually-hidden.tsx"
+      ],
+      "@workspace/ui/hooks/use-debounced-callback": [
+        "./compat/ui/hooks/use-debounced-callback.ts"
+      ],
+      "@workspace/ui/hooks/use-long-press": ["./compat/ui/hooks/use-long-press.ts"],
+      "@workspace/ui/hooks/use-media-query": ["./compat/ui/hooks/use-media-query.ts"],
+      "@workspace/ui/hooks/use-viacep": ["./compat/ui/hooks/use-viacep.ts"],
+      "@workspace/ui/lib/errors": ["./compat/ui/lib/errors.ts"],
+      "@workspace/ui/lib/format": ["./compat/ui/lib/format.ts"],
+      "@workspace/ui/lib/linktree-links": ["./compat/ui/lib/linktree-links.ts"],
+      "@workspace/ui/lib/slug-validation": ["./compat/ui/lib/slug-validation.ts"],
+      "@workspace/ui/lib/timezone-datetime": ["./compat/ui/lib/timezone-datetime.ts"],
+      "@workspace/ui/lib/timezone-utils": ["./compat/ui/lib/timezone-utils.ts"],
+      "@workspace/ui/lib/visually-hidden": ["./compat/ui/lib/visually-hidden.ts"],
       "@workspace/ui/*": ["../../packages/ui/src/*"],
       "@workspace/supabase-auth/*": ["../../packages/supabase-auth/src/*"],
       "@workspace/supabase-infra/*": ["../../packages/supabase-infra/src/*"],

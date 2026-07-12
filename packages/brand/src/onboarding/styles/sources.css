@@ -1,0 +1,13 @@
+/*
+ * Feature Source Manifest - @workspace/features/onboarding
+ * This file owns source scanning for the onboarding feature ONLY.
+ * Do NOT import Tailwind or tw-animate-css here.
+ * Do NOT redefine global theme tokens.
+ */
+
+/* Feature-local source scanning - relative to this file's location */
+@source "../**/*.{ts,tsx}";
+@source not "../styles/**/*";
+
+/* Dark variant (required for onboarding components) */
+@custom-variant dark (&:is(.dark *));

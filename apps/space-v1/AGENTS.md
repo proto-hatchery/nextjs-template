@@ -14,8 +14,7 @@ folder.
 - **No `src/`** — `app/`, `proxy.ts`, `next.config.mjs` at package root.
 - **`app/_providers/`** — see `app/_providers/AGENTS.md`
   (`app-providers.example.tsx` → `@workspace/core`).
-- **`app/_hooks/`** — see `app/_hooks/AGENTS.md` (app-only hooks; `*.example.*`
-  naming).
+- **`app/_hooks/`** — see `app/_hooks/AGENTS.md` (app-only hooks).
 - **`i18n/`** — `routing.ts`, `request.ts`, `navigation.ts`
 - **`messages/`** — see `messages/AGENTS.md`
 - **`app/[locale]/`** — protected workspace entry plus protected route groups:
