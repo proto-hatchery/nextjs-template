@@ -10,7 +10,7 @@ jobs:
     name: OSV Vulnerability Scanner
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - uses: google/osv-scanner-action@v1
         with:
@@ -22,7 +22,7 @@ jobs:
     name: GitHub Actions Linter
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - uses: rhysd/actionlint-action@v1
         with:
@@ -32,7 +32,7 @@ jobs:
     name: GitHub Actions Security Auditor
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - uses: zizmorcore/zizmor-action@v1
         with:
