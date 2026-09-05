@@ -26,7 +26,7 @@ jobs:
         uses: dtinth/setup-github-actions-caching-for-turbo@v1
 
       - name: Cache node_modules
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: |
             node_modules
@@ -50,7 +50,7 @@ jobs:
           cache: pnpm
 
       - name: Restore node_modules
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: |
             node_modules
@@ -88,7 +88,7 @@ jobs:
           cache: pnpm
 
       - name: Restore node_modules
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: |
             node_modules
@@ -117,7 +117,7 @@ jobs:
           cache: pnpm
 
       - name: Restore node_modules
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: |
             node_modules
@@ -149,7 +149,7 @@ jobs:
           cache: pnpm
 
       - name: Restore node_modules
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: |
             node_modules
@@ -197,7 +197,7 @@ jobs:
           cache: pnpm
 
       - name: Restore node_modules
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: |
             node_modules
