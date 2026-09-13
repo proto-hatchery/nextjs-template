@@ -15,7 +15,7 @@
   },
   "devDependencies": {
     "@workspace/typescript-config": "workspace:*",
-    "publint": "^0.3.18",
-    "typescript": "^5.9.3"
+    "publint": "^0.3.24",
+    "typescript": "^7.0.2"
   }
 }
