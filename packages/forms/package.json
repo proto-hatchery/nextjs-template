@@ -16,24 +16,24 @@
     "check:exports": "publint"
   },
   "dependencies": {
-    "@hookform/resolvers": "^5.2.2",
-    "@next-safe-action/adapter-react-hook-form": "2.0.5",
+    "@hookform/resolvers": "^5.9.1",
+    "@next-safe-action/adapter-react-hook-form": "2.1.0",
     "@workspace/ui": "workspace:*",
-    "next-safe-action": "^8.3.0",
-    "react": "^19.2.4",
-    "react-hook-form": "^7.72.1",
-    "zod": "^4.3.6"
+    "next-safe-action": "^8.7.3",
+    "react": "^19.3.0",
+    "react-hook-form": "^7.88.0",
+    "zod": "^4.6.5"
   },
   "devDependencies": {
-    "@testing-library/jest-dom": "^6.9.1",
-    "@testing-library/react": "^16.3.0",
-    "@types/node": "^25.5.2",
-    "@types/react": "^19.2.10",
-    "@types/react-dom": "^19.2.3",
+    "@testing-library/jest-dom": "^7.0.1",
+    "@testing-library/react": "^16.3.3",
+    "@types/node": "^26.6.2",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
     "@workspace/typescript-config": "workspace:*",
     "@workspace/vitest-config": "workspace:*",
-    "publint": "^0.3.18",
-    "typescript": "^5.9.3",
-    "vitest": "^4.1.2"
+    "publint": "^0.3.24",
+    "typescript": "^7.0.2",
+    "vitest": "^5.0.1"
   }
 }
