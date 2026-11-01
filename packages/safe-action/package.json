@@ -13,12 +13,12 @@
   },
   "dependencies": {
     "@workspace/supabase-auth": "workspace:*",
-    "next-safe-action": "^8.3.0"
+    "next-safe-action": "^8.7.3"
   },
   "devDependencies": {
-    "@types/node": "^25.5.2",
+    "@types/node": "^26.6.6",
     "@workspace/typescript-config": "workspace:*",
-    "publint": "^0.3.18",
-    "typescript": "^5.9.3"
+    "publint": "^0.3.25",
+    "typescript": "^7.0.2"
   }
 }

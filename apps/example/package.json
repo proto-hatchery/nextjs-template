@@ -15,8 +15,8 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@hookform/resolvers": "^5.2.2",
-    "@next-safe-action/adapter-react-hook-form": "2.0.5",
+    "@hookform/resolvers": "^6.0.2",
+    "@next-safe-action/adapter-react-hook-form": "2.1.0",
     "@workspace/core": "workspace:*",
     "@workspace/forms": "workspace:*",
     "@workspace/logging": "workspace:*",
@@ -25,26 +25,26 @@
     "@workspace/supabase-auth": "workspace:*",
     "@workspace/supabase-infra": "workspace:*",
     "@workspace/ui": "workspace:*",
-    "lucide-react": "^1.7.0",
-    "next": "16.2.2",
-    "next-intl": "^4.9.0",
-    "next-safe-action": "^8.3.0",
-    "react": "^19.2.4",
-    "react-dom": "^19.2.4",
-    "react-hook-form": "^7.72.1",
-    "sharp": "^0.34.5",
-    "zod": "^4.3.6"
+    "lucide-react": "^1.63.0",
+    "next": "16.4.3",
+    "next-intl": "^4.14.9",
+    "next-safe-action": "^8.7.3",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "react-hook-form": "^7.91.0",
+    "sharp": "^0.35.5",
+    "zod": "^4.6.7"
   },
   "devDependencies": {
-    "@next/env": "16.2.2",
-    "@tailwindcss/postcss": "^4.2.2",
-    "@testing-library/react": "^16.3.0",
-    "@types/node": "^25.5.2",
-    "@types/react": "^19.2.10",
-    "@types/react-dom": "^19.2.3",
+    "@next/env": "16.4.3",
+    "@tailwindcss/postcss": "^4.3.3",
+    "@testing-library/react": "^16.3.3",
+    "@types/node": "^26.6.6",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
     "@workspace/typescript-config": "workspace:*",
     "@workspace/vitest-config": "workspace:*",
-    "typescript": "^5.9.3",
-    "vitest": "^4.1.2"
+    "typescript": "^7.0.2",
+    "vitest": "^5.0.5"
   }
 }
